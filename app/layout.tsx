@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Agentagous — The Agentic Economy, Mapped Live",
   description: "Every company being built and run by AI agents — tracked, categorised, and indexed in real time.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/favicon.png",
   },
 };
 
