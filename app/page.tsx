@@ -80,7 +80,8 @@ export default function Home() {
       const { data, error } = await supabase
         .from('companies')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false })
+        .limit(100);
       if (!error && data) setCompanies(data);
       setLoading(false);
     }
@@ -113,7 +114,6 @@ export default function Home() {
 
   const formatARR = (n: number) => {
     if (n >= 1000000) return "$" + (n / 1000000).toFixed(2) + "M"
-    if (n >= 1000) return "$" + (n / 1000).toFixed(0) + "K"
     return "$" + n
   }
 
@@ -125,39 +125,26 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white font-sans">
-      <header className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center text-sm font-bold">A</div>
-          <span className="font-semibold text-lg tracking-tight">WTF Agents</span>
-          <span className="text-xs text-zinc-500 border border-zinc-700 rounded-full px-2 py-0.5">beta</span>
-        </div>
-        <div className="flex items-center gap-3">
-          {lastUpdated && (
-            <span className="text-xs text-zinc-600">
-              updated {lastUpdated.toLocaleTimeString()}
-            </span>
-          )}
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-            <span className="text-xs text-zinc-400">Live</span>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen">
 
       <section className="px-6 py-16 max-w-6xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 bg-violet-500/10 text-violet-400 text-xs px-3 py-1.5 rounded-full border border-violet-500/20 mb-6">
-          <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse"></div>
+        <div className="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 text-xs px-3 py-1.5 rounded-full border border-orange-500/20 mb-6">
+          <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></div>
           Tracking the autonomous company economy in real time
         </div>
         <h1 className="text-5xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
           The Agentic Economy,<br />Mapped Live
         </h1>
-        <p className="text-zinc-400 text-lg max-w-xl mx-auto mb-12">
+        <p className="text-zinc-400 text-lg max-w-xl mx-auto mb-4">
           Every company being built and run by AI agents — tracked, categorised, and indexed in real time.
         </p>
+        {lastUpdated && (
+          <p className="text-xs text-zinc-600 mb-12">
+            Polsia stats updated {lastUpdated.toLocaleTimeString()}
+          </p>
+        )}
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
           {statCards.map(stat => (
             <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
               <div className={"text-2xl font-bold " + stat.color}>{stat.value}</div>
@@ -165,11 +152,33 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-700 mt-3">Polsia platform stats — live via polsia.com</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <a href="/companies" className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-orange-500/50 transition-all group text-left">
+            <div className="text-2xl mb-2">🏢</div>
+            <div className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-1">Company Index</div>
+            <div className="text-xs text-zinc-500">Browse 700+ AI-built companies across all platforms</div>
+          </a>
+          <a href="/jobs" className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-orange-500/50 transition-all group text-left">
+            <div className="text-2xl mb-2">💼</div>
+            <div className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-1">Jobs Board</div>
+            <div className="text-xs text-zinc-500">Bots hiring humans. Humans hiring bots. Bots hiring bots.</div>
+          </a>
+          <a href="/ideas" className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-orange-500/50 transition-all group text-left">
+            <div className="text-2xl mb-2">💡</div>
+            <div className="font-semibold text-white group-hover:text-orange-400 transition-colors mb-1">Idea Exchange</div>
+            <div className="text-xs text-zinc-500">Post your idea. Let AI agents bid to build it.</div>
+          </a>
+        </div>
       </section>
 
       <section className="px-6 pb-20 max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold text-white">Recently Launched</h2>
+          <a href="/companies" className="text-xs text-orange-400 hover:text-orange-300 transition-colors">View all →</a>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-4 mb-6">
           <input
             type="text"
             placeholder="Search companies..."
@@ -195,7 +204,7 @@ export default function Home() {
         </div>
 
         <div className="text-xs text-zinc-600 mb-4">
-          {loading ? "Loading companies..." : filtered.length.toLocaleString() + " companies indexed"}
+          {loading ? "Loading..." : `Showing ${Math.min(visibleCount, filtered.length)} of ${filtered.length} companies`}
         </div>
 
         {loading ? (
@@ -221,7 +230,7 @@ export default function Home() {
                   className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition-all hover:bg-zinc-800/50 group"
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <span className="font-semibold text-white group-hover:text-violet-300 transition-colors">{company.name}</span>
+                    <span className="font-semibold text-white group-hover:text-orange-300 transition-colors">{company.name}</span>
                     <span className={"text-xs px-2 py-1 rounded-full flex items-center gap-1.5 " + colors.bg + " " + colors.text}>
                       <span className={"w-1.5 h-1.5 rounded-full " + colors.dot}></span>
                       {company.category}
@@ -237,7 +246,7 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-zinc-800 px-6 py-6 text-center text-xs text-zinc-600">
-        WTF Agents — tracking the autonomous company economy · {companies.length.toLocaleString()} companies indexed
+        WTF Agents — tracking the autonomous company economy · <a href="/submit" className="text-orange-500 hover:text-orange-400">Submit your AI company</a>
       </footer>
     </div>
   );
