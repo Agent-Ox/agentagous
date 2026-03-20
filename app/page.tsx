@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 
 type Company = {
@@ -14,6 +14,13 @@ type Company = {
   source: string;
 };
 
+type LiveStats = {
+  arr: number;
+  companies: number;
+  launchedToday: number;
+  wowGrowth: number;
+};
+
 const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
   "Trades & Field Ops": { bg: "bg-orange-500/10", text: "text-orange-400", dot: "bg-orange-400" },
   "Sales & Outreach": { bg: "bg-blue-500/10", text: "text-blue-400", dot: "bg-blue-400" },
@@ -21,15 +28,12 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
   "SaaS & Dev Tools": { bg: "bg-violet-500/10", text: "text-violet-400", dot: "bg-violet-400" },
   "Health & Wellness": { bg: "bg-green-500/10", text: "text-green-400", dot: "bg-green-400" },
   "Content & Media": { bg: "bg-pink-500/10", text: "text-pink-400", dot: "bg-pink-400" },
+  "E-commerce": { bg: "bg-yellow-500/10", text: "text-yellow-400", dot: "bg-yellow-400" },
+  "Real Estate": { bg: "bg-cyan-500/10", text: "text-cyan-400", dot: "bg-cyan-400" },
+  "Legal & Compliance": { bg: "bg-red-500/10", text: "text-red-400", dot: "bg-red-400" },
+  "Education & Training": { bg: "bg-indigo-500/10", text: "text-indigo-400", dot: "bg-indigo-400" },
   "Other": { bg: "bg-zinc-500/10", text: "text-zinc-400", dot: "bg-zinc-400" },
 };
-
-const stats = [
-  { label: "ARR", value: "$4.9M" },
-  { label: "Active Companies", value: "4,747" },
-  { label: "Launched Today", value: "127" },
-  { label: "Growth", value: "+56% WoW" },
-];
 
 export default function Home() {
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -37,7 +41,39 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [visibleCount, setVisibleCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [counters, setCounters] = useState([0, 0, 0, 0]);
+  const [liveStats, setLiveStats] = useState<LiveStats>({ arr: 5152829, companies: 5042, launchedToday: 1416, wowGrowth: 21.4 });
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+
+  const fetchStats = useCallback(async () => {
+    try {
+      const res = await fetch('https://polsia.imrat.com/api/data')
+      const data = await res.json()
+      if (data.success && data.stats) {
+        const s = data.stats
+        const arr = parseInt(s.arr_usd)
+        const arr7d = parseInt(s.arr_7d_ago)
+        const wow = arr7d > 0 ? ((arr - arr7d) / arr7d * 100) : 0
+        setLiveStats({
+          arr,
+          companies: parseInt(s.companies),
+          launchedToday: parseInt(s.companies_created_24h),
+          wowGrowth: Math.round(wow * 10) / 10
+        })
+        setLastUpdated(new Date())
+      }
+    } catch (e) {
+      console.error('Stats fetch failed:', e)
+    } finally {
+      setStatsLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchStats()
+    const interval = setInterval(fetchStats, 60000)
+    return () => clearInterval(interval)
+  }, [fetchStats])
 
   useEffect(() => {
     async function fetchCompanies() {
@@ -45,15 +81,13 @@ export default function Home() {
         .from('companies')
         .select('*')
         .order('created_at', { ascending: false });
-      if (!error && data) {
-        setCompanies(data);
-      }
+      if (!error && data) setCompanies(data);
       setLoading(false);
     }
     fetchCompanies();
   }, []);
 
-  const categories = ["All", ...Array.from(new Set(companies.map(c => c.category)))];
+  const categories = ["All", ...Array.from(new Set(companies.map(c => c.category))).sort()];
 
   const filtered = companies.filter(c => {
     const matchCat = activeCategory === "All" || c.category === activeCategory;
@@ -66,27 +100,29 @@ export default function Home() {
     let i = 0;
     setVisibleCount(0);
     const interval = setInterval(() => {
-      if (i < filtered.length) {
+      if (i < Math.min(filtered.length, 50)) {
         setVisibleCount(i + 1);
         i++;
       } else {
         clearInterval(interval);
+        setVisibleCount(filtered.length);
       }
-    }, 60);
+    }, 30);
     return () => clearInterval(interval);
   }, [activeCategory, search, filtered.length]);
 
-  useEffect(() => {
-    const targets = [49, 4747, 127, 56];
-    const steps = 40;
-    let step = 0;
-    const timer = setInterval(() => {
-      step++;
-      setCounters(targets.map(t => Math.floor((t * step) / steps)));
-      if (step >= steps) clearInterval(timer);
-    }, 37);
-    return () => clearInterval(timer);
-  }, []);
+  const formatARR = (n: number) => {
+    if (n >= 1000000) return "$" + (n / 1000000).toFixed(2) + "M"
+    if (n >= 1000) return "$" + (n / 1000).toFixed(0) + "K"
+    return "$" + n
+  }
+
+  const statCards = [
+    { label: "Live ARR", value: statsLoading ? "..." : formatARR(liveStats.arr), color: "text-emerald-400" },
+    { label: "Active Companies", value: statsLoading ? "..." : liveStats.companies.toLocaleString(), color: "text-violet-400" },
+    { label: "Launched Today", value: statsLoading ? "..." : liveStats.launchedToday.toLocaleString(), color: "text-blue-400" },
+    { label: "WoW Growth", value: statsLoading ? "..." : "+" + liveStats.wowGrowth + "%", color: "text-orange-400" },
+  ];
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans">
@@ -96,9 +132,16 @@ export default function Home() {
           <span className="font-semibold text-lg tracking-tight">Agentagous</span>
           <span className="text-xs text-zinc-500 border border-zinc-700 rounded-full px-2 py-0.5">beta</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-          <span className="text-xs text-zinc-400">Live</span>
+        <div className="flex items-center gap-3">
+          {lastUpdated && (
+            <span className="text-xs text-zinc-600">
+              updated {lastUpdated.toLocaleTimeString()}
+            </span>
+          )}
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span className="text-xs text-zinc-400">Live</span>
+          </div>
         </div>
       </header>
 
@@ -115,15 +158,14 @@ export default function Home() {
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-          {stats.map((stat, i) => (
+          {statCards.map(stat => (
             <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-              <div className="text-2xl font-bold text-white">
-                {i === 0 ? "$" + (counters[i] / 10).toFixed(1) + "M" : counters[i].toLocaleString() + (i === 3 ? "% WoW" : "")}
-              </div>
+              <div className={"text-2xl font-bold " + stat.color}>{stat.value}</div>
               <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
+        <p className="text-xs text-zinc-700 mt-3">Polsia platform stats — live via polsia.com</p>
       </section>
 
       <section className="px-6 pb-20 max-w-6xl mx-auto">
@@ -153,7 +195,7 @@ export default function Home() {
         </div>
 
         <div className="text-xs text-zinc-600 mb-4">
-          {loading ? "Loading companies..." : filtered.length + " companies"}
+          {loading ? "Loading companies..." : filtered.length.toLocaleString() + " companies indexed"}
         </div>
 
         {loading ? (
@@ -185,7 +227,7 @@ export default function Home() {
                       {company.category}
                     </span>
                   </div>
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-3">{company.description}</p>
+                  <p className="text-sm text-zinc-400 leading-relaxed mb-3 line-clamp-3">{company.description}</p>
                   <div className="text-xs text-zinc-600 font-mono">{company.url}</div>
                 </a>
               );
@@ -195,7 +237,7 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-zinc-800 px-6 py-6 text-center text-xs text-zinc-600">
-        Agentagous — tracking the autonomous company economy · Built by an agent, for agents
+        Agentagous — tracking the autonomous company economy · {companies.length.toLocaleString()} companies indexed
       </footer>
     </div>
   );
