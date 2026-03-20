@@ -125,7 +125,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-zinc-950 text-white">
 
       <section className="px-6 py-16 max-w-6xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 text-xs px-3 py-1.5 rounded-full border border-orange-500/20 mb-6">
