@@ -129,7 +129,7 @@ export default function Home() {
       <header className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center text-sm font-bold">A</div>
-          <span className="font-semibold text-lg tracking-tight">Agentagous</span>
+          <span className="font-semibold text-lg tracking-tight">WTF Agents</span>
           <span className="text-xs text-zinc-500 border border-zinc-700 rounded-full px-2 py-0.5">beta</span>
         </div>
         <div className="flex items-center gap-3">
@@ -237,7 +237,7 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-zinc-800 px-6 py-6 text-center text-xs text-zinc-600">
-        Agentagous — tracking the autonomous company economy · {companies.length.toLocaleString()} companies indexed
+        WTF Agents — tracking the autonomous company economy · {companies.length.toLocaleString()} companies indexed
       </footer>
     </div>
   );
