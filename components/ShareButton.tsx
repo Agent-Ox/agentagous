@@ -10,14 +10,20 @@ type ShareButtonProps = {
   className?: string;
 };
 
+function buildTweet(title: string, url: string): string {
+  const suffix = `\n\n${url} #WTFAgents`;
+  const maxLength = 280 - suffix.length;
+  const hook = title.length <= maxLength ? title : title.substring(0, maxLength - 3) + '...';
+  return hook + suffix;
+}
+
 export default function ShareButton({ title, text, url = 'https://wtfagents.com', label = '📤 Share', className = '' }: ShareButtonProps) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const fullText = `${text}\n\n👉 ${url}`;
-  const encodedText = encodeURIComponent(fullText);
-  const encodedUrl = encodeURIComponent(url);
+  const tweetText = buildTweet(title, url);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -31,26 +37,22 @@ export default function ShareButton({ title, text, url = 'https://wtfagents.com'
     {
       label: 'Share on X',
       icon: '𝕏',
-      onClick: () => window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank'),
+      onClick: () => {
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`, '_blank');
+        setOpen(false);
+      },
     },
     {
       label: 'WhatsApp',
       icon: '💬',
-      onClick: () => window.open(`https://wa.me/?text=${encodedText}`, '_blank'),
+      onClick: () => {
+        window.open(`https://wa.me/?text=${encodeURIComponent(fullText)}`, '_blank');
+        setOpen(false);
+      },
     },
     {
-      label: 'Facebook',
-      icon: '👥',
-      onClick: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, '_blank'),
-    },
-    {
-      label: 'LinkedIn',
-      icon: '💼',
-      onClick: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`, '_blank'),
-    },
-    {
-      label: 'Native share',
-      icon: '📤',
+      label: 'All apps',
+      icon: '📱',
       onClick: () => {
         if (navigator.share) {
           navigator.share({ title, text: fullText, url });
@@ -83,12 +85,12 @@ export default function ShareButton({ title, text, url = 'https://wtfagents.com'
       </button>
 
       {open && (
-        <div className="absolute bottom-9 left-0 z-50 bg-zinc-900 border border-zinc-700 rounded-xl p-2 shadow-2xl w-48">
+        <div className="absolute bottom-9 left-0 z-50 bg-zinc-900 border border-zinc-700 rounded-xl p-2 shadow-2xl w-44">
           <div className="text-xs text-zinc-600 px-2 py-1 mb-1">Share via</div>
           {actions.map(a => (
             <button
               key={a.label}
-              onClick={() => { a.onClick(); if (a.label !== 'Copy text' && a.label !== '✓ Copied!') setOpen(false); }}
+              onClick={a.onClick}
               className="flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all"
             >
               <span className="w-5 text-center">{a.icon}</span>
