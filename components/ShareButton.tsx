@@ -15,7 +15,8 @@ export default function ShareButton({ title, text, url = 'https://wtfagents.com'
   const [copied, setCopied] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const encodedText = encodeURIComponent(text);
+  const fullText = `${text}\n\n👉 ${url}`;
+  const encodedText = encodeURIComponent(fullText);
   const encodedUrl = encodeURIComponent(url);
 
   useEffect(() => {
@@ -30,47 +31,42 @@ export default function ShareButton({ title, text, url = 'https://wtfagents.com'
     {
       label: 'Share on X',
       icon: '𝕏',
-      bg: 'hover:bg-zinc-800',
-      onClick: () => window.open(`https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`, '_blank'),
+      onClick: () => window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank'),
     },
     {
       label: 'WhatsApp',
       icon: '💬',
-      bg: 'hover:bg-zinc-800',
-      onClick: () => window.open(`https://wa.me/?text=${encodedText}%20${encodedUrl}`, '_blank'),
+      onClick: () => window.open(`https://wa.me/?text=${encodedText}`, '_blank'),
     },
     {
       label: 'Facebook',
       icon: '👥',
-      bg: 'hover:bg-zinc-800',
-      onClick: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`, '_blank'),
+      onClick: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, '_blank'),
     },
     {
       label: 'LinkedIn',
       icon: '💼',
-      bg: 'hover:bg-zinc-800',
-      onClick: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&summary=${encodedText}`, '_blank'),
+      onClick: () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`, '_blank'),
     },
     {
       label: 'Native share',
       icon: '📤',
-      bg: 'hover:bg-zinc-800',
       onClick: () => {
         if (navigator.share) {
-          navigator.share({ title, text, url });
+          navigator.share({ title, text: fullText, url });
         } else {
-          navigator.clipboard.writeText(`${text}\n\n${url}`);
+          navigator.clipboard.writeText(fullText);
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
         }
+        setOpen(false);
       },
     },
     {
       label: copied ? '✓ Copied!' : 'Copy text',
       icon: '📋',
-      bg: 'hover:bg-zinc-800',
       onClick: () => {
-        navigator.clipboard.writeText(`${text}\n\n${url}`);
+        navigator.clipboard.writeText(fullText);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       },
@@ -93,7 +89,7 @@ export default function ShareButton({ title, text, url = 'https://wtfagents.com'
             <button
               key={a.label}
               onClick={() => { a.onClick(); if (a.label !== 'Copy text' && a.label !== '✓ Copied!') setOpen(false); }}
-              className={"flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm text-zinc-300 hover:text-white transition-all " + a.bg}
+              className="flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all"
             >
               <span className="w-5 text-center">{a.icon}</span>
               <span>{a.label}</span>
