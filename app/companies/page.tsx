@@ -29,6 +29,13 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
 };
 
 const platformEmptyStates: Record<string, { icon: string; title: string; desc: string; badge?: string }> = {
+  "OpenClaw": {
+    icon: "🦾",
+    title: "OpenClaw companies exist — we just can't index them all yet",
+    desc: "OpenClaw is self-hosted so there's no central registry. Claw Mart ($71k revenue), BetterClaw.io, and dozens more are running right now. Got an OpenClaw company? Submit it and get listed.",
+    badge: "Self-hosted platform",
+    cta: true,
+  },
   "Paperclip": {
     icon: "📎",
     title: "Paperclip is still cooking",
@@ -69,14 +76,15 @@ export default function CompaniesPage() {
   }, []);
 
   const categories = ["All", ...Array.from(new Set(companies.map(c => c.category))).sort()];
-  const platforms = ["All", "Polsia", "X Discovery", "Paperclip"];
+  const platforms = ["All", "Polsia", "X Discovery", "Paperclip", "OpenClaw"];
 
   const filtered = companies.filter(c => {
     const matchCat = activeCategory === "All" || c.category === activeCategory;
     const matchPlatform = activePlatform === "All" ||
       (activePlatform === "Polsia" && (c.source === "polsia" || c.source === "manual")) ||
       (activePlatform === "X Discovery" && c.source === "x_polsia") ||
-      (activePlatform === "Paperclip" && c.source === "paperclip");
+      (activePlatform === "Paperclip" && c.source === "paperclip") ||
+      (activePlatform === "OpenClaw" && c.source === "openclaw");
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.description.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchPlatform && matchSearch;
