@@ -56,12 +56,13 @@ export default function CompaniesPage() {
   }, []);
 
   const categories = ["All", ...Array.from(new Set(companies.map(c => c.category))).sort()];
-  const platforms = ["All", "Polsia", "X Discovery"];
+  const platforms = ["All", "Polsia", "X Discovery", "Paperclip"];
 
   const filtered = companies.filter(c => {
     const matchCat = activeCategory === "All" || c.category === activeCategory;
     const matchPlatform = activePlatform === "All" ||
       (activePlatform === "Polsia" && c.source === "polsia") ||
+      (activePlatform === "Paperclip" && c.source === "paperclip") ||
       (activePlatform === "X Discovery" && c.source === "x_polsia");
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.description.toLowerCase().includes(search.toLowerCase());
