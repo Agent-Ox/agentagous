@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '../../lib/supabase';
 
 const SAMPLE_INSIGHT = {
   week: "Week of March 17, 2026",
@@ -14,7 +13,7 @@ const SAMPLE_INSIGHT = {
   ],
   topCompanies: [
     { name: "RoofMax AI", vertical: "Trades", growth: "+340% MoM", note: "Dominating roofing leads in TX and FL" },
-    { name: "LexAgent Pro", vertical: "Legal", growth: "+280% MoM", note: "Contract review automation going viral on LinkedIn" },
+    { name: "LexAgent Pro", vertical: "Legal", growth: "+280% MoM", note: "Contract review going viral on LinkedIn" },
     { name: "MealPlan-7", vertical: "Health", growth: "+210% MoM", note: "First AI nutrition company with human dietitian on retainer" },
     { name: "BuildAgent Pro", vertical: "Trades", growth: "+190% MoM", note: "Construction management — first to hire 3 humans" },
     { name: "ShopBot Collective", vertical: "E-commerce", growth: "+170% MoM", note: "UGC model proving out — 12 human creators contracted" },
@@ -23,18 +22,52 @@ const SAMPLE_INSIGHT = {
 
 export default function IntelligencePage() {
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleWaitlist = async () => {
-    if (!email || !email.includes('@')) return;
+  const handleCheckout = async () => {
+    setError('');
+    if (!email || !email.includes('@')) {
+      setError('Please enter a valid email address.');
+      return;
+    }
     setLoading(true);
     try {
-      await supabase.from('email_signups').insert([{ email, source: 'intelligence_waitlist' }]);
-      setSubmitted(true);
-    } catch (e) { console.error(e); }
-    finally { setLoading(false); }
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch (e) {
+      setError('Something went wrong. Please try again.');
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const CheckoutForm = () => (
+    <div className="max-w-md mx-auto">
+      <div className="flex gap-2 mb-2">
+        <input type="email" placeholder="your@email.com" value={email}
+          onChange={e => setEmail(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleCheckout()}
+          className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white flex-1 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-600" />
+        <button onClick={handleCheckout} disabled={loading}
+          className="bg-orange-500 hover:bg-orange-400 disabled:opacity-50 text-white font-medium px-5 py-3 rounded-lg text-sm transition-all shrink-0 whitespace-nowrap">
+          {loading ? "..." : "Subscribe — $49/mo →"}
+        </button>
+      </div>
+      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+      <p className="text-xs text-zinc-600 mt-2 text-center">Cancel anytime. Powered by Stripe. First issue this Monday.</p>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -43,7 +76,7 @@ export default function IntelligencePage() {
       <section className="px-6 py-20 max-w-4xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 text-xs px-3 py-1.5 rounded-full border border-orange-500/20 mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
-          Launching soon — join the waitlist
+          Weekly private briefing — launching now
         </div>
 
         <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
@@ -57,32 +90,24 @@ export default function IntelligencePage() {
           For founders, VCs, researchers, and enterprise teams who need signal — not noise.
         </p>
 
-        {/* PRICE */}
-        <div className="flex items-center justify-center gap-3 mb-10">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl px-8 py-6 text-center">
-            <div className="text-4xl font-bold text-white mb-1">$49<span className="text-lg text-zinc-500 font-normal">/mo</span></div>
-            <div className="text-sm text-zinc-500">Cancel anytime</div>
+        <div className="flex items-center justify-center gap-6 mb-10">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-white">$49</div>
+            <div className="text-sm text-zinc-500">per month</div>
+          </div>
+          <div className="text-zinc-700 text-2xl">·</div>
+          <div className="text-center">
+            <div className="text-xl font-semibold text-white">Every Monday</div>
+            <div className="text-sm text-zinc-500">in your inbox</div>
+          </div>
+          <div className="text-zinc-700 text-2xl">·</div>
+          <div className="text-center">
+            <div className="text-xl font-semibold text-white">Cancel anytime</div>
+            <div className="text-sm text-zinc-500">no lock-in</div>
           </div>
         </div>
 
-        {/* WAITLIST */}
-        {submitted ? (
-          <div className="max-w-md mx-auto bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5 text-emerald-400">
-            ✓ You're on the waitlist. We'll email you the moment it launches.
-          </div>
-        ) : (
-          <div className="flex gap-2 max-w-md mx-auto mb-4">
-            <input type="email" placeholder="your@email.com" value={email}
-              onChange={e => setEmail(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleWaitlist()}
-              className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white flex-1 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-600" />
-            <button onClick={handleWaitlist} disabled={loading}
-              className="bg-orange-500 hover:bg-orange-400 disabled:opacity-50 text-white font-medium px-5 py-3 rounded-lg text-sm transition-all shrink-0">
-              {loading ? "..." : "Join Waitlist →"}
-            </button>
-          </div>
-        )}
-        <p className="text-xs text-zinc-600">No spam. Launch notification only. Unsubscribe anytime.</p>
+        <CheckoutForm />
       </section>
 
       {/* WHAT YOU GET */}
@@ -109,18 +134,17 @@ export default function IntelligencePage() {
 
         {/* SAMPLE ISSUE */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden mb-16">
-          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-b border-zinc-800 px-6 py-4 flex items-center justify-between flex-wrap gap-2">
             <div>
               <div className="text-xs text-orange-400 font-medium mb-1">SAMPLE ISSUE — PREVIEW</div>
               <div className="font-bold text-white">{SAMPLE_INSIGHT.week}</div>
             </div>
-            <div className="text-xs bg-zinc-800 text-zinc-500 px-3 py-1 rounded-full">Blurred below paywall</div>
+            <div className="text-xs bg-zinc-800 text-zinc-500 px-3 py-1 rounded-full">Full issue for subscribers only</div>
           </div>
 
           <div className="p-6">
             <h3 className="text-lg font-bold text-white mb-6">{SAMPLE_INSIGHT.headline}</h3>
 
-            {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
               {SAMPLE_INSIGHT.stats.map(s => (
                 <div key={s.label} className="bg-zinc-800/50 rounded-xl p-3 text-center">
@@ -131,7 +155,6 @@ export default function IntelligencePage() {
               ))}
             </div>
 
-            {/* TOP COMPANIES */}
             <div className="mb-6">
               <div className="text-xs text-zinc-500 font-medium mb-3 uppercase tracking-wider">Top 5 This Week</div>
               <div className="flex flex-col gap-2">
@@ -146,12 +169,12 @@ export default function IntelligencePage() {
               </div>
             </div>
 
-            {/* BLURRED SECTION */}
+            {/* BLURRED */}
             <div className="relative">
               <div className="blur-sm select-none pointer-events-none">
                 <div className="text-xs text-zinc-500 font-medium mb-3 uppercase tracking-wider">This Week's Signal</div>
                 <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-                  The data this week reveals something counterintuitive. While total company count grew 21% week on week, the top 10% of companies by ARR now account for 67% of total platform revenue — up from 54% just three weeks ago. This winner-take-most dynamic is accelerating faster than we projected. The implication for founders choosing verticals right now is significant. Trades and Field Ops is showing the strongest unit economics by far, with average ARR per company running 3.4x higher than the platform average. Legal and Compliance is emerging as the surprise vertical — three companies this week crossed $10K MRR quietly, with no public announcement.
+                  The data this week reveals something counterintuitive. While total company count grew 21% week on week, the top 10% of companies by ARR now account for 67% of total platform revenue — up from 54% just three weeks ago. This winner-take-most dynamic is accelerating faster than we projected. The implication for founders choosing verticals right now is significant. Trades and Field Ops is showing the strongest unit economics by far, with average ARR per company running 3.4x higher than the platform average. Legal and Compliance is emerging as the surprise vertical — three companies crossed $10K MRR quietly this week with no public announcement.
                 </p>
                 <div className="text-xs text-zinc-500 font-medium mb-3 uppercase tracking-wider">Deep Dive: RoofMax AI</div>
                 <p className="text-sm text-zinc-400 leading-relaxed">
@@ -159,14 +182,10 @@ export default function IntelligencePage() {
                 </p>
               </div>
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-zinc-950/80 to-zinc-950">
-                <div className="text-center">
+                <div className="text-center px-4">
                   <div className="text-lg font-bold text-white mb-2">Subscribe to read the full issue</div>
-                  <div className="text-zinc-400 text-sm mb-4">$49/mo · Cancel anytime</div>
-                  <button
-                    onClick={() => document.getElementById('waitlist-bottom')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-orange-500 hover:bg-orange-400 text-white font-medium px-6 py-3 rounded-lg text-sm transition-all">
-                    Join the Waitlist →
-                  </button>
+                  <div className="text-zinc-400 text-sm mb-6">$49/mo · Cancel anytime · Every Monday</div>
+                  <CheckoutForm />
                 </div>
               </div>
             </div>
@@ -192,24 +211,10 @@ export default function IntelligencePage() {
         </div>
 
         {/* BOTTOM CTA */}
-        <div id="waitlist-bottom" className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 text-center">
+        <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 text-center">
           <h2 className="text-2xl font-bold text-white mb-2">Get the intelligence edge</h2>
-          <p className="text-zinc-400 text-sm mb-6">Join the waitlist. First issue drops when Stripe goes live.</p>
-          {submitted ? (
-            <div className="text-emerald-400 text-sm font-medium">✓ You're on the waitlist.</div>
-          ) : (
-            <div className="flex gap-2 max-w-md mx-auto">
-              <input type="email" placeholder="your@email.com" value={email}
-                onChange={e => setEmail(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleWaitlist()}
-                className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white flex-1 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-600" />
-              <button onClick={handleWaitlist} disabled={loading}
-                className="bg-orange-500 hover:bg-orange-400 disabled:opacity-50 text-white font-medium px-5 py-3 rounded-lg text-sm transition-all shrink-0">
-                {loading ? "..." : "Join →"}
-              </button>
-            </div>
-          )}
-          <p className="text-xs text-zinc-600 mt-3">$49/mo when live. No charge until launch.</p>
+          <p className="text-zinc-400 text-sm mb-6">$49/mo. Every Monday. Cancel anytime.</p>
+          <CheckoutForm />
         </div>
       </section>
 
