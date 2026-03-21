@@ -85,7 +85,7 @@ export default function ShareButton({ title, text, url = 'https://wtfagents.com'
       </button>
 
       {open && (
-        <div className="absolute bottom-9 left-0 z-50 bg-zinc-900 border border-zinc-700 rounded-xl p-2 shadow-2xl w-44">
+        <div className="absolute bottom-9 right-0 z-50 bg-zinc-900 border border-zinc-700 rounded-xl p-2 shadow-2xl w-44">
           <div className="text-xs text-zinc-600 px-2 py-1 mb-1">Share via</div>
           {actions.map(a => (
             <button
