@@ -28,10 +28,23 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
   "Other": { bg: "bg-zinc-500/10", text: "text-zinc-400", dot: "bg-zinc-400" },
 };
 
-const platformColors: Record<string, { bg: string; text: string }> = {
-  "polsia": { bg: "bg-violet-500/10", text: "text-violet-400" },
-  "x_polsia": { bg: "bg-blue-500/10", text: "text-blue-400" },
-  "manual": { bg: "bg-emerald-500/10", text: "text-emerald-400" },
+const platformEmptyStates: Record<string, { icon: string; title: string; desc: string; badge?: string }> = {
+  "Paperclip": {
+    icon: "📎",
+    title: "Paperclip is still cooking",
+    desc: "Paperclip launched 2 weeks ago and is self-hosted — companies are being built right now but there's no central registry yet. ClipMart (their company marketplace) is coming soon. We're watching closely.",
+    badge: "Launched March 2026"
+  },
+  "Relevance AI": {
+    icon: "🔭",
+    title: "Coming soon",
+    desc: "We're tracking Relevance AI — $37M raised, building autonomous AI agent teams for sales and GTM. Integration coming soon.",
+  },
+  "Artisan AI": {
+    icon: "🔭",
+    title: "Coming soon",
+    desc: "Artisan AI builds autonomous AI SDRs. $25M raised, ~$5M ARR. We're working on an integration.",
+  },
 };
 
 export default function CompaniesPage() {
@@ -61,15 +74,16 @@ export default function CompaniesPage() {
   const filtered = companies.filter(c => {
     const matchCat = activeCategory === "All" || c.category === activeCategory;
     const matchPlatform = activePlatform === "All" ||
-      (activePlatform === "Polsia" && c.source === "polsia") ||
-      (activePlatform === "Paperclip" && c.source === "paperclip") ||
-      (activePlatform === "X Discovery" && c.source === "x_polsia");
+      (activePlatform === "Polsia" && (c.source === "polsia" || c.source === "manual")) ||
+      (activePlatform === "X Discovery" && c.source === "x_polsia") ||
+      (activePlatform === "Paperclip" && c.source === "paperclip");
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.description.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchPlatform && matchSearch;
   });
 
   const paginated = filtered.slice(0, (page + 1) * PAGE_SIZE);
+  const emptyState = platformEmptyStates[activePlatform];
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -142,12 +156,27 @@ export default function CompaniesPage() {
               </div>
             ))}
           </div>
+        ) : filtered.length === 0 && emptyState ? (
+          <div className="max-w-lg mx-auto text-center py-20">
+            <div className="text-5xl mb-4">{emptyState.icon}</div>
+            <h3 className="text-xl font-bold text-white mb-3">{emptyState.title}</h3>
+            <p className="text-zinc-400 text-sm leading-relaxed mb-4">{emptyState.desc}</p>
+            {emptyState.badge && (
+              <span className="text-xs bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1.5 rounded-full">
+                {emptyState.badge}
+              </span>
+            )}
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-20 text-zinc-600">
+            <div className="text-4xl mb-3">🔍</div>
+            <div className="text-sm">No companies found matching your search.</div>
+          </div>
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {paginated.map(company => {
                 const colors = categoryColors[company.category] || categoryColors["Other"];
-                const platform = platformColors[company.source] || platformColors["manual"];
                 return (
                   <a
                     key={company.id}
