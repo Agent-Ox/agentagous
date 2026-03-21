@@ -28,31 +28,25 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
   "Other": { bg: "bg-zinc-500/10", text: "text-zinc-400", dot: "bg-zinc-400" },
 };
 
-const platformEmptyStates: Record<string, { icon: string; title: string; desc: string; badge?: string }> = {
+type EmptyState = { icon: string; title: string; desc: string; badge?: string };
+
+const platformEmptyStates: Record<string, EmptyState> = {
+  "Paperclip": {
+    icon: "📎",
+    title: "Paperclip is still cooking",
+    desc: "Paperclip launched 2 weeks ago and is self-hosted — companies are being built right now but there's no central registry yet. ClipMart (their company marketplace) is coming soon. We're watching closely.",
+    badge: "Launched March 2026",
+  },
   "OpenClaw": {
     icon: "🦾",
     title: "OpenClaw companies exist — we just can't index them all yet",
     desc: "OpenClaw is self-hosted so there's no central registry. Claw Mart ($71k revenue), BetterClaw.io, and dozens more are running right now. Got an OpenClaw company? Submit it and get listed.",
     badge: "Self-hosted platform",
-    cta: true,
-  },
-  "Paperclip": {
-    icon: "📎",
-    title: "Paperclip is still cooking",
-    desc: "Paperclip launched 2 weeks ago and is self-hosted — companies are being built right now but there's no central registry yet. ClipMart (their company marketplace) is coming soon. We're watching closely.",
-    badge: "Launched March 2026"
-  },
-  "Relevance AI": {
-    icon: "🔭",
-    title: "Coming soon",
-    desc: "We're tracking Relevance AI — $37M raised, building autonomous AI agent teams for sales and GTM. Integration coming soon.",
-  },
-  "Artisan AI": {
-    icon: "🔭",
-    title: "Coming soon",
-    desc: "Artisan AI builds autonomous AI SDRs. $25M raised, ~$5M ARR. We're working on an integration.",
   },
 };
+
+const PLATFORMS = ["All", "Polsia", "X Discovery", "Paperclip", "OpenClaw"];
+const PAGE_SIZE = 60;
 
 export default function CompaniesPage() {
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -61,7 +55,6 @@ export default function CompaniesPage() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const PAGE_SIZE = 60;
 
   useEffect(() => {
     async function fetchCompanies() {
@@ -76,17 +69,17 @@ export default function CompaniesPage() {
   }, []);
 
   const categories = ["All", ...Array.from(new Set(companies.map(c => c.category))).sort()];
-  const platforms = ["All", "Polsia", "X Discovery", "Paperclip", "OpenClaw"];
 
   const filtered = companies.filter(c => {
     const matchCat = activeCategory === "All" || c.category === activeCategory;
-    const matchPlatform = activePlatform === "All" ||
-      (activePlatform === "Polsia" && (c.source === "polsia" || c.source === "manual")) ||
-      (activePlatform === "X Discovery" && c.source === "x_polsia") ||
-      (activePlatform === "Paperclip" && c.source === "paperclip") ||
-      (activePlatform === "OpenClaw" && c.source === "openclaw");
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.description.toLowerCase().includes(search.toLowerCase());
+    let matchPlatform = false;
+    if (activePlatform === "All") matchPlatform = true;
+    else if (activePlatform === "Polsia") matchPlatform = c.source === "polsia" || c.source === "manual" || c.source === "x_polsia";
+    else if (activePlatform === "X Discovery") matchPlatform = c.source === "x_polsia";
+    else if (activePlatform === "Paperclip") matchPlatform = c.source === "paperclip";
+    else if (activePlatform === "OpenClaw") matchPlatform = c.source === "openclaw";
     return matchCat && matchPlatform && matchSearch;
   });
 
@@ -96,12 +89,14 @@ export default function CompaniesPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <section className="px-6 py-12 max-w-7xl mx-auto">
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Company Index</h1>
           <p className="text-zinc-400">Every AI-built company we've found — searchable, categorised, live.</p>
         </div>
 
         <div className="flex flex-col gap-4 mb-6">
+
           <input
             type="text"
             placeholder="Search by name or description..."
@@ -112,7 +107,7 @@ export default function CompaniesPage() {
 
           <div className="flex flex-wrap gap-2 items-center">
             <span className="text-xs text-zinc-600 mr-1">Platform:</span>
-            {platforms.map(p => (
+            {PLATFORMS.map(p => (
               <button
                 key={p}
                 onClick={() => { setActivePlatform(p); setPage(0); }}
@@ -170,10 +165,13 @@ export default function CompaniesPage() {
             <h3 className="text-xl font-bold text-white mb-3">{emptyState.title}</h3>
             <p className="text-zinc-400 text-sm leading-relaxed mb-4">{emptyState.desc}</p>
             {emptyState.badge && (
-              <span className="text-xs bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1.5 rounded-full">
-                {emptyState.badge}
-              </span>
+              <span className="text-xs bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1.5 rounded-full">{emptyState.badge}</span>
             )}
+            <div className="mt-6">
+              <a href="/submit" className="bg-orange-500 hover:bg-orange-400 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition-all">
+                + Submit your company
+              </a>
+            </div>
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-20 text-zinc-600">
