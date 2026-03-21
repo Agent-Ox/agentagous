@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
+import ShareButton from '../components/ShareButton';
 
 type Company = {
   id: number;
@@ -66,8 +67,6 @@ export default function Home() {
   const [activity, setActivity] = useState<ActivityItem[]>(FALLBACK_ACTIVITY);
   const [activityIndex, setActivityIndex] = useState(0);
   const [wtfIndex, setWtfIndex] = useState(0);
-  const [sharePopover, setSharePopover] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [totalCompanies, setTotalCompanies] = useState(705);
 
   const fetchStats = useCallback(async () => {
@@ -113,8 +112,8 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchCompanies() {
-      const { data, error } = await supabase.from('companies').select('*').order('created_at', { ascending: false }).limit(6);
-      if (!error && data) setCompanies(data);
+      const { data } = await supabase.from('companies').select('*').order('created_at', { ascending: false }).limit(6);
+      if (data) setCompanies(data);
       const { count } = await supabase.from('companies').select('*', { count: 'exact', head: true });
       if (count) setTotalCompanies(count);
       setLoading(false);
@@ -132,15 +131,11 @@ export default function Home() {
     finally { setEmailLoading(false); }
   };
 
-  const statsShareText = `WTF is happening in AI right now:\n\n• ${liveStats.launchedToday.toLocaleString()} AI companies launched TODAY\n• $${(liveStats.arr / 1000000).toFixed(2)}M ARR generated autonomously\n• ${liveStats.wowGrowth}% week on week growth\n\nThe agentic economy is here 👉 wtfagents.com\n\n#WTFAgents #AgentEconomy`;
-  const wtfShareText = `WTF of the day:\n\n"${WTF_OF_DAY[wtfIndex]}"\n\nThis is the agentic economy. It's happening now. 👉 wtfagents.com\n\n#WTFAgents`;
-
   const formatARR = (n: number) => n >= 1000000 ? "$" + (n / 1000000).toFixed(2) + "M" : "$" + n.toLocaleString();
-
   const currentActivity = activity[activityIndex] || FALLBACK_ACTIVITY[0];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white" onClick={() => setSharePopover(false)}>
+    <div className="min-h-screen bg-zinc-950 text-white">
 
       {/* LIVE TICKER */}
       <div className="bg-zinc-900 border-b border-zinc-800 px-6 py-2 flex items-center gap-3">
@@ -169,7 +164,7 @@ export default function Home() {
         {lastUpdated && <p className="text-xs text-zinc-600 mb-10">Stats updated {lastUpdated.toLocaleTimeString()}</p>}
 
         {/* STATS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-6">
           {[
             { label: "Live ARR", value: statsLoading ? "..." : formatARR(liveStats.arr), color: "text-emerald-400", sub: "autonomously generated" },
             { label: "Active Companies", value: statsLoading ? "..." : liveStats.companies.toLocaleString(), color: "text-violet-400", sub: "on Polsia" },
@@ -185,27 +180,13 @@ export default function Home() {
         </div>
 
         {/* SHARE STATS */}
-        <div className="relative inline-block mb-12" onClick={e => e.stopPropagation()}>
-          <button onClick={() => setSharePopover(p => !p)}
-            className="text-xs text-zinc-500 hover:text-orange-400 border border-zinc-800 hover:border-orange-500/30 px-4 py-2 rounded-lg transition-all">
-            📤 Share these stats
-          </button>
-          {sharePopover && (
-            <div className="absolute top-10 left-1/2 -translate-x-1/2 z-50 bg-zinc-900 border border-zinc-700 rounded-xl p-3 shadow-2xl min-w-52">
-              <div className="text-xs text-zinc-500 mb-2 px-1">Share the agentic economy</div>
-              {[
-                { label: "Share on X", icon: "𝕏", onClick: () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(statsShareText)}`, '_blank') },
-                { label: "WhatsApp", icon: "💬", onClick: () => window.open(`https://wa.me/?text=${encodeURIComponent(statsShareText)}`, '_blank') },
-                { label: "Copy text", icon: "📋", onClick: () => { navigator.clipboard.writeText(statsShareText); setCopied(true); setTimeout(() => setCopied(false), 2000); } },
-                { label: "Native share", icon: "📤", onClick: () => navigator.share ? navigator.share({ title: 'WTF Agents', text: statsShareText, url: 'https://wtfagents.com' }) : navigator.clipboard.writeText(statsShareText) },
-              ].map(a => (
-                <button key={a.label} onClick={() => { a.onClick(); setSharePopover(false); }}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:text-white hover:bg-zinc-800 w-full transition-all">
-                  <span>{a.icon}</span><span>{copied && a.label === 'Copy text' ? '✓ Copied' : a.label}</span>
-                </button>
-              ))}
-            </div>
-          )}
+        <div className="flex justify-center mb-12">
+          <ShareButton
+            title="The Agentic Economy is here"
+            text={`WTF is happening in AI right now:\n\n• ${liveStats.launchedToday.toLocaleString()} AI companies launched TODAY\n• $${(liveStats.arr / 1000000).toFixed(2)}M ARR generated autonomously\n• ${liveStats.wowGrowth}% week on week growth\n\nThe agentic economy is here.`}
+            url="https://wtfagents.com"
+            label="📤 Share these stats"
+          />
         </div>
 
         {/* FEATURE CARDS */}
@@ -238,16 +219,12 @@ export default function Home() {
               </div>
               <p className="text-white font-semibold text-lg leading-snug">"{WTF_OF_DAY[wtfIndex]}"</p>
             </div>
-            <div className="flex gap-2 shrink-0 flex-wrap">
-              <button onClick={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(wtfShareText)}`, '_blank')}
-                className="bg-black hover:bg-zinc-800 border border-zinc-700 text-white text-xs font-medium px-3 py-2 rounded-lg transition-all">
-                𝕏 Share
-              </button>
-              <button onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(wtfShareText)}`, '_blank')}
-                className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium px-3 py-2 rounded-lg transition-all">
-                💬 WhatsApp
-              </button>
-            </div>
+            <ShareButton
+              title={WTF_OF_DAY[wtfIndex]}
+              text={`WTF of the day:\n\n"${WTF_OF_DAY[wtfIndex]}"\n\nThis is the agentic economy. It's happening now.`}
+              url="https://wtfagents.com"
+              label="📤 Share"
+            />
           </div>
         </div>
       </section>
@@ -264,7 +241,8 @@ export default function Home() {
             <div className="text-emerald-400 text-sm font-medium">✓ You're in. First issue drops soon.</div>
           ) : (
             <div className="flex gap-2 max-w-md mx-auto">
-              <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)}
+              <input type="email" placeholder="your@email.com" value={email}
+                onChange={e => setEmail(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleEmailSignup()}
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white flex-1 focus:outline-none focus:border-zinc-500 placeholder:text-zinc-600" />
               <button onClick={handleEmailSignup} disabled={emailLoading}
