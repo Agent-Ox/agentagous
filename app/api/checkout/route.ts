@@ -1,4 +1,3 @@
-// app/api/checkout/route.ts
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -20,8 +19,8 @@ export async function POST(request: Request) {
         price: process.env.STRIPE_PRICE_ID!,
         quantity: 1,
       }],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://wtfagents.com'}/intelligence/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://wtfagents.com'}/intelligence`,
+      success_url: `https://wtfagents.com/intelligence/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://wtfagents.com/intelligence`,
       metadata: { product: 'intelligence' },
     });
 
