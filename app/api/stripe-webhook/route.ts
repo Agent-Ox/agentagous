@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   try {
     if (event.type === 'checkout.session.completed') {
-      const session = event.data.object as Stripe.CheckoutSession;
+      const session = event.data.object as any;
       const email = session.customer_email || session.customer_details?.email;
       const customerId = session.customer as string;
       const subscriptionId = session.subscription as string;
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     }
 
     if (event.type === 'customer.subscription.deleted') {
-      const subscription = event.data.object as Stripe.Subscription;
+      const subscription = event.data.object as any;
       await supabase.from('subscribers')
         .update({ status: 'cancelled' })
         .eq('stripe_customer_id', subscription.customer as string);
