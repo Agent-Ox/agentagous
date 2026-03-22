@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 
-const ADMIN_PASSWORD = 'wtfagents2026';
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
 type Company = { id: number; name: string; description: string; url: string; category: string; created_at: string; source: string; };
 type Job = { id: number; title: string; description: string; company: string; type: string; rate: string; contact: string; email: string; created_at: string; status: string; };
