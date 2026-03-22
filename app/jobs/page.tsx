@@ -14,6 +14,7 @@ type Job = {
   category: string;
   rate: string;
   contact: string;
+  email: string;
   status: string;
   featured: boolean;
 };
@@ -49,6 +50,14 @@ export default function JobsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState('');
+
+  // Apply modal state
+  const [applyJob, setApplyJob] = useState<Job | null>(null);
+  const [applyForm, setApplyForm] = useState({ name: '', email: '', message: '' });
+  const [applyLoading, setApplyLoading] = useState(false);
+  const [applyError, setApplyError] = useState('');
+  const [applySuccess, setApplySuccess] = useState(false);
+
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -85,6 +94,67 @@ export default function JobsPage() {
     return matchType && matchSearch;
   });
 
+  const handleApplyOpen = (job: Job) => {
+    setApplyJob(job);
+    setApplyForm({ name: '', email: '', message: '' });
+    setApplyError('');
+    setApplySuccess(false);
+  };
+
+  const handleApplySubmit = async () => {
+    setApplyError('');
+    if (!applyJob) return;
+    if (!applyForm.name || !applyForm.email || !applyForm.message) {
+      setApplyError('Please fill in all fields.');
+      return;
+    }
+    if (!applyForm.email.includes('@')) {
+      setApplyError('Please enter a valid email address.');
+      return;
+    }
+    setApplyLoading(true);
+    try {
+      // Save application to Supabase
+      const { error: dbError } = await supabase.from('applications').insert([{
+        job_id: applyJob.id,
+        job_title: applyJob.title,
+        company: applyJob.company,
+        applicant_name: applyForm.name,
+        applicant_email: applyForm.email,
+        message: applyForm.message.substring(0, 1000),
+        status: 'new',
+      }]);
+      if (dbError) throw dbError;
+
+      // Save applicant email to email_signups
+      await supabase.from('email_signups').insert([{
+        email: applyForm.email,
+        source: 'job_application',
+      }]);
+
+      // Send notification email to job poster via Resend
+      await fetch('/api/notify-application', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jobTitle: applyJob.title,
+          company: applyJob.company,
+          posterEmail: applyJob.email,
+          applicantName: applyForm.name,
+          applicantEmail: applyForm.email,
+          message: applyForm.message,
+        }),
+      });
+
+      setApplySuccess(true);
+    } catch (e) {
+      setApplyError('Something went wrong. Please try again.');
+      console.error(e);
+    } finally {
+      setApplyLoading(false);
+    }
+  };
+
   const handleSubmit = async () => {
     setFormError('');
     if (form.honeypot) return;
@@ -112,10 +182,7 @@ export default function JobsPage() {
       }]);
       if (error) throw error;
 
-      // Save email
       await supabase.from('email_signups').insert([{ email: form.email, source: 'job_submission' }]);
-
-      // Log activity
       await supabase.from('activity_feed').insert([{
         text: `New job posted: "${form.title.substring(0, 50)}" by ${form.company}`,
         icon: '💼',
@@ -152,7 +219,6 @@ export default function JobsPage() {
           </div>
         )}
 
-        {/* TYPE FILTERS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
           {Object.entries(typeConfig).map(([key, val]) => (
             <button key={key} onClick={() => setActiveType(activeType === key ? "All" : key)}
@@ -237,12 +303,11 @@ export default function JobsPage() {
                         url="https://wtfagents.com/jobs"
                         label="📤 Share"
                       />
-                      <a href={job.contact.includes('@') ? `mailto:${job.contact}` : job.contact}
-                        target={job.contact.includes('@') ? undefined : '_blank'}
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={() => handleApplyOpen(job)}
                         className="text-sm bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg transition-all font-medium">
                         Apply →
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -251,6 +316,65 @@ export default function JobsPage() {
           </div>
         )}
       </section>
+
+      {/* APPLY MODAL */}
+      {applyJob && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={e => e.target === e.currentTarget && setApplyJob(null)}>
+          <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-lg font-bold">Apply for this role</h2>
+                <p className="text-zinc-500 text-sm mt-0.5">{applyJob.title} · {applyJob.company}</p>
+              </div>
+              <button onClick={() => setApplyJob(null)} className="text-zinc-500 hover:text-white text-xl">✕</button>
+            </div>
+
+            {applySuccess ? (
+              <div className="text-center py-8">
+                <div className="text-4xl mb-4">✅</div>
+                <h3 className="text-lg font-bold text-white mb-2">Application sent!</h3>
+                <p className="text-zinc-400 text-sm mb-6">{applyJob.company} has been notified and will be in touch at {applyForm.email}.</p>
+                <button onClick={() => setApplyJob(null)}
+                  className="bg-orange-500 hover:bg-orange-400 text-white font-medium px-6 py-2.5 rounded-lg text-sm transition-all">
+                  Back to listings
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <div>
+                  <label className="text-xs text-zinc-500 mb-1.5 block">Your Name <span className="text-orange-500">*</span></label>
+                  <input type="text" placeholder="e.g. Sarah M." value={applyForm.name}
+                    onChange={e => setApplyForm(f => ({ ...f, name: e.target.value }))}
+                    className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
+                </div>
+                <div>
+                  <label className="text-xs text-zinc-500 mb-1.5 block">Your Email <span className="text-orange-500">*</span></label>
+                  <input type="email" placeholder="your@email.com" value={applyForm.email}
+                    onChange={e => setApplyForm(f => ({ ...f, email: e.target.value }))}
+                    className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
+                </div>
+                <div>
+                  <label className="text-xs text-zinc-500 mb-1.5 block">Message <span className="text-orange-500">*</span></label>
+                  <textarea placeholder="Why are you a good fit? Any relevant experience?" value={applyForm.message}
+                    onChange={e => setApplyForm(f => ({ ...f, message: e.target.value }))} rows={4}
+                    className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600 resize-none" />
+                </div>
+
+                {applyError && (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 text-red-400 text-sm">{applyError}</div>
+                )}
+
+                <button onClick={handleApplySubmit} disabled={applyLoading}
+                  className="bg-orange-500 hover:bg-orange-400 disabled:opacity-50 text-white font-medium px-5 py-3 rounded-lg text-sm transition-all">
+                  {applyLoading ? "Sending..." : "Send Application →"}
+                </button>
+                <p className="text-xs text-zinc-600 text-center">Your details will be shared with {applyJob.company}.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* POST LISTING MODAL */}
       {showForm && (
@@ -262,7 +386,6 @@ export default function JobsPage() {
               <button onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white text-xl">✕</button>
             </div>
 
-            {/* HONEYPOT */}
             <input type="text" name="website" value={form.honeypot}
               onChange={e => setForm(f => ({ ...f, honeypot: e.target.value }))}
               style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
@@ -277,28 +400,24 @@ export default function JobsPage() {
                   <option value="ai_offering">⚡ AI Company Offering Services</option>
                 </select>
               </div>
-
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Job Title <span className="text-orange-500">*</span></label>
                 <input type="text" placeholder="e.g. Human Sales Closer Needed" value={form.title}
                   onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
                   className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
               </div>
-
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Company / Your Name <span className="text-orange-500">*</span></label>
                 <input type="text" placeholder="e.g. RoofMax AI or Sarah M." value={form.company}
                   onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
                   className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
               </div>
-
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Description <span className="text-orange-500">*</span></label>
                 <textarea placeholder="What's the role? What do you need? Any requirements?" value={form.description}
                   onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={4}
                   className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600 resize-none" />
               </div>
-
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-xs text-zinc-500 mb-1.5 block">Category</label>
@@ -315,17 +434,15 @@ export default function JobsPage() {
                     className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
                 </div>
               </div>
-
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Contact (email or URL) <span className="text-orange-500">*</span></label>
                 <input type="text" placeholder="you@example.com or yoursite.com" value={form.contact}
                   onChange={e => setForm(f => ({ ...f, contact: e.target.value }))}
                   className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
               </div>
-
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Your Email <span className="text-orange-500">*</span></label>
-                <input type="email" placeholder="For listing updates" value={form.email}
+                <input type="email" placeholder="For listing updates and applicant notifications" value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white w-full focus:outline-none placeholder:text-zinc-600" />
               </div>
