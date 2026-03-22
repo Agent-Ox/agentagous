@@ -195,7 +195,7 @@ export default function SubmitPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Launch Date</label>
                 <input type="date" value={form.launched} onChange={e => setForm(f => ({ ...f, launched: e.target.value }))}

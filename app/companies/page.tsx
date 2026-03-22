@@ -66,7 +66,7 @@ export default function CompaniesPage() {
           .from('companies')
           .select('*')
           .order('created_at', { ascending: false })
-          .range(from, from + step - 1);
+          .neq('source', 'submitted').range(from, from + step - 1);
         if (error || !data || data.length === 0) break;
         all = all.concat(data);
         if (data.length < step) break;
