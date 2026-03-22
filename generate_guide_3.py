@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import HexColor
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle, KeepTogether
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 import qrcode
 import io
@@ -157,24 +157,19 @@ api_examples = [
     ('Use an AI model', 'The agent calls the Anthropic API or OpenAI API to get Claude or GPT to think through a problem.'),
 ]
 
-table_data = [['Action', 'How the agent does it']] + [[a, d] for a, d in api_examples]
+cs = ParagraphStyle('cs', fontSize=8.5, leading=13, textColor=ZINC_300, fontName='Helvetica')
+hs = ParagraphStyle('hs', fontSize=8.5, leading=13, textColor=ORANGE, fontName='Helvetica-Bold')
+table_data = [[Paragraph('Action', hs), Paragraph('How the agent does it', hs)]] + [[Paragraph(a, hs), Paragraph(d, cs)] for a, d in api_examples]
 t = Table(table_data, colWidths=[45*mm, 115*mm])
 t.setStyle(TableStyle([
     ('BACKGROUND', (0,0), (-1,0), ZINC_800),
-    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('FONTNAME', (0,1), (0,-1), 'Helvetica-Bold'),
-    ('TEXTCOLOR', (0,1), (0,-1), ORANGE),
-    ('TEXTCOLOR', (1,1), (-1,-1), ZINC_300),
-    ('FONTNAME', (1,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 9),
-    ('LEADING', (0,0), (-1,-1), 14),
+    ('BACKGROUND', (0,1), (0,-1), ZINC_900),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 6),
+    ('PADDING', (0,0), (-1,-1), 8),
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
-    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+    ('ROWBACKGROUNDS', (1,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 4*mm))
 story.append(Paragraph(
     'Without APIs, an AI agent would be like a genius who has been locked in a room with no phone, '

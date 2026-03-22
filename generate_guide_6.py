@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import HexColor
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle, KeepTogether
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 import qrcode
 import io
@@ -103,24 +103,19 @@ names = [
     ('January 30, 2026', 'OpenClaw', 'Peter Steinberger found "Moltbot" didn\'t roll off the tongue. Renamed again to OpenClaw — and it stuck.'),
 ]
 
-table_data = [['Date', 'Name', 'Why']] + [[d, n, r] for d, n, r in names]
-t = Table(table_data, colWidths=[30*mm, 25*mm, 105*mm])
+cs = ParagraphStyle('cs', fontSize=8.5, leading=13, textColor=ZINC_300, fontName='Helvetica')
+hs = ParagraphStyle('hs', fontSize=8.5, leading=13, textColor=ORANGE, fontName='Helvetica-Bold')
+table_data = [[Paragraph('Date', hs), Paragraph('Name', hs), Paragraph('Why', hs)]] + [[Paragraph(d, hs), Paragraph(n, hs), Paragraph(r, cs)] for d, n, r in names]
+t = Table(table_data, colWidths=[28*mm, 24*mm, 108*mm])
 t.setStyle(TableStyle([
     ('BACKGROUND', (0,0), (-1,0), ZINC_800),
-    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('FONTNAME', (0,1), (1,-1), 'Helvetica-Bold'),
-    ('TEXTCOLOR', (0,1), (1,-1), ORANGE),
-    ('TEXTCOLOR', (2,1), (-1,-1), ZINC_300),
-    ('FONTNAME', (2,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 9),
-    ('LEADING', (0,0), (-1,-1), 14),
+    ('BACKGROUND', (0,1), (1,-1), ZINC_900),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 6),
+    ('PADDING', (0,0), (-1,-1), 8),
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
-    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+    ('ROWBACKGROUNDS', (1,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 4*mm))
 
 # ── SECTION 3 ────────────────────────────────────────────────────────────────
@@ -275,35 +270,29 @@ story.append(Spacer(1, 4*mm))
 story.append(Paragraph('OpenClaw vs Polsia vs Paperclip', section_heading))
 story.append(rule())
 
+cs2 = ParagraphStyle('cs2', fontSize=8, leading=12, textColor=ZINC_300, fontName='Helvetica')
+hs2 = ParagraphStyle('hs2', fontSize=8, leading=12, textColor=ORANGE, fontName='Helvetica-Bold')
 comparison = [
-    ['', 'OpenClaw', 'Polsia', 'Paperclip'],
-    ['Type', 'Personal AI agent', 'Managed company platform', 'Orchestration framework'],
-    ['Runs', 'On your machine', 'On Polsia\'s servers', 'On your servers'],
-    ['Cost', 'Free (+ LLM API costs)', '$50/mo + 20% revenue share', 'Free (open source)'],
-    ['For', 'Personal tasks & automation', 'Launching AI-run companies', 'Building multi-agent companies'],
-    ['Technical level', 'Medium (command line needed)', 'Low (no-code)', 'High (developer-focused)'],
-    ['Open source', 'Yes (MIT)', 'No', 'Yes'],
-    ['LLMs supported', 'Claude, GPT, DeepSeek', 'Not disclosed', 'Claude Code, OpenClaw, others'],
+    [Paragraph('', hs2), Paragraph('OpenClaw', hs2), Paragraph('Polsia', hs2), Paragraph('Paperclip', hs2)],
+    [Paragraph('Type', hs2), Paragraph('Personal AI agent', cs2), Paragraph('Managed company platform', cs2), Paragraph('Orchestration framework', cs2)],
+    [Paragraph('Runs', hs2), Paragraph('On your machine', cs2), Paragraph('On Polsia servers', cs2), Paragraph('On your servers', cs2)],
+    [Paragraph('Cost', hs2), Paragraph('Free (+ LLM costs)', cs2), Paragraph('$50/mo + 20% revenue', cs2), Paragraph('Free (open source)', cs2)],
+    [Paragraph('For', hs2), Paragraph('Personal automation', cs2), Paragraph('Launching AI companies', cs2), Paragraph('Multi-agent companies', cs2)],
+    [Paragraph('Technical', hs2), Paragraph('Medium (CLI)', cs2), Paragraph('Low (no-code)', cs2), Paragraph('High (developer)', cs2)],
+    [Paragraph('Open source', hs2), Paragraph('Yes (MIT)', cs2), Paragraph('No', cs2), Paragraph('Yes', cs2)],
+    [Paragraph('LLMs', hs2), Paragraph('Claude, GPT, DeepSeek', cs2), Paragraph('Not disclosed', cs2), Paragraph('Claude Code + others', cs2)],
 ]
 
-t = Table(comparison, colWidths=[35*mm, 45*mm, 45*mm, 45*mm])
+t = Table(comparison, colWidths=[32*mm, 42*mm, 42*mm, 44*mm])
 t.setStyle(TableStyle([
     ('BACKGROUND', (0,0), (-1,0), ZINC_800),
-    ('BACKGROUND', (0,0), (0,-1), ZINC_800),
-    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
-    ('TEXTCOLOR', (0,0), (0,-1), ORANGE),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-    ('TEXTCOLOR', (1,1), (-1,-1), ZINC_300),
-    ('FONTNAME', (1,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 8.5),
-    ('LEADING', (0,0), (-1,-1), 13),
+    ('BACKGROUND', (0,1), (0,-1), ZINC_800),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 5),
+    ('PADDING', (0,0), (-1,-1), 8),
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
-    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+    ('ROWBACKGROUNDS', (1,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 4*mm))
 
 # ── SECTION 9 ────────────────────────────────────────────────────────────────

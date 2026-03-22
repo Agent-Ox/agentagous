@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import HexColor
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle, KeepTogether
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 import qrcode
 import io
@@ -121,24 +121,19 @@ steps = [
     ('Revenue flows', 'If the company generates revenue, Polsia takes 20%. You keep 80%.'),
 ]
 
-table_data = [['Step', 'What happens']] + [[s, d] for s, d in steps]
-t = Table(table_data, colWidths=[25*mm, 135*mm])
+cs = ParagraphStyle('cs', fontSize=8.5, leading=13, textColor=ZINC_300, fontName='Helvetica')
+hs = ParagraphStyle('hs', fontSize=8.5, leading=13, textColor=ORANGE, fontName='Helvetica-Bold')
+table_data = [[Paragraph('Step', hs), Paragraph('What happens', hs)]] + [[Paragraph(s, hs), Paragraph(d, cs)] for s, d in steps]
+t = Table(table_data, colWidths=[22*mm, 138*mm])
 t.setStyle(TableStyle([
     ('BACKGROUND', (0,0), (-1,0), ZINC_800),
-    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('FONTNAME', (0,1), (0,-1), 'Helvetica-Bold'),
-    ('TEXTCOLOR', (0,1), (0,-1), ORANGE),
-    ('TEXTCOLOR', (1,1), (-1,-1), ZINC_300),
-    ('FONTNAME', (1,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 9),
-    ('LEADING', (0,0), (-1,-1), 14),
+    ('BACKGROUND', (0,1), (0,-1), ZINC_900),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 6),
+    ('PADDING', (0,0), (-1,-1), 8),
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
-    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+    ('ROWBACKGROUNDS', (1,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 4*mm))
 
 # ── SECTION 4 ────────────────────────────────────────────────────────────────

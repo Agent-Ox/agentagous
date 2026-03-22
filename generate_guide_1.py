@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import HexColor
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle, KeepTogether
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 from reportlab.lib import colors
 import qrcode
@@ -150,25 +150,21 @@ table_data = [
     ['Tools', 'Text only', 'Can browse web, write code, send email, make payments'],
     ['Works while you sleep?', 'No', 'Yes'],
 ]
-t = Table(table_data, colWidths=[45*mm, 55*mm, 55*mm])
+cs = ParagraphStyle('cs', fontSize=8.5, leading=13, textColor=ZINC_300, fontName='Helvetica')
+hs = ParagraphStyle('hs', fontSize=8.5, leading=13, textColor=ORANGE, fontName='Helvetica-Bold')
+table_data = [[Paragraph(c[0], hs) if i==0 else Paragraph(c[0], hs) for i,c in enumerate([r])] if False else
+    [Paragraph(cell, hs if ri==0 or ci==0 else cs) for ci, cell in enumerate(row)]
+    for ri, row in enumerate(table_data)]
+t = Table(table_data, colWidths=[40*mm, 60*mm, 60*mm])
 t.setStyle(TableStyle([
     ('BACKGROUND', (0,0), (-1,0), ZINC_800),
-    ('BACKGROUND', (0,0), (0,-1), ZINC_800),
-    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
-    ('TEXTCOLOR', (0,0), (0,-1), ORANGE),
-    ('TEXTCOLOR', (1,1), (-1,-1), ZINC_300),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-    ('FONTNAME', (1,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 9),
-    ('LEADING', (0,0), (-1,-1), 14),
+    ('BACKGROUND', (0,1), (0,-1), ZINC_800),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 5),
-    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+    ('PADDING', (0,0), (-1,-1), 8),
     ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+    ('ROWBACKGROUNDS', (1,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 6*mm))
 story.append(Paragraph(
     'The simplest analogy: a calculator waits for you to press buttons. An agent is more like a capable '

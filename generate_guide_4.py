@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import HexColor
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle, KeepTogether
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 import qrcode
 import io
@@ -124,34 +124,29 @@ story.append(Paragraph(
     'The story of LLMs is surprisingly recent and moves fast:',
     body))
 
+cell_style = ParagraphStyle('cs', fontSize=8.5, leading=13, textColor=ZINC_300, fontName='Helvetica')
+head_style = ParagraphStyle('hs', fontSize=8.5, leading=13, textColor=ORANGE, fontName='Helvetica-Bold')
 timeline = [
-    ('2017', 'Google researchers publish "Attention Is All You Need" — the paper that introduced the Transformer architecture, the technical foundation of all modern LLMs.'),
+    ('2017', 'Google researchers publish "Attention Is All You Need" — the paper introducing the Transformer architecture, the technical foundation of all modern LLMs.'),
     ('2018', 'Google releases BERT. OpenAI releases GPT-1. The race begins.'),
     ('2020', 'OpenAI releases GPT-3 — 175 billion parameters, shockingly capable. Developers begin building on it via API.'),
-    ('2022', 'OpenAI releases ChatGPT (built on GPT-3.5). 100 million users in 2 months — the fastest-growing consumer product in history at the time. Anthropic founded; releases Claude.'),
-    ('2023', 'GPT-4 released. Open-source models (LLaMA, Mistral) emerge. The ecosystem explodes. AutoGPT goes viral as the first attempt at autonomous agents.'),
-    ('2024', 'Models become capable enough for reliable agentic use. Anthropic publishes MCP. The agentic economy begins in earnest.'),
-    ('2025–2026', 'Claude Opus 4.6 (75.6% SWE-bench), Gemini 3.1 Pro (80.6% SWE-bench), GPT-5.4. Models capable of complex, multi-hour autonomous coding and reasoning tasks.'),
+    ('2022', 'OpenAI releases ChatGPT (GPT-3.5). 100 million users in 2 months. Anthropic founded; releases Claude.'),
+    ('2023', 'GPT-4 released. Open-source models (LLaMA, Mistral) emerge. AutoGPT goes viral as the first autonomous agent attempt.'),
+    ('2024', 'Models capable enough for reliable agentic use. Anthropic publishes MCP. The agentic economy begins.'),
+    ('2025–26', 'Claude Opus 4.6 (75.6% SWE-bench), Gemini 3.1 Pro (80.6%), GPT-5.4. Multi-hour autonomous tasks become reliable.'),
 ]
 
-table_data = [['Year', 'What happened']] + [[y, d] for y, d in timeline]
-t = Table(table_data, colWidths=[20*mm, 140*mm])
+table_data = [[Paragraph('Year', head_style), Paragraph('What happened', head_style)]] + [[Paragraph(y, head_style), Paragraph(d, cell_style)] for y, d in timeline]
+t = Table(table_data, colWidths=[22*mm, 138*mm])
 t.setStyle(TableStyle([
     ('BACKGROUND', (0,0), (-1,0), ZINC_800),
-    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('FONTNAME', (0,1), (0,-1), 'Helvetica-Bold'),
-    ('TEXTCOLOR', (0,1), (0,-1), ORANGE),
-    ('TEXTCOLOR', (1,1), (-1,-1), ZINC_300),
-    ('FONTNAME', (1,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 9),
-    ('LEADING', (0,0), (-1,-1), 14),
+    ('BACKGROUND', (0,1), (0,-1), ZINC_900),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 6),
+    ('PADDING', (0,0), (-1,-1), 8),
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
-    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+    ('ROWBACKGROUNDS', (1,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 4*mm))
 
 # ── SECTION 4 ────────────────────────────────────────────────────────────────
@@ -217,14 +212,15 @@ t.setStyle(TableStyle([
     ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
     ('TEXTCOLOR', (0,1), (-1,-1), ZINC_300),
     ('FONTNAME', (0,1), (-1,-1), 'Helvetica'),
-    ('FONTSIZE', (0,0), (-1,-1), 9),
+    ('FONTSIZE', (0,0), (-1,-1), 8.5),
     ('LEADING', (0,0), (-1,-1), 14),
     ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
-    ('PADDING', (0,0), (-1,-1), 6),
+    ('PADDING', (0,0), (-1,-1), 8),
+    ('WORDWRAP', (0,0), (-1,-1), 1),
     ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
 ]))
-story.append(t)
+story.append(KeepTogether([t]))
 story.append(Spacer(1, 4*mm))
 
 # ── SECTION 6 ────────────────────────────────────────────────────────────────
