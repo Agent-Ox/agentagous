@@ -58,11 +58,21 @@ export default function CompaniesPage() {
 
   useEffect(() => {
     async function fetchCompanies() {
-      const { data, error } = await supabase
-        .from('companies')
-        .select('*')
-        .order('created_at', { ascending: false }).limit(10000);
-      if (!error && data) setCompanies(data);
+      let all: Company[] = [];
+      let from = 0;
+      const step = 1000;
+      while (true) {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .range(from, from + step - 1);
+        if (error || !data || data.length === 0) break;
+        all = all.concat(data);
+        if (data.length < step) break;
+        from += step;
+      }
+      setCompanies(all);
       setLoading(false);
     }
     fetchCompanies();
