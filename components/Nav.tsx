@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/jobs', label: 'Jobs', icon: '💼' },
   { href: '/ideas', label: 'Ideas', icon: '💡' },
   { href: '/intelligence', label: 'Intelligence', icon: '📊', badge: '$49/mo' },
+  { href: '/store', label: 'Store', icon: '🛒', badge: 'Guides $7' },
   { href: '/submit', label: 'Submit', icon: '🚀' },
 ];
 
