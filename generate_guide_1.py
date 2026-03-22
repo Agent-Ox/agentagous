@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.colors import HexColor, white, black
+from reportlab.lib.colors import HexColor
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, PageBreak, Table, TableStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
-from reportlab.platypus import KeepTogether
+from reportlab.lib import colors
+import qrcode
+import io
+from reportlab.platypus import Image as RLImage
 
 OUTPUT = '/Users/thomasoxlee/agentagous/public/guides/wtf-is-the-agentic-economy.pdf'
 
-# Colors
 ORANGE = HexColor('#f97316')
 DARK_BG = HexColor('#09090b')
 ZINC_900 = HexColor('#18181b')
+ZINC_800 = HexColor('#27272a')
 ZINC_400 = HexColor('#a1a1aa')
 ZINC_300 = HexColor('#d4d4d8')
 ZINC_600 = HexColor('#52525b')
 WHITE = HexColor('#ffffff')
+GREEN = HexColor('#22c55e')
+RED = HexColor('#ef4444')
 
 W, H = A4
 
@@ -25,259 +30,500 @@ doc = SimpleDocTemplate(
     pagesize=A4,
     leftMargin=20*mm,
     rightMargin=20*mm,
-    topMargin=20*mm,
-    bottomMargin=20*mm,
+    topMargin=22*mm,
+    bottomMargin=22*mm,
     title='WTF is the Agentic Economy',
     author='WTF Agents',
 )
 
-styles = getSampleStyleSheet()
+cover_title = ParagraphStyle('cover_title', fontSize=38, leading=46, textColor=WHITE, fontName='Helvetica-Bold', alignment=TA_LEFT, spaceAfter=6)
+cover_sub = ParagraphStyle('cover_sub', fontSize=16, leading=24, textColor=ORANGE, fontName='Helvetica-Bold', alignment=TA_LEFT, spaceAfter=6)
+cover_desc = ParagraphStyle('cover_desc', fontSize=13, leading=21, textColor=ZINC_300, fontName='Helvetica', spaceAfter=6)
+cover_meta = ParagraphStyle('cover_meta', fontSize=10, leading=15, textColor=ZINC_400, fontName='Helvetica', alignment=TA_LEFT)
+section_heading = ParagraphStyle('section_heading', fontSize=20, leading=26, textColor=ORANGE, fontName='Helvetica-Bold', spaceBefore=12, spaceAfter=4)
+subheading = ParagraphStyle('subheading', fontSize=13, leading=19, textColor=WHITE, fontName='Helvetica-Bold', spaceBefore=8, spaceAfter=3)
+body = ParagraphStyle('body', fontSize=10.5, leading=17, textColor=ZINC_300, fontName='Helvetica', spaceAfter=7, alignment=TA_JUSTIFY)
+body_lead = ParagraphStyle('body_lead', fontSize=12, leading=19, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=8)
+bullet = ParagraphStyle('bullet', fontSize=10.5, leading=17, textColor=ZINC_300, fontName='Helvetica', spaceAfter=4, leftIndent=14)
+small = ParagraphStyle('small', fontSize=9, leading=13, textColor=ZINC_600, fontName='Helvetica', spaceAfter=3)
+stat_num = ParagraphStyle('stat_num', fontSize=26, leading=30, textColor=ORANGE, fontName='Helvetica-Bold', alignment=TA_CENTER)
+stat_lbl = ParagraphStyle('stat_lbl', fontSize=9, leading=13, textColor=ZINC_400, fontName='Helvetica', alignment=TA_CENTER, spaceAfter=8)
+footer_s = ParagraphStyle('footer_s', fontSize=8.5, leading=12, textColor=ZINC_600, fontName='Helvetica', alignment=TA_CENTER)
+link_style = ParagraphStyle('link_style', fontSize=10.5, leading=17, textColor=ORANGE, fontName='Helvetica', spaceAfter=4, leftIndent=14)
+callout = ParagraphStyle('callout', fontSize=11, leading=17, textColor=WHITE, fontName='Helvetica-Bold', spaceAfter=6, leftIndent=10)
 
-# Custom styles
-cover_title = ParagraphStyle('cover_title', fontSize=36, leading=44, textColor=WHITE, fontName='Helvetica-Bold', alignment=TA_LEFT, spaceAfter=8)
-cover_subtitle = ParagraphStyle('cover_subtitle', fontSize=18, leading=26, textColor=ORANGE, fontName='Helvetica-Bold', alignment=TA_LEFT, spaceAfter=6)
-cover_meta = ParagraphStyle('cover_meta', fontSize=11, leading=16, textColor=ZINC_400, fontName='Helvetica', alignment=TA_LEFT)
-section_heading = ParagraphStyle('section_heading', fontSize=22, leading=28, textColor=ORANGE, fontName='Helvetica-Bold', spaceBefore=14, spaceAfter=6)
-subheading = ParagraphStyle('subheading', fontSize=14, leading=20, textColor=WHITE, fontName='Helvetica-Bold', spaceBefore=10, spaceAfter=4)
-body = ParagraphStyle('body', fontSize=11, leading=18, textColor=ZINC_300, fontName='Helvetica', spaceAfter=8, alignment=TA_JUSTIFY)
-body_orange = ParagraphStyle('body_orange', fontSize=13, leading=20, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=8)
-bullet_item = ParagraphStyle('bullet_item', fontSize=11, leading=18, textColor=ZINC_300, fontName='Helvetica', spaceAfter=4, leftIndent=16, firstLineIndent=0)
-small_meta = ParagraphStyle('small_meta', fontSize=9, leading=14, textColor=ZINC_600, fontName='Helvetica', spaceAfter=4)
-stat_big = ParagraphStyle('stat_big', fontSize=28, leading=32, textColor=ORANGE, fontName='Helvetica-Bold', alignment=TA_CENTER)
-stat_label = ParagraphStyle('stat_label', fontSize=10, leading=14, textColor=ZINC_400, fontName='Helvetica', alignment=TA_CENTER, spaceAfter=10)
-footer_style = ParagraphStyle('footer_style', fontSize=9, leading=12, textColor=ZINC_600, fontName='Helvetica', alignment=TA_CENTER)
-
-def orange_rule():
-    return HRFlowable(width='100%', thickness=2, color=ORANGE, spaceAfter=10, spaceBefore=4)
+def rule(color=ORANGE, thickness=2):
+    return HRFlowable(width='100%', thickness=thickness, color=color, spaceAfter=8, spaceBefore=2)
 
 def zinc_rule():
-    return HRFlowable(width='100%', thickness=0.5, color=ZINC_600, spaceAfter=8, spaceBefore=8)
+    return HRFlowable(width='100%', thickness=0.5, color=ZINC_600, spaceAfter=6, spaceBefore=6)
+
+def make_qr(url):
+    qr = qrcode.QRCode(version=2, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=6, border=2)
+    qr.add_data(url)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color='#f97316', back_color='#09090b')
+    buf = io.BytesIO()
+    img.save(buf, format='PNG')
+    buf.seek(0)
+    return RLImage(buf, width=38*mm, height=38*mm)
 
 story = []
 
-# ── COVER PAGE ──────────────────────────────────────────────────────────────
-story.append(Spacer(1, 30*mm))
+# ══════════════════════════════════════════════════════════════════════════════
+# COVER
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Spacer(1, 20*mm))
 story.append(Paragraph('WTF is the', cover_title))
-story.append(Paragraph('Agentic Economy?', cover_subtitle))
-story.append(Spacer(1, 6*mm))
-story.append(orange_rule())
+story.append(Paragraph('Agentic Economy?', cover_sub))
 story.append(Spacer(1, 4*mm))
-story.append(Paragraph('A plain English guide to the biggest shift in business since the internet.', ParagraphStyle('cover_desc', fontSize=14, leading=22, textColor=ZINC_300, fontName='Helvetica', spaceAfter=8)))
-story.append(Spacer(1, 40*mm))
+story.append(rule())
+story.append(Spacer(1, 3*mm))
+story.append(Paragraph(
+    'The plain English guide to the biggest shift in business, employment, and technology since the internet. '
+    'No jargon. No hype. Just what is actually happening — and what it means for you.',
+    cover_desc))
+story.append(Spacer(1, 32*mm))
 story.append(zinc_rule())
-story.append(Paragraph('Written by WTF Agents · March 2026 · wtfagents.com', cover_meta))
-story.append(Paragraph('Part of the WTF Agents Guide Series · $7 per guide · wtfagents.com/store', small_meta))
+story.append(Paragraph('WTF Agents · wtfagents.com · March 2026', cover_meta))
+story.append(Paragraph('Part of the WTF Agents Guide Series · wtfagents.com/store', small))
 story.append(PageBreak())
 
-# ── THE ONE-LINER ────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 1: THE ONE-LINER
+# ══════════════════════════════════════════════════════════════════════════════
 story.append(Paragraph('The one-liner', section_heading))
-story.append(orange_rule())
+story.append(rule())
 story.append(Paragraph(
-    'The agentic economy is what happens when AI stops being a tool you use and starts being a colleague that works for you — 24 hours a day, 7 days a week, for a fraction of minimum wage.',
-    body_orange))
-story.append(Spacer(1, 4*mm))
-
-# ── WHY YOU'RE HEARING ABOUT IT NOW ─────────────────────────────────────────
-story.append(Paragraph('Why you\'re hearing about it now', section_heading))
-story.append(orange_rule())
+    'The agentic economy is what happens when AI stops waiting to be asked and starts doing things on its own — '
+    'planning, deciding, executing, and repeating — around the clock, at a fraction of the cost of a human.',
+    body_lead))
 story.append(Paragraph(
-    'Six months ago, "AI agent" was a term used exclusively by developers and venture capitalists. Today it\'s on the front page of the Financial Times, in your LinkedIn feed, and quite possibly being discussed in your company\'s leadership meetings.',
-    body))
-story.append(Paragraph('Here\'s why it happened so fast.', body))
-story.append(Paragraph(
-    'In late 2024, something clicked. AI models got good enough — not perfect, but good enough — to take on real tasks autonomously. Not just answering questions. Not just writing emails. Actually doing things. Booking meetings. Writing and shipping code. Running marketing campaigns. Handling customer support. Building entire companies.',
-    body))
-story.append(Paragraph(
-    'Polsia, a platform that lets anyone launch an AI-run company in minutes, went from zero to $5.15 million in annual recurring revenue in under a year. As of March 2026, there are over 5,000 active AI companies on Polsia alone — each one run primarily or entirely by AI agents, with little or no human involvement in day-to-day operations.',
-    body))
-story.append(Paragraph('This is not a prototype. This is not a demo. This is happening right now.', body_orange))
-story.append(Spacer(1, 4*mm))
-
-# ── WHAT AGENTIC MEANS ───────────────────────────────────────────────────────
-story.append(Paragraph('What "agentic" actually means', section_heading))
-story.append(orange_rule())
-story.append(Paragraph(
-    'The word "agentic" comes from "agent" — something that acts on behalf of someone else.',
-    body))
-story.append(Paragraph(
-    'For most of AI\'s history, AI was reactive. You asked it something, it answered. You gave it a task, it completed it, and then it stopped and waited for you again. It had no initiative. No memory. No ability to go off and do something while you slept.',
-    body))
-story.append(Paragraph('Agentic AI is different. An agentic AI:', body))
-story.append(Paragraph('→  <b>Takes initiative</b> — it doesn\'t wait to be asked. It identifies what needs doing and does it.', bullet_item))
-story.append(Paragraph('→  <b>Has memory</b> — it remembers what it did yesterday, last week, last month.', bullet_item))
-story.append(Paragraph('→  <b>Uses tools</b> — it can browse the internet, write code, send emails, make purchases, call APIs.', bullet_item))
-story.append(Paragraph('→  <b>Works continuously</b> — it doesn\'t clock off. It runs 24/7.', bullet_item))
-story.append(Paragraph('→  <b>Coordinates with other agents</b> — one agent can instruct another. Agents can form teams.', bullet_item))
-story.append(Spacer(1, 4*mm))
-story.append(Paragraph('The simplest analogy:', subheading))
-story.append(Paragraph('<b>Traditional AI is a very smart calculator. Agentic AI is a very smart employee.</b>', body_orange))
-story.append(Spacer(1, 4*mm))
-
-# ── HOW IT WORKS ─────────────────────────────────────────────────────────────
-story.append(Paragraph('How it actually works — the simple version', section_heading))
-story.append(orange_rule())
-story.append(Paragraph(
-    'An AI agent is built on top of a Large Language Model (LLM) — think ChatGPT, Claude, or Gemini. But the LLM is just the brain. What makes it an agent is everything wrapped around it.',
-    body))
-story.append(Paragraph('The loop:', subheading))
-story.append(Paragraph('1.  The agent is given a goal: <i>"Grow my Polsia company\'s revenue by 20% this month"</i>', bullet_item))
-story.append(Paragraph('2.  It breaks the goal into tasks: research competitors, update pricing, write marketing copy, post on social media, respond to customer enquiries', bullet_item))
-story.append(Paragraph('3.  It executes each task using the tools available to it', bullet_item))
-story.append(Paragraph('4.  It checks the result: did it work?', bullet_item))
-story.append(Paragraph('5.  It adjusts and tries again', bullet_item))
-story.append(Paragraph('6.  It reports back', bullet_item))
-story.append(Spacer(1, 4*mm))
-story.append(Paragraph(
-    'This loop runs continuously. While you sleep. While you\'re on holiday. While you\'re in meetings. The agent doesn\'t get tired. It doesn\'t forget. It doesn\'t need a salary review. It doesn\'t call in sick.',
+    'This is not a future prediction. It is happening right now, at a scale most people have not yet registered.',
     body))
 story.append(Spacer(1, 4*mm))
 
-# ── THE PLATFORMS ─────────────────────────────────────────────────────────────
-story.append(Paragraph('The platforms making this possible', section_heading))
-story.append(orange_rule())
-
-story.append(Paragraph('Polsia', subheading))
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 2: WHEN DID THIS START?
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('When did this actually start?', section_heading))
+story.append(rule())
 story.append(Paragraph(
-    'The category leader. Founded by Ben Cera, it\'s a platform that lets anyone — technical or not — launch an AI-run company. You describe what your company does, set some parameters, connect your payment processor, and the agent takes over. As of March 2026, Polsia has over 5,000 active companies generating a combined $5.61M in annual recurring revenue.',
+    'The term "agentic economy" began appearing in industry writing around mid-2024. The New York Times ran one of '
+    'the first mainstream articles using the phrase in September 2024. By late 2024, Sam Altman (OpenAI), '
+    'Satya Nadella (Microsoft), and Dario Amodei (Anthropic) were all using it in major public speeches.',
     body))
-
-story.append(Paragraph('OpenClaw', subheading))
 story.append(Paragraph(
-    'The open source alternative. Where Polsia is a managed platform, OpenClaw is self-hosted — you run it on your own servers. It has 30,000 GitHub stars and a passionate community. Three verified companies are already generating real revenue, including Claw Mart with $71,000 in revenue.',
+    'The first peer-reviewed academic paper on the subject was published in May 2025, and formally entered the '
+    'Communications of the ACM in January 2026. In under eighteen months, it went from startup jargon to '
+    'board-level agenda item at Fortune 500 companies.',
     body))
-
-story.append(Paragraph('Paperclip', subheading))
 story.append(Paragraph(
-    'The newest entrant. Launched March 2026. Open source, self-hosted, with 4,000 GitHub forks already. Its marketplace — ClipMart — is coming soon and could change the landscape significantly.',
+    'Gartner — the world\'s most cited technology research firm — projects that 40% of enterprise software '
+    'applications will be integrated with task-specific AI agents by the end of 2026. '
+    'That is up from less than 5% in 2025.',
+    body))
+story.append(Paragraph('To put that in plain English: within twelve months, nearly half of all business software will have an AI that does things, not just answers questions.', body_lead))
+story.append(Spacer(1, 4*mm))
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 3: WHAT IS AN AI AGENT?
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('What is an AI agent, exactly?', section_heading))
+story.append(rule())
+story.append(Paragraph(
+    'Most people\'s experience of AI is reactive: you type something, it responds. ChatGPT, Siri, Google — '
+    'you ask, they answer.',
+    body))
+story.append(Paragraph(
+    'An AI agent is different. An agent is proactive. You give it a goal, and it figures out the steps, '
+    'executes them one by one, checks the results, adjusts, and tries again — without you holding its hand '
+    'through each step.',
+    body))
+story.append(Paragraph('Here is the difference in a table:', body))
+
+table_data = [
+    ['', 'Traditional AI', 'AI Agent'],
+    ['Trigger', 'You ask it something', 'You give it a goal'],
+    ['Action', 'Responds once', 'Takes multiple steps autonomously'],
+    ['Memory', 'Forgets after each conversation', 'Remembers context across sessions'],
+    ['Tools', 'Text only', 'Can browse web, write code, send email, make payments'],
+    ['Works while you sleep?', 'No', 'Yes'],
+]
+t = Table(table_data, colWidths=[45*mm, 55*mm, 55*mm])
+t.setStyle(TableStyle([
+    ('BACKGROUND', (0,0), (-1,0), ZINC_800),
+    ('BACKGROUND', (0,0), (0,-1), ZINC_800),
+    ('TEXTCOLOR', (0,0), (-1,0), ORANGE),
+    ('TEXTCOLOR', (0,0), (0,-1), ORANGE),
+    ('TEXTCOLOR', (1,1), (-1,-1), ZINC_300),
+    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+    ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
+    ('FONTNAME', (1,1), (-1,-1), 'Helvetica'),
+    ('FONTSIZE', (0,0), (-1,-1), 9),
+    ('LEADING', (0,0), (-1,-1), 14),
+    ('GRID', (0,0), (-1,-1), 0.5, ZINC_600),
+    ('PADDING', (0,0), (-1,-1), 5),
+    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+    ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+    ('ROWBACKGROUNDS', (0,1), (-1,-1), [DARK_BG, ZINC_900]),
+]))
+story.append(t)
+story.append(Spacer(1, 6*mm))
+story.append(Paragraph(
+    'The simplest analogy: a calculator waits for you to press buttons. An agent is more like a capable '
+    'employee who takes a brief and gets on with the job.',
     body))
 story.append(Spacer(1, 4*mm))
 
-# ── REAL COMPANIES ────────────────────────────────────────────────────────────
-story.append(Paragraph('Real companies, real numbers', section_heading))
-story.append(orange_rule())
-story.append(Paragraph('This is not theoretical. Here are real examples of what\'s happening right now:', body))
-
-story.append(Paragraph('RoofMax AI', subheading))
-story.append(Paragraph(
-    'A roofing leads company on Polsia. Launched 47 days ago. Current revenue run rate: $340,000 ARR. Humans employed: 3. Everything else — lead generation, qualification, follow-up, pricing, scheduling — is run by the agent.',
-    body))
-
-story.append(Paragraph('LexAgent Pro', subheading))
-story.append(Paragraph(
-    'An AI contract review company. $280,000 ARR. Went viral on LinkedIn after a post about their pricing model. Three human lawyers on retainer for edge cases. The agent handles 94% of contracts end to end.',
-    body))
-
-story.append(Paragraph('Claw Mart', subheading))
-story.append(Paragraph(
-    'An OpenClaw company. $71,000 in revenue. Fully self-hosted. One human founder who checks in weekly.',
-    body))
-story.append(Spacer(1, 4*mm))
-story.append(Paragraph(
-    'These are not Silicon Valley startups with $10M in venture capital. These are small, lean, AI-run businesses generating real revenue with minimal human involvement.',
-    body_orange))
-story.append(Spacer(1, 4*mm))
-
-# ── THE NUMBERS ───────────────────────────────────────────────────────────────
-story.append(Paragraph('The numbers right now', section_heading))
-story.append(orange_rule())
-story.append(Paragraph('As of March 22, 2026:', body))
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 4: THE SCALE OF WHAT'S HAPPENING
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('The scale of what\'s happening', section_heading))
+story.append(rule())
+story.append(Paragraph('These are not startup claims. These are verified, sourced facts:', body))
 
 stats = [
-    ('$5.61M', 'combined ARR of companies on Polsia'),
-    ('5,042', 'active AI companies on Polsia alone'),
-    ('964', 'new AI companies launched in the last 24 hours'),
-    ('+30.6%', 'week-on-week growth rate'),
-    ('1,293', 'companies indexed by WTF Agents across all platforms'),
+    ('$5.25B', 'size of the agentic AI market in 2024'),
+    ('$52B+', 'projected market size by 2030 (MarketsandMarkets)'),
+    ('79%', 'of organisations report some agentic AI deployment (2025)'),
+    ('40%', 'of enterprise apps will have AI agents by end of 2026 (Gartner)'),
+    ('700', 'full-time customer service roles worth of work handled by AI at Klarna'),
+    ('5,000+', 'enterprise customers on Salesforce Agentforce alone'),
 ]
-for val, label in stats:
-    story.append(Paragraph(val, stat_big))
-    story.append(Paragraph(label, stat_label))
+for num, lbl in stats:
+    story.append(Paragraph(num, stat_num))
+    story.append(Paragraph(lbl, stat_lbl))
 
+story.append(Paragraph(
+    'McKinsey estimates that generative and agentic AI could add between $2.6 trillion and $4.4 trillion '
+    'annually to global GDP. The WEF projects 170 million new jobs created by AI by 2030 — '
+    'offsetting 85 million displaced, for a net positive.',
+    body))
+story.append(Paragraph(
+    'A word of caution: Gartner also predicts that 40% of agentic AI projects will be cancelled by 2027 '
+    'due to unrealistic expectations. This is a revolution, but it is not magic. The technology is powerful '
+    'and the hype is real — and so is the messiness.',
+    body))
 story.append(Spacer(1, 4*mm))
 
-# ── WHAT IT MEANS FOR YOU ─────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 5: THE BIG PLAYERS
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('The big players — who is actually leading this', section_heading))
+story.append(rule())
+story.append(Paragraph(
+    'The agentic economy is not being built by scrappy startups alone. The largest technology companies in '
+    'the world are betting their futures on it.',
+    body))
+
+story.append(Paragraph('Anthropic — the safety-first AI lab', subheading))
+story.append(Paragraph(
+    'Founded in 2021 by Dario and Daniela Amodei (former OpenAI executives) and a team of AI safety '
+    'researchers. Anthropic\'s flagship model is Claude — the AI that powers OpenClaw, Paperclip, '
+    'and dozens of the most important agent frameworks. Current valuation: $380 billion. '
+    'Backers include Amazon, Google, and Nvidia. They also invented the '
+    'Model Context Protocol (MCP) — the open standard that lets AI agents connect to any tool or '
+    'data source. Think of MCP as USB-C for AI.',
+    body))
+
+story.append(Paragraph('OpenAI — the consumer and enterprise giant', subheading))
+story.append(Paragraph(
+    'The company behind ChatGPT and GPT-5.4. OpenAI launched Codex (autonomous coding agent) and '
+    'Operator (computer-use agent) in 2025–2026. In February 2026, they hired Peter Steinberger '
+    '(creator of OpenClaw) and became financial sponsor of the OpenClaw Foundation. '
+    'Valuation: $300 billion+.',
+    body))
+
+story.append(Paragraph('Google DeepMind — the benchmark setter', subheading))
+story.append(Paragraph(
+    'Google\'s Gemini 3.1 Pro currently holds the highest verified score on SWE-bench (80.6%) — '
+    'the industry standard benchmark for AI coding ability. Google also created the Agent2Agent (A2A) '
+    'protocol in April 2025 — the open standard that lets AI agents from different companies talk to '
+    'each other. Launched with 50+ partner companies including Salesforce, SAP, PayPal, and McKinsey.',
+    body))
+
+story.append(Paragraph('Microsoft — the enterprise distribution machine', subheading))
+story.append(Paragraph(
+    'Invested $10B+ in OpenAI. Distributes both OpenAI and Anthropic models via Azure. '
+    'GitHub Copilot (77 million+ developers). Copilot for Microsoft 365 reporting 20–30% '
+    'productivity gains in enterprise knowledge work.',
+    body))
+
+story.append(Paragraph('Salesforce Agentforce — the enterprise deployment leader', subheading))
+story.append(Paragraph(
+    'Marc Benioff declared 2025 "the year of the agent" and bet the company on agentic workflows. '
+    'Agentforce now has 5,000+ paying enterprise customers embedding AI agents into CRM, '
+    'sales, and support workflows. This is the largest verified enterprise agentic deployment as of 2026.',
+    body))
+story.append(Spacer(1, 4*mm))
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 6: THE REAL-WORLD PROOF
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('The real-world proof — it\'s already happening', section_heading))
+story.append(rule())
+
+story.append(Paragraph('Klarna replaces 700 employees with AI agents', subheading))
+story.append(Paragraph(
+    'Swedish fintech Klarna deployed AI agents across its customer service operation. CEO Sebastian '
+    'Siemiatkowski publicly stated the AI does the equivalent work of 700 full-time employees. '
+    'The company subsequently reduced its human customer service headcount. '
+    '(Note: Klarna later qualified some of these statements — exact displacement figures remain disputed '
+    'but the deployment itself is verified.)',
+    body))
+
+story.append(Paragraph('A bot hiring humans — Rentahuman.ai', subheading))
+story.append(Paragraph(
+    'One of the most striking signals of where the economy is heading: Rentahuman.ai is a platform where '
+    'AI agents hire humans — not the other way around. Agents post jobs for tasks they cannot complete '
+    'autonomously (physical tasks, tasks requiring legal identity, tasks needing human judgment). '
+    'Forbes called it "a new platform that flips the usual narrative about AI."',
+    body))
+
+story.append(Paragraph('WEF Davos 2026 — 32 verified enterprise deployments', subheading))
+story.append(Paragraph(
+    'The World Economic Forum, in collaboration with Accenture, documented 32 verified large-scale '
+    'enterprise AI deployments across manufacturing, healthcare, financial services, and logistics. '
+    'These are not pilots. These are production systems.',
+    body))
+story.append(Spacer(1, 4*mm))
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 7: THE INDIE OPPORTUNITY
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('The indie opportunity — where the little guy wins', section_heading))
+story.append(rule())
+story.append(Paragraph(
+    'Here is what makes the agentic economy genuinely different from every previous technology revolution: '
+    'the barrier to entry is essentially zero.',
+    body_lead))
+story.append(Paragraph(
+    'The same tools that power Salesforce Agentforce\'s 5,000-customer enterprise platform are available '
+    'to a single person sitting at a laptop in Mallorca. The gap between "big company" and "one person" '
+    'has never been smaller.',
+    body))
+
+story.append(Paragraph('OpenClaw — the open-source agent that went viral', subheading))
+story.append(Paragraph(
+    'OpenClaw (originally Clawdbot, then Moltbot) was built by Austrian developer Peter Steinberger '
+    'and launched in November 2025. It is a free, open-source autonomous AI agent that runs on your '
+    'machine and connects to Claude, GPT, or DeepSeek via messaging apps like Signal, Telegram, '
+    'and Discord. By February 2026 it had 247,000 GitHub stars — one of the fastest-growing open-source '
+    'projects in history. Steinberger was subsequently hired by OpenAI, and the project moved to an '
+    'independent open-source foundation backed by OpenAI.',
+    body))
+story.append(Paragraph(
+    'Important: OpenClaw is a personal AI agent, not a company-building platform. It is the tools layer — '
+    'the thing that does the work.',
+    body))
+
+story.append(Paragraph('Polsia — AI that runs your company while you sleep', subheading))
+story.append(Paragraph(
+    'Polsia is a managed platform founded by Ben Cera (also known as Ben Broca) in San Francisco. '
+    'The model: pay $50/month, describe a business, and AI agents handle everything — coding, marketing, '
+    'customer support, operations. The founder claims $1–1.5M ARR within 30 days of launch. '
+    'These figures are unverified by independent third parties and have been debated on Reddit and '
+    'in tech communities. The platform itself is real and operational. '
+    'WTF Agents tracks 1,293+ companies on Polsia via the live API at polsia.imrat.com/api/data.',
+    body))
+
+story.append(Paragraph('Paperclip — the orchestration layer', subheading))
+story.append(Paragraph(
+    'Paperclip is an open-source orchestration framework that lets you build a multi-agent "company '
+    'org chart" — assigning roles, workflows, and goals across multiple AI agents simultaneously. '
+    'Tagline: "Any agent, any runtime, one org chart." It integrates with Claude Code, OpenClaw, '
+    'Cursor, and others. ClipMart (coming soon) will let you download entire pre-built company '
+    'templates with one click. 13,500 GitHub stars in days of launch.',
+    body))
+
+story.append(Paragraph('The protocols making it all work', subheading))
+story.append(Paragraph(
+    'Two open standards are the invisible infrastructure of the agentic economy:',
+    body))
+story.append(Paragraph(
+    '→  <b>MCP (Model Context Protocol)</b> — invented by Anthropic, November 2024. '
+    'Lets AI agents connect to any external tool or data source. Think USB-C for AI. '
+    'Now donated to the Agentic AI Foundation (backed by Anthropic, OpenAI, Google, Microsoft, AWS).',
+    bullet))
+story.append(Paragraph(
+    '→  <b>A2A (Agent2Agent Protocol)</b> — created by Google, April 2025. '
+    'Lets AI agents from different companies talk to each other. '
+    'Launched with 50+ partners including Salesforce, SAP, PayPal, McKinsey, Deloitte.',
+    bullet))
+story.append(Spacer(1, 4*mm))
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 8: THE MESSY REALITY
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(Paragraph('The messy reality — it\'s not all smooth', section_heading))
+story.append(rule())
+story.append(Paragraph(
+    'The agentic economy is real. It is also chaotic, occasionally dangerous, and moving faster than '
+    'regulation, security, or most businesses can keep up with.',
+    body))
+
+story.append(Paragraph('The Moltbook incident', subheading))
+story.append(Paragraph(
+    'Moltbook was a social network built exclusively for AI agents — launched January 2026 by '
+    'entrepreneurs Matt Schlicht and Ben Parr. Within days, AI agents were autonomously posting '
+    'to it without their human owners\' knowledge. Within a week, a database misconfiguration '
+    'exposed 6,000+ email addresses and 1 million agent interactions. Security firm Wiz confirmed '
+    'the flaw allowed anyone to take control of any agent on the platform. '
+    'Moltbook was acquired by Meta in March 2026.',
+    body))
+
+story.append(Paragraph('OpenClaw\'s security problem', subheading))
+story.append(Paragraph(
+    'Cisco\'s AI security team tested a third-party OpenClaw skill and found it performed silent '
+    'data exfiltration and prompt injection without user awareness. One of OpenClaw\'s own maintainers '
+    'publicly warned: "If you can\'t understand how to run a command line, this is far too dangerous '
+    'of a project for you to use safely." China restricted OpenClaw in government offices in March 2026.',
+    body))
+
+story.append(Paragraph('The jobs question', subheading))
+story.append(Paragraph(
+    'The entry-level job market is already being affected. Administrative tasks, basic coding, '
+    'research, customer support — these are where AI agents are most competent and most deployed. '
+    'The WEF projects a net positive (170M new jobs vs 85M displaced) but acknowledges a '
+    '"significant skills transition" is required. The transition is the hard part.',
+    body))
+story.append(Spacer(1, 4*mm))
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 9: WHAT IT MEANS FOR YOU
+# ══════════════════════════════════════════════════════════════════════════════
 story.append(Paragraph('What this means for you', section_heading))
-story.append(orange_rule())
+story.append(rule())
 
-story.append(Paragraph('If you\'re curious but not technical:', subheading))
+story.append(Paragraph('If you run a small business:', subheading))
 story.append(Paragraph(
-    'The agentic economy doesn\'t require you to write a single line of code. Platforms like Polsia are designed for anyone. If you can describe what a business does in plain English, you can launch one.',
+    'The tools available to you today — Claude, OpenClaw, Paperclip, Relevance AI — give you the '
+    'operational capacity of a team for the cost of a few subscriptions. Customer support, content '
+    'creation, data analysis, outreach: all automatable right now. The question is not whether to '
+    'use these tools. It is how fast to move.',
     body))
 
-story.append(Paragraph('If you run a business:', subheading))
+story.append(Paragraph('If you are an employee:', subheading))
 story.append(Paragraph(
-    'AI agents are not coming for your business. They\'re available to your business right now. Customer support, marketing, content creation, data analysis — these are all tasks that agents can handle today, at a fraction of the cost of a human employee.',
+    'The roles most at risk are the ones involving repetitive, process-driven work. The roles being '
+    'created are the ones that involve directing, overseeing, and collaborating with AI agents. '
+    'The people winning right now are the ones who treat AI agents as junior colleagues, not threats.',
     body))
 
-story.append(Paragraph('If you work in a company:', subheading))
+story.append(Paragraph('If you are curious and want to understand this space:', subheading))
 story.append(Paragraph(
-    'Some jobs will be affected. Administrative tasks, repetitive analysis, basic content creation — these are all being automated. But new jobs are being created too. Humans are needed to oversee agents, handle edge cases, and build the relationships agents can\'t form.',
-    body))
-
-story.append(Paragraph('If you\'re an investor:', subheading))
-story.append(Paragraph(
-    'The agentic economy is generating real revenue right now with minimal infrastructure costs. A company generating $300,000 ARR with 3 human employees and an AI agent has a cost structure that no traditional business can match.',
+    'You are reading the right guide. The rest of the WTF Agents series goes deeper on each '
+    'platform, tool, and concept in this guide. The agentic economy does not require a '
+    'computer science degree. It requires curiosity and a willingness to experiment.',
     body))
 story.append(Spacer(1, 4*mm))
 
-# ── WHAT HAPPENS NEXT ─────────────────────────────────────────────────────────
-story.append(Paragraph('What happens next', section_heading))
-story.append(orange_rule())
-story.append(Paragraph('The honest answer is: nobody knows exactly. But here are the trends that seem certain:', body))
-story.append(Paragraph('→  <b>More platforms.</b> Polsia, OpenClaw, and Paperclip are the first wave. There will be more — vertical-specific, enterprise-grade, compliance-ready.', bullet_item))
-story.append(Paragraph('→  <b>More humans hired by bots.</b> The jobs board at WTF Agents already shows AI companies hiring humans for specific tasks. This will grow.', bullet_item))
-story.append(Paragraph('→  <b>Regulation.</b> Governments are watching. The EU AI Act is already in force. More regulation is coming.', bullet_item))
-story.append(Paragraph('→  <b>Enterprise adoption.</b> Right now the agentic economy is dominated by small companies. Within 18 months, large enterprises will be deploying agent teams at scale.', bullet_item))
-story.append(Paragraph('→  <b>A shakeout.</b> Not every AI company will survive. The ones with real value propositions and real revenue will. This is normal. It happened with the internet.', bullet_item))
-story.append(Spacer(1, 4*mm))
-
-# ── GLOSSARY ──────────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION 10: GLOSSARY
+# ══════════════════════════════════════════════════════════════════════════════
 story.append(Paragraph('Glossary', section_heading))
-story.append(orange_rule())
+story.append(rule())
 
 glossary = [
-    ('AI Agent', 'An AI system that can take actions autonomously, using tools, memory, and reasoning to complete goals without constant human instruction.'),
-    ('LLM (Large Language Model)', 'The AI brain at the centre of most agents. Examples: Claude (Anthropic), GPT-4 (OpenAI), Gemini (Google).'),
-    ('Polsia', 'The leading platform for launching AI-run companies. $5.61M ARR, 5,000+ companies, one solo founder.'),
-    ('OpenClaw', 'An open source, self-hosted alternative to Polsia. 30,000 GitHub stars.'),
-    ('Paperclip', 'The newest agentic platform. Launched March 2026. Open source.'),
-    ('ARR (Annual Recurring Revenue)', 'How much money a company makes per year from ongoing customers.'),
-    ('API', 'The way software talks to other software. Agents use APIs to interact with the world.'),
-    ('Autonomous', 'Operating without human control. An autonomous company runs its own operations.'),
-    ('Agentic Economy', 'The emerging economic system in which AI agents create, run, and grow businesses with minimal human involvement.'),
+    ('AI Agent', 'An AI system that pursues goals autonomously — taking actions, using tools, and adapting without constant human instruction.'),
+    ('LLM (Large Language Model)', 'The AI "brain" at the core of most agents. Examples: Claude (Anthropic), GPT-5.4 (OpenAI), Gemini 3.1 (Google).'),
+    ('MCP (Model Context Protocol)', 'Anthropic\'s open standard for connecting AI agents to external tools and data. The "USB-C for AI."'),
+    ('A2A (Agent2Agent Protocol)', 'Google\'s open standard for AI agents from different companies to communicate with each other.'),
+    ('SWE-bench', 'The industry benchmark for measuring how well an AI can solve real software engineering tasks. Higher = better.'),
+    ('Polsia', 'A managed platform where AI agents build and run companies autonomously. Founded by Ben Cera.'),
+    ('OpenClaw', 'A free, open-source autonomous AI agent. Runs locally, connects via messaging apps. Created by Peter Steinberger.'),
+    ('Paperclip', 'An open-source orchestration framework for running multi-agent companies.'),
+    ('Moltbook', 'A social network built for AI agents. Launched January 2026, acquired by Meta March 2026.'),
+    ('Constitutional AI', 'Anthropic\'s technique for training AI models to be helpful, honest, and harmless using a set of principles.'),
+    ('ARR (Annual Recurring Revenue)', 'How much money a business makes per year from recurring customers. The standard startup health metric.'),
+    ('Agentic Economy', 'The emerging economic system in which AI agents perform meaningful economic work with minimal human supervision.'),
 ]
 for term, definition in glossary:
-    story.append(Paragraph(f'<b>{term}</b>', ParagraphStyle('gloss_term', fontSize=11, leading=16, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=2)))
-    story.append(Paragraph(definition, ParagraphStyle('gloss_def', fontSize=10, leading=16, textColor=ZINC_400, fontName='Helvetica', spaceAfter=8, leftIndent=8)))
+    story.append(Paragraph(
+        f'<b>{term}</b> — {definition}',
+        ParagraphStyle('gl', fontSize=10, leading=16, textColor=ZINC_300, fontName='Helvetica',
+                      spaceAfter=5, leftIndent=0)))
 
 story.append(Spacer(1, 6*mm))
 
-# ── WHERE TO GO NEXT ──────────────────────────────────────────────────────────
-story.append(Paragraph('Where to go next', section_heading))
-story.append(orange_rule())
-story.append(Paragraph('You\'ve just read the overview. Now go deeper:', body))
-story.append(Paragraph('→  <b>wtfagents.com/companies</b> — browse 1,293 real AI companies, live right now', bullet_item))
-story.append(Paragraph('→  <b>wtfagents.com/jobs</b> — see bots hiring humans (yes, really)', bullet_item))
-story.append(Paragraph('→  <b>wtfagents.com/store</b> — get the platform-specific guides: WTF is Polsia, WTF is OpenClaw, WTF is Paperclip', bullet_item))
-story.append(Paragraph('→  <b>wtfagents.com/intelligence</b> — the weekly briefing for people who want to stay ahead', bullet_item))
+# ══════════════════════════════════════════════════════════════════════════════
+# READ NEXT / BUY MORE GUIDES
+# ══════════════════════════════════════════════════════════════════════════════
+story.append(PageBreak())
+story.append(Paragraph('Liked this? Go deeper.', section_heading))
+story.append(rule())
+story.append(Paragraph(
+    'This guide gave you the big picture. The WTF Agents series goes deep on every platform, '
+    'tool, and concept mentioned here. Each guide is $7 — instant PDF download.',
+    body))
+story.append(Spacer(1, 4*mm))
+
+next_guides = [
+    ('WTF is Claude', 'The AI powering the agentic economy. What it is, how it works, why it matters.', 'wtfagents.com/store'),
+    ('WTF is OpenClaw', 'The viral open-source agent that went from 0 to 247K GitHub stars in 60 days.', 'wtfagents.com/store'),
+    ('WTF is Polsia', 'The platform claiming to run 1,300+ companies autonomously. What\'s real and what\'s hype.', 'wtfagents.com/store'),
+    ('WTF is an AI Agent', 'The deep dive on agents specifically — how they think, plan, and act.', 'wtfagents.com/store'),
+    ('How to Hire an AI Agent for Your Business', 'Practical. Jargon-free. Ready to implement today.', 'wtfagents.com/store'),
+]
+
+for title, desc, url in next_guides:
+    story.append(Paragraph(f'<b>{title}</b>', ParagraphStyle('ng_title', fontSize=11, leading=16, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=1)))
+    story.append(Paragraph(desc, ParagraphStyle('ng_desc', fontSize=10, leading=15, textColor=ZINC_400, fontName='Helvetica', spaceAfter=1, leftIndent=8)))
+    story.append(Paragraph(f'<link href="https://{url}" color="#f97316">{url}</link>', ParagraphStyle('ng_link', fontSize=9, leading=13, textColor=ORANGE, fontName='Helvetica', spaceAfter=8, leftIndent=8)))
+
+story.append(zinc_rule())
+story.append(Spacer(1, 4*mm))
+
+# Intelligence CTA
+story.append(Paragraph('Want this level of insight every Monday?', ParagraphStyle('cta_h', fontSize=14, leading=20, textColor=WHITE, fontName='Helvetica-Bold', spaceAfter=4)))
+story.append(Paragraph(
+    'WTF Agents Intelligence is the weekly briefing on the agentic economy — real data, real companies, '
+    'real insight. Top 10 fastest-growing AI companies, vertical reports, platform watch, deep dives. '
+    'Every Monday. $49/month. Cancel anytime.',
+    body))
+story.append(Paragraph(
+    '<link href="https://wtfagents.com/intelligence" color="#f97316">wtfagents.com/intelligence →</link>',
+    ParagraphStyle('cta_link', fontSize=11, leading=16, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=10)))
+
+story.append(zinc_rule())
+story.append(Spacer(1, 6*mm))
+
+# QR CODE + footer
+qr_img = make_qr('https://wtfagents.com/store')
+qr_table = Table([[qr_img, Paragraph(
+    '<b>Scan to browse all guides</b>\n\nAll 11 WTF Agents guides at wtfagents.com/store\n\n'
+    '$7 each · Bundles from $29 · Instant PDF download\n\n'
+    'Also: free company directory, jobs board, idea exchange\n'
+    'and the weekly Intelligence briefing at $49/mo.',
+    ParagraphStyle('qr_text', fontSize=10, leading=16, textColor=ZINC_300, fontName='Helvetica', spaceAfter=4)
+)]], colWidths=[45*mm, 115*mm])
+qr_table.setStyle(TableStyle([
+    ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+    ('LEFTPADDING', (0,0), (-1,-1), 0),
+    ('RIGHTPADDING', (0,0), (-1,-1), 10),
+    ('TOPPADDING', (0,0), (-1,-1), 0),
+    ('BOTTOMPADDING', (0,0), (-1,-1), 0),
+]))
+story.append(qr_table)
 story.append(Spacer(1, 8*mm))
 story.append(zinc_rule())
-story.append(Paragraph('WTF Agents · wtfagents.com · The autonomous company economy is here. WTF is happening.', footer_style))
-story.append(Paragraph('© 2026 WTF Agents. All rights reserved.', footer_style))
+story.append(Paragraph('WTF Agents · wtfagents.com · The autonomous company economy is here. WTF is happening.', footer_s))
+story.append(Paragraph('© 2026 WTF Agents. All rights reserved. Sources available at wtfagents.com', footer_s))
 
-# ── BUILD ─────────────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# PAGE BACKGROUND + NUMBERS
+# ══════════════════════════════════════════════════════════════════════════════
 def on_page(canvas, doc):
     canvas.saveState()
     canvas.setFillColor(DARK_BG)
     canvas.rect(0, 0, W, H, fill=1, stroke=0)
-    # Orange top bar
     canvas.setFillColor(ORANGE)
-    canvas.rect(0, H - 4, W, 4, fill=1, stroke=0)
-    # Page number
+    canvas.rect(0, H - 3, W, 3, fill=1, stroke=0)
     canvas.setFillColor(ZINC_600)
     canvas.setFont('Helvetica', 8)
-    canvas.drawCentredString(W/2, 10*mm, f'wtfagents.com  ·  Page {doc.page}')
+    canvas.drawCentredString(W/2, 8*mm, f'wtfagents.com  ·  Page {doc.page}  ·  © 2026 WTF Agents')
     canvas.restoreState()
 
 doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
-print(f'PDF generated: {OUTPUT}')
+print(f'✓ PDF generated: {OUTPUT}')
