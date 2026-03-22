@@ -199,7 +199,7 @@ export default function SubmitPage() {
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Launch Date</label>
                 <input type="date" value={form.launched} onChange={e => setForm(f => ({ ...f, launched: e.target.value }))}
-                  className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white w-full max-w-full box-border focus:outline-none focus:border-zinc-500" />
+                  className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white w-full focus:outline-none focus:border-zinc-500" style={{maxWidth: '100%', boxSizing: 'border-box'}} />
               </div>
               <div>
                 <label className="text-xs text-zinc-500 mb-1.5 block">Your Email</label>
