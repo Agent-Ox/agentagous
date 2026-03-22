@@ -28,13 +28,19 @@ function SuccessContent() {
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mb-8 text-left">
           <div className="text-xs text-zinc-500 font-medium mb-3 uppercase tracking-wider">What happens next</div>
           {[
-            "✓ Your first issue arrives this Monday",
-            "✓ Every Monday after that — in your inbox",
-            "✓ Manage your subscription anytime via Stripe",
-            "✓ Reply to any issue to reach us directly",
+            { text: "✓ Your first issue arrives this Monday" },
+            { text: "✓ Every Monday after that — in your inbox" },
+            { text: "✓ Reply to any issue to reach us directly" },
           ].map(item => (
-            <div key={item} className="text-sm text-zinc-300 mb-2">{item}</div>
+            <div key={item.text} className="text-sm text-zinc-300 mb-2">{item.text}</div>
           ))}
+          <div className="text-sm text-zinc-300 mb-2">
+            ✓{' '}
+            <a href="/account" className="text-orange-400 hover:text-orange-300 underline underline-offset-2 transition-colors">
+              Manage your subscription
+            </a>
+            {' '}— cancel, update payment, view invoices
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

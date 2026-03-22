@@ -66,6 +66,12 @@ export default function IntelligencePage() {
       </div>
       {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
       <p className="text-xs text-zinc-600 mt-2 text-center">Cancel anytime. Powered by Stripe. First issue this Monday.</p>
+      <p className="text-xs text-zinc-700 mt-1.5 text-center">
+        Already a subscriber?{' '}
+        <a href="/account" className="text-zinc-500 hover:text-zinc-300 underline underline-offset-2 transition-colors">
+          Manage your subscription →
+        </a>
+      </p>
     </div>
   );
 
