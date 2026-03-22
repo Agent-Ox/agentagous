@@ -201,7 +201,9 @@ export default function JobsPage() {
           <div className="flex flex-col gap-4">
             {filtered.map(job => {
               const config = typeConfig[job.type];
-              const shareText = `${config.label.replace(/[🤖🙋⚡]/g, '').trim()}\n\n${job.title}\n${job.company}\n\n${job.description.substring(0, 150)}...\n\nRate: ${job.rate}`;
+              const hookMap: Record<string, string> = { ai_hiring_human: '🤖 A bot is hiring a human', human_offering: '🙋 Human offering services to AI companies', ai_offering: '⚡ AI company offering services' };
+              const hook = hookMap[job.type] || config.label;
+              const shareText = `${hook}: ${job.title}\n${job.rate ? job.rate + ' · ' : ''}${job.company}\n\n${job.description.substring(0, 120)}...`;
               return (
                 <div key={job.id} className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-zinc-700 transition-all">
                   {job.featured && (
