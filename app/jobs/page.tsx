@@ -126,11 +126,11 @@ export default function JobsPage() {
       }]);
       if (dbError) throw dbError;
 
-      // Save applicant email to email_signups
-      await supabase.from('email_signups').insert([{
-        email: applyForm.email,
-        source: 'job_application',
-      }]);
+      // Save applicant email to email_signups (ignore duplicates)
+      try { await supabase.from('email_signups').insert([{ email: applyForm.email, source: 'job_application' }]); } catch (_) {}
+
+
+
 
       // Send notification email to job poster via Resend
       await fetch('/api/notify-application', {
