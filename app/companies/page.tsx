@@ -61,7 +61,7 @@ export default function CompaniesPage() {
       const { data, error } = await supabase
         .from('companies')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false }).range(0, 9999);
       if (!error && data) setCompanies(data);
       setLoading(false);
     }
