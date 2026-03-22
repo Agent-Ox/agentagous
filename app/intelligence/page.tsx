@@ -54,7 +54,7 @@ export default function IntelligencePage() {
 
   const CheckoutForm = () => (
     <div className="max-w-md mx-auto">
-      <div className="flex gap-2 mb-2">
+      <div className="flex flex-col sm:flex-row gap-2 mb-2">
         <input type="email" placeholder="your@email.com" value={email}
           onChange={e => setEmail(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && handleCheckout()}
