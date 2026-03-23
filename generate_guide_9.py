@@ -268,7 +268,6 @@ next_guides = [
     ('WTF is Anthropic', 'The company that built Claude. The founding story, the safety mission, the $380B valuation.', 'wtfagents.com/store'),
     ('WTF is an LLM', 'The technical foundation behind Claude. Plain English, no maths.', 'wtfagents.com/store'),
     ('WTF is OpenClaw', 'The viral open-source agent that uses Claude as its default brain.', 'wtfagents.com/store'),
-    ('WTF is an AI Agent', 'What Claude becomes when it is given tools, memory, and a goal.', 'wtfagents.com/store'),
     ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
 for title, desc, url in next_guides:

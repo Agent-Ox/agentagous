@@ -349,7 +349,6 @@ next_guides = [
     ('WTF is an LLM', 'The AI brain that sits at the centre of every agent. Plain English, no maths.', 'wtfagents.com/store'),
     ('WTF is Claude', 'The AI model whose API powers most of the agentic economy.', 'wtfagents.com/store'),
     ('WTF is the Agentic Economy', 'The big picture on what is happening and why it matters.', 'wtfagents.com/store'),
-    ('How to Hire an AI Agent for Your Business', 'Practical steps to deploy your first agent this week.', 'wtfagents.com/store'),
     ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
 for title, desc, url in next_guides:

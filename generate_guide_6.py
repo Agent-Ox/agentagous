@@ -348,7 +348,6 @@ next_guides = [
     ('WTF is an AI Agent', 'What OpenClaw actually is under the hood — the loops, tools, and protocols.', 'wtfagents.com/store'),
     ('WTF is Claude', 'The LLM that OpenClaw uses by default. The brain inside the agent.', 'wtfagents.com/store'),
     ('WTF is the Agentic Economy', 'Where OpenClaw fits in the $52B+ market reshaping business and employment.', 'wtfagents.com/store'),
-    ('WTF is Polsia', 'The managed alternative to OpenClaw — no installation required, but a monthly fee and revenue share.', 'wtfagents.com/store'),
     ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
 for title, desc, url in next_guides:

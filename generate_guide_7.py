@@ -325,7 +325,6 @@ next_guides = [
     ('WTF is Claude', 'The LLM powering Claude Code — one of Paperclip\'s primary agents.', 'wtfagents.com/store'),
     ('WTF is an AI Agent', 'What each node in a Paperclip org chart actually is.', 'wtfagents.com/store'),
     ('WTF is the Agentic Economy', 'Where Paperclip fits in the $52B+ market.', 'wtfagents.com/store'),
-    ('How to Hire an AI Agent for Your Business', 'Practical guide including when to use Paperclip vs the alternatives.', 'wtfagents.com/store'),
     ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
 for title, desc, url in next_guides:

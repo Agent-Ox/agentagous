@@ -334,7 +334,6 @@ next_guides = [
     ('WTF is Paperclip', 'The orchestration framework for running multi-agent companies. The infrastructure layer.', 'wtfagents.com/store'),
     ('WTF is the Agentic Economy', 'The big picture — where Polsia fits in the $52B+ market.', 'wtfagents.com/store'),
     ('WTF is an AI Agent', 'What is actually doing the work inside Polsia. The full explanation.', 'wtfagents.com/store'),
-    ('How to Hire an AI Agent for Your Business', 'Practical guide to deploying agents — including alternatives to Polsia.', 'wtfagents.com/store'),
     ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
 for title, desc, url in next_guides:
