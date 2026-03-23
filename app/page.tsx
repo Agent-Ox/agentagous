@@ -157,7 +157,7 @@ export default function Home() {
           <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></div>
           The autonomous company economy is here
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
           WTF is the<br />Agentic Economy?
         </h1>
         <p className="text-zinc-400 text-lg max-w-2xl mx-auto mb-2">
@@ -252,7 +252,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
-              tier: "THE BIG BOYS",
+              tier: "THE BIG PLAYERS",
               color: "text-violet-400",
               borderColor: "border-violet-500/20",
               players: [
