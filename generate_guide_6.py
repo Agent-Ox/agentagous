@@ -366,7 +366,7 @@ story.append(Spacer(1, 6*mm))
 
 qr_img = make_qr('https://wtfagents.com/store')
 qr_table = Table([[qr_img, Paragraph(
-    '<b>Scan to browse all guides</b>\n\nAll 11 WTF Agents guides at wtfagents.com/store\n\n$7 each · Bundles from $29 · Instant PDF download\n\nAlso: 1,293+ real AI companies live at wtfagents.com/companies',
+    '<b>Scan to browse all guides</b>\n\nAll WTF Agents guides at wtfagents.com/store\n\n$7 each · Bundles from $29 · Instant PDF download\n\nAlso: 1,293+ real AI companies live at wtfagents.com/companies',
     ParagraphStyle('qr_text', fontSize=10, leading=16, textColor=ZINC_300, fontName='Helvetica', spaceAfter=4)
 )]], colWidths=[45*mm, 115*mm])
 qr_table.setStyle(TableStyle([

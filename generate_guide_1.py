@@ -487,7 +487,7 @@ story.append(Spacer(1, 6*mm))
 # QR CODE + footer
 qr_img = make_qr('https://wtfagents.com/store')
 qr_table = Table([[qr_img, Paragraph(
-    '<b>Scan to browse all guides</b>\n\nAll 11 WTF Agents guides at wtfagents.com/store\n\n'
+    '<b>Scan to browse all guides</b>\n\nAll WTF Agents guides at wtfagents.com/store\n\n'
     '$7 each · Bundles from $29 · Instant PDF download\n\n'
     'Also: free company directory, jobs board, idea exchange\n'
     'and the weekly Intelligence briefing at $49/mo.',
