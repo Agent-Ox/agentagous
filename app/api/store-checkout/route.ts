@@ -18,6 +18,7 @@ const PRICE_MAP: Record<string, string> = {
   'starter-pack': process.env.STRIPE_PRICE_STARTER_PACK!,
   'claude-pack': process.env.STRIPE_PRICE_CLAUDE_PACK!,
   'complete-pack': process.env.STRIPE_PRICE_COMPLETE_PACK!,
+  'cowork': process.env.STRIPE_PRICE_COWORK!,
 };
 
 export async function POST(request: Request) {

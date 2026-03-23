@@ -305,8 +305,8 @@ next_guides = [
     ('WTF is Paperclip', 'The orchestration framework that uses Claude Code as its developer agent.', 'wtfagents.com/store'),
     ('WTF is an AI Agent', 'What Claude Code is — and how autonomous agents work under the hood.', 'wtfagents.com/store'),
     ('How to Hire an AI Agent for Your Business', 'Practical steps to deploy Claude Code and other agents in your business today.', 'wtfagents.com/store'),
+    ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
-
 for title, desc, url in next_guides:
     story.append(Paragraph(f'<b>{title}</b>', ParagraphStyle('ng_title', fontSize=11, leading=16, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=1)))
     story.append(Paragraph(desc, ParagraphStyle('ng_desc', fontSize=10, leading=15, textColor=ZINC_400, fontName='Helvetica', spaceAfter=1, leftIndent=8)))

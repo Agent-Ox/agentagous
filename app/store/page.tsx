@@ -13,13 +13,14 @@ const GUIDES = [
   { slug: 'anthropic', title: 'WTF is Anthropic', description: 'The company behind Claude — and arguably the most important AI lab you\'ve never properly understood.', price: 7, badge: null, featured: false, category: 'claude' },
   { slug: 'claude', title: 'WTF is Claude', description: 'The AI agent powering the agentic economy. What it is, what it can do, and why it matters.', price: 7, badge: null, featured: false, category: 'claude' },
   { slug: 'claude-code', title: 'WTF is Claude Code', description: 'How Claude Code is changing software development — and what it means if you\'re not a developer.', price: 7, badge: null, featured: false, category: 'claude' },
+  { slug: 'cowork', title: 'WTF is Cowork', description: 'Claude Code was for developers. Cowork is for everyone else. The Anthropic product that wiped $285B off enterprise software stocks — and what it actually does.', price: 7, badge: '🆕 New', featured: true, category: 'claude' },
   { slug: 'hire-agent', title: 'How to Hire an AI Agent for Your Business', description: 'A practical, jargon-free guide for business owners who want to start using AI agents right now.', price: 7, badge: '💼 Practical', featured: false, category: 'practical' },
 ];
 
 const BUNDLES = [
   { slug: 'starter-pack', title: 'The Agentic Economy Starter Pack', description: 'WTF is the Agentic Economy + WTF is an AI Agent + WTF is an API + WTF is an LLM + WTF is Polsia + WTF is OpenClaw.', price: 29, saves: 13, includes: 6 },
-  { slug: 'claude-pack', title: 'The Claude & Anthropic Pack', description: 'WTF is Anthropic + WTF is Claude + WTF is Claude Code. The complete guide to the AI lab changing everything.', price: 29, saves: 6, includes: 3 },
-  { slug: 'complete-pack', title: 'The Complete WTF Agents Pack', description: 'All 11 guides. Everything. The full picture of the agentic economy, the platforms, the AI, and how to use it.', price: 49, saves: 28, includes: 11 },
+  { slug: 'claude-pack', title: 'The Claude & Anthropic Pack', description: 'WTF is Anthropic + WTF is Claude + WTF is Claude Code + WTF is Cowork. The complete guide to the AI lab changing everything.', price: 29, saves: 7, includes: 4 },
+  { slug: 'complete-pack', title: 'The Complete WTF Agents Pack', description: 'All 12 guides. Everything. The full picture of the agentic economy, the platforms, the AI, and how to use it.', price: 49, saves: 35, includes: 12 },
 ];
 
 type ModalState = { slug: string; title: string; price: number } | null;

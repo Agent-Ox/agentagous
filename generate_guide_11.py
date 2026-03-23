@@ -369,8 +369,8 @@ next_guides = [
     ('WTF is Claude', 'The AI model powering most of the agents in this guide.', 'wtfagents.com/store'),
     ('WTF is the Agentic Economy', 'The big picture — where your new agent fits in a $52B+ market.', 'wtfagents.com/store'),
     ('WTF is Polsia', 'The managed platform for launching AI-run companies. What\'s real and what\'s hype.', 'wtfagents.com/store'),
+    ('WTF is Cowork', 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.', 'wtfagents.com/store'),
 ]
-
 for title, desc, url in next_guides:
     story.append(Paragraph(f'<b>{title}</b>', ParagraphStyle('ng_title', fontSize=11, leading=16, textColor=ORANGE, fontName='Helvetica-Bold', spaceAfter=1)))
     story.append(Paragraph(desc, ParagraphStyle('ng_desc', fontSize=10, leading=15, textColor=ZINC_400, fontName='Helvetica', spaceAfter=1, leftIndent=8)))
