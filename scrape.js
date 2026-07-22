@@ -40,21 +40,34 @@ function isValidCompany(name, description, url) {
 async function getSubdomains() {
   console.log('Fetching subdomains from crt.sh...')
   const url = 'https://crt.sh/?q=%.polsia.app&output=json'
-  const res = await fetch(url)
-  const data = await res.json()
-
-  const subdomains = [...new Set(
-    data
-      .map(entry => entry.name_value)
-      .join('\n')
-      .split('\n')
-      .map(s => s.trim().replace('*.', ''))
-      .filter(s => s.endsWith('.polsia.app'))
-      .filter(s => !s.startsWith('*'))
-  )]
-
-  console.log('Found ' + subdomains.length + ' unique subdomains')
-  return subdomains
+  try {
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } })
+    const text = await res.text()
+    if (!text.startsWith('[') && !text.startsWith('{')) {
+      throw new Error('crt.sh returned HTML')
+    }
+    const data = JSON.parse(text)
+    const subdomains = [...new Set(
+      data
+        .map(entry => entry.name_value)
+        .join('\n')
+        .split('\n')
+        .map(s => s.trim().replace('*.', ''))
+        .filter(s => s.endsWith('.polsia.app'))
+        .filter(s => !s.startsWith('*'))
+    )]
+    console.log('Found ' + subdomains.length + ' unique subdomains from crt.sh')
+    return subdomains
+  } catch(e) {
+    console.log('crt.sh unavailable: ' + e.message)
+    console.log('Falling back to Polsia API...')
+    const apiRes = await fetch('https://polsia.imrat.com/api/data')
+    const apiData = await apiRes.json()
+    const companies = apiData.companies || []
+    const subdomains = companies.map(c => c.url).filter(u => u && u.endsWith('.polsia.app'))
+    console.log('Found ' + subdomains.length + ' subdomains from Polsia API')
+    return [...new Set(subdomains)]
+  }
 }
 
 async function getExisting() {
