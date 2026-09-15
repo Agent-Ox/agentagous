@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { affiliatesByCategory } from '../../lib/affiliates';
 import { GUIDES } from '../../lib/guides';
 
@@ -72,7 +73,7 @@ export default function ToolsPage() {
       </section>
 
       <footer className="border-t border-zinc-800 px-6 py-6 text-center text-xs text-zinc-600">
-        WTF Agents · <a href="/" className="text-orange-500 hover:text-orange-400">Back to the index</a>
+        WTF Agents · <Link href="/" className="text-orange-500 hover:text-orange-400">Back to the index</Link>
       </footer>
     </div>
   );

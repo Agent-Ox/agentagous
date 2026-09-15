@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Stripe from 'stripe';
 import { productBySlug } from '../../../lib/guides';
 
@@ -72,9 +73,9 @@ export default async function StoreSuccessPage({
           <a href="/store" className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium px-6 py-3 rounded-lg text-sm transition-all">
             Browse more guides
           </a>
-          <a href="/" className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium px-6 py-3 rounded-lg text-sm transition-all">
+          <Link href="/" className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium px-6 py-3 rounded-lg text-sm transition-all">
             Back to WTF Agents
-          </a>
+          </Link>
         </div>
       </div>
     </div>
