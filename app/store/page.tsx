@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { GUIDES, BUNDLES, GUIDE_COUNT, MIN_GUIDE_PRICE, bundleSaving } from '../../lib/guides';
+import { GUIDES, BUNDLES, GUIDE_COUNT, MIN_GUIDE_PRICE, bundleSaving, type Guide } from '../../lib/guides';
+import { affiliateBySlug } from '../../lib/affiliates';
 
 type ModalState = { slug: string; title: string; price: number } | null;
 
@@ -11,6 +12,8 @@ export default function StorePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
+
+  const relatedToolFor = (guide: Guide) => guide.relatedTool ? affiliateBySlug(guide.relatedTool) : undefined;
 
   const openModal = (slug: string, title: string, price: number) => {
     setModal({ slug, title, price });
@@ -125,6 +128,12 @@ export default function StorePage() {
                   Buy ${guide.price} →
                 </button>
               </div>
+              {relatedToolFor(guide) && (
+                <a href={`/go/${guide.relatedTool}`} target="_blank" rel="noopener noreferrer sponsored"
+                  className="text-xs text-zinc-500 hover:text-orange-400 transition-colors mt-3">
+                  Start with {relatedToolFor(guide)!.name} →
+                </a>
+              )}
             </div>
           ))}
         </div>
