@@ -1,10 +1,10 @@
 // Outbound partner/affiliate destinations, surfaced on /tools and linked
 // through /go/[slug] so every click is logged.
 //
-// TODO: every `url` below is an empty placeholder. Fill each one in with the
-// real affiliate/referral link before sending traffic. While a url is empty the
-// /tools card renders as "Link coming soon" and /go/<slug> sends the visitor to
-// /tools rather than off-site, so nothing points at a guessed domain.
+// TODO: openclaw and paperclip still need their real URLs. While a url is empty
+// the /tools card renders as "Link coming soon" and /go/<slug> sends the visitor
+// to /tools rather than off-site, so nothing points at a guessed domain.
+// Swap polsia's url for the affiliate/referral variant once that link exists.
 
 export type Affiliate = {
   slug: string;
@@ -18,7 +18,7 @@ export const AFFILIATES: Affiliate[] = [
   {
     slug: 'polsia',
     name: 'Polsia',
-    url: '',
+    url: 'https://polsia.com',
     blurb: 'Run an AI company for the price of a Netflix subscription.',
     category: 'Autonomous company platforms',
   },
