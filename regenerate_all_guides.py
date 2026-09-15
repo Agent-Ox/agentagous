@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
+"""Rebuild every guide PDF and both bundle PDFs.
+
+Thin wrapper kept for muscle memory. The real work is in:
+  guides/render.py          markdown -> PDF
+  guides/build_catalogue.py front-matter -> lib/guides.generated.ts
+  build_bundles.py          singles -> bundle PDFs
+"""
+import os
 import subprocess
 import sys
-import os
 
-base = os.path.expanduser('~/agentagous')
-scripts = [f'generate_guide_{i}.py' for i in range(1, 13)]
+BASE = os.path.dirname(os.path.abspath(__file__))
 
-for script in scripts:
-    path = os.path.join(base, script)
-    if not os.path.exists(path):
-        print(f'SKIP (not found): {script}')
-        continue
-    result = subprocess.run([sys.executable, script], cwd=base, capture_output=True, text=True)
-    if result.returncode == 0:
-        print(result.stdout.strip())
-    else:
-        print(f'ERROR in {script}:')
-        print(result.stderr[-300:])
+for step in (['guides/render.py'], ['guides/build_catalogue.py'], ['build_bundles.py']):
+    result = subprocess.run([sys.executable] + step, cwd=BASE)
+    if result.returncode != 0:
+        sys.exit(f'FAILED: {step[0]}')
 
-print('\n✓ All PDFs regenerated.')
+print('\n✓ All guide PDFs, bundles and the catalogue are up to date.')

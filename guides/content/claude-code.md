@@ -1,0 +1,194 @@
+---
+slug: 'claude-code'
+title: 'WTF is Claude Code'
+file: 'wtf-is-claude-code.pdf'
+cover_title: 'WTF is'
+cover_subtitle: 'Claude Code?'
+cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+subtitle: >-
+  Not a code editor. Not an autocomplete plugin. An autonomous AI developer that reads
+  your entire codebase, writes code, runs tests, fixes bugs, and commits to Git — while
+  you do something else. Voted most-loved coding tool by 46% of developers in 2026.
+
+# store catalogue fields
+order: 9
+description: 'How Claude Code is changing software development — and what it means if you''re not a developer.'
+price: 7
+category: 'claude'
+badge: null
+featured: false
+
+read_next:
+  - title: 'WTF is Claude'
+    desc: 'The model behind Claude Code. Everything about Anthropic''s flagship AI.'
+    url: 'wtfagents.com/store'
+  - title: 'WTF is Anthropic'
+    desc: 'The company that built Claude Code. The founding story, the safety mission, the $380B valuation.'
+    url: 'wtfagents.com/store'
+  - title: 'WTF is Paperclip'
+    desc: 'The orchestration framework that uses Claude Code as its developer agent.'
+    url: 'wtfagents.com/store'
+  - title: 'WTF is an AI Agent'
+    desc: 'What Claude Code is — and how autonomous agents work under the hood.'
+    url: 'wtfagents.com/store'
+  - title: 'WTF is Cowork'
+    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
+    url: 'wtfagents.com/store'
+---
+## The one-liner
+
+@body_lead Claude Code is Anthropic's autonomous coding agent — a command-line tool that takes a task, reads your codebase, figures out what needs to change, makes the changes, runs tests, and iterates until the task is done.
+
+It is not a tool that helps you code. It is a tool that codes while you watch — or while you do something else entirely.
+
+@spacer 4
+
+## The difference that matters
+
+There are three categories of AI coding tool. They are not the same thing:
+
+### Autocomplete tools (GitHub Copilot)
+
+Suggest the next line of code as you type. You are still writing. The AI is making suggestions. You accept or reject each one. Fast, low-friction, but fundamentally reactive.
+
+### AI-assisted editors (Cursor)
+
+Chat with the AI inside your editor. Ask it to write a function, explain some code, or make a change. More powerful than autocomplete, but you are still directing every step.
+
+### Autonomous coding agents (Claude Code)
+
+You give the agent a task: "Add user authentication to this application." It reads the entire codebase, plans the changes, writes the code across multiple files, runs the tests, fixes the failures, and commits the result. You were not involved in the individual steps.
+
+@body_lead The distinction matters because the productivity multiplier is completely different. Autocomplete saves you seconds. An autonomous agent saves you hours.
+
+@spacer 4
+
+## What Claude Code can actually do
+
+@cap <b>Read entire codebases</b> — Claude Code reads all your files — not just the one you have open. It understands how parts of the codebase relate to each other. This is critical for tasks that require changes across multiple files.
+
+@cap <b>Write and edit code</b> — Across all major languages: Python, JavaScript, TypeScript, Go, Rust, Java, C++, Ruby, and more. It writes idiomatic code that fits the existing style of your codebase.
+
+@cap <b>Run shell commands</b> — Execute tests, linters, build tools, and scripts. Read the output. Understand what failed. Try to fix it.
+
+@cap <b>Run tests and fix failures</b> — Write tests if you don't have them. Run existing tests. Read the failures. Fix the code. Re-run. Iterate.
+
+@cap <b>Commit to Git</b> — Stage changes, write commit messages, and commit — following your project's conventions.
+
+@cap <b>Handle multi-file refactors</b> — Rename a function used in 47 places. Change an API interface and update all callers. Restructure a module. Tasks that would take a human developer hours.
+
+@cap <b>Work on long autonomous sessions</b> — Unlike autocomplete tools that help one line at a time, Claude Code can work on a complex task for hours — maintaining context across the entire session.
+
+@spacer 4
+
+## The numbers — developer adoption in 2026
+
+Claude Code went from beta launch in May 2025 to category leader in under a year. Developer surveys in early 2026 found:
+
+@table keep 20,140
+@tcells hs,cs|hs,cs|hs,cs
+@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
+@tstyle BACKGROUND 0,0 -1,-1 ZINC_900
+@tstyle PADDING 0,0 -1,-1 10
+@tstyle VALIGN 0,0 -1,-1 MIDDLE
+@tstyle ROWBACKGROUNDS 0,0 -1,-1 [ZINC_900,DARK_BG]
+| 46% | "Most loved" coding tool among developers — Claude Code |
+| 19% | "Most loved" — Cursor (previous category leader) |
+| 9% | "Most loved" — GitHub Copilot (77M+ developer install base) |
+
+@spacer 3
+
+This is a remarkable result. GitHub Copilot has 77 million+ developers using it and the backing of Microsoft. Claude Code overtook it in developer satisfaction in under a year — because it does something fundamentally different.
+
+@spacer 4
+
+## How Claude Code fits into the agentic economy
+
+@body_lead Claude Code is not just a tool for individual developers. It is one of the primary building blocks of the agentic economy.
+
+### In Paperclip
+
+Paperclip — the open-source multi-agent company orchestration framework — lists Claude Code as a primary supported agent. In a Paperclip "company org chart," Claude Code can be the developer agent: building and maintaining the company's software autonomously while other agents handle marketing, customer support, and operations.
+
+### In autonomous companies
+
+The companies tracked on WTF Agents — the 1,293+ AI-run companies on Polsia, OpenClaw, and Paperclip — are using agents like Claude Code to build and iterate on their products. A company with no human employees still needs software. Claude Code builds it.
+
+### In enterprise settings
+
+Large enterprises are using Claude Code for large-scale code migrations, test-writing, technical debt reduction, and API integrations. Tasks that previously required weeks of developer time can be completed in hours.
+
+@spacer 4
+
+## Claude Code vs the alternatives
+
+@table keep 30,30,55,45
+@tcells hs-row
+@tstyle BACKGROUND 0,0 -1,0 ZINC_800
+@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
+@tstyle PADDING 0,0 -1,-1 8
+@tstyle VALIGN 0,0 -1,-1 TOP
+@tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
+| Tool | Type | Best for | Limitation |
+| Claude Code | Autonomous agent | Complex, multi-file tasks; long autonomous sessions | Requires CLI comfort; API costs |
+| Cursor | AI-assisted editor | Fast iteration; inline editing; real-time help | Still human-directed; not autonomous |
+| GitHub Copilot | Autocomplete | Quick suggestions while typing; broad ecosystem | Reactive, not autonomous |
+| Codex (OpenAI) | Autonomous agent | GPT-5.4 backbone; 1M context window | Less community adoption than Claude Code |
+
+@spacer 4
+
+## Do you need to be a developer to use Claude Code?
+
+@body_lead Mostly yes — at the moment.
+
+Claude Code is a command-line tool. You need to be able to open a terminal, navigate to your project, and run commands. You also need an Anthropic API key and a basic understanding of Git.
+
+That said, "developer" is a broader category than it used to be. The rise of AI-assisted coding has dramatically lowered the barrier to writing code. People who would not have called themselves developers two years ago are now using Claude Code to build real applications.
+
+Platforms like Paperclip and Polsia are moving toward making Claude Code accessible without direct command-line interaction — embedding it as an agent in a managed workflow. Within 12-18 months, the average business owner may be able to deploy Claude Code as their "developer agent" without writing a single line of code themselves.
+
+@spacer 4
+
+## What this means for software development
+
+Claude Code is part of a broader shift in what software development means.
+
+For decades, writing software required deep technical skill, years of learning, and constant attention to detail. The bottleneck was human developer time.
+
+@body_lead Autonomous coding agents change the equation. The bottleneck shifts from "can we write the code?" to "do we know what to build?" The strategic and product decisions matter more. The implementation matters less.
+
+This does not mean software developers are going away. It means the nature of the job is changing. Senior developers who can direct, review, and architect are more valuable. Junior developers who were doing rote implementation work face the most disruption.
+
+@spacer 4
+
+## Glossary
+
+@gl <b>Claude Code</b> — Anthropic's autonomous coding agent. CLI tool that reads codebases, writes code, runs tests, and commits to Git without step-by-step human instruction.
+
+@gl <b>Autonomous coding agent</b> — An AI that takes a coding task and completes it end-to-end without human direction of individual steps. Contrast with autocomplete (suggests next line) or AI-assisted editors (human-directed).
+
+@gl <b>CLI (Command Line Interface)</b> — A text-based way of interacting with a computer. Claude Code runs in the terminal — you type commands rather than clicking a GUI.
+
+@gl <b>Git</b> — The standard version control system for software projects. Claude Code can stage, commit, and manage Git operations autonomously.
+
+@gl <b>SWE-bench</b> — The standard benchmark for AI coding ability. Measures how well an agent can solve real software engineering tasks. Claude Opus 4.6: 75.6%.
+
+@gl <b>GitHub Copilot</b> — Microsoft/GitHub's AI coding tool. 77M+ developers. Autocomplete-style — helps as you type. Claude Code is a different category: autonomous.
+
+@gl <b>Cursor</b> — An AI-assisted code editor. More powerful than Copilot, but still human-directed. Claude Code is autonomous; Cursor is collaborative.
+
+@gl <b>Paperclip</b> — The multi-agent company orchestration framework that uses Claude Code as a primary developer agent.
+
+@gl <b>API key</b> — Your credential for accessing the Anthropic API. Required to run Claude Code. You pay per token of usage.
+
+@gl <b>Refactor</b> — Restructuring existing code without changing its external behaviour. A common use case for Claude Code — especially large-scale refactors across many files.
+
+@spacer 6
+
+@pagebreak
+
+## Liked this? Go deeper.
+
+Claude Code is the agent. Here is the ecosystem around it.
+
+@spacer 4
