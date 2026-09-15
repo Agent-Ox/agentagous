@@ -1,27 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-
-const GUIDES = [
-  { slug: 'agentic-economy', title: 'WTF is the Agentic Economy', description: 'The big picture. What is actually happening in AI right now, why it matters, and what comes next. Written for humans, not engineers.', price: 7, badge: '🌍 Start here', featured: true, category: 'foundation' },
-  { slug: 'ai-agent', title: 'WTF is an AI Agent', description: 'Everyone is talking about agents. Nobody is explaining them properly. This guide does.', price: 7, badge: null, featured: false, category: 'foundation' },
-  { slug: 'api', title: 'WTF is an API', description: 'The thing connecting everything in the agentic economy — explained simply, finally.', price: 7, badge: null, featured: false, category: 'foundation' },
-  { slug: 'llm', title: 'WTF is an LLM', description: 'Large language models are the engine behind every AI company. Here\'s how they actually work.', price: 7, badge: null, featured: false, category: 'foundation' },
-  { slug: 'polsia', title: 'WTF is Polsia', description: '$5.61M ARR. 5,000+ companies. One solo founder. The platform quietly building the agentic economy.', price: 7, badge: '🔥 Most popular', featured: true, category: 'platforms' },
-  { slug: 'openclaw', title: 'WTF is OpenClaw', description: 'The open source alternative taking on Polsia. Self-hosted, community-driven, and growing fast.', price: 7, badge: null, featured: false, category: 'platforms' },
-  { slug: 'paperclip', title: 'WTF is Paperclip', description: 'The newest platform in the agentic economy. Launched March 2026. ClipMart coming soon.', price: 7, badge: '🆕 New', featured: false, category: 'platforms' },
-  { slug: 'anthropic', title: 'WTF is Anthropic', description: 'The company behind Claude — and arguably the most important AI lab you\'ve never properly understood.', price: 7, badge: null, featured: false, category: 'claude' },
-  { slug: 'claude', title: 'WTF is Claude', description: 'The AI agent powering the agentic economy. What it is, what it can do, and why it matters.', price: 7, badge: null, featured: false, category: 'claude' },
-  { slug: 'claude-code', title: 'WTF is Claude Code', description: 'How Claude Code is changing software development — and what it means if you\'re not a developer.', price: 7, badge: null, featured: false, category: 'claude' },
-  { slug: 'cowork', title: 'WTF is Cowork', description: 'Claude Code was for developers. Cowork is for everyone else. The Anthropic product that wiped $285B off enterprise software stocks — and what it actually does.', price: 7, badge: '🆕 New', featured: true, category: 'claude' },
-  { slug: 'hire-agent', title: 'How to Hire an AI Agent for Your Business', description: 'A practical, jargon-free guide for business owners who want to start using AI agents right now.', price: 7, badge: '💼 Practical', featured: false, category: 'practical' },
-];
-
-const BUNDLES = [
-  { slug: 'starter-pack', title: 'The Agentic Economy Starter Pack', description: 'WTF is the Agentic Economy + WTF is an AI Agent + WTF is an API + WTF is an LLM + WTF is Polsia + WTF is OpenClaw.', price: 29, saves: 13, includes: 6 },
-  { slug: 'claude-pack', title: 'The Claude & Anthropic Pack', description: 'WTF is Anthropic + WTF is Claude + WTF is Claude Code + WTF is Cowork. The complete guide to the AI lab changing everything.', price: 29, saves: 7, includes: 4 },
-  { slug: 'complete-pack', title: 'The Complete WTF Agents Pack', description: 'All 12 guides. Everything. The full picture of the agentic economy, the platforms, the AI, and how to use it.', price: 49, saves: 35, includes: 12 },
-];
+import { GUIDES, BUNDLES, GUIDE_COUNT, MIN_GUIDE_PRICE, bundleSaving } from '../../lib/guides';
 
 type ModalState = { slug: string; title: string; price: number } | null;
 
@@ -93,18 +73,18 @@ export default function StorePage() {
             WTF is happening in AI?
           </h1>
           <p className="text-zinc-400 text-lg max-w-xl mx-auto">
-            No jargon. No hype. Just clear, honest guides to the platforms, tools, and companies reshaping everything. $7 each. Instant PDF download.
+            No jargon. No hype. Just clear, honest guides to the platforms, tools, and companies reshaping everything. ${MIN_GUIDE_PRICE} each. Instant PDF download.
           </p>
         </div>
 
         <div className="mb-12">
           <h2 className="text-lg font-bold text-white mb-4">Bundle & save</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {BUNDLES.map(bundle => (
               <div key={bundle.slug} className="bg-gradient-to-b from-orange-500/10 to-zinc-900 border border-orange-500/20 rounded-2xl p-5 flex flex-col">
                 <div className="flex items-start justify-between mb-3 gap-2">
-                  <div className="text-xs bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">Save ${bundle.saves}</div>
-                  <div className="text-xs text-zinc-500">{bundle.includes} guides</div>
+                  <div className="text-xs bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">Save ${bundleSaving(bundle)}</div>
+                  <div className="text-xs text-zinc-500">{bundle.includes.length} guides</div>
                 </div>
                 <h3 className="font-bold text-white text-sm mb-2 leading-snug">{bundle.title}</h3>
                 <p className="text-xs text-zinc-400 leading-relaxed mb-4 flex-1">{bundle.description}</p>
@@ -120,6 +100,7 @@ export default function StorePage() {
           </div>
         </div>
 
+        <h2 className="text-lg font-bold text-white mb-4">All {GUIDE_COUNT} guides</h2>
         <div className="flex flex-wrap gap-2 mb-6">
           {categories.map(cat => (
             <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
@@ -141,7 +122,7 @@ export default function StorePage() {
                 <div className="text-xl font-bold text-white">${guide.price}</div>
                 <button onClick={() => openModal(guide.slug, guide.title, guide.price)}
                   className="bg-zinc-800 hover:bg-orange-500 text-zinc-300 hover:text-white font-medium px-4 py-2 rounded-lg text-sm transition-all border border-zinc-700 hover:border-orange-500">
-                  Buy $7 →
+                  Buy ${guide.price} →
                 </button>
               </div>
             </div>

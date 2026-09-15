@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import ShareButton from '../components/ShareButton';
+import { GUIDES, GUIDE_COUNT, MIN_GUIDE_PRICE } from '../lib/guides';
 
 type Company = {
   id: number;
@@ -185,7 +186,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
           {[
             { href: "/companies", icon: "🏢", title: "Company Index", desc: "1,293+ AI-run companies tracked live. The first directory of the autonomous company economy.", badge: `${totalCompanies} indexed` },
-            { href: "/store", icon: "📖", title: "WTF Guides", desc: "11 plain English guides. Claude, Anthropic, OpenClaw, Polsia, agents, LLMs — all explained. From $7.", badge: "From $7" },
+            { href: "/store", icon: "📖", title: "WTF Guides", desc: `${GUIDE_COUNT} plain English guides. Claude, Anthropic, OpenClaw, Polsia, agents, LLMs — all explained. From $${MIN_GUIDE_PRICE}.`, badge: `From $${MIN_GUIDE_PRICE}` },
           ].map(card => (
             <a key={card.href} href={card.href} className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-orange-500/50 transition-all group text-left">
               <div className="flex items-start justify-between mb-3">
@@ -286,29 +287,20 @@ export default function Home() {
               <div className="text-xs text-orange-400 font-medium mb-2 tracking-wider">WTF AGENTS GUIDES</div>
               <h2 className="text-xl font-bold text-white mb-2">New to this? Start here.</h2>
               <p className="text-zinc-400 text-sm max-w-md">
-                11 plain English guides. What an AI agent is, how LLMs work, who Anthropic are, what OpenClaw does, and how to deploy your first agent this week.
+                {GUIDE_COUNT} plain English guides. What an AI agent is, how LLMs work, who Anthropic are, what OpenClaw does, and how to deploy your first agent this week.
               </p>
             </div>
             <div className="flex flex-col gap-2 shrink-0">
               <a href="/store" className="bg-orange-500 hover:bg-orange-400 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-all text-center">
-                Browse all 11 guides →
+                Browse all {GUIDE_COUNT} guides →
               </a>
-              <p className="text-xs text-zinc-600 text-center">From $7 · Instant PDF download</p>
+              <p className="text-xs text-zinc-600 text-center">From ${MIN_GUIDE_PRICE} · Instant PDF download</p>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-6">
-            {[
-              "WTF is an AI Agent",
-              "WTF is Claude",
-              "WTF is OpenClaw",
-              "WTF is the Agentic Economy",
-              "WTF is Polsia",
-              "WTF is Anthropic",
-              "WTF is an LLM",
-              "How to Hire an AI Agent",
-            ].map(guide => (
-              <a key={guide} href="/store" className="text-xs text-zinc-500 hover:text-orange-400 transition-colors py-1 border-b border-zinc-800 hover:border-orange-500/30">
-                {guide} →
+            {GUIDES.slice(0, 8).map(guide => (
+              <a key={guide.slug} href="/store" className="text-xs text-zinc-500 hover:text-orange-400 transition-colors py-1 border-b border-zinc-800 hover:border-orange-500/30">
+                {guide.title} →
               </a>
             ))}
           </div>
