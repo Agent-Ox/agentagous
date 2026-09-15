@@ -62,9 +62,6 @@ export default function Home() {
   const [liveStats, setLiveStats] = useState<LiveStats>({ arr: 5152829, companies: 1293, launchedToday: 12, wowGrowth: 21.4 });
   const [statsLoading, setStatsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [email, setEmail] = useState('');
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-  const [emailLoading, setEmailLoading] = useState(false);
   const [activity, setActivity] = useState<ActivityItem[]>(FALLBACK_ACTIVITY);
   const [activityIndex, setActivityIndex] = useState(0);
   const [factIndex, setFactIndex] = useState(0);
@@ -122,16 +119,6 @@ export default function Home() {
     fetchCompanies();
   }, []);
 
-  const handleEmailSignup = async () => {
-    if (!email || !email.includes('@')) return;
-    setEmailLoading(true);
-    try {
-      await supabase.from('email_signups').insert([{ email, source: 'homepage_banner' }]);
-      setEmailSubmitted(true);
-    } catch (e) { console.error(e); }
-    finally { setEmailLoading(false); }
-  };
-
   const formatARR = (n: number) => n >= 1000000 ? "$" + (n / 1000000).toFixed(2) + "M" : "$" + n.toLocaleString();
   const currentActivity = activity[activityIndex] || FALLBACK_ACTIVITY[0];
   const currentFact = REAL_FACTS[factIndex];
@@ -161,7 +148,7 @@ export default function Home() {
           WTF is the<br />Agentic Economy?
         </h1>
         <p className="text-zinc-400 text-lg max-w-2xl mx-auto mb-2">
-          AI agents are building companies, replacing employees, hiring humans, and generating revenue — autonomously, 24/7. This is the intelligence platform tracking it all.
+          AI agents are building companies, replacing employees, hiring humans, and generating revenue — autonomously, 24/7. This is the index tracking it all.
         </p>
         <p className="text-zinc-600 text-sm max-w-xl mx-auto mb-10">
           From Klarna replacing 700 staff to a solo founder running 1,300 companies — we track the real numbers, the real players, and what it means for you.
@@ -199,7 +186,6 @@ export default function Home() {
           {[
             { href: "/companies", icon: "🏢", title: "Company Index", desc: "1,293+ AI-run companies tracked live. The first directory of the autonomous company economy.", badge: `${totalCompanies} indexed` },
             { href: "/store", icon: "📖", title: "WTF Guides", desc: "11 plain English guides. Claude, Anthropic, OpenClaw, Polsia, agents, LLMs — all explained. From $7.", badge: "From $7" },
-            { href: "/intelligence", icon: "📡", title: "Intelligence", desc: "Weekly briefing on the agentic economy. Real data, real companies, real insight. Every Monday.", badge: "$49/mo" },
           ].map(card => (
             <a key={card.href} href={card.href} className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-orange-500/50 transition-all group text-left">
               <div className="flex items-start justify-between mb-3">
@@ -329,44 +315,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INTELLIGENCE SIGNUP */}
-      <section className="px-6 pb-12 max-w-6xl mx-auto">
-        <div className="border border-zinc-800 rounded-2xl p-8 text-center relative overflow-hidden bg-zinc-900">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent pointer-events-none"></div>
-          <div className="relative">
-            <div className="text-xs text-orange-400 font-medium mb-3 tracking-wider">WTF AGENTS INTELLIGENCE</div>
-            <h2 className="text-2xl font-bold text-white mb-2">The weekly briefing on the agentic economy</h2>
-            <p className="text-zinc-400 text-sm mb-2 max-w-lg mx-auto">
-              Real data. Real companies. Real insight. Top fastest-growing AI companies, platform watch, deep dives, and the numbers that matter. Every Monday.
-            </p>
-            <p className="text-zinc-600 text-xs mb-6 max-w-md mx-auto">
-              Written for founders and business owners — not engineers. Plain English. No hype.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
-              <a href="/intelligence" className="bg-orange-500 hover:bg-orange-400 text-white font-semibold px-8 py-3 rounded-lg text-sm transition-all">
-                Subscribe for $49/month →
-              </a>
-              <span className="text-xs text-zinc-600">Cancel anytime · First issue this Monday</span>
-            </div>
-            {emailSubmitted ? (
-              <div className="text-emerald-400 text-sm font-medium">✓ You're in.</div>
-            ) : (
-              <div className="flex gap-2 max-w-sm mx-auto">
-                <input type="email" placeholder="or drop your email for free updates"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && handleEmailSignup()}
-                  className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-white flex-1 focus:outline-none focus:border-zinc-500 placeholder:text-zinc-600" />
-                <button onClick={handleEmailSignup} disabled={emailLoading}
-                  className="bg-zinc-700 hover:bg-zinc-600 disabled:opacity-50 text-white font-medium px-4 py-2.5 rounded-lg text-sm transition-all shrink-0">
-                  {emailLoading ? "..." : "→"}
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* RECENT COMPANIES */}
       <section className="px-6 pb-20 max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-6">
@@ -410,12 +358,11 @@ export default function Home() {
       <footer className="border-t border-zinc-800 px-6 py-8">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-xs text-zinc-600">
-            WTF Agents — intelligence platform for the autonomous company economy
+            WTF Agents — the index of the autonomous company economy
           </div>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <a href="/companies" className="hover:text-orange-400 transition-colors">Companies</a>
             <a href="/store" className="hover:text-orange-400 transition-colors">Guides</a>
-            <a href="/intelligence" className="hover:text-orange-400 transition-colors">Intelligence</a>
             <a href="/jobs" className="hover:text-orange-400 transition-colors">Jobs</a>
             <a href="/submit" className="hover:text-orange-400 transition-colors">Submit</a>
           </div>

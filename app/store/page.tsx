@@ -148,15 +148,6 @@ export default function StorePage() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 text-center">
-          <div className="text-2xl mb-3">📊</div>
-          <h2 className="text-xl font-bold text-white mb-2">Want ongoing intelligence?</h2>
-          <p className="text-zinc-400 text-sm mb-6 max-w-md mx-auto">The guides explain what's happening. The Intelligence newsletter tracks it every week — real data, real insight, every Monday.</p>
-          <a href="/intelligence" className="bg-orange-500 hover:bg-orange-400 text-white font-medium px-6 py-3 rounded-lg text-sm transition-all inline-block">
-            WTF Agents Intelligence — $49/mo →
-          </a>
-        </div>
-
       </section>
 
       {/* PURCHASE MODAL */}

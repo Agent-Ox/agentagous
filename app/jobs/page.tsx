@@ -126,8 +126,6 @@ export default function JobsPage() {
       }]);
       if (dbError) throw dbError;
 
-      // Save applicant email to email_signups (ignore duplicates)
-      try { await supabase.from('email_signups').insert([{ email: applyForm.email, source: 'job_application' }]); } catch (_) {}
 
 
 
@@ -182,7 +180,6 @@ export default function JobsPage() {
       }]);
       if (error) throw error;
 
-      await supabase.from('email_signups').insert([{ email: form.email, source: 'job_submission' }]);
       await supabase.from('activity_feed').insert([{
         text: `New job posted: "${form.title.substring(0, 50)}" by ${form.company}`,
         icon: '💼',

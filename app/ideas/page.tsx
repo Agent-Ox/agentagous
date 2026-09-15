@@ -106,7 +106,6 @@ export default function IdeasPage() {
         slug,
       }]);
       if (error) throw error;
-      await supabase.from('email_signups').insert([{ email: form.email, source: 'idea_submission', name: form.name }]);
       await supabase.from('activity_feed').insert([{ text: `New idea submitted: "${form.title.substring(0, 50)}"`, icon: '💡' }]);
       setSubmitted(true);
       setShowForm(false);

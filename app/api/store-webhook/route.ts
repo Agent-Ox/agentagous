@@ -34,12 +34,6 @@ export async function POST(req: NextRequest) {
         stripe_session_id: session.id,
         amount,
       }]);
-
-      // Add to email list
-      await supabase.from('email_signups').insert([{
-        email,
-        source: `store_purchase_${slug}`,
-      }]).select();
     }
   }
 
