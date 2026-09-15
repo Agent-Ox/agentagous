@@ -15,98 +15,55 @@ type Company = {
 };
 
 type LiveStats = {
-  arr: number;
-  companies: number;
-  launchedToday: number;
-  wowGrowth: number;
+  arr: number | null;
+  companies: number | null;
+  launchedToday: number | null;
+  wowGrowth: number | null;
 };
 
-type ActivityItem = {
-  id: number;
-  text: string;
-  icon: string;
-  created_at: string;
-};
+// No seeded values: an unreachable API must render "—", never a stale number
+// styled as if it were live.
+const NO_STATS: LiveStats = { arr: null, companies: null, launchedToday: null, wowGrowth: null };
 
-const FALLBACK_ACTIVITY = [
-  { id: 1, text: "Klarna's AI agents now handle the work of 700 employees", icon: "🤖", created_at: "" },
-  { id: 2, text: "Salesforce Agentforce hits 5,000+ enterprise customers", icon: "⚡", created_at: "" },
-  { id: 3, text: "OpenClaw reaches 247,000 GitHub stars in 60 days", icon: "🔥", created_at: "" },
-  { id: 4, text: "Anthropic raises $30B — largest AI fundraise in history", icon: "💰", created_at: "" },
-  { id: 5, text: "Gartner: 40% of enterprise apps will have AI agents by end of 2026", icon: "📊", created_at: "" },
-  { id: 6, text: "Moltbook acquired by Meta — AI social network sold in 40 days", icon: "🎯", created_at: "" },
-  { id: 7, text: "Rentahuman.ai: AI agents now hiring humans for physical tasks", icon: "🤝", created_at: "" },
-];
-
-const REAL_FACTS = [
-  { stat: "$5.25B → $52B+", label: "Agentic AI market: 2024 to 2030", source: "MarketsandMarkets" },
-  { stat: "700 FTE", label: "Customer service roles replaced at Klarna by AI agents", source: "Klarna CEO, 2026" },
-  { stat: "247K ⭐", label: "GitHub stars for OpenClaw in under 60 days", source: "GitHub, Feb 2026" },
-  { stat: "$380B", label: "Anthropic valuation after $30B raise", source: "Feb 2026" },
-  { stat: "40%", label: "Enterprise apps with AI agents by end of 2026", source: "Gartner" },
-  { stat: "1,293+", label: "AI-run companies tracked live on WTF Agents", source: "Polsia API" },
-];
-
-function timeAgo(dateStr: string) {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 1) return 'just now';
-  if (mins < 60) return `${mins}m ago`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
-  return `${Math.floor(hrs / 24)}d ago`;
-}
+const BUILD_DATE = (process.env.NEXT_PUBLIC_BUILD_DATE || '').slice(0, 10);
 
 export default function Home() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
-  const [liveStats, setLiveStats] = useState<LiveStats>({ arr: 5152829, companies: 1293, launchedToday: 12, wowGrowth: 21.4 });
+  const [liveStats, setLiveStats] = useState<LiveStats>(NO_STATS);
   const [statsLoading, setStatsLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [activity, setActivity] = useState<ActivityItem[]>(FALLBACK_ACTIVITY);
-  const [activityIndex, setActivityIndex] = useState(0);
-  const [factIndex, setFactIndex] = useState(0);
-  const [totalCompanies, setTotalCompanies] = useState(1293);
+  const [tickerIndex, setTickerIndex] = useState(0);
+  const [totalCompanies, setTotalCompanies] = useState<number | null>(null);
 
   const fetchStats = useCallback(async () => {
     try {
       const res = await fetch('https://polsia.imrat.com/api/data');
       const data = await res.json();
       if (data.success && data.stats) {
-        const s = data.stats;
-        const arr = parseInt(s.arr_usd);
-        const arr7d = parseInt(s.arr_7d_ago);
+        const st = data.stats;
+        const arr = parseInt(st.arr_usd);
+        const arr7d = parseInt(st.arr_7d_ago);
         const wow = arr7d > 0 ? ((arr - arr7d) / arr7d * 100) : 0;
-        setLiveStats({ arr, companies: parseInt(s.companies), launchedToday: parseInt(s.companies_created_24h), wowGrowth: Math.round(wow * 10) / 10 });
-        setLastUpdated(new Date());
+        setLiveStats({ arr, companies: parseInt(st.companies), launchedToday: parseInt(st.companies_created_24h), wowGrowth: Math.round(wow * 10) / 10 });
+      } else {
+        setLiveStats(NO_STATS);
       }
-    } catch (e) { console.error(e); }
+    } catch (e) {
+      console.error(e);
+      setLiveStats(NO_STATS);
+    }
     finally { setStatsLoading(false); }
-  }, []);
-
-  const fetchActivity = useCallback(async () => {
-    try {
-      const { data } = await supabase.from('activity_feed').select('*').order('created_at', { ascending: false }).limit(20);
-      if (data && data.length > 0) setActivity(data);
-    } catch (e) { console.error(e); }
   }, []);
 
   useEffect(() => {
     fetchStats();
-    fetchActivity();
     const s = setInterval(fetchStats, 60000);
-    const a = setInterval(fetchActivity, 30000);
-    return () => { clearInterval(s); clearInterval(a); };
-  }, [fetchStats, fetchActivity]);
+    return () => clearInterval(s);
+  }, [fetchStats]);
 
   useEffect(() => {
-    const interval = setInterval(() => setActivityIndex(i => (i + 1) % activity.length), 4000);
-    return () => clearInterval(interval);
-  }, [activity.length]);
-
-  useEffect(() => {
-    const interval = setInterval(() => setFactIndex(i => (i + 1) % REAL_FACTS.length), 5000);
-    return () => clearInterval(interval);
+    const t = setInterval(() => setTickerIndex(i => i + 1), 4000);
+    return () => clearInterval(t);
   }, []);
 
   useEffect(() => {
@@ -121,8 +78,18 @@ export default function Home() {
   }, []);
 
   const formatARR = (n: number) => n >= 1000000 ? "$" + (n / 1000000).toFixed(2) + "M" : "$" + n.toLocaleString();
-  const currentActivity = activity[activityIndex] || FALLBACK_ACTIVITY[0];
-  const currentFact = REAL_FACTS[factIndex];
+  const statValue = (n: number | null, fmt: (v: number) => string) =>
+    statsLoading ? "..." : n === null ? "—" : fmt(n);
+
+  // Ticker lines are built from live data only — a line is omitted until the
+  // number behind it has actually loaded.
+  const tickerLines = [
+    liveStats.launchedToday !== null && { icon: "🚀", text: `${liveStats.launchedToday.toLocaleString()} AI companies launched in the last 24 hours` },
+    liveStats.arr !== null && { icon: "💰", text: `${formatARR(liveStats.arr)} ARR now running on autonomous companies` },
+    totalCompanies !== null && { icon: "🏢", text: `${totalCompanies.toLocaleString()} AI companies indexed on WTF Agents` },
+    companies[0] && { icon: "🆕", text: `Latest company indexed: ${companies[0].name}` },
+  ].filter(Boolean) as { icon: string; text: string }[];
+  const currentTicker = tickerLines[tickerIndex % (tickerLines.length || 1)];
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -133,10 +100,9 @@ export default function Home() {
           <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
           LIVE
         </span>
-        <span className="text-xs text-zinc-300">{currentActivity.icon} {currentActivity.text}</span>
-        {currentActivity.created_at && (
-          <span className="text-xs text-zinc-600 shrink-0 ml-auto">{timeAgo(currentActivity.created_at)}</span>
-        )}
+        <span className="text-xs text-zinc-300">
+          {currentTicker ? `${currentTicker.icon} ${currentTicker.text}` : "Loading live data…"}
+        </span>
       </div>
 
       {/* HERO */}
@@ -152,16 +118,16 @@ export default function Home() {
           AI agents are building companies, replacing employees, hiring humans, and generating revenue — autonomously, 24/7. This is the index tracking it all.
         </p>
         <p className="text-zinc-600 text-sm max-w-xl mx-auto mb-10">
-          From Klarna replacing 700 staff to a solo founder running 1,300 companies — we track the real numbers, the real players, and what it means for you.
+          We track the real numbers, the real players, and what it means for you.
         </p>
 
         {/* LIVE POLSIA STATS */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-3">
           {[
-            { label: "Live ARR", value: statsLoading ? "..." : formatARR(liveStats.arr), color: "text-emerald-400", sub: "Polsia autonomous companies" },
-            { label: "AI Companies", value: statsLoading ? "..." : liveStats.companies.toLocaleString(), color: "text-violet-400", sub: "tracked live" },
-            { label: "Launched Today", value: statsLoading ? "..." : liveStats.launchedToday.toLocaleString(), color: "text-blue-400", sub: "new companies" },
-            { label: "WoW Growth", value: statsLoading ? "..." : "+" + liveStats.wowGrowth + "%", color: "text-orange-400", sub: "week on week" },
+            { label: "Live ARR", value: statValue(liveStats.arr, formatARR), color: "text-emerald-400", sub: "Polsia autonomous companies" },
+            { label: "AI Companies", value: statValue(liveStats.companies, v => v.toLocaleString()), color: "text-violet-400", sub: "tracked live" },
+            { label: "Launched Today", value: statValue(liveStats.launchedToday, v => v.toLocaleString()), color: "text-blue-400", sub: "new companies" },
+            { label: "WoW Growth", value: statValue(liveStats.wowGrowth, v => "+" + v + "%"), color: "text-orange-400", sub: "week on week" },
           ].map(stat => (
             <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
               <div className={"text-2xl font-bold " + stat.color}>{stat.value}</div>
@@ -170,13 +136,19 @@ export default function Home() {
             </div>
           ))}
         </div>
-        {lastUpdated && <p className="text-xs text-zinc-600 mb-6">Polsia API · updated {lastUpdated.toLocaleTimeString()}</p>}
+        <p className="text-xs text-zinc-600 mb-6">Data: Polsia API, live · Page updated {BUILD_DATE}</p>
 
         {/* SHARE */}
         <div className="flex justify-center mb-12">
           <ShareButton
             title="The Agentic Economy is here"
-            text={`The agentic economy right now:\n\n• ${liveStats.companies.toLocaleString()} AI companies running autonomously\n• ${formatARR(liveStats.arr)} ARR generated without humans\n• Klarna: 700 employees replaced by agents\n• Anthropic: $380B valuation\n• OpenClaw: 247K GitHub stars in 60 days\n\nWTF is happening → wtfagents.com`}
+            text={[
+              'The agentic economy right now:',
+              '',
+              ...tickerLines.map(l => `• ${l.text}`),
+              '',
+              'WTF is happening → wtfagents.com',
+            ].join('\n')}
             url="https://wtfagents.com"
             label="📤 Share these stats"
           />
@@ -185,7 +157,7 @@ export default function Home() {
         {/* FEATURE CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
           {[
-            { href: "/companies", icon: "🏢", title: "Company Index", desc: "1,293+ AI-run companies tracked live. The first directory of the autonomous company economy.", badge: `${totalCompanies} indexed` },
+            { href: "/companies", icon: "🏢", title: "Company Index", desc: "AI-run companies tracked live. The first directory of the autonomous company economy.", badge: totalCompanies === null ? "loading…" : `${totalCompanies.toLocaleString()} indexed` },
             { href: "/store", icon: "📖", title: "WTF Guides", desc: `${GUIDE_COUNT} plain English guides. Claude, Anthropic, OpenClaw, Polsia, agents, LLMs — all explained. From $${MIN_GUIDE_PRICE}.`, badge: `From $${MIN_GUIDE_PRICE}` },
           ].map(card => (
             <a key={card.href} href={card.href} className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-orange-500/50 transition-all group text-left">
@@ -200,41 +172,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* REAL NUMBERS */}
-      <section className="px-6 pb-10 max-w-6xl mx-auto">
-        <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-6">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div className="flex-1">
-              <div className="text-xs text-orange-400 font-medium mb-2 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
-                THE REAL NUMBERS — verified, sourced, updated weekly
-              </div>
-              <div className="flex items-baseline gap-3 flex-wrap">
-                <p className="text-white font-bold text-3xl">{currentFact.stat}</p>
-                <p className="text-zinc-300 font-medium text-lg leading-snug">{currentFact.label}</p>
-              </div>
-              <p className="text-xs text-zinc-600 mt-2">Source: {currentFact.source}</p>
-            </div>
-            <ShareButton
-              title={currentFact.label}
-              text={`${currentFact.stat} — ${currentFact.label}\n\nSource: ${currentFact.source}\n\nMore at wtfagents.com`}
-              url="https://wtfagents.com"
-              label="📤 Share"
-            />
-          </div>
-          <div className="flex gap-1.5 mt-4">
-            {REAL_FACTS.map((_, i) => (
-              <div key={i} className={`h-1 rounded-full transition-all duration-300 ${i === factIndex ? 'w-6 bg-orange-400' : 'w-1.5 bg-zinc-700'}`} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* THE PLAYERS */}
       <section className="px-6 pb-12 max-w-6xl mx-auto">
         <div className="mb-6">
           <h2 className="text-xl font-bold text-white">The Players — who is actually building this</h2>
-          <p className="text-xs text-zinc-600 mt-0.5">From $380B labs to one-person scrappy startups. This is the real landscape.</p>
+          <p className="text-xs text-zinc-600 mt-0.5">From the big labs to one-person startups. This is the real landscape.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
@@ -243,10 +185,10 @@ export default function Home() {
               color: "text-violet-400",
               borderColor: "border-violet-500/20",
               players: [
-                { name: "Anthropic", desc: "$380B · Built Claude, invented MCP, Constitutional AI", href: "/store" },
-                { name: "OpenAI", desc: "$300B+ · ChatGPT, GPT-5.4, Codex, hired OpenClaw creator", href: "/store" },
-                { name: "Google DeepMind", desc: "Gemini 3.1 Pro (80.6% SWE-bench), invented A2A protocol", href: "/store" },
-                { name: "Salesforce Agentforce", desc: "5,000+ enterprise customers · bet the company on agents", href: "/store" },
+                { name: "Anthropic", desc: "Makes Claude. Set the standard for agents that do real work.", href: "/store" },
+                { name: "OpenAI", desc: "ChatGPT and the GPT models. The name most people know.", href: "/store" },
+                { name: "Google DeepMind", desc: "Gemini. Pushing agent-to-agent protocols.", href: "/store" },
+                { name: "Salesforce Agentforce", desc: "Agents for big companies, at scale.", href: "/store" },
               ]
             },
             {
@@ -254,10 +196,10 @@ export default function Home() {
               color: "text-orange-400",
               borderColor: "border-orange-500/20",
               players: [
-                { name: "Polsia", desc: "1 founder · $50/mo · 1,293+ autonomous companies tracked live", href: "/companies" },
-                { name: "OpenClaw", desc: "Open source · 247K GitHub stars · personal AI agent via messaging", href: "/store" },
-                { name: "Paperclip", desc: "Multi-agent org charts · any agent, any runtime · ClipMart coming", href: "/store" },
-                { name: "You", desc: "Zero code required. Zero employees possible. The tools are that good.", href: "/store" },
+                { name: "Polsia", desc: "Run an AI company for the price of a Netflix subscription.", href: "/companies" },
+                { name: "OpenClaw", desc: "Open-source personal agent you talk to from WhatsApp or Telegram.", href: "/store" },
+                { name: "Paperclip", desc: "Org charts for AI agents. Teams of agents, not one.", href: "/store" },
+                { name: "You", desc: "Zero code required. Zero employees possible.", href: "/store" },
               ]
             }
           ].map(section => (
@@ -312,10 +254,9 @@ export default function Home() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-xl font-bold text-white">Recently Indexed</h2>
-            <p className="text-xs text-zinc-600 mt-0.5">The first 1,293 companies of a new economy. There will be 10 million.</p>
           </div>
           <a href="/companies" className="text-xs text-orange-400 hover:text-orange-300 transition-colors border border-orange-500/20 hover:border-orange-500/40 px-3 py-1.5 rounded-lg">
-            View all {totalCompanies} →
+            View all{totalCompanies === null ? "" : ` ${totalCompanies.toLocaleString()}`} →
           </a>
         </div>
         {loading ? (
@@ -335,7 +276,7 @@ export default function Home() {
                 className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition-all hover:bg-zinc-800/50 group">
                 <div className="flex items-start justify-between mb-3 gap-2">
                   <div>
-                    <div className="text-xs text-zinc-600 mb-0.5">#{String(totalCompanies - idx).padStart(4, '0')}</div>
+                    {totalCompanies !== null && <div className="text-xs text-zinc-600 mb-0.5">#{String(totalCompanies - idx).padStart(4, '0')}</div>}
                     <span className="font-semibold text-white group-hover:text-orange-300 transition-colors">{company.name}</span>
                   </div>
                   <span className="text-xs bg-zinc-800 text-zinc-400 px-2 py-1 rounded-full shrink-0">{company.category}</span>
