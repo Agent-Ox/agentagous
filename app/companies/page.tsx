@@ -196,7 +196,7 @@ export default function CompaniesPage() {
                 return (
                   <a
                     key={company.id}
-                    href={"https://" + company.url}
+                    href={`/go/company/${company.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition-all hover:bg-zinc-800/50 group"

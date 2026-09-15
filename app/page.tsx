@@ -272,7 +272,7 @@ export default function Home() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {companies.map((company, idx) => (
-              <a key={company.id} href={"https://" + company.url} target="_blank" rel="noopener noreferrer"
+              <a key={company.id} href={`/go/company/${company.id}`} target="_blank" rel="noopener noreferrer"
                 className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition-all hover:bg-zinc-800/50 group">
                 <div className="flex items-start justify-between mb-3 gap-2">
                   <div>
@@ -296,6 +296,7 @@ export default function Home() {
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <a href="/companies" className="hover:text-orange-400 transition-colors">Companies</a>
             <a href="/store" className="hover:text-orange-400 transition-colors">Guides</a>
+            <a href="/tools" className="hover:text-orange-400 transition-colors">Tools</a>
             <a href="/jobs" className="hover:text-orange-400 transition-colors">Jobs</a>
             <a href="/submit" className="hover:text-orange-400 transition-colors">Submit</a>
           </div>
