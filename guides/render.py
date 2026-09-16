@@ -21,6 +21,8 @@ import sys
 
 import yaml
 import qrcode
+
+import bundles as BUNDLE_CONFIG
 from reportlab.lib import colors
 from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
@@ -456,13 +458,30 @@ def build_cover(meta, S):
 
 
 QR_URL = 'https://wtfagents.com/store'
-QR_TEXT = ('<b>Scan to browse all guides</b>\n\nEvery WTF Agents guide at wtfagents.com/store\n\n'
-           '$7 each · Starter Pack $29 · Complete Pack $49 — all 12 guides\n\n'
-           'Also free: the live AI company directory at wtfagents.com/companies')
 CTA_HEAD = 'Want the rest of the series?'
-CTA_BODY = ('Every WTF Agents guide is written the same way — plain English, no hype, no jargon. '
-            'Buy them individually at $7, or take the Starter Pack for $29 and the Complete Pack '
-            'for $49, which includes all twelve.')
+
+
+def _prices(metas):
+    """Single-guide price from the catalogue, bundle prices from bundles.py."""
+    single = min(m['price'] for m in metas.values())
+    return (single,
+            BUNDLE_CONFIG.by_slug('starter-pack')['price'],
+            BUNDLE_CONFIG.by_slug('complete-pack')['price'])
+
+
+def qr_text(metas):
+    single, starter, complete = _prices(metas)
+    return ('<b>Scan to browse all guides</b>\n\nEvery WTF Agents guide at wtfagents.com/store\n\n'
+            f'${single} each · Starter Pack ${starter} · Complete Pack ${complete} — '
+            'every guide in the series\n\n'
+            'Also free: the live AI company directory at wtfagents.com/companies')
+
+
+def cta_body(metas):
+    single, starter, complete = _prices(metas)
+    return ('Every WTF Agents guide is written the same way — plain English, no hype, no jargon. '
+            f'Buy them individually at ${single}, or take the Starter Pack for ${starter} '
+            f'or the Complete Pack for ${complete} with every guide in the series.')
 CTA_LINK = '<link href="https://wtfagents.com/store" color="#f97316">wtfagents.com/store →</link>'
 FOOTER_1 = 'WTF Agents · wtfagents.com · The autonomous company economy is here. WTF is happening.'
 FOOTER_2 = '© 2026 WTF Agents. All rights reserved.'
@@ -480,12 +499,12 @@ def build_closing(meta, S, metas):
     flow.append(zinc_rule())
     flow.append(Spacer(1, 4 * mm))
     flow.append(Paragraph(CTA_HEAD, S['cta_h']))
-    flow.append(Paragraph(CTA_BODY, S['body']))
+    flow.append(Paragraph(cta_body(metas), S['body']))
     flow.append(Paragraph(CTA_LINK, S['cta_link']))
     flow.append(zinc_rule())
     flow.append(Spacer(1, 6 * mm))
 
-    qr_table = Table([[make_qr(QR_URL), Paragraph(QR_TEXT, S['qr_text'])]],
+    qr_table = Table([[make_qr(QR_URL), Paragraph(qr_text(metas), S['qr_text'])]],
                      colWidths=[45 * mm, 115 * mm])
     qr_table.setStyle(TableStyle([
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),

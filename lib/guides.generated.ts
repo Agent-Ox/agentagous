@@ -18,3 +18,11 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'cowork', title: 'WTF is Cowork', description: 'Claude Code was for developers. Cowork is for everyone else. What the Anthropic product actually does.', price: 7, badge: null, featured: false, category: 'claude', file: 'wtf-is-cowork.pdf', starter: false },
   { slug: 'hire-agent', title: 'How to Hire an AI Agent for Your Business', description: 'A practical, jargon-free guide for business owners who want to start using AI agents right now.', price: 7, badge: '💼 Practical', featured: false, category: 'practical', file: 'how-to-hire-an-ai-agent.pdf', starter: true },
 ];
+
+import type { Bundle } from './guides';
+
+/** Bundle copy and prices. Membership is derived in guides.ts. */
+export const GENERATED_BUNDLES: Omit<Bundle, 'includes'>[] = [
+  { slug: 'starter-pack', title: 'The Agentic Economy Starter Pack', description: 'The five guides that take you from "WTF is going on" to hiring your first agent.', price: 29, file: 'agentic-economy-starter-pack.pdf' },
+  { slug: 'complete-pack', title: 'The Complete WTF Agents Pack', description: 'Everything. The full picture of the agentic economy, the platforms, the AI, and how to use it.', price: 49, file: 'complete-wtf-agents-pack.pdf' },
+];

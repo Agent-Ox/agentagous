@@ -2,7 +2,7 @@
 // guides.generated.ts. Store page, success page, bundle builder and homepage
 // counts all read from here — never hardcode a guide count anywhere.
 
-import { GENERATED_GUIDES } from './guides.generated';
+import { GENERATED_GUIDES, GENERATED_BUNDLES } from './guides.generated';
 
 export type Guide = {
   slug: string;
@@ -35,24 +35,16 @@ export type Bundle = {
   includes: string[];
 };
 
-export const BUNDLES: Bundle[] = [
-  {
-    slug: 'starter-pack',
-    title: 'The Agentic Economy Starter Pack',
-    description: 'The five guides that take you from "WTF is going on" to hiring your first agent.',
-    price: 29,
-    file: 'agentic-economy-starter-pack.pdf',
-    includes: GUIDES.filter(g => g.starter).map(g => g.slug),
-  },
-  {
-    slug: 'complete-pack',
-    title: 'The Complete WTF Agents Pack',
-    description: 'Everything. The full picture of the agentic economy, the platforms, the AI, and how to use it.',
-    price: 49,
-    file: 'complete-wtf-agents-pack.pdf',
-    includes: GUIDES.map(g => g.slug),
-  },
-];
+/** Copy and prices are generated; membership is derived from the catalogue. */
+const BUNDLE_MEMBERS: Record<string, () => string[]> = {
+  'starter-pack': () => GUIDES.filter(g => g.starter).map(g => g.slug),
+  'complete-pack': () => GUIDES.map(g => g.slug),
+};
+
+export const BUNDLES: Bundle[] = GENERATED_BUNDLES.map(b => ({
+  ...b,
+  includes: (BUNDLE_MEMBERS[b.slug] ?? (() => []))(),
+}));
 
 export const GUIDE_COUNT = GUIDES.length;
 export const MIN_GUIDE_PRICE = Math.min(...GUIDES.map(g => g.price));

@@ -17,6 +17,8 @@ from reportlab.lib.units import mm
 from reportlab.platypus import HRFlowable, Paragraph, SimpleDocTemplate, Spacer
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(BASE, 'guides'))
+import bundles as _BUNDLE_CONFIG  # noqa: E402
 GUIDES_DIR = os.path.join(BASE, 'public', 'guides')
 
 # Same palette as generate_guide_*.py
@@ -42,28 +44,20 @@ def _load_guides():
     return metas
 
 
-_METAS = _load_guides()
-GUIDE_FILES = {m['slug']: (m['title'], m['file']) for m in _METAS}
-_STARTER = [m['slug'] for m in _METAS if m.get('starter')]
-_ALL = [m['slug'] for m in _METAS]
+_METAS = {m['slug']: m for m in _load_guides()}
+GUIDE_FILES = {slug: (m['title'], m['file']) for slug, m in _METAS.items()}
 
+# Bundle definitions come from guides/bundles.py, the same config the renderer
+# and the store catalogue read.
 BUNDLES = [
     {
-        'file': 'agentic-economy-starter-pack.pdf',
-        'title': 'The Agentic Economy',
-        'subtitle': 'Starter Pack',
-        'blurb': 'Five guides that take you from "WTF is going on" to hiring your first agent. '
-                 'No jargon. No hype. Just what is actually happening — and what to do about it.',
-        'includes': _STARTER,
-    },
-    {
-        'file': 'complete-wtf-agents-pack.pdf',
-        'title': 'The Complete',
-        'subtitle': 'WTF Agents Pack',
-        'blurb': 'Every WTF Agents guide in one file. The agentic economy, the platforms running it, '
-                 'the AI behind it, and how to put it to work in your own business.',
-        'includes': _ALL,
-    },
+        'file': b['file'],
+        'title': b['cover_title'],
+        'subtitle': b['cover_subtitle'],
+        'blurb': b['blurb'],
+        'includes': _BUNDLE_CONFIG.includes(b, _METAS),
+    }
+    for b in _BUNDLE_CONFIG.BUNDLES
 ]
 
 

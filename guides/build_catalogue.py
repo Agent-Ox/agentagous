@@ -11,6 +11,8 @@ import sys
 
 import yaml
 
+import bundles as BUNDLE_CONFIG
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 CONTENT_DIR = os.path.join(HERE, 'content')
@@ -63,6 +65,20 @@ def main():
         if m.get('relatedTool'):
             parts.append(f"relatedTool: {ts_str(m['relatedTool'])}")
         lines.append('  { ' + ', '.join(parts) + ' },')
+    lines.append('];')
+    lines.append('')
+    lines.append("import type { Bundle } from './guides';")
+    lines.append('')
+    lines.append('/** Bundle copy and prices. Membership is derived in guides.ts. */')
+    lines.append("export const GENERATED_BUNDLES: Omit<Bundle, 'includes'>[] = [")
+    for b in BUNDLE_CONFIG.BUNDLES:
+        lines.append('  { ' + ', '.join([
+            f"slug: {ts_str(b['slug'])}",
+            f"title: {ts_str(b['title'])}",
+            f"description: {ts_str(b['description'])}",
+            f"price: {int(b['price'])}",
+            f"file: {ts_str(b['file'])}",
+        ]) + ' },')
     lines.append('];')
     lines.append('')
 
