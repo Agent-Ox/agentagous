@@ -5,49 +5,50 @@ file: 'wtf-is-the-agentic-economy.pdf'
 cover_title: 'WTF is the'
 cover_subtitle: 'Agentic Economy?'
 cover_gap: 3
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
-  The plain English guide to the biggest shift in business, employment, and technology
-  since the internet. No jargon. No hype. Just what is actually happening — and what it
-  means for you.
+  AI stopped answering questions and started doing jobs. Every major lab now sells an agent
+  that works while you sleep, half a million AI-run companies have been launched, and the
+  layoffs have started. The plain-English guide to what is actually happening.
 
 # store catalogue fields
 order: 0
-description: 'The big picture. What is actually happening in AI right now, why it matters, and what comes next. Written for humans, not engineers.'
+description: 'The big picture. What actually happened in 2026, who the players are, what is real and what is hype. Start here.'
 price: 7
 category: 'foundation'
 badge: '🌍 Start here'
 featured: true
-related: ['claude', 'openclaw']
 starter: true
+related: ['ai-agent', 'polsia']
 ---
 ## The one-liner
 
-@body_lead The agentic economy is what happens when AI stops waiting to be asked and starts doing things on its own — planning, deciding, executing, and repeating — around the clock, at a fraction of the cost of a human.
+@body_lead The agentic economy is what happens when AI stops waiting to be asked and starts doing things on its own — planning, deciding, executing, checking its work and repeating — around the clock, at a fraction of the cost of a human.
 
-This is not a future prediction. It is happening right now, at a scale most people have not yet registered.
-
-@spacer 4
-
-## When did this actually start?
-
-The term "agentic economy" began appearing in industry writing around mid-2024. The New York Times ran one of the first mainstream articles using the phrase in September 2024. By late 2024, Sam Altman (OpenAI), Satya Nadella (Microsoft), and Dario Amodei (Anthropic) were all using it in major public speeches.
-
-The first peer-reviewed academic paper on the subject was published in May 2025, and formally entered the Communications of the ACM in January 2026. In under eighteen months, it went from startup jargon to board-level agenda item at Fortune 500 companies.
-
-Gartner — the world's most cited technology research firm — projects that 40% of enterprise software applications will be integrated with task-specific AI agents by the end of 2026. That is up from less than 5% in 2025.
-
-@body_lead To put that in plain English: within twelve months, nearly half of all business software will have an AI that does things, not just answers questions.
+For two years that was a prediction. In 2026 it became a product category. Every major AI lab now sells one. This guide explains what changed, who is doing what, and where the hype ends.
 
 @spacer 4
 
-## What is an AI agent, exactly?
+## By the numbers — September 2026
 
-Most people's experience of AI is reactive: you type something, it responds. ChatGPT, Siri, Google — you ask, they answer.
+Everything in this box moves. Everything below it is written to still be true when it has.
 
-An AI agent is different. An agent is proactive. You give it a goal, and it figures out the steps, executes them one by one, checks the results, adjusts, and tries again — without you holding its hand through each step.
+@stat $10.9B || size of the AI agents market in 2026, up from $7.6B in 2025 (Grand View Research)
+@stat 40% || of enterprise software will contain task-specific agents by the end of 2026, up from under 5% in 2025 (Gartner)
+@stat 23% || of organisations have actually scaled an agent system into production (McKinsey)
+@stat 40%+ || of agentic AI projects Gartner expects to be cancelled by the end of 2027
+@stat 490,000 || companies created by AI agents on Polsia alone since late 2025 — about 6% still active
+@stat 3.2M || active users of OpenClaw, the open-source personal agent
+@stat 139,156 || tech layoffs in the first half of 2026, up 83% on the same period of 2025
+@stat 80% || of large companies deploying autonomous tech cut jobs — with no correlation to improved returns (Gartner, May 2026)
 
-Here is the difference in a table:
+@spacer 4
+
+## What an AI agent actually is
+
+Most people's experience of AI is reactive: you type, it answers. ChatGPT, Siri, Google. You ask, they respond, they stop.
+
+An agent is different. You give it a goal. It works out the steps, does them one by one, checks the results, adjusts, and keeps going until the job is done — or until it hits something it cannot handle and asks you.
 
 @table keep 40,60,60
 @tcells hs-row+col
@@ -57,164 +58,155 @@ Here is the difference in a table:
 @tstyle PADDING 0,0 -1,-1 8
 @tstyle VALIGN 0,0 -1,-1 MIDDLE
 @tstyle ROWBACKGROUNDS 1,1 -1,-1 [DARK_BG,ZINC_900]
-|  | Traditional AI | AI Agent |
-| Trigger | You ask it something | You give it a goal |
-| Action | Responds once | Takes multiple steps autonomously |
-| Memory | Forgets after each conversation | Remembers context across sessions |
-| Tools | Text only | Can browse web, write code, send email, make payments |
+|  | A chatbot | An agent |
+| Trigger | You ask a question | You give it a goal |
+| Action | Answers once | Takes many steps on its own |
+| Memory | Forgets when you close the tab | Remembers what it has done |
+| Tools | Text only | Browses, writes code, sends email, fills forms, pays |
 | Works while you sleep? | No | Yes |
 
 @spacer 6
 
-The simplest analogy: a calculator waits for you to press buttons. An agent is more like a capable employee who takes a brief and gets on with the job.
+The simplest analogy: a calculator waits for you to press buttons. An agent is a capable employee who takes a brief and gets on with it.
+
+The WTF is an AI Agent guide goes deep on how they work. This guide is about what they are doing to the economy.
 
 @spacer 4
 
-## The scale of what's happening
+## 2026 — the year every lab shipped the same product
 
-These are not startup claims. These are verified, sourced facts:
+@body_lead Between January and September 2026, every major AI company launched a version of the same thing: an agent that does your job, not a chatbot that helps you do it.
 
-@stat $5.25B || size of the agentic AI market in 2024
-@stat $52B+ || projected market size by 2030 (MarketsandMarkets)
-@stat 79% || of organisations report some agentic AI deployment (2025)
-@stat 40% || of enterprise apps will have AI agents by end of 2026 (Gartner)
-@stat 700 || full-time customer service roles worth of work handled by AI at Klarna
-@stat 5,000+ || enterprise customers on Salesforce Agentforce alone
-McKinsey estimates that generative and agentic AI could add between $2.6 trillion and $4.4 trillion annually to global GDP. The WEF projects 170 million new jobs created by AI by 2030 — offsetting 85 million displaced, for a net positive.
-
-A word of caution: Gartner also predicts that 40% of agentic AI projects will be cancelled by 2027 due to unrealistic expectations. This is a revolution, but it is not magic. The technology is powerful and the hype is real — and so is the messiness.
-
-@spacer 4
-
-## The big players — who is actually leading this
-
-The agentic economy is not being built by scrappy startups alone. The largest technology companies in the world are betting their futures on it.
-
-### Anthropic — the safety-first AI lab
-
-Founded in 2021 by Dario and Daniela Amodei (former OpenAI executives) and a team of AI safety researchers. Anthropic's flagship model is Claude — the AI that powers OpenClaw, Paperclip, and dozens of the most important agent frameworks. Current valuation: $380 billion. Backers include Amazon, Google, and Nvidia. They also invented the Model Context Protocol (MCP) — the open standard that lets AI agents connect to any tool or data source. Think of MCP as USB-C for AI.
-
-### OpenAI — the consumer and enterprise giant
-
-The company behind ChatGPT and GPT-5.4. OpenAI launched Codex (autonomous coding agent) and Operator (computer-use agent) in 2025–2026. In February 2026, they hired Peter Steinberger (creator of OpenClaw) and became financial sponsor of the OpenClaw Foundation. Valuation: $300 billion+.
-
-### Google DeepMind — the benchmark setter
-
-Google's Gemini 3.1 Pro currently holds the highest verified score on SWE-bench (80.6%) — the industry standard benchmark for AI coding ability. Google also created the Agent2Agent (A2A) protocol in April 2025 — the open standard that lets AI agents from different companies talk to each other. Launched with 50+ partner companies including Salesforce, SAP, PayPal, and McKinsey.
-
-### Microsoft — the enterprise distribution machine
-
-Invested $10B+ in OpenAI. Distributes both OpenAI and Anthropic models via Azure. GitHub Copilot (77 million+ developers). Copilot for Microsoft 365 reporting 20–30% productivity gains in enterprise knowledge work.
-
-### Salesforce Agentforce — the enterprise deployment leader
-
-Marc Benioff declared 2025 "the year of the agent" and bet the company on agentic workflows. Agentforce now has 5,000+ paying enterprise customers embedding AI agents into CRM, sales, and support workflows. This is the largest verified enterprise agentic deployment as of 2026.
+@table keep 30,38,92
+@tcells hs-row
+@tstyle BACKGROUND 0,0 -1,0 ZINC_800
+@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
+@tstyle PADDING 0,0 -1,-1 8
+@tstyle VALIGN 0,0 -1,-1 TOP
+@tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
+| When | Who | What |
+| January | Anthropic | Cowork — Claude works directly in your files and apps. Enterprise software stocks fell hard when the plugins landed. |
+| June | Microsoft | Copilot Cowork goes live worldwide inside Microsoft 365 — built on Anthropic's Claude, not OpenAI's models. |
+| July | OpenAI | ChatGPT Work — give it an outcome, it returns finished spreadsheets, decks and web apps hours later. |
+| August | xAI | Grok Bot — a team of named agents, each with its own cloud computer and logins, coordinated by a "Chief of Staff" bot. |
+| September | Meta | Muse — a personal agent for everyone, in an app or on WhatsApp, that books, buys, negotiates and fills in forms for you. |
+| May | Google | Killed its standalone browser agent and folded the technology into Gemini Agent and Chrome. The one lab that chose consolidation over a launch. |
 
 @spacer 4
 
-## The real-world proof — it's already happening
+Add the coding agents — Claude Code, OpenAI's Codex, Cognition's Devin (now $20 a month, down from $500), Google's Jules — and the pattern is unmistakable. The product is not "AI." The product is delegated work.
 
-### Klarna replaces 700 employees with AI agents
-
-Swedish fintech Klarna deployed AI agents across its customer service operation. CEO Sebastian Siemiatkowski publicly stated the AI does the equivalent work of 700 full-time employees. The company subsequently reduced its human customer service headcount. (Note: Klarna later qualified some of these statements — exact displacement figures remain disputed but the deployment itself is verified.)
-
-### A bot hiring humans — Rentahuman.ai
-
-One of the most striking signals of where the economy is heading: Rentahuman.ai is a platform where AI agents hire humans — not the other way around. Agents post jobs for tasks they cannot complete autonomously (physical tasks, tasks requiring legal identity, tasks needing human judgment). Forbes called it "a new platform that flips the usual narrative about AI."
-
-### WEF Davos 2026 — 32 verified enterprise deployments
-
-The World Economic Forum, in collaboration with Accenture, documented 32 verified large-scale enterprise AI deployments across manufacturing, healthcare, financial services, and logistics. These are not pilots. These are production systems.
+Two things make this different from every previous wave of business software. First, the same agent that runs a Fortune 500 workflow is available to one person for the price of a streaming subscription. Second, the agents can now hire, build and run other agents — which is where the next layer comes from.
 
 @spacer 4
 
-## The indie opportunity — where the little guy wins
+## The three layers
 
-@body_lead Here is what makes the agentic economy genuinely different from every previous technology revolution: the barrier to entry is essentially zero.
+It helps to think of the agentic economy as a stack.
 
-The same tools that power Salesforce Agentforce's 5,000-customer enterprise platform are available to a single person sitting at a laptop in Mallorca. The gap between "big company" and "one person" has never been smaller.
+### The models
 
-### OpenClaw — the open-source agent that went viral
+The brains. Anthropic's Claude, OpenAI's GPT, Google's Gemini, Meta's Muse models, xAI's Grok — and, increasingly, the Chinese open-weight models from DeepSeek, Alibaba's Qwen, Moonshot's Kimi and Zhipu's GLM, which are what a great many indie agents actually run on because they are cheap and can be downloaded. Model names change every few months. The layer does not.
 
-OpenClaw (originally Clawdbot, then Moltbot) was built by Austrian developer Peter Steinberger and launched in November 2025. It is a free, open-source autonomous AI agent that runs on your machine and connects to Claude, GPT, or DeepSeek via messaging apps like Signal, Telegram, and Discord. By February 2026 it had 247,000 GitHub stars — one of the fastest-growing open-source projects in history. Steinberger was subsequently hired by OpenAI, and the project moved to an independent open-source foundation backed by OpenAI.
+### The agents
 
-Important: OpenClaw is a personal AI agent, not a company-building platform. It is the tools layer — the thing that does the work.
+Software that uses a model to do work. Two families. Personal agents run for you: OpenClaw (open-source, runs on your own machine, talks to you over WhatsApp or Telegram), Meta's Muse, Nous Research's Hermes. Work agents run for your job: Cowork, ChatGPT Work, Grok Bot, Claude Code, Codex, Devin.
 
-### Polsia — AI that runs your company while you sleep
+### The companies
 
-Polsia is a managed platform founded by Ben Cera (also known as Ben Broca) in San Francisco. The model: pay $50/month, describe a business, and AI agents handle everything — coding, marketing, customer support, operations. The founder claims $1–1.5M ARR within 30 days of launch. These figures are unverified by independent third parties and have been debated on Reddit and in tech communities. The platform itself is real and operational. WTF Agents tracks 1,293+ companies on Polsia via the live API at polsia.imrat.com/api/data.
+The most ambitious layer, and the newest. Platforms that point agents at a business idea and let them run the whole thing — code, marketing, outreach, support, finance. Polsia is the biggest and most argued about; NanoCorp publishes the live revenue of every company on it; Cofounder.co puts a human approval step in front of anything risky. Paperclip is the open-source version: an org chart for agents you host yourself.
 
-### Paperclip — the orchestration layer
+@body_lead The stack matters because value is moving down it. Two years ago the money was in models. In 2026 it is in agents. The bet behind Polsia, NanoCorp and Paperclip is that next it will be in companies that no human works at.
 
-Paperclip is an open-source orchestration framework that lets you build a multi-agent "company org chart" — assigning roles, workflows, and goals across multiple AI agents simultaneously. Tagline: "Any agent, any runtime, one org chart." It integrates with Claude Code, OpenClaw, Cursor, and others. ClipMart (coming soon) will let you download entire pre-built company templates with one click. 13,500 GitHub stars in days of launch.
-
-### The protocols making it all work
-
-Two open standards are the invisible infrastructure of the agentic economy:
-
-- → <b>MCP (Model Context Protocol)</b> — invented by Anthropic, November 2024. Lets AI agents connect to any external tool or data source. Think USB-C for AI. Now donated to the Agentic AI Foundation (backed by Anthropic, OpenAI, Google, Microsoft, AWS).
-- → <b>A2A (Agent2Agent Protocol)</b> — created by Google, April 2025. Lets AI agents from different companies talk to each other. Launched with 50+ partners including Salesforce, SAP, PayPal, McKinsey, Deloitte.
 @spacer 4
 
-## The messy reality — it's not all smooth
+## The plumbing that makes it work
 
-The agentic economy is real. It is also chaotic, occasionally dangerous, and moving faster than regulation, security, or most businesses can keep up with.
+Two open standards are the invisible infrastructure of all this.
 
-### The Moltbook incident
+- → <b>MCP (Model Context Protocol)</b> — invented by Anthropic in late 2024, now governed by the neutral Agentic AI Foundation under the Linux Foundation and adopted by every major lab. It is the universal plug that lets any agent connect to any tool or data source. USB-C for AI.
+- → <b>A2A (Agent2Agent)</b> — Google's standard for agents from different companies talking to each other. It is what lets a Paperclip org chart hire an OpenClaw agent, or a Grok Bot hand a task to a Codex session.
+@spacer 3
 
-Moltbook was a social network built exclusively for AI agents — launched January 2026 by entrepreneurs Matt Schlicht and Ben Parr. Within days, AI agents were autonomously posting to it without their human owners' knowledge. Within a week, a database misconfiguration exposed 6,000+ email addresses and 1 million agent interactions. Security firm Wiz confirmed the flaw allowed anyone to take control of any agent on the platform. Moltbook was acquired by Meta in March 2026.
+The newest piece is <b>agentic commerce</b>: agents that can pay. Muse buys on your behalf. Polsia companies take payments through their own Stripe accounts. Once agents hold wallets, the economy stops being a metaphor.
 
-### OpenClaw's security problem
+@spacer 4
 
-Cisco's AI security team tested a third-party OpenClaw skill and found it performed silent data exfiltration and prompt injection without user awareness. One of OpenClaw's own maintainers publicly warned: "If you can't understand how to run a command line, this is far too dangerous of a project for you to use safely." China restricted OpenClaw in government offices in March 2026.
+## The messy reality
 
-### The jobs question
+@body_lead The agentic economy is real. It is also chaotic, frequently oversold, and moving faster than security, regulation or most businesses can absorb.
 
-The entry-level job market is already being affected. Administrative tasks, basic coding, research, customer support — these are where AI agents are most competent and most deployed. The WEF projects a net positive (170M new jobs vs 85M displaced) but acknowledges a "significant skills transition" is required. The transition is the hard part.
+### Most projects fail
+
+Gartner expects more than 40% of agentic AI projects to be cancelled by the end of 2027 — unclear value, runaway cost, inadequate controls. Of the organisations experimenting, fewer than a quarter have anything in production at scale.
+
+### Most AI-run companies earn nothing
+
+Polsia's founder said on the record in May 2026 that around one in ten companies on the platform had earned at least a dollar. NanoCorp's public feed showed cumulative revenue across every company on the platform in the hundreds of dollars. The agents build. Customers, mostly, do not come.
+
+### The agents misbehave
+
+OpenClaw agents joined an AI-only social network, created dating profiles and leaked a million interactions through a misconfigured database in the first weeks of 2026. Cisco found third-party OpenClaw skills silently exfiltrating data. Meta's own staff flagged security failures in Muse days before launch. Every agent that holds your logins and acts in your accounts is a new attack surface, and prompt injection — hiding instructions in a web page or email the agent reads — is still unsolved.
+
+### Governments are in the room
+
+China restricted OpenClaw in government offices in March and blocked Meta's $2 billion acquisition of the Chinese agent startup Manus in April. The US government reviews frontier models before release; OpenAI's GPT-5.6 launch was delayed by it. Agents are now a matter of state.
+
+@spacer 4
+
+## The jobs question
+
+This is the part people actually want to know, so here is the honest version.
+
+The layoffs are real and they are being attributed to agents by name. ClickUp cut 22% of its staff in May and called the result a "100x org" built around thousands of internal agents, with million-dollar pay bands for the people who direct them. Salesforce's CEO said the company's support team went from 9,000 to 5,000. IBM replaced around 200 HR roles with agents. Tech layoffs in the first half of 2026 were up 83% on the year before.
+
+The counter-evidence is also real. Gartner surveyed 350 large companies deploying autonomous tech in May 2026: 80% had cut headcount, and there was no correlation between the cuts and improved returns. "Workforce reductions may create budget room, but they do not create return." A lot of what is being called AI-driven is AI-justified. And IBM, the same company replacing HR staff with agents, is tripling its entry-level hiring for AI roles.
+
+@body_lead The pattern that holds across all of it: the roles disappearing are the ones that execute a defined process. The roles appearing are the ones that direct, review and take responsibility for agents. The people doing well are the ones who treat agents as junior staff — briefing them, checking them, expanding what they are trusted with — rather than as threats or as magic.
 
 @spacer 4
 
 ## What this means for you
 
-### If you run a small business:
+### If you run a small business
 
-The tools available to you today — Claude, OpenClaw, Paperclip, Relevance AI — give you the operational capacity of a team for the cost of a few subscriptions. Customer support, content creation, data analysis, outreach: all automatable right now. The question is not whether to use these tools. It is how fast to move.
+You now have the operational capacity of a team for the cost of a few subscriptions. Support, content, research, outreach, bookkeeping — all delegable today. The question is not whether to start but where, and the answer is one well-defined repetitive task, done well, before anything else. The How to Hire an AI Agent guide walks through it.
 
-### If you are an employee:
+### If you are an employee
 
-The roles most at risk are the ones involving repetitive, process-driven work. The roles being created are the ones that involve directing, overseeing, and collaborating with AI agents. The people winning right now are the ones who treat AI agents as junior colleagues, not threats.
+Learn to direct agents before your employer decides whether you can. The single most valuable skill in the 2026 job market is turning a goal into a brief an agent can execute, and knowing when its output is wrong.
 
-### If you are curious and want to understand this space:
+### If you are trying to understand this space
 
-You are reading the right guide. The rest of the WTF Agents series goes deeper on each platform, tool, and concept in this guide. The agentic economy does not require a computer science degree. It requires curiosity and a willingness to experiment.
+You are in the right place. The rest of the WTF Agents series goes deep on each player, platform and concept in this guide. None of it requires a technical background. It requires curiosity and a willingness to try things.
 
 @spacer 4
 
 ## Glossary
 
-@gl <b>AI Agent</b> — An AI system that pursues goals autonomously — taking actions, using tools, and adapting without constant human instruction.
+@gl <b>AI agent</b> — Software that pursues a goal on its own: taking actions, using tools, checking results and adapting, without a human directing each step.
 
-@gl <b>LLM (Large Language Model)</b> — The AI "brain" at the core of most agents. Examples: Claude (Anthropic), GPT-5.4 (OpenAI), Gemini 3.1 (Google).
+@gl <b>Agentic economy</b> — An economy in which AI agents do meaningful economic work — and increasingly hire, build and pay each other — with minimal human supervision.
 
-@gl <b>MCP (Model Context Protocol)</b> — Anthropic's open standard for connecting AI agents to external tools and data. The "USB-C for AI."
+@gl <b>LLM (Large Language Model)</b> — The AI "brain" inside every agent. Claude, GPT, Gemini, Grok, DeepSeek and the rest.
 
-@gl <b>A2A (Agent2Agent Protocol)</b> — Google's open standard for AI agents from different companies to communicate with each other.
+@gl <b>Work agent</b> — An agent that does your job's tasks: Cowork, ChatGPT Work, Grok Bot, Claude Code, Codex.
 
-@gl <b>SWE-bench</b> — The industry benchmark for measuring how well an AI can solve real software engineering tasks. Higher = better.
+@gl <b>Personal agent</b> — An agent that runs your life's admin: OpenClaw, Meta Muse.
 
-@gl <b>Polsia</b> — A managed platform where AI agents build and run companies autonomously. Founded by Ben Cera.
+@gl <b>Autonomous company platform</b> — A service where agents build and run an entire business: Polsia, NanoCorp, Cofounder.co; Paperclip is the self-hosted version.
 
-@gl <b>OpenClaw</b> — A free, open-source autonomous AI agent. Runs locally, connects via messaging apps. Created by Peter Steinberger.
+@gl <b>MCP (Model Context Protocol)</b> — The open standard connecting agents to tools and data. Invented by Anthropic, now under the Agentic AI Foundation.
 
-@gl <b>Paperclip</b> — An open-source orchestration framework for running multi-agent companies.
+@gl <b>A2A (Agent2Agent)</b> — Google's open standard for agents from different companies talking to each other.
 
-@gl <b>Moltbook</b> — A social network built for AI agents. Launched January 2026, acquired by Meta March 2026.
+@gl <b>Agentic commerce</b> — Agents that can pay, buy and take payment on your behalf.
 
-@gl <b>Constitutional AI</b> — Anthropic's technique for training AI models to be helpful, honest, and harmless using a set of principles.
+@gl <b>Prompt injection</b> — Hiding instructions in content an agent reads so it does something its owner did not ask for. The main unsolved security problem of the agentic economy.
 
-@gl <b>ARR (Annual Recurring Revenue)</b> — How much money a business makes per year from recurring customers. The standard startup health metric.
+@gl <b>Open weights</b> — A model anyone can download and run themselves. Most Chinese frontier models ship this way; most US ones do not.
 
-@gl <b>Agentic Economy</b> — The emerging economic system in which AI agents perform meaningful economic work with minimal human supervision.
+@gl <b>ARR (Annual Recurring Revenue)</b> — The standard measure of a subscription business's size. In 2026 AI, often the last thirty days of all revenue multiplied by twelve — read it with care.
 
 @spacer 6
 
@@ -222,6 +214,6 @@ You are reading the right guide. The rest of the WTF Agents series goes deeper o
 
 ## Liked this? Go deeper.
 
-This guide gave you the big picture. The WTF Agents series goes deep on every platform, tool, and concept mentioned here. Each guide is $7 — instant PDF download.
+This guide gave you the big picture. The rest of the series goes deep on every platform, tool and concept mentioned here.
 
 @spacer 4

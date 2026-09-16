@@ -9,7 +9,7 @@ backfill from the same category and then from anything remaining.
 
 | Guide | Category | 1 | 2 | 3 | 4 | 5 |
 |---|---|---|---|---|---|---|
-| `agentic-economy` | foundation | `claude` | `openclaw` | `ai-agent` | `hire-agent` | `api` |
+| `agentic-economy` | foundation | `ai-agent` | `polsia` | `api` | `hire-agent` | `llm` |
 | `ai-agent` | foundation | `agentic-economy` | `openclaw` | `api` | `hire-agent` | `llm` |
 | `api` | foundation | `ai-agent` | `llm` | `agentic-economy` | `hire-agent` | `polsia` |
 | `llm` | foundation | `claude` | `ai-agent` | `agentic-economy` | `hire-agent` | `api` |
