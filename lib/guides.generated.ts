@@ -20,6 +20,7 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'whos-who', title: 'Who\'s Who in the Agentic Economy', description: 'The map. Every lab, agent, platform and piece of infrastructure that matters, one line each, sorted by layer. Read this first, then go deep.', price: 7, badge: '🗺️ The map', featured: true, category: 'map', file: 'whos-who-in-the-agentic-economy.pdf', starter: true },
   { slug: 'which-ai', title: 'Which AI Should I Actually Use?', description: 'Claude vs ChatGPT vs Gemini vs Muse vs Grok vs DeepSeek, for a normal person. Which to use for what, what each costs, and the catches.', price: 7, badge: '🧭 Decision guide', featured: true, category: 'map', file: 'which-ai-should-i-actually-use.pdf', starter: true },
   { slug: 'meta-muse', title: 'WTF is Meta Muse', description: 'Meta\'s free personal agent in WhatsApp. What it does, the security design, the pricing, and the trust question nobody puts in the demo.', price: 7, badge: '🆕 New', featured: true, category: 'personal', file: 'wtf-is-meta-muse.pdf', starter: false },
+  { slug: 'grok-bot', title: 'WTF is Grok Bot', description: 'Elon Musk\'s work agent: a team of bots with their own cloud computer and your real logins, coordinated by a Chief of Staff. What it does, costs and risks.', price: 7, badge: '🆕 New', featured: false, category: 'work', file: 'wtf-is-grok-bot.pdf', starter: false },
 ];
 
 import type { Bundle } from './guides';

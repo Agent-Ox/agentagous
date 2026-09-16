@@ -88,7 +88,7 @@ The WTF is an AI Agent guide goes deep on how they work. This guide is about wha
 | January | Anthropic | Cowork — Claude works directly in your files and apps. Enterprise software stocks fell hard when the plugins landed. |
 | June | Microsoft | Copilot Cowork goes live worldwide inside Microsoft 365 — built on Anthropic's Claude, not OpenAI's models. |
 | July | OpenAI | ChatGPT Work — give it an outcome, it returns finished spreadsheets, decks and web apps hours later. |
-| August | xAI | Grok Bot — a team of named agents, each with its own cloud computer and logins, coordinated by a "Chief of Staff" bot. |
+| August | xAI | Grok Bot — a team of named agents sharing one cloud computer and its logins, coordinated by a "Chief of Staff" bot. |
 | September | Meta | Muse — a personal agent for everyone, in an app or on WhatsApp, that books, buys, negotiates and fills in forms for you. |
 | May | Google | Killed its standalone browser agent and folded the technology into Gemini Agent and Chrome. The one lab that chose consolidation over a launch. |
 

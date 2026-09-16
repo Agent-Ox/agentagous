@@ -70,7 +70,7 @@ Not all agents are right for all tasks. In 2026 the choice is simpler than it lo
 @tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
 | If you want to... | Use this | Cost |
 | Delegate work inside your own files, inbox, calendar and apps | Cowork (Anthropic), ChatGPT Work (OpenAI), Copilot Cowork (Microsoft 365) | From $20/mo, included in the paid plan |
-| Run a team of agents with their own computers and logins | Grok Bot (xAI) | Subscription |
+| Run a team of agents sharing one cloud computer and its logins | Grok Bot (xAI) | Subscription |
 | Have a personal agent you message like a colleague | OpenClaw (open-source), Meta Muse | Free + model costs; Muse has a free tier |
 | Let agents build and run a whole company for you | Polsia, NanoCorp, Cofounder.co | From $20/mo + fees (Polsia) |
 | Run several agents as an org chart you control | Paperclip (self-hosted) | Free + model costs |

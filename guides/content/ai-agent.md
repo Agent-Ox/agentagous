@@ -142,7 +142,7 @@ Created by Austrian developer Peter Steinberger and launched in late 2025, OpenC
 
 ### Cowork, ChatGPT Work and Grok Bot — the year of the work agent
 
-Between January and September 2026, Anthropic, OpenAI and xAI each launched an agent that does whole jobs rather than answering questions about them. Cowork works inside your files and apps. ChatGPT Work takes an outcome and returns finished spreadsheets, decks and apps hours later. Grok Bot gives each agent its own cloud computer and logins and coordinates a team of them under a "Chief of Staff." Microsoft's Copilot Cowork, built on Claude, brought the same thing to Microsoft 365.
+Between January and September 2026, Anthropic, OpenAI and xAI each launched an agent that does whole jobs rather than answering questions about them. Cowork works inside your files and apps. ChatGPT Work takes an outcome and returns finished spreadsheets, decks and apps hours later. Grok Bot runs a team of agents sharing one cloud computer and its logins, coordinated by a "Chief of Staff." Microsoft's Copilot Cowork, built on Claude, brought the same thing to Microsoft 365.
 
 ### Claude Code — the autonomous developer
 

@@ -11,7 +11,7 @@ export type Guide = {
   price: number;
   badge: string | null;
   featured: boolean;
-  category: 'foundation' | 'platforms' | 'claude' | 'practical' | 'map' | 'personal';
+  category: 'foundation' | 'platforms' | 'claude' | 'practical' | 'map' | 'personal' | 'work';
   file: string;
   /** Included in the starter bundle. Set per guide in its front-matter. */
   starter: boolean;

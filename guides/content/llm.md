@@ -86,7 +86,7 @@ Meta's 2026 reset: a new model family and a consumer personal agent, both called
 
 ### Grok (xAI)
 
-Elon Musk's models, now part of SpaceX after it acquired xAI and the coding tool Cursor. The model behind Grok Bot, a team of agents that each get their own cloud computer.
+Elon Musk's models, now part of SpaceX after it acquired xAI and the coding tool Cursor. The model behind Grok Bot, a team of agents sharing one cloud computer.
 
 ### The Chinese open-weight models
 

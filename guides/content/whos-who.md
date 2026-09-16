@@ -54,7 +54,7 @@ The brains. Everything above runs on one of these.
 
 @role <b>Meta — Muse</b> — A new model family and a personal agent of the same name, delivered through WhatsApp and a standalone app with a free tier. Meta's bet is that three billion messaging users are the distribution. Also tried to buy Manus.
 
-@role <b>xAI — Grok</b> — Elon Musk's lab, now inside SpaceX alongside Cursor. Grok Bot gives each agent its own cloud computer and logins, coordinated by a "Chief of Staff."
+@role <b>xAI — Grok</b> — Elon Musk's lab, now inside SpaceX alongside Cursor. Grok Bot runs a team of agents sharing one cloud computer and its logins, coordinated by a "Chief of Staff."
 
 @role <b>Microsoft</b> — Not a frontier lab of its own but the biggest distributor: Copilot Cowork, built on Claude, is live in Microsoft 365 worldwide; Copilot Studio hosts hundreds of thousands of custom agents; Foundry serves every major model.
 
@@ -76,7 +76,7 @@ Agents that do your job's tasks. The category every lab entered in 2026.
 
 @role <b>Copilot Cowork (Microsoft)</b> — Cowork inside Microsoft 365, across Outlook, Teams, SharePoint and Excel. Built on Claude despite Microsoft's stake in OpenAI. Generally available since June.
 
-@role <b>Grok Bot (xAI)</b> — A team of named agents with their own computers, working while you sleep. Launched August through Cursor's infrastructure.
+@role <b>Grok Bot (xAI)</b> — A team of named agents sharing one cloud computer, working while you sleep. Launched August through Cursor's infrastructure.
 
 @role <b>Microsoft Scout</b> — An always-on personal agent inside Copilot, in limited release.
 

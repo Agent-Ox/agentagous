@@ -61,6 +61,7 @@ export default function StorePage() {
     { id: 'practical', label: '💼 Practical' },
     { id: 'map', label: '🗺️ The map' },
     { id: 'personal', label: '📱 Personal agents' },
+    { id: 'work', label: '🏢 Work agents' },
   ];
 
   const filtered = activeCategory === 'all' ? GUIDES : GUIDES.filter(g => g.category === activeCategory);
