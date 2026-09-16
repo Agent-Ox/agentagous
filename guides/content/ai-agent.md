@@ -34,15 +34,15 @@ Imagine you want to book a holiday. Here is how three different types of AI woul
 
 ### A chatbot (like early ChatGPT):
 
-You ask: "What are some good hotels in Barcelona?" It gives you a list. You ask a follow-up. It answers. It has no memory of your previous question. It cannot actually book anything. It stops the moment you stop talking.
+You ask: "What are some good hotels in Bangkok?" It gives you a list. You ask a follow-up. It answers. It has no memory of your previous question. It cannot actually book anything. It stops the moment you stop talking.
 
 ### An AI assistant (like Siri or Alexa):
 
-You say: "Book me a hotel in Barcelona." It might open a browser or app for you. But it is essentially a shortcut — it is still relying on you to confirm every action. It does not go off and research options, compare prices, read reviews, and come back with a recommendation.
+You say: "Book me a hotel in Bangkok." It might open a browser or app for you. But it is essentially a shortcut — it is still relying on you to confirm every action. It does not go off and research options, compare prices, read reviews, and come back with a recommendation.
 
 ### An AI agent:
 
-You say: "Find me a good hotel in Barcelona for next weekend, under £200 a night, close to the Gothic Quarter, with good reviews." The agent goes away. It browses hotel sites, reads reviews, checks availability, compares prices, filters by your criteria, and comes back with three specific options — or just books the best one if you told it to. You were not involved in any of those steps.
+You say: "Find me a good hotel in Bangkok for next weekend, under $200 a night, near the river, with good reviews." The agent goes away. It browses hotel sites, reads reviews, checks availability, compares prices, filters by your criteria, and comes back with three specific options — or just books the best one if you told it to. You were not involved in any of those steps.
 
 @body_lead That is an AI agent.
 
