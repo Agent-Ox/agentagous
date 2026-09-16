@@ -4,175 +4,177 @@ title: 'WTF is Anthropic'
 file: 'wtf-is-anthropic.pdf'
 cover_title: 'WTF is'
 cover_subtitle: 'Anthropic?'
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
-  The $380 billion AI safety lab founded by the people who left OpenAI. Builders of
-  Claude. Inventors of Constitutional AI and the Model Context Protocol. Arguably the most
-  important AI company most people have never properly understood.
+  Founded by people who left OpenAI over safety. Now the most valuable private company in
+  the world, heading for the largest IPO in history, and the lab whose model sits inside
+  half the agents in this series — including its rivals' products.
 
 # store catalogue fields
 order: 7
-description: 'The company behind Claude — and arguably the most important AI lab you''ve never properly understood.'
+description: 'The company behind Claude. Founding story, the safety mission, the trillion-dollar valuation, and why its model powers so much of the agentic economy.'
 price: 7
 category: 'claude'
 badge: null
 featured: false
-related: ['claude', 'claude-code']
 starter: false
+related: ['claude', 'claude-code']
 ---
 ## The one-liner
 
-@body_lead Anthropic is an AI safety company that builds some of the most powerful AI models in the world — including Claude — while simultaneously arguing that those models could be among the most dangerous technologies ever created.
+@body_lead Anthropic is an AI safety company that builds some of the most powerful AI models in the world — the Claude family — while arguing, in public and in its own research, that models like these could be among the most dangerous technologies ever created.
 
-That tension is not a contradiction. It is Anthropic's core philosophy: if powerful AI is coming regardless, it is better to have safety-focused labs at the frontier than to cede that ground to labs that prioritise capability over safety.
+That is not a contradiction. It is the founding bet: if powerful AI is coming regardless, better to have a safety-focused lab at the frontier than to leave the frontier to labs that are not. In 2026 that bet paid off in a way nobody predicted.
+
+@spacer 4
+
+## By the numbers — September 2026
+
+Everything in this box will be out of date within months. Everything below it is built to last longer.
+
+@stat $965B || valuation after the $65B Series H in May 2026 — the largest private funding round in history
+@stat $380B → $965B || the valuation jump between February and May 2026, three months apart
+@stat $65B || annualised revenue run rate by late July 2026, up from roughly $9B at the end of 2025
+@stat 1 June || 2026: confidential S-1 filed with the SEC. An October listing has been widely reported, not confirmed
+@stat ~2,300 || employees, up from about 1,100 in 2024
+@stat 8 of 10 || Fortune 10 companies are Claude customers
+@stat 1,000+ || enterprises spending more than $1M a year on Anthropic products
+@stat 2021 || founded, San Francisco. Structured as a Public Benefit Corporation
 
 @spacer 4
 
 ## The founding story — the OpenAI exodus
 
-To understand Anthropic, you need to understand where it came from.
+In 2021 a group of senior researchers left OpenAI, then the most prominent AI lab in the world, over disagreements about direction. The core concern: as OpenAI became more commercial, some believed it was prioritising speed and capability over safety.
 
-In 2021, a group of senior researchers and executives left OpenAI — then the world's most prominent AI lab — amid internal disagreements about the direction of the organisation. The core concern: as OpenAI became more commercially successful (especially after the Microsoft investment), some believed it was prioritising capability and speed over safety.
+The group was led by siblings Dario Amodei, then OpenAI's VP of Research, and Daniela Amodei, its VP of Operations. They left with Tom Brown (lead author of the GPT-3 paper), Chris Olah (the field's leading interpretability researcher), Jack Clark, Jared Kaplan, Sam McCandlish and others.
 
-The exodus was led by siblings Dario Amodei (then VP of Research at OpenAI) and Daniela Amodei (then VP of Operations). They left together with a team of senior researchers including Tom Brown (lead author of GPT-3), Chris Olah (pioneering interpretability researcher), Sam McCandlish, Jack Clark, and Jared Kaplan.
+@body_lead They founded Anthropic with a stated mission: the responsible development and maintenance of advanced AI for the long-term benefit of humanity.
 
-@body_lead They founded Anthropic in 2021 with a stated mission: "the responsible development and maintenance of advanced AI for the long-term benefit of humanity."
-
-Anthropic is structured as a Public Benefit Corporation — not a standard for-profit — signalling a legal commitment to considerations beyond shareholder returns.
+They structured it as a Public Benefit Corporation, which legally allows the company to weigh its mission alongside shareholder returns, and later added a Long-Term Benefit Trust with the power to appoint board members. Whether those structures hold under trillion-dollar pressure is one of the open questions of the decade.
 
 @spacer 4
 
-## The scale — $380 billion and growing
+## The scale — from research lab to the most valuable startup on earth
 
-Anthropic is no longer a scrappy safety research lab. It is one of the most valuable private companies in the world.
+For its first four years Anthropic was the smaller, more careful rival. Then Claude Code happened.
 
-@table keep 35,125
-@tcells hs,cs|hs,cs|hs,cs|hs,cs|hs,cs
-@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
-@tstyle BACKGROUND 0,0 -1,-1 ZINC_900
-@tstyle PADDING 0,0 -1,-1 10
-@tstyle VALIGN 0,0 -1,-1 MIDDLE
-@tstyle ROWBACKGROUNDS 0,0 -1,-1 [ZINC_900,DARK_BG]
-| $380B | Valuation as of February 2026 |
-| $30B | Funding round closed February 2026 — largest single AI fundraise in history |
-| Amazon | Lead investor — $4B+ committed, with Claude available via AWS Bedrock |
-| Google | Major investor — Claude available via Google Cloud Vertex AI |
-| Nvidia | Investor — strategic partnership on AI infrastructure |
+Launched to developers in early 2025, Claude Code became the tool that turned Claude from a chatbot into an agent that does work. Developers adopted it faster than any coding tool before it. Cowork, launched in January 2026, brought the same capability to everyone else. Revenue followed the products: roughly $9 billion annualised at the end of 2025, $30 billion by April, $47 billion when the Series H closed in May, $65 billion by the end of July.
 
-@spacer 4
+The Series H itself — $65 billion led by Altimeter, Dragoneer, Greenoaks and Sequoia, with Amazon, Capital Group, Fidelity and T. Rowe Price participating — valued the company at $965 billion, above OpenAI's $852 billion from two months earlier. Nine days later Anthropic filed confidentially for an IPO. Reports point to October 2026 and a target valuation that would make it the largest listing ever. None of that is confirmed by the company.
 
-Dario and Daniela Amodei's net worth is estimated at approximately $7 billion each as of 2026 — a remarkable outcome for researchers who left a previous employer over principled disagreements about AI safety.
+Amazon, Google and Nvidia remain major backers. Claude is available through AWS Bedrock, Google Cloud Vertex AI and Microsoft Foundry, which means it runs inside every major cloud, including the one owned by OpenAI's biggest investor.
 
 @spacer 4
 
 ## What makes Anthropic different
 
-### 1. Safety as the founding principle
+### Safety is the founding purpose, not a department
 
-Every major AI lab talks about safety. Anthropic was founded because of it. The company's research agenda includes significant investment in interpretability (understanding why AI models produce the outputs they do) and alignment (ensuring AI systems pursue the goals humans actually intend). Most competitors do far less of this.
+Every lab talks about safety. Anthropic was created because of it. A large share of its research output is interpretability (understanding what is happening inside a model) and alignment (making sure a model pursues the goals its operator intends). It publishes a Responsible Scaling Policy that ties deployment decisions to measured capability levels, and it has held back or gated models under it.
 
-### 2. Constitutional AI
+### Constitutional AI
 
-Anthropic invented a training technique called Constitutional AI (CAI). Instead of relying purely on human feedback to teach models to be helpful and harmless, CAI gives the model a set of principles — a "constitution" — and trains it to critique and revise its own outputs against those principles.
+Anthropic's core training technique. Instead of relying only on human feedback, the model is given a set of written principles and trained to critique and revise its own outputs against them. The result is a model whose behaviour is more consistent and more predictable at the edges, which matters enormously when that model is running as an agent for hours with nobody watching.
 
-The result is a model that is more reliably honest, more consistent in its values, and better at handling difficult edge cases — not because it is restricted, but because it has internalised good values through training.
+### The Fable / Mythos split
 
-### 3. Interpretability research
+In 2026 Anthropic did something no lab had done before: it split one model into two products by safeguard level. Mythos-class models sit above the Opus tier in capability. The public version, Claude Fable, ships with classifiers that refuse dangerous cybersecurity and biology requests. The same model with those safeguards lifted, Claude Mythos, is available only to vetted organisations through Project Glasswing — a programme run with the US government, launched in April 2026 with AWS, Apple, Google, Microsoft and CrowdStrike, and expanded in June to around 150 organisations including NATO and the EU's cybersecurity agency. Their job: use the model to find and fix vulnerabilities in critical software before attackers do.
 
-Chris Olah, one of Anthropic's co-founders, is the world's leading researcher in mechanistic interpretability — understanding the internal workings of neural networks. Anthropic's interpretability team publishes research that peers at competitors largely do not. This matters because you cannot fix what you cannot understand.
+That is a new shape for the industry. Frontier capability gated by who you are and what you are for, rather than released to everyone or nobody.
 
-### 4. The Model Context Protocol (MCP)
+### MCP — the plug the whole industry uses
 
-In November 2024, Anthropic published MCP — an open standard that lets AI agents connect to any external tool or data source. Think of it as USB-C for AI: a universal plug that works with any system. MCP has since been adopted by OpenAI, Google, Microsoft, and virtually all major agent frameworks. Anthropic donated MCP to the Agentic AI Foundation (AAIF) — a neutral home under the Linux Foundation, backed by Anthropic, OpenAI, Google, Microsoft, Amazon, Cloudflare, and Bloomberg.
-
-### 5. Public Benefit Corporation structure
-
-Unlike OpenAI (which converted to a for-profit structure) or Google and Microsoft (publicly traded companies with shareholder obligations), Anthropic's PBC structure legally allows it to prioritise its stated mission over pure profit maximisation.
+In November 2024 Anthropic published the Model Context Protocol, an open standard letting any AI agent connect to any tool or data source. Within a year every major lab had adopted it. Anthropic then gave it away, donating MCP to the Agentic AI Foundation under the Linux Foundation, co-founded with OpenAI and Block. The plumbing of the agentic economy is Anthropic's design and nobody's property.
 
 @spacer 4
 
 ## The products
 
-Anthropic's commercial products are all built around Claude:
+Everything is built around Claude.
 
-@prod <b>Claude</b> — The flagship AI model family. Powers everything else. See the WTF is Claude guide for the full story.
+@prod <b>Claude</b> — The model family. Fable 5.1 at the top, Opus 5, Sonnet 5, Haiku 4.5. See the WTF is Claude guide.
 
-@prod <b>Claude Code</b> — An autonomous coding agent. Reads codebases, writes and edits code, runs tests, commits to Git. The most-loved coding tool among developers in 2026.
+@prod <b>Claude Code</b> — The autonomous coding agent that changed the company's trajectory. Terminal, desktop app, mobile. See the WTF is Claude Code guide.
 
-@prod <b>Claude.ai</b> — The consumer chat interface. Anthropic's equivalent of ChatGPT.
+@prod <b>Cowork</b> — The agent for everyone else. Works in your files, apps and browser without a command line. See the WTF is Cowork guide.
 
-@prod <b>Anthropic API</b> — Developer access to Claude models. Used by OpenClaw, Paperclip, and thousands of applications.
+@prod <b>Claude.ai</b> — The chat interface, web and mobile. Free tier; Pro, Max, Team and Enterprise plans above it.
 
-@prod <b>Amazon Bedrock</b> — Claude models available via AWS. Part of Anthropic's strategic partnership with Amazon.
+@prod <b>Claude in Chrome, Excel, PowerPoint, Word and Outlook</b> — Claude working inside the tools people already use.
 
-@prod <b>Google Vertex AI</b> — Claude models available via Google Cloud. Part of Anthropic's strategic partnership with Google.
+@prod <b>Claude Tag</b> — Claude inside Slack. Tag it into a thread and delegate the task.
+
+@prod <b>The Claude Developer Platform and Agent SDK</b> — The API and the framework other companies build their own agents on.
+
+@prod <b>Amazon Bedrock, Google Vertex AI, Microsoft Foundry</b> — Claude inside every major cloud.
 
 @spacer 4
 
-## The honest tension — safety lab or AI arms race participant?
+## The honest tension
 
-@body_lead Anthropic occupies a genuinely unusual position: a company that argues AI may be one of the most dangerous technologies in human history, and then builds it anyway.
+@body_lead Anthropic says AI may be one of the most dangerous technologies in human history, and then builds it anyway, and is now worth close to a trillion dollars for doing so.
 
-Dario Amodei has been explicit about this. He has described Anthropic as potentially "a company that could be building one of the most transformative and potentially dangerous technologies in human history, and yet presses forward anyway." The justification: safety-focused labs need to be at the frontier, not watching from the sidelines while others build without safety constraints.
+Dario Amodei has been explicit about this: a company that may be building something profoundly dangerous, pressing forward because the alternative is leaving the frontier to others. Critics point out that this logic can justify almost anything, and that a public listing brings quarterly pressure that no benefit-corporation charter fully insulates against. Supporters point to the research record, the Responsible Scaling Policy, the Glasswing gating and the fact that Anthropic has repeatedly shipped later and more cautiously than rivals — and still won.
 
-Critics point out that this logic can justify almost anything. A $380 billion valuation also creates its own commercial pressures that may not always align with pure safety priorities.
-
-Supporters note that Anthropic's actual research output — on interpretability, Constitutional AI, and alignment — is substantively different from competitors who publish less safety research while claiming equivalent commitment.
-
-The honest answer: Anthropic is probably the most safety-focused lab at the frontier. Whether that is enough — given the speed of the technology's development — is one of the most important open questions in AI.
+The honest answer: Anthropic is probably the most safety-focused lab at the frontier. Whether that is enough, given how fast the frontier is moving, is the question that matters, and no one can answer it yet.
 
 @spacer 4
 
 ## Why Anthropic matters for the agentic economy
 
-Anthropic's fingerprints are on almost every important development in the agentic economy:
+Anthropic's fingerprints are on almost everything in this series.
 
-- → <b>Claude</b> is the default LLM for OpenClaw, the most-starred open-source agent project.
-- → <b>Claude Code</b> is the most-loved coding agent, used by Paperclip and thousands of developers.
-- → <b>MCP</b> is the universal standard connecting agents to tools — the plumbing of the agentic economy.
-- → <b>Constitutional AI</b> is why Claude-powered agents behave more reliably and honestly than alternatives.
-- → <b>The AAIF</b> (which Anthropic co-founded) is the neutral home for open agentic standards.
+- → <b>Claude</b> is the default model in OpenClaw, the most-used open-source personal agent.
+- → <b>Microsoft's Copilot Cowork</b> — Microsoft's flagship agent for 365 — runs on Claude, despite Microsoft's $13 billion stake in OpenAI.
+- → <b>Polsia's</b> founder chose Claude Opus to run the agents that run his companies.
+- → <b>Claude Code</b> is the developer agent inside Paperclip and thousands of AI-run companies.
+- → <b>MCP</b> is how every agent in this series connects to its tools.
 @spacer 3
 
-You can build in the agentic economy without ever thinking about Anthropic. But understanding Anthropic helps you understand why the tools work the way they do — and why that matters.
+You can use the agentic economy without ever thinking about Anthropic. But you will almost certainly be using something it built.
 
 @spacer 4
 
 ## The key people
 
-@person <b>Dario Amodei</b> — CEO and co-founder. Former VP of Research at OpenAI. The public face of Anthropic. Estimated net worth ~$7B.
+@person <b>Dario Amodei</b> — CEO and co-founder. Former VP of Research at OpenAI. The public face, and the author of the essays that set the company's tone.
 
-@person <b>Daniela Amodei</b> — President and co-founder. Former VP of Operations at OpenAI. Runs the business side of Anthropic.
+@person <b>Daniela Amodei</b> — President and co-founder. Former VP of Operations at OpenAI. Runs the business.
 
-@person <b>Chris Olah</b> — Co-founder. The world's leading mechanistic interpretability researcher. Pioneering work on understanding neural networks from the inside.
+@person <b>Chris Olah</b> — Co-founder. The world's leading mechanistic interpretability researcher.
 
-@person <b>Tom Brown</b> — Co-founder. Lead author of the GPT-3 paper — one of the most important AI papers ever written.
+@person <b>Tom Brown</b> — Co-founder. Lead author of the GPT-3 paper.
 
-@person <b>Jared Kaplan</b> — Co-founder. Developed neural scaling laws — the mathematical relationship between model size, data, and capability that guides how labs train models.
+@person <b>Jared Kaplan</b> — Co-founder. Discovered the scaling laws that guide how all labs train models.
+
+@person <b>Ami Vora</b> — Chief Product Officer since January 2026, when Mike Krieger, co-founder of Instagram, moved to Anthropic's Labs group after two years in the role.
 
 @spacer 4
 
 ## Glossary
 
-@gl <b>Anthropic</b> — AI safety company founded in 2021. Builders of Claude. $380B valuation. Structured as a Public Benefit Corporation.
+@gl <b>Anthropic</b> — AI safety company founded in 2021 by former OpenAI researchers. Builder of Claude. Public Benefit Corporation.
 
-@gl <b>Constitutional AI (CAI)</b> — Anthropic's training technique that gives AI models a set of principles to evaluate their own outputs against.
+@gl <b>Constitutional AI</b> — Anthropic's training technique: give the model written principles and train it to judge its own outputs against them.
 
-@gl <b>Interpretability</b> — Research into understanding the internal workings of AI models — why they produce the outputs they do.
+@gl <b>Interpretability</b> — Research into what is happening inside a model and why it produces the outputs it does.
 
-@gl <b>Alignment</b> — The problem of ensuring AI systems pursue the goals humans actually intend, not something subtly different.
+@gl <b>Alignment</b> — Ensuring an AI pursues the goals its operator actually intends.
 
-@gl <b>MCP (Model Context Protocol)</b> — Anthropic's open standard for connecting AI agents to external tools. Published November 2024. Donated to the AAIF.
+@gl <b>Responsible Scaling Policy</b> — Anthropic's public framework tying deployment decisions to measured capability and risk levels.
 
-@gl <b>AAIF (Agentic AI Foundation)</b> — A directed fund under the Linux Foundation. Co-founded by Anthropic, Block, and OpenAI. Neutral home for MCP and other open agentic standards.
+@gl <b>Mythos-class</b> — The model tier above Opus. Fable is the safeguarded public version; Mythos is the restricted one.
 
-@gl <b>Public Benefit Corporation</b> — A corporate structure that legally allows a company to prioritise its stated mission alongside profit.
+@gl <b>Project Glasswing</b> — Anthropic's vetted-access programme, run with the US government, giving cyberdefenders the unrestricted model to secure critical software.
 
-@gl <b>Scaling laws</b> — Mathematical relationships describing how AI capability improves with model size, data, and compute. Discovered partly by Jared Kaplan.
+@gl <b>MCP (Model Context Protocol)</b> — The open standard connecting agents to tools. Invented by Anthropic, donated to the Agentic AI Foundation.
 
-@gl <b>Claude</b> — Anthropic's flagship AI model. The most-used LLM in the agentic economy.
+@gl <b>Public Benefit Corporation</b> — A corporate structure that lets a company weigh its stated mission alongside shareholder profit.
 
-@gl <b>Amazon Bedrock</b> — AWS's managed AI service. Hosts Claude models as part of Anthropic's strategic partnership with Amazon.
+@gl <b>Run rate</b> — Recent revenue extrapolated to a full year. The figure labs quote; not the same as audited annual revenue.
+
+@gl <b>S-1</b> — The document a company files with the SEC before going public. Anthropic filed one confidentially on 1 June 2026.
 
 @spacer 6
 
@@ -180,6 +182,6 @@ You can build in the agentic economy without ever thinking about Anthropic. But 
 
 ## Liked this? Go deeper.
 
-Anthropic is the company. Here are the products.
+Anthropic is the company. Here are the model, the agents and the ecosystem around it.
 
 @spacer 4
