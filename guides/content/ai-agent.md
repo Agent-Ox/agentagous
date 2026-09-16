@@ -17,23 +17,8 @@ price: 7
 category: 'foundation'
 badge: null
 featured: false
-
-read_next:
-  - title: 'WTF is the Agentic Economy'
-    desc: 'The big picture. Market size, big players, real numbers. Start here if you haven''t already.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is OpenClaw'
-    desc: 'The viral open-source agent. 247K GitHub stars, security controversies, and what it actually does.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Claude'
-    desc: 'The AI powering most of the agents in this guide. What it is, how it works, why it leads.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an LLM'
-    desc: 'The deep dive on the brain inside every agent. Plain English, no maths.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['agentic-economy', 'openclaw']
+starter: true
 ---
 ## The one-liner
 

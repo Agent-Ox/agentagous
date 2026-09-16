@@ -17,23 +17,8 @@ price: 7
 category: 'claude'
 badge: null
 featured: false
-
-read_next:
-  - title: 'WTF is Claude Code'
-    desc: 'Claude acting as an autonomous developer. The full story on the most-loved coding agent.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Anthropic'
-    desc: 'The company that built Claude. The founding story, the safety mission, the $380B valuation.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an LLM'
-    desc: 'The technical foundation behind Claude. Plain English, no maths.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is OpenClaw'
-    desc: 'The viral open-source agent that uses Claude as its default brain.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['claude-code', 'anthropic']
+starter: true
 ---
 ## The one-liner
 

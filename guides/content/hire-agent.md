@@ -18,23 +18,8 @@ price: 7
 category: 'practical'
 badge: '💼 Practical'
 featured: false
-
-read_next:
-  - title: 'WTF is an AI Agent'
-    desc: 'The deep dive on what agents actually are — how they think, plan, and act.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is OpenClaw'
-    desc: 'The viral open-source agent. Full story including security considerations.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Claude'
-    desc: 'The AI model powering most of the agents in this guide.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is the Agentic Economy'
-    desc: 'The big picture — where your new agent fits in a $52B+ market.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['ai-agent', 'openclaw']
+starter: true
 ---
 ## Before you start — the right mindset
 

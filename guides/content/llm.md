@@ -17,20 +17,8 @@ price: 7
 category: 'foundation'
 badge: null
 featured: false
-
-read_next:
-  - title: 'WTF is Claude'
-    desc: 'The LLM powering most of the agentic economy. Deep dive on Anthropic''s flagship model.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an AI Agent'
-    desc: 'How LLMs become agents — the tools, loops, and protocols that make it possible.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is the Agentic Economy'
-    desc: 'The big picture — market size, major players, real numbers.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['claude', 'ai-agent']
+starter: true
 ---
 ## The one-liner
 

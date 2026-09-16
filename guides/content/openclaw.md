@@ -18,23 +18,8 @@ category: 'platforms'
 badge: null
 featured: false
 relatedTool: 'openclaw'
-
-read_next:
-  - title: 'WTF is Paperclip'
-    desc: 'The orchestration framework that coordinates multiple agents — including OpenClaw — into a company org chart.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an AI Agent'
-    desc: 'What OpenClaw actually is under the hood — the loops, tools, and protocols.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Claude'
-    desc: 'The LLM that OpenClaw uses by default. The brain inside the agent.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is the Agentic Economy'
-    desc: 'Where OpenClaw fits in the $52B+ market reshaping business and employment.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['paperclip', 'ai-agent']
+starter: false
 ---
 ## The one-liner
 

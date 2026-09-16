@@ -18,23 +18,8 @@ category: 'platforms'
 badge: '🔥 Most popular'
 featured: true
 relatedTool: 'polsia'
-
-read_next:
-  - title: 'WTF is an AI Agent'
-    desc: 'What is actually doing the work inside Polsia. The full explanation of agents, loops and tools.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Paperclip'
-    desc: 'The self-hosted alternative — an org chart of agents you own and run yourself.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is OpenClaw'
-    desc: 'A personal AI agent rather than a company platform. Very different tool, same economy.'
-    url: 'wtfagents.com/store'
-  - title: 'How to Hire an AI Agent for Your Business'
-    desc: 'The practical guide — choosing a platform, writing the brief, starting with read-only access.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is the Agentic Economy'
-    desc: 'The big picture Polsia sits inside — who the players are and where the money is going.'
-    url: 'wtfagents.com/store'
+related: ['ai-agent', 'paperclip']
+starter: false
 ---
 ## The one-liner
 

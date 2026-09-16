@@ -18,23 +18,8 @@ price: 7
 category: 'foundation'
 badge: '🌍 Start here'
 featured: true
-
-read_next:
-  - title: 'WTF is Claude'
-    desc: 'The AI powering the agentic economy. What it is, how it works, why it matters.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is OpenClaw'
-    desc: 'The viral open-source agent that went from 0 to 247K GitHub stars in 60 days.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Polsia'
-    desc: 'The platform claiming to run 1,300+ companies autonomously. What''s real and what''s hype.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an AI Agent'
-    desc: 'The deep dive on agents specifically — how they think, plan, and act.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['claude', 'openclaw']
+starter: true
 ---
 ## The one-liner
 

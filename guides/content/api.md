@@ -17,23 +17,8 @@ price: 7
 category: 'foundation'
 badge: null
 featured: false
-
-read_next:
-  - title: 'WTF is an AI Agent'
-    desc: 'How agents use APIs to take actions in the world. The complete picture.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an LLM'
-    desc: 'The AI brain that sits at the centre of every agent. Plain English, no maths.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Claude'
-    desc: 'The AI model whose API powers most of the agentic economy.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is the Agentic Economy'
-    desc: 'The big picture on what is happening and why it matters.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['ai-agent', 'llm']
+starter: false
 ---
 ## The one-liner
 

@@ -17,23 +17,8 @@ price: 7
 category: 'claude'
 badge: null
 featured: false
-
-read_next:
-  - title: 'WTF is Claude'
-    desc: 'The model behind Claude Code. Everything about Anthropic''s flagship AI.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Anthropic'
-    desc: 'The company that built Claude Code. The founding story, the safety mission, the $380B valuation.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Paperclip'
-    desc: 'The orchestration framework that uses Claude Code as its developer agent.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an AI Agent'
-    desc: 'What Claude Code is — and how autonomous agents work under the hood.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Cowork'
-    desc: 'Claude Code was for developers. Cowork is for everyone else. The product that wiped $285B off enterprise software stocks.'
-    url: 'wtfagents.com/store'
+related: ['claude', 'anthropic']
+starter: false
 ---
 ## The one-liner
 

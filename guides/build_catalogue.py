@@ -16,7 +16,7 @@ REPO = os.path.dirname(HERE)
 CONTENT_DIR = os.path.join(HERE, 'content')
 OUT = os.path.join(REPO, 'lib', 'guides.generated.ts')
 
-FIELDS = ['slug', 'title', 'description', 'price', 'badge', 'featured', 'category', 'file']
+FIELDS = ['slug', 'title', 'description', 'price', 'badge', 'featured', 'category', 'file', 'starter']
 
 
 def ts_str(v):
@@ -58,6 +58,7 @@ def main():
             f"featured: {'true' if m.get('featured') else 'false'}",
             f"category: {ts_str(m['category'])}",
             f"file: {ts_str(m['file'])}",
+            f"starter: {'true' if m.get('starter') else 'false'}",
         ]
         if m.get('relatedTool'):
             parts.append(f"relatedTool: {ts_str(m['relatedTool'])}")

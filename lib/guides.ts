@@ -13,6 +13,8 @@ export type Guide = {
   featured: boolean;
   category: 'foundation' | 'platforms' | 'claude' | 'practical';
   file: string;
+  /** Included in the starter bundle. Set per guide in its front-matter. */
+  starter: boolean;
   /** Optional affiliate slug from lib/affiliates.ts, surfaced as "Start with X →". */
   relatedTool?: string;
 };
@@ -40,7 +42,7 @@ export const BUNDLES: Bundle[] = [
     description: 'The five guides that take you from "WTF is going on" to hiring your first agent.',
     price: 29,
     file: 'agentic-economy-starter-pack.pdf',
-    includes: ['agentic-economy', 'ai-agent', 'llm', 'claude', 'hire-agent'],
+    includes: GUIDES.filter(g => g.starter).map(g => g.slug),
   },
   {
     slug: 'complete-pack',

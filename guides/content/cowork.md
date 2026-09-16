@@ -17,23 +17,8 @@ price: 7
 category: 'claude'
 badge: null
 featured: false
-
-read_next:
-  - title: 'WTF is Claude Code'
-    desc: 'The developer version of what Cowork does. If Cowork is the automatic, Claude Code is the manual — more powerful, more technical.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Claude'
-    desc: 'The AI model powering Cowork, Claude Code, and the entire agentic economy.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is Anthropic'
-    desc: 'The company that built Cowork. The $380B lab behind the tools reshaping knowledge work.'
-    url: 'wtfagents.com/store'
-  - title: 'WTF is an AI Agent'
-    desc: 'What Cowork actually is under the hood — how agents plan, act, and iterate.'
-    url: 'wtfagents.com/store'
-  - title: 'How to Hire an AI Agent for Your Business'
-    desc: 'Practical guide to deploying Cowork and other agents in your business this week.'
-    url: 'wtfagents.com/store'
+related: ['claude-code', 'claude']
+starter: false
 ---
 ## The one-liner
 

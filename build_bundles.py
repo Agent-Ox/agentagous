@@ -28,21 +28,24 @@ ZINC_600 = HexColor('#52525b')
 WHITE = HexColor('#ffffff')
 W, H = A4
 
-# slug -> (title, filename). Mirrors GUIDES in lib/guides.ts.
-GUIDE_FILES = {
-    'agentic-economy': ('WTF is the Agentic Economy', 'wtf-is-the-agentic-economy.pdf'),
-    'ai-agent': ('WTF is an AI Agent', 'wtf-is-an-ai-agent.pdf'),
-    'api': ('WTF is an API', 'wtf-is-an-api.pdf'),
-    'llm': ('WTF is an LLM', 'wtf-is-an-llm.pdf'),
-    'polsia': ('WTF is Polsia', 'wtf-is-polsia.pdf'),
-    'openclaw': ('WTF is OpenClaw', 'wtf-is-openclaw.pdf'),
-    'paperclip': ('WTF is Paperclip', 'wtf-is-paperclip.pdf'),
-    'anthropic': ('WTF is Anthropic', 'wtf-is-anthropic.pdf'),
-    'claude': ('WTF is Claude', 'wtf-is-claude.pdf'),
-    'claude-code': ('WTF is Claude Code', 'wtf-is-claude-code.pdf'),
-    'cowork': ('WTF is Cowork', 'wtf-is-cowork.pdf'),
-    'hire-agent': ('How to Hire an AI Agent for Your Business', 'how-to-hire-an-ai-agent.pdf'),
-}
+# Guide order, titles, filenames and bundle membership all come from the
+# front-matter in guides/content/*.md — the same source the renderer uses.
+def _load_guides():
+    import yaml
+    content_dir = os.path.join(BASE, 'guides', 'content')
+    metas = []
+    for fn in sorted(os.listdir(content_dir)):
+        if fn.endswith('.md'):
+            text = open(os.path.join(content_dir, fn)).read()
+            metas.append(yaml.safe_load(text.split('---', 2)[1]))
+    metas.sort(key=lambda m: m.get('order', 999))
+    return metas
+
+
+_METAS = _load_guides()
+GUIDE_FILES = {m['slug']: (m['title'], m['file']) for m in _METAS}
+_STARTER = [m['slug'] for m in _METAS if m.get('starter')]
+_ALL = [m['slug'] for m in _METAS]
 
 BUNDLES = [
     {
@@ -51,7 +54,7 @@ BUNDLES = [
         'subtitle': 'Starter Pack',
         'blurb': 'Five guides that take you from "WTF is going on" to hiring your first agent. '
                  'No jargon. No hype. Just what is actually happening — and what to do about it.',
-        'includes': ['agentic-economy', 'ai-agent', 'llm', 'claude', 'hire-agent'],
+        'includes': _STARTER,
     },
     {
         'file': 'complete-wtf-agents-pack.pdf',
@@ -59,7 +62,7 @@ BUNDLES = [
         'subtitle': 'WTF Agents Pack',
         'blurb': 'Every WTF Agents guide in one file. The agentic economy, the platforms running it, '
                  'the AI behind it, and how to put it to work in your own business.',
-        'includes': list(GUIDE_FILES.keys()),
+        'includes': _ALL,
     },
 ]
 
