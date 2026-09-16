@@ -132,11 +132,11 @@ def _styles(cover_title_size=38):
         'ng_desc': ParagraphStyle('ng_desc', fontSize=10, leading=15, textColor=ZINC_400,
                                   fontName='Helvetica', spaceAfter=1, leftIndent=8),
         'ng_link': ParagraphStyle('ng_link', fontSize=9, leading=13, textColor=ORANGE,
-                                  fontName='Helvetica', spaceAfter=8, leftIndent=8),
+                                  fontName='Helvetica', spaceAfter=5, leftIndent=8),
         'cta_h': ParagraphStyle('cta_h', fontSize=14, leading=20, textColor=WHITE,
                                 fontName='Helvetica-Bold', spaceAfter=4),
         'cta_link': ParagraphStyle('cta_link', fontSize=11, leading=16, textColor=ORANGE,
-                                   fontName='Helvetica-Bold', spaceAfter=10),
+                                   fontName='Helvetica-Bold', spaceAfter=6),
         'qr_text': ParagraphStyle('qr_text', fontSize=10, leading=16, textColor=ZINC_300,
                                   fontName='Helvetica', spaceAfter=4),
     }
@@ -162,7 +162,7 @@ def make_qr(url):
     buf = io.BytesIO()
     img.save(buf, format='PNG')
     buf.seek(0)
-    return RLImage(buf, width=38 * mm, height=38 * mm)
+    return RLImage(buf, width=34 * mm, height=34 * mm)
 
 
 def on_page(canvas, doc):
@@ -180,6 +180,20 @@ def on_page(canvas, doc):
 
 # ── front-matter ─────────────────────────────────────────────────────────────
 FM_RE = re.compile(r'^---\s*\n(.*?)\n---\s*\n', re.S)
+
+# The closing "Go deeper" page is fixed in every respect except the five blurbs,
+# which come from the linked guides' descriptions. Long descriptions push the
+# QR block and sign-off onto a page of their own, so the length is capped.
+DESCRIPTION_MAX = 160
+
+
+def validate_description(meta):
+    desc = meta.get('description', '')
+    if len(desc) > DESCRIPTION_MAX:
+        raise ValueError(
+            f"{meta.get('slug', '?')}: description is {len(desc)} characters, "
+            f"max {DESCRIPTION_MAX}. Long descriptions overflow the closing page.")
+    return desc
 
 
 def parse_front_matter(text):
@@ -572,7 +586,7 @@ def build_closing(meta, S, metas):
     flow.append(Paragraph(cta_body(metas), S['body']))
     flow.append(Paragraph(CTA_LINK, S['cta_link']))
     flow.append(zinc_rule())
-    flow.append(Spacer(1, 6 * mm))
+    flow.append(Spacer(1, 3 * mm))
 
     qr_table = Table([[make_qr(QR_URL), Paragraph(qr_text(metas), S['qr_text'])]],
                      colWidths=[45 * mm, 115 * mm])
@@ -588,7 +602,7 @@ def build_closing(meta, S, metas):
     # footer lines, which reads as a blank final page.
     flow.append(KeepTogether([
         qr_table,
-        Spacer(1, 8 * mm),
+        Spacer(1, 4 * mm),
         zinc_rule(),
         Paragraph(linkify(FOOTER_1), S['footer_s']),
         Paragraph(FOOTER_2, S['footer_s']),
@@ -599,6 +613,7 @@ def build_closing(meta, S, metas):
 # ── entry point ──────────────────────────────────────────────────────────────
 def render(md_path, out_dir=DEFAULT_OUT, metas=None):
     meta, body = parse_front_matter(open(md_path).read())
+    validate_description(meta)
     metas = metas if metas is not None else load_all_meta()
     S = _styles(meta.get('cover_title_size', 38))
 

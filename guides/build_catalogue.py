@@ -12,6 +12,7 @@ import sys
 import yaml
 
 import bundles as BUNDLE_CONFIG
+from render import DESCRIPTION_MAX
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -37,6 +38,9 @@ def main():
         missing = [f for f in FIELDS if f not in meta]
         if missing:
             sys.exit(f'{fn}: front-matter missing {missing}')
+        if len(meta.get('description', '')) > DESCRIPTION_MAX:
+            sys.exit(f"{fn}: description is {len(meta['description'])} characters, "
+                     f"max {DESCRIPTION_MAX}")
         rows.append(meta)
 
     rows.sort(key=lambda m: m.get('order', 999))

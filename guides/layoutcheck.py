@@ -19,6 +19,7 @@ import os
 import sys
 
 import fitz
+from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -35,6 +36,38 @@ FOOTER_PREFIX = 'wtfagents.com'
 # (32/38) are also large and bold, so match the size precisely rather than
 # treating everything big as a heading.
 HEADING_SIZE_RANGE = (19.5, 20.5)
+
+# Ink coverage. Counting text spans cannot tell a full page from one carrying a
+# QR code and two grey sign-off lines: both have spans. Measuring what is
+# actually painted inside the content box can.
+BG_RGB = (9, 9, 11)        # DARK_BG #09090b
+INK_TOL = 18               # per-channel distance before a pixel counts as ink
+INK_DPI = 100
+MIN_FINAL_INK_PCT = 5.0    # the Go-deeper page measures 6-7%; a QR-only page 3.3%
+MIN_FINAL_EXTENT_PCT = 35.0  # Go-deeper reaches ~75% down the box; QR-only ~24%
+
+
+def ink_and_extent(page):
+    """(ink % of content box, how far down the box content reaches, in %)."""
+    pix = page.get_pixmap(dpi=INK_DPI)
+    img = Image.frombytes('RGB', (pix.width, pix.height), pix.samples)
+    sx, sy = pix.width / page.rect.width, pix.height / page.rect.height
+    box = img.crop((int(LEFT * sx), int(TOP * sy),
+                    int((page.rect.width - RIGHT) * sx),
+                    int((page.rect.height - BOT) * sy)))
+    w, h = box.size
+    data = box.tobytes()          # RGB triples, row-major
+    inked = 0
+    lowest = 0
+    br, bg, bb = BG_RGB
+    for i in range(0, len(data), 3):
+        if (abs(data[i] - br) > INK_TOL or abs(data[i + 1] - bg) > INK_TOL
+                or abs(data[i + 2] - bb) > INK_TOL):
+            inked += 1
+            row = (i // 3) // w
+            if row > lowest:
+                lowest = row
+    return 100.0 * inked / (w * h), 100.0 * lowest / h
 
 
 def body_spans(page, H):
@@ -120,6 +153,15 @@ def check(path):
             if not following:
                 problems.append((pno, 'ORPHANED HEADING',
                                  f'"{h["text"].strip()[:50]}" — nothing follows it on this page'))
+
+    # Final page must carry a real closing page, not a stranded fragment.
+    final = doc[len(doc) - 1]
+    ink, extent = ink_and_extent(final)
+    if ink < MIN_FINAL_INK_PCT or extent < MIN_FINAL_EXTENT_PCT:
+        problems.append((len(doc), 'SPARSE FINAL PAGE',
+                         f'ink {ink:.1f}% (min {MIN_FINAL_INK_PCT}%), '
+                         f'reaches {extent:.0f}% down the box '
+                         f'(min {MIN_FINAL_EXTENT_PCT:.0f}%)'))
 
     doc.close()
     return problems
