@@ -60,6 +60,7 @@ export default function StorePage() {
     { id: 'claude', label: '🤖 Claude & Anthropic' },
     { id: 'practical', label: '💼 Practical' },
     { id: 'map', label: '🗺️ The map' },
+    { id: 'personal', label: '📱 Personal agents' },
   ];
 
   const filtered = activeCategory === 'all' ? GUIDES : GUIDES.filter(g => g.category === activeCategory);

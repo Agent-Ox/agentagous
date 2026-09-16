@@ -13,8 +13,8 @@ backfill from the same category and then from anything remaining.
 | `ai-agent` | foundation | `agentic-economy` | `openclaw` | `api` | `hire-agent` | `llm` |
 | `api` | foundation | `ai-agent` | `llm` | `agentic-economy` | `hire-agent` | `polsia` |
 | `llm` | foundation | `ai-agent` | `claude` | `agentic-economy` | `hire-agent` | `api` |
-| `polsia` | platforms | `ai-agent` | `paperclip` | `openclaw` | `agentic-economy` | `hire-agent` |
-| `openclaw` | platforms | `paperclip` | `ai-agent` | `polsia` | `agentic-economy` | `hire-agent` |
+| `polsia` | platforms | `ai-agent` | `paperclip` | `agentic-economy` | `hire-agent` | `api` |
+| `openclaw` | personal | `paperclip` | `ai-agent` | `meta-muse` | `agentic-economy` | `hire-agent` |
 | `paperclip` | platforms | `openclaw` | `polsia` | `agentic-economy` | `hire-agent` | `ai-agent` |
 | `anthropic` | claude | `claude` | `claude-code` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude` | claude | `claude-code` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
@@ -23,3 +23,4 @@ backfill from the same category and then from anything remaining.
 | `hire-agent` | practical | `cowork` | `ai-agent` | `agentic-economy` | `api` | `llm` |
 | `whos-who` | map | `agentic-economy` | `which-ai` | `hire-agent` | `ai-agent` | `api` |
 | `which-ai` | map | `llm` | `claude` | `whos-who` | `agentic-economy` | `hire-agent` |
+| `meta-muse` | personal | `openclaw` | `which-ai` | `agentic-economy` | `hire-agent` | `ai-agent` |

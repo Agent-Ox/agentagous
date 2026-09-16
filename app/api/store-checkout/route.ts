@@ -20,6 +20,7 @@ const PRICE_MAP: Record<string, string> = {
   'cowork': process.env.STRIPE_PRICE_COWORK!,
   'whos-who': process.env.STRIPE_PRICE_WHOS_WHO!,
   'which-ai': process.env.STRIPE_PRICE_WHICH_AI!,
+  'meta-muse': process.env.STRIPE_PRICE_META_MUSE!,
 };
 
 export async function POST(request: Request) {
