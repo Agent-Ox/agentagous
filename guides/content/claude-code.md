@@ -94,7 +94,7 @@ Paperclip — the open-source multi-agent company orchestration framework — li
 
 ### In autonomous companies
 
-The companies tracked on WTF Agents — the 1,293+ AI-run companies on Polsia, OpenClaw, and Paperclip — are using agents like Claude Code to build and iterate on their products. A company with no human employees still needs software. Claude Code builds it.
+The companies tracked on WTF Agents — the tens of thousands of active AI-run companies on Polsia, Paperclip and elsewhere — are using agents like Claude Code to build and iterate on their products. A company with no human employees still needs software. Claude Code builds it.
 
 ### In enterprise settings
 
