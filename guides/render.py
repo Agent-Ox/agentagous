@@ -64,8 +64,12 @@ def _styles(cover_title_size=38):
                                      fontName='Helvetica', spaceAfter=6),
         'cover_meta': ParagraphStyle('cover_meta', fontSize=10, leading=15, textColor=ZINC_400,
                                      fontName='Helvetica', alignment=TA_LEFT),
+        # keepWithNext stops a section heading being stranded at the foot of a
+        # page. The rule that follows it carries the same flag (set in
+        # parse_body) so the pair binds to the body text, not just to each other.
         'section_heading': ParagraphStyle('section_heading', fontSize=20, leading=26, textColor=ORANGE,
-                                          fontName='Helvetica-Bold', spaceBefore=12, spaceAfter=4),
+                                          fontName='Helvetica-Bold', spaceBefore=12, spaceAfter=4,
+                                          keepWithNext=True),
         'subheading': ParagraphStyle('subheading', fontSize=13, leading=19, textColor=WHITE,
                                      fontName='Helvetica-Bold', spaceBefore=8, spaceAfter=3),
         'body': ParagraphStyle('body', fontSize=10.5, leading=17, textColor=ZINC_300,
@@ -210,7 +214,9 @@ def parse_body(body_text, S):
         if stripped.startswith('## '):
             flush()
             flow.append(Paragraph(stripped[3:].strip(), S['section_heading']))
-            flow.append(rule())
+            heading_rule = rule()
+            heading_rule.keepWithNext = 1
+            flow.append(heading_rule)
         elif stripped.startswith('### '):
             flush()
             flow.append(Paragraph(stripped[4:].strip(), S['subheading']))
@@ -226,7 +232,17 @@ def parse_body(body_text, S):
             keep = bool(m.group(1))
             widths = [float(x) * mm for x in m.group(2).replace(' ', '').split(',') if x]
             spec, cmds, rows, i = _collect_table(lines, i + 1)
-            flow.append(_build_table(spec, cmds, rows, widths, S, keep))
+            table = _build_table(spec, cmds, rows, widths, S, keep)
+            # keepWithNext does not reliably chain from a heading into a
+            # KeepTogether, so when a table follows a heading directly, bind the
+            # heading and its rule into the same block and move them together.
+            if _ends_with_heading(flow, S):
+                heading_rule = flow.pop()
+                heading = flow.pop()
+                inner = table.__dict__.get('_content', [table]) if isinstance(table, KeepTogether) else [table]
+                flow.append(KeepTogether([heading, heading_rule] + list(inner)))
+            else:
+                flow.append(table)
             continue
         elif stripped.startswith('@'):
             flush()
@@ -245,6 +261,17 @@ PALETTE = {
     'ZINC_600': ZINC_600, 'ZINC_400': ZINC_400, 'ZINC_300': ZINC_300, 'WHITE': WHITE,
     'GREEN': GREEN, 'RED': RED,
 }
+
+
+
+def _ends_with_heading(flow, S):
+    """True when the last two flowables are a section heading and its rule."""
+    if len(flow) < 2:
+        return False
+    para, hr = flow[-2], flow[-1]
+    return (isinstance(para, Paragraph)
+            and getattr(para.style, 'name', '') == 'section_heading'
+            and isinstance(hr, HRFlowable))
 
 
 def _collect_table(lines, i):
