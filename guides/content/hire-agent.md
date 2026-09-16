@@ -5,7 +5,7 @@ file: 'how-to-hire-an-ai-agent.pdf'
 cover_title: 'How to Hire an AI Agent'
 cover_subtitle: 'for Your Business'
 cover_title_size: 32
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
   A practical, jargon-free guide for business owners. No code required. No prior AI
   experience needed. Just clear steps to deploy your first AI agent this week — and start
@@ -13,13 +13,13 @@ subtitle: >-
 
 # store catalogue fields
 order: 11
-description: 'A practical, jargon-free guide for business owners who want to start using AI agents right now.'
+description: 'The practical guide. Pick the task, pick the agent, write the brief, start read-only, measure honestly. No code, no prior AI experience.'
 price: 7
 category: 'practical'
 badge: '💼 Practical'
 featured: false
-related: ['ai-agent', 'openclaw']
 starter: true
+related: ['cowork', 'ai-agent']
 ---
 ## Before you start — the right mindset
 
@@ -59,9 +59,9 @@ High-value starting points for most businesses:
 
 ## Step 2 — Choose the right type of agent
 
-Not all agents are right for all tasks. Here is a simple decision framework:
+Not all agents are right for all tasks. In 2026 the choice is simpler than it looks, because every option falls into a handful of shapes:
 
-@table keep 65,55,40
+@table keep 60,55,45
 @tcells hs-row
 @tstyle BACKGROUND 0,0 -1,0 ZINC_800
 @tstyle GRID 0,0 -1,-1 0.5 ZINC_600
@@ -69,12 +69,17 @@ Not all agents are right for all tasks. Here is a simple decision framework:
 @tstyle VALIGN 0,0 -1,-1 TOP
 @tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
 | If you want to... | Use this | Cost |
-| Launch an AI-run company with no technical setup | Polsia (polsia.com) | $50/mo + 20% revenue share |
-| Deploy a personal AI assistant that takes actions via messaging apps | OpenClaw (openclaw.ai) | Free + LLM API costs |
-| Build a multi-agent team to run a business | Paperclip (paperclip.ing) | Free (self-hosted) |
-| Automate specific business workflows without coding | Relevance AI (relevanceai.com) | Free tier available |
-| Automate repetitive tasks and connect apps | Zapier AI (zapier.com) | From $19.99/mo |
-| Build a custom agent with full control | Anthropic API + Claude | Pay per token |
+| Delegate work inside your own files, inbox, calendar and apps | Cowork (Anthropic), ChatGPT Work (OpenAI), Copilot Cowork (Microsoft 365) | From $20/mo, included in the paid plan |
+| Run a team of agents with their own computers and logins | Grok Bot (xAI) | Subscription |
+| Have a personal agent you message like a colleague | OpenClaw (open-source), Meta Muse | Free + model costs; Muse has a free tier |
+| Let agents build and run a whole company for you | Polsia, NanoCorp, Cofounder.co | From $20/mo + fees (Polsia) |
+| Run several agents as an org chart you control | Paperclip (self-hosted) | Free + model costs |
+| Connect apps and automate defined workflows | Zapier, n8n | From ~$20/mo; n8n is open-source |
+| Build a custom agent with full control | Claude Developer Platform / Agent SDK | Pay per token |
+
+@spacer 3
+
+For a first agent, the top row is almost always the answer. A work agent on a plan you already have, pointed at one folder and one task, is the lowest-risk way to learn what this is actually like.
 
 @spacer 4
 
@@ -125,27 +130,29 @@ Review these metrics weekly for the first month. If the agent is not delivering 
 
 @spacer 4
 
-## Real examples — what businesses are doing right now
+## Five deployments that work — and what to expect
 
-### E-commerce store (5 employees)
+These are the patterns that come up again and again among small businesses that get value from a first agent. Results vary; the shape of the win does not.
 
-Deployed an agent to handle first-line customer support emails. The agent categorises enquiries, drafts replies using approved templates, and flags unusual requests for human review. Result: response time dropped from 6 hours to 20 minutes. 80% of emails handled without human involvement.
+### First-line customer support
 
-### Marketing agency (12 employees)
+An agent reads incoming support emails, categorises them, drafts replies from approved templates, and flags anything unusual for a human. The win is response time — hours become minutes — and a majority of routine emails handled without anyone touching them. The risk is a confident wrong answer, which is why replies are drafted for approval before they are sent unsupervised.
 
-Deployed an agent to research clients' industries and draft weekly content calendars. Copywriters now spend time on strategy and editing, not research. Result: capacity increased 40% without additional headcount.
+### Research and content preparation
 
-### Accounting firm (3 partners)
+An agent researches a client's industry each week and drafts a content calendar, a briefing or a first draft. Writers spend their time on strategy and editing instead of gathering. The win is capacity without headcount.
 
-Deployed an agent to summarise client emails and draft responses for partner review. Result: 2 hours per day saved per partner. Used the time to take on 3 additional clients.
+### Inbox triage for partners and owners
 
-### Solo consultant
+An agent summarises the day's email, drafts responses for review, and surfaces what needs a decision. Owners consistently report an hour or two a day back. The risk is the agent guessing at tone on a sensitive thread; keep it drafting, not sending, for those.
 
-Deployed OpenClaw as a personal assistant — briefing it via Telegram with research tasks, email drafts, and document summaries. Cost: approximately $30/month in LLM API costs. Time saved: 10+ hours per week.
+### The solo operator's assistant
 
-### SaaS startup (8 people)
+A personal agent — OpenClaw over WhatsApp or Telegram, or Cowork on the desktop — briefed with research tasks, email drafts, document summaries and admin. Typical cost is tens of dollars a month in model usage. This is the deployment most one-person businesses start with.
 
-Deployed Claude Code to handle routine bug fixes and feature requests. Senior engineers now focus on architecture and complex problems. Result: shipped 3x more features in Q1 2026 with the same team.
+### Routine engineering
+
+Claude Code or Codex handling bug fixes, small features and tests, with senior people on architecture and review. Teams that do this well ship considerably more with the same headcount. Teams that skip the review step ship considerably more bugs.
 
 @spacer 4
 
@@ -161,16 +168,18 @@ AI agents are significantly cheaper than human employees. But they are not free.
 @tstyle VALIGN 0,0 -1,-1 TOP
 @tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
 | Agent type | Monthly cost (approx) | What drives the cost |
-| Polsia company | $50/mo + 20% revenue | Flat fee plus revenue share |
-| OpenClaw (personal) | $20-100/mo | Anthropic or OpenAI API usage |
-| Relevance AI | $0-299/mo | Free tier to enterprise plans |
-| Zapier AI | $20-100/mo | Task volume and plan tier |
-| Custom Claude agent | $50-500/mo | Token usage — depends heavily on task volume |
-| Claude Code | $100-500/mo | API token usage — intensive for large codebases |
+| Cowork / ChatGPT Work | $20–200/mo | Your Claude or ChatGPT plan; heavy use needs the higher tier |
+| Copilot Cowork | $30/user/mo | Add-on to Microsoft 365 |
+| OpenClaw (personal) | $20–100/mo | Model API usage — Claude, GPT or a cheaper open model |
+| Polsia company | $20–1,000/mo + fees | Plan tier, credits, 20% on ad spend, 3% on revenue |
+| Paperclip org | $0 + model usage | Free software; each agent's model bill |
+| Zapier / n8n automation | $0–100/mo | Task volume and plan tier |
+| Custom Claude agent | $50–500/mo | Token usage — depends heavily on task volume |
+| Claude Code | $20–200/mo | Included in Claude Pro/Max; API if you go beyond |
 
 @spacer 3
 
-For context: a part-time human assistant in the US costs $2,000–3,500/month. A full-time junior employee costs $45,000–60,000/year. An agent handling equivalent work costs $50–500/month. The economics are not subtle.
+For context: a part-time human assistant in the US costs $2,000–3,500/month. A full-time junior employee costs $45,000–60,000/year. An agent handling equivalent work costs $50–500/month. The economics are not subtle — and they are the reason the Agentic Economy guide spends a section on what that means for jobs.
 
 @spacer 4
 
@@ -208,7 +217,7 @@ The businesses that deploy agents most successfully are the ones that are clear-
 
 @spacer 4
 
-@body_lead The businesses that win with AI agents in 2026 are not the ones with the biggest budgets or the most technical teams. They are the ones that start now, learn fast, and iterate.
+@body_lead The businesses that win with AI agents are not the ones with the biggest budgets or the most technical teams. They are the ones that start now, learn fast, and iterate.
 
 @spacer 4
 
@@ -218,19 +227,21 @@ The businesses that deploy agents most successfully are the ones that are clear-
 
 @gl <b>Human-in-the-loop</b> — A deployment mode where an agent produces outputs but a human reviews and approves before actions are taken.
 
-@gl <b>Polsia</b> — A managed platform where AI agents build and run companies. $50/mo + 20% revenue share.
+@gl <b>Polsia</b> — A managed platform where AI agents build and run companies. From $20/mo plus credits and fees; see its own guide.
 
 @gl <b>OpenClaw</b> — Free, open-source personal AI agent. Runs locally, takes instructions via messaging apps.
 
 @gl <b>Paperclip</b> — Open-source multi-agent orchestration framework for running businesses with teams of AI agents.
 
-@gl <b>Relevance AI</b> — No-code/low-code platform for building AI agents for specific business workflows. $37M raised.
+@gl <b>Cowork</b> — Anthropic's work agent: delegates tasks across your files, apps and browser. Included in every paid Claude plan.
 
-@gl <b>Zapier AI</b> — Major automation platform with AI agent capabilities. Connects thousands of apps.
+@gl <b>ChatGPT Work</b> — OpenAI's work agent: give it an outcome, it returns finished spreadsheets, decks and apps.
+
+@gl <b>Zapier / n8n</b> — Automation platforms that connect apps and run defined workflows, now with agent steps. n8n is open-source and self-hostable.
 
 @gl <b>Claude</b> — Anthropic's AI model. Powers OpenClaw, Claude Code, and many business agent deployments.
 
-@gl <b>API key</b> — Your credential for accessing an AI model's API. Required for OpenClaw, Claude Code, and custom builds.
+@gl <b>API key</b> — Your credential for accessing an AI model's API. Required for OpenClaw, Paperclip and custom builds; Claude Code and Cowork run on your Claude plan instead.
 
 @gl <b>Token</b> — The unit AI models use to process text. You pay for API usage in tokens. Roughly 0.75 words per token.
 

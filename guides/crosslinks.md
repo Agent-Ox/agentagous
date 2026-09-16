@@ -20,4 +20,4 @@ backfill from the same category and then from anything remaining.
 | `claude` | claude | `claude-code` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude-code` | claude | `claude` | `cowork` | `anthropic` | `agentic-economy` | `hire-agent` |
 | `cowork` | claude | `claude-code` | `hire-agent` | `anthropic` | `agentic-economy` | `claude` |
-| `hire-agent` | practical | `ai-agent` | `openclaw` | `agentic-economy` | `api` | `llm` |
+| `hire-agent` | practical | `cowork` | `ai-agent` | `agentic-economy` | `api` | `llm` |

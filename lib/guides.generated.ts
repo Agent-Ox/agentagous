@@ -16,7 +16,7 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'claude', title: 'WTF is Claude', description: 'Anthropic\'s AI model. The family, the new Fable and Mythos tier, what it can do, and why it powers so many agents — including rivals\' products.', price: 7, badge: null, featured: false, category: 'claude', file: 'wtf-is-claude.pdf', starter: true },
   { slug: 'claude-code', title: 'WTF is Claude Code', description: 'The autonomous developer that changed Anthropic\'s trajectory. How it works, how it compares, and how non-developers are using it now.', price: 7, badge: null, featured: false, category: 'claude', file: 'wtf-is-claude-code.pdf', starter: false },
   { slug: 'cowork', title: 'WTF is Cowork', description: 'Claude Code was for developers. Cowork is for everyone else. What it does, what it costs, and how it changed the work-agent market.', price: 7, badge: null, featured: false, category: 'claude', file: 'wtf-is-cowork.pdf', starter: false },
-  { slug: 'hire-agent', title: 'How to Hire an AI Agent for Your Business', description: 'A practical, jargon-free guide for business owners who want to start using AI agents right now.', price: 7, badge: '💼 Practical', featured: false, category: 'practical', file: 'how-to-hire-an-ai-agent.pdf', starter: true },
+  { slug: 'hire-agent', title: 'How to Hire an AI Agent for Your Business', description: 'The practical guide. Pick the task, pick the agent, write the brief, start read-only, measure honestly. No code, no prior AI experience.', price: 7, badge: '💼 Practical', featured: false, category: 'practical', file: 'how-to-hire-an-ai-agent.pdf', starter: true },
 ];
 
 import type { Bundle } from './guides';
