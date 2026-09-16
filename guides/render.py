@@ -23,6 +23,7 @@ import yaml
 import qrcode
 
 import bundles as BUNDLE_CONFIG
+from linkify import href, link_footer, linkify
 from reportlab.lib import colors
 from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
@@ -169,8 +170,9 @@ def on_page(canvas, doc):
     canvas.setFillColor(ORANGE)
     canvas.rect(0, H - 3, W, 3, fill=1, stroke=0)
     canvas.setFillColor(ZINC_600)
-    canvas.setFont('Helvetica', 8)
-    canvas.drawCentredString(W / 2, 8 * mm, f'wtfagents.com  ·  Page {doc.page}  ·  © 2026 WTF Agents')
+    canvas.setStrokeColor(ZINC_600)
+    link_footer(canvas, f'wtfagents.com  ·  Page {doc.page}  ·  © 2026 WTF Agents',
+                W / 2, 8 * mm)
     canvas.restoreState()
 
 
@@ -451,8 +453,8 @@ def build_cover(meta, S):
     flow += [Paragraph(meta['subtitle'].strip(), S['cover_desc']),
              Spacer(1, 32 * mm),
              zinc_rule(),
-             Paragraph(meta.get('cover_meta', 'WTF Agents · wtfagents.com'), S['cover_meta']),
-             Paragraph('Part of the WTF Agents Guide Series · wtfagents.com/store', S['small']),
+             Paragraph(linkify(meta.get('cover_meta', 'WTF Agents · wtfagents.com')), S['cover_meta']),
+             Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com/store'), S['small']),
              PageBreak()]
     return flow
 
@@ -471,10 +473,11 @@ def _prices(metas):
 
 def qr_text(metas):
     single, starter, complete = _prices(metas)
-    return ('<b>Scan to browse all guides</b>\n\nEvery WTF Agents guide at wtfagents.com/store\n\n'
-            f'${single} each · Starter Pack ${starter} · Complete Pack ${complete} — '
-            'every guide in the series\n\n'
-            'Also free: the live AI company directory at wtfagents.com/companies')
+    return linkify(
+        '<b>Scan to browse all guides</b>\n\nEvery WTF Agents guide at wtfagents.com/store\n\n'
+        f'${single} each · Starter Pack ${starter} · Complete Pack ${complete} — '
+        'every guide in the series\n\n'
+        'Also free: the live AI company directory at wtfagents.com/companies')
 
 
 def cta_body(metas):
@@ -491,7 +494,8 @@ def build_closing(meta, S, metas):
     flow = []
     for target in compute_crosslinks(meta['slug'], metas):
         t = metas[target]
-        flow.append(Paragraph(f"<b>{t['title']}</b>", S['ng_title']))
+        flow.append(Paragraph(
+            f'<link href="{href(STORE_URL)}"><b>{t["title"]}</b></link>', S['ng_title']))
         flow.append(Paragraph(t['description'], S['ng_desc']))
         flow.append(Paragraph(
             f'<link href="https://{STORE_URL}" color="#f97316">{STORE_URL}</link>', S['ng_link']))
@@ -516,7 +520,7 @@ def build_closing(meta, S, metas):
     flow.append(qr_table)
     flow.append(Spacer(1, 8 * mm))
     flow.append(zinc_rule())
-    flow.append(Paragraph(FOOTER_1, S['footer_s']))
+    flow.append(Paragraph(linkify(FOOTER_1), S['footer_s']))
     flow.append(Paragraph(FOOTER_2, S['footer_s']))
     return flow
 

@@ -19,6 +19,7 @@ from reportlab.platypus import HRFlowable, Paragraph, SimpleDocTemplate, Spacer
 BASE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(BASE, 'guides'))
 import bundles as _BUNDLE_CONFIG  # noqa: E402
+from linkify import link_footer, linkify  # noqa: E402
 GUIDES_DIR = os.path.join(BASE, 'public', 'guides')
 
 # Same palette as generate_guide_*.py
@@ -68,8 +69,8 @@ def on_page(canvas, doc):
     canvas.setFillColor(ORANGE)
     canvas.rect(0, H - 3, W, 3, fill=1, stroke=0)
     canvas.setFillColor(ZINC_600)
-    canvas.setFont('Helvetica', 8)
-    canvas.drawCentredString(W / 2, 8 * mm, 'wtfagents.com  ·  © 2026 WTF Agents')
+    canvas.setStrokeColor(ZINC_600)
+    link_footer(canvas, 'wtfagents.com  ·  © 2026 WTF Agents', W / 2, 8 * mm)
     canvas.restoreState()
 
 
@@ -116,8 +117,8 @@ def build_cover(bundle):
     story += [
         Spacer(1, 12 * mm),
         HRFlowable(width='100%', thickness=1, color=HexColor('#27272a'), spaceBefore=2, spaceAfter=2),
-        Paragraph('WTF Agents · wtfagents.com', cover_meta),
-        Paragraph('Part of the WTF Agents Guide Series · wtfagents.com/store', small),
+        Paragraph(linkify('WTF Agents · wtfagents.com'), cover_meta),
+        Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com/store'), small),
     ]
     doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
     buf.seek(0)
