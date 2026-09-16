@@ -55,6 +55,18 @@ def body_spans(page, H):
 WARN_KINDS = {'ORPHANED HEADING'}
 
 
+# The closing sign-off lines. A page carrying these and nothing else is blank in
+# practice: two 8.5pt grey lines at the top of an otherwise empty sheet.
+CLOSING_FOOTER = ('WTF Agents \u00b7 wtfagents.com \u00b7', '\u00a9 2026 WTF Agents')
+
+
+def effectively_blank(spans):
+    """True when a page has no body text, or only the closing sign-off."""
+    if not spans:
+        return True
+    return all(sp['text'].strip().startswith(CLOSING_FOOTER) for sp in spans)
+
+
 def check(path):
     doc = fitz.open(path)
     W, H = doc[0].rect.width, doc[0].rect.height
@@ -64,8 +76,10 @@ def check(path):
     for pno, page in enumerate(doc, 1):
         spans = body_spans(page, H)
 
-        if not spans:
-            problems.append((pno, 'BLANK PAGE', 'no body text on this page'))
+        if effectively_blank(spans):
+            detail = ('no body text on this page' if not spans
+                      else 'only the closing sign-off on this page')
+            problems.append((pno, 'BLANK PAGE', detail))
             continue
 
         for sp in spans:

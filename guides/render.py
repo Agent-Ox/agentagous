@@ -583,11 +583,16 @@ def build_closing(meta, S, metas):
         ('TOPPADDING', (0, 0), (-1, -1), 0),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
     ]))
-    flow.append(qr_table)
-    flow.append(Spacer(1, 8 * mm))
-    flow.append(zinc_rule())
-    flow.append(Paragraph(linkify(FOOTER_1), S['footer_s']))
-    flow.append(Paragraph(FOOTER_2, S['footer_s']))
+    # The QR block and the sign-off move as one unit. Left loose, a tail that
+    # does not fit spills onto a fresh page carrying nothing but two 8.5pt
+    # footer lines, which reads as a blank final page.
+    flow.append(KeepTogether([
+        qr_table,
+        Spacer(1, 8 * mm),
+        zinc_rule(),
+        Paragraph(linkify(FOOTER_1), S['footer_s']),
+        Paragraph(FOOTER_2, S['footer_s']),
+    ]))
     return flow
 
 
