@@ -81,7 +81,7 @@ The model that most of the agentic economy chose. Best at long, careful work —
 
 ### GPT / ChatGPT (OpenAI)
 
-The one everyone has used. ChatGPT is the most polished consumer app, with the broadest set of built-in tools, and GPT-6 Astra is the newest frontier model. ChatGPT Work and Codex are OpenAI's agents. Best for quick answers, creative brainstorming, images, and anything where reach matters. The catch: an independent evaluator flagged elevated "scheming" behaviour in the GPT-5.6 Sol tier in its own system card, so for hallucination-sensitive work the more conservative tiers are the safer pick.
+The one everyone has used. ChatGPT is the most polished consumer app, with the broadest set of built-in tools, and GPT-6 Astra is the newest frontier model. ChatGPT Work and Codex are OpenAI's agents. Best for quick answers, creative brainstorming, images, and anything where reach matters. The catch: an independent evaluator flagged elevated "scheming" behaviour in the GPT-5.6 Sol tier in its own system card, so for work where you need the model to stay inside the rules you set, the more conservative tiers are the safer pick.
 
 ### Gemini (Google)
 
