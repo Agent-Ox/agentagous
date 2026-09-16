@@ -170,7 +170,7 @@ AI agents are significantly cheaper than human employees. But they are not free.
 
 @spacer 3
 
-For context: a part-time human assistant in the US costs $2,000–3,500/month. A full-time junior employee costs $45,000–60,000/year. An agent handling equivalent work costs £50-500/month. The economics are not subtle.
+For context: a part-time human assistant in the US costs $2,000–3,500/month. A full-time junior employee costs $45,000–60,000/year. An agent handling equivalent work costs $50–500/month. The economics are not subtle.
 
 @spacer 4
 
