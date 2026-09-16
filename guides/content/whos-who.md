@@ -128,7 +128,7 @@ Agents that run whole businesses, and the tools that manage teams of agents.
 
 @role <b>Paperclip</b> — Open-source org chart for agents: roles, budgets, approvals, any agent vendor, self-hosted. ClipMart is its marketplace of forkable company templates. Guide: WTF is Paperclip.
 
-@role <b>Salesforce Agentforce</b> — The enterprise incumbent's agent platform, priced per conversation, past a billion dollars in annual revenue, with tens of thousands of deals closed.
+@role <b>Salesforce Agentforce</b> — The enterprise incumbent's agent platform, priced per conversation, past a billion dollars in annual revenue.
 
 @role <b>ServiceNow AI Control Tower</b> — Governed agents for IT and HR workflows; AI contract value past a billion dollars.
 
