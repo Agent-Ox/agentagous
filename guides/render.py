@@ -140,6 +140,8 @@ def _styles(cover_title_size=38):
         'qr_text': ParagraphStyle('qr_text', fontSize=10, leading=16, textColor=ZINC_300,
                                   fontName='Helvetica', spaceAfter=4),
     }
+    # @fit is an alias for @role: same styling, different semantic name in content.
+    s['fit'] = s['role']
     return s
 
 

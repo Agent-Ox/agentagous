@@ -4,179 +4,172 @@ title: 'WTF is Paperclip'
 file: 'wtf-is-paperclip.pdf'
 cover_title: 'WTF is'
 cover_subtitle: 'Paperclip?'
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
-  If OpenClaw is a single AI employee and Polsia is a managed company service, Paperclip
-  is the org chart. The open-source framework for running entire companies with teams of
-  AI agents — each with a role, a set of tools, and a goal.
+  An org chart for AI agents. Roles, reporting lines, budgets and approvals — for a team
+  where nobody is human. Open-source, self-hosted, and quietly becoming the way people
+  actually run more than one agent at a time.
 
 # store catalogue fields
 order: 6
-description: 'Org charts for AI agents. Teams of agents, not one.'
+description: 'The open-source app for managing a team of AI agents like a company: org chart, budgets, approvals. What it is, what it is not, and who should run it.'
 price: 7
 category: 'platforms'
-badge: null
+badge: '🧑‍💼 Agent teams'
 featured: false
-relatedTool: 'paperclip'
-related: ['openclaw', 'claude']
 starter: false
+related: ['openclaw', 'polsia']
 ---
 ## The one-liner
 
-@body_lead Paperclip is an open-source orchestration framework that lets you build a multi-agent "company org chart" — assigning roles, workflows, and goals across multiple AI agents that coordinate together to run a business.
+@body_lead Paperclip is open-source software that lets you run AI agents the way a company runs employees: an org chart with roles and reporting lines, a budget for each agent, tasks that flow down and results that flow up, and a human at the top who approves what matters.
 
-Tagline: "Any agent, any runtime, one org chart."
-
-It is not a managed service like Polsia. It is not a single personal agent like OpenClaw. It is infrastructure — the coordination layer that sits above individual agents and makes them work as a team.
+Its own tagline has softened since launch — from "zero-human companies" to "the app people use to manage AI agents for work" — but the idea is the same. Once you have more than one agent, you need a way to manage them. Paperclip is that way.
 
 @spacer 4
 
-## The key insight — agents need coordination
+## By the numbers — September 2026
 
-Running a company — even a small one — requires multiple types of work happening simultaneously. A developer building the product. A marketer generating leads. A support agent handling customers. A finance agent tracking revenue.
+@stat 4 March || 2026: public launch. Under three weeks to 30,000 GitHub stars
+@stat ~70,000 || GitHub stars by June, among the fastest-growing agent projects ever released
+@stat 100+ || contributors; releases roughly every two weeks, the latest on 2 September
+@stat 8 || agent types it can hire out of the box: Claude Code, Codex, Gemini CLI, Cursor, Hermes, OpenClaw, Pi, OpenCode
+@stat $0 || cost of the software. MIT licence. You pay only for the agents' model usage
+@stat ~60 || forkable company templates on ClipMart, Paperclip's marketplace
+@stat 0 || disclosed funding rounds. Built by a pseudonymous developer, "dotta," and a community
 
-A single AI agent can do any one of these things. But coordinating all of them — making sure the developer knows what the marketer is promising, that the support agent knows what the product can do, that the finance agent tracks what the sales agent closes — requires something more than a single agent.
+@spacer 4
 
-@body_lead That is what Paperclip does. It gives each agent a role, connects them, and coordinates their work toward a shared goal.
+## The problem it solves
+
+One agent is easy. You open Claude Code, or OpenClaw, or Cowork, and you talk to it.
+
+Five agents are chaos. Five terminal windows. Five separate memories that do not know what the others have done. Two of them doing the same task. One of them stuck since Tuesday. No idea what any of it is costing. Nobody enforcing quality. This is what most people hit within a week of trying to run a business on agents, and it is why so many "AI-run company" experiments end as a pile of abandoned sessions.
+
+@body_lead Paperclip's answer is to stop treating agents as tools you operate and start treating them as staff you manage.
 
 @spacer 4
 
 ## How it works
 
-Paperclip is built on Node.js with a React UI. You self-host it — it runs on your own machine or server.
+You install Paperclip on your own machine or server. It runs a local web dashboard. In it, you create a company.
 
-### The org chart model
+### Hire agents into roles
 
-You define your company as an org chart. Each node in the chart is an agent with:
+Each agent gets a job title, a reporting line and a written brief. "Marketing lead, reports to CEO." "Backend engineer, reports to CTO." The CEO can itself be an agent, with you above it as the board.
 
-- → A role (CEO, Marketing Lead, Developer, Support Agent)
-- → A set of tools (web browser, code editor, email, database access)
-- → A goal (grow revenue, ship features, resolve tickets)
-- → Reporting lines (which agents it coordinates with)
+Paperclip is agent-agnostic. Its own phrase: "If it can receive a heartbeat, it's hired." Claude Code for engineering, Codex or Gemini CLI for other tasks, Hermes for research, OpenClaw for anything that needs a personal agent's tools, all under one org chart, each on whichever model suits the job and the budget.
+
+### Work flows as issues
+
+Tasks are tickets, like a Jira or Linear board. A goal goes in at the top; the CEO agent breaks it into issues and assigns them down the chart. Agents pick up their issues, do the work, comment on the thread, hand off, and close. Parent and child tasks, dependencies and blockers are all tracked, and an agent that is blocked wakes the agent that can unblock it.
+
+### Heartbeats keep it alive
+
+Each agent runs on a schedule, a "heartbeat." Every tick it checks its inbox, does the next thing, and reports. Watchdogs review tasks that have stalled so you do not have to. It runs while you sleep, but on a leash.
+
+### Budgets and approvals
+
+Every agent has a spending cap. Anything sensitive — a payment, a deploy, a public post — can be gated behind human approval, and approvals sit in one queue. Execution policies define what an agent may do without asking. You set the leash length.
+
+### Teams, sandboxes, plugins
+
+Since summer 2026 Paperclip supports multiple human users with their own credentials, a company-wide timeline of what every agent did and when, isolated sandbox environments for agents to work in, a plugin system for adding new agent types, and an MCP server so other tools can drive Paperclip itself.
+
+@spacer 4
+
+## Paperclip vs Polsia vs OpenClaw
+
+These three get confused constantly. They are different layers.
+
+@table keep 34,42,42,42
+@tcells hs-row+col
+@tstyle BACKGROUND 0,0 -1,0 ZINC_800
+@tstyle BACKGROUND 0,1 0,-1 ZINC_900
+@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
+@tstyle PADDING 0,0 -1,-1 8
+@tstyle VALIGN 0,0 -1,-1 TOP
+@tstyle ROWBACKGROUNDS 1,1 -1,-1 [DARK_BG,ZINC_900]
+|  | Paperclip | Polsia | OpenClaw |
+| What it is | Manager for a team of agents | Platform that runs a company for you | A single personal agent |
+| Who hosts it | You | Polsia | You |
+| Cost | Free + model usage | $20–1,000/mo + fees | Free + model usage |
+| Who picks the agents | You, any vendor | Polsia's fixed team | It is the agent |
+| Control | Full — code, data, budgets | Limited — their infra, their fees | Full |
+| Effort | High: setup and management | Low: subscribe and read reports | Medium |
+
+@spacer 4
+
+Polsia is the managed hotel. Paperclip is the house you build and run. OpenClaw is one very capable employee, who can also be hired into a Paperclip org.
+
+@spacer 4
+
+## ClipMart — fork a company
+
+At launch Paperclip announced ClipMart, a marketplace for AI-agent companies. It has since shipped at clipmart.ai, and the pitch is "fork an AI company, launch in 60 seconds."
+
+Instead of designing an org chart from scratch, you pick a template — a marketing agency, a SaaS startup, an e-commerce store, a media company — and fork it into your own Paperclip. The template comes with the roles, the briefs, the reporting lines and an estimate of how many agents it runs and what they cost. Around sixty templates across marketing, SaaS, e-commerce, agency, media and finance were listed at time of writing, and anyone can submit their own.
+
+Two things worth knowing. Forking a company is not the same as having customers, which is the trap in every "launch in 60 seconds" pitch in this series. And a template is only as good as the briefs inside it; read them before you hire.
+
+@spacer 4
+
+## The reality check
+
+@body_lead Paperclip is the most serious open-source answer to "how do I run more than one agent," and it is not a product for people who want a button.
+
+### What is genuinely good
+
+- → The org-chart model works. People who use it describe the mental shift from "prompting an AI" to "managing a team," and that shift is the point.
+- → Agent-agnostic for real. Mix Claude, OpenAI, Google and open models by role and cost.
+- → Governance is built in, not bolted on: budgets, approvals, execution policies, audit timeline.
+- → It builds itself. The creator runs Paperclip's own development through a Paperclip company, and the release cadence backs that up.
+- → No lock-in, no account, no vendor. Your data and code stay on your machine.
 @spacer 3
 
-### The runtime
+### What is not
 
-Paperclip is "runtime agnostic" — it does not care which AI agents or tools you use. You can plug in Claude Code for development, OpenClaw for communications, Cursor for code editing, and any other MCP-compatible tool. The framework coordinates them regardless of origin.
-
-### Supported agents and tools
-
-From the Paperclip GitHub release notes:
-
-- → Claude Code (Anthropic)
-- → OpenClaw
-- → Cursor (AI code editor)
-- → OpenCode
-- → Codex (OpenAI)
-- → Pi (Inflection AI)
-@spacer 4
-
-## ClipMart — the killer feature coming soon
-
-@body_lead The most anticipated feature in Paperclip is ClipMart — a marketplace listed as "COMING SOON" on the GitHub repository as of March 2026.
-
-The description from the GitHub README:
-
-@quote "Download and run entire companies with one click. Browse pre-built company templates — full org structures, agent configs, and skills — and import them into your Paperclip instance in seconds."
-
-If ClipMart delivers on this promise, it means you will be able to download a pre-built "roofing company" or "content agency" or "SaaS analytics tool" — complete with the full agent org chart, configured tools, and pre-written workflows — and be running it within minutes.
-
-This would make Paperclip the most powerful self-hosted alternative to Polsia — with the added advantage of owning everything yourself and paying no revenue share.
+- → Self-hosted means you host it. A server, PostgreSQL, Node.js, and you doing the updates. A hosted cloud version has been on the roadmap all year and had not launched at time of writing.
+- → The agents are only as good as their briefs. Paperclip organises work; it does not make an agent competent at it.
+- → No disclosed team, funding or company behind it beyond a pseudonym and a community. That is how great open-source projects start and also how some stall.
+- → It is a control plane, not a business. Nothing about Paperclip finds customers. See the Polsia guide for how that usually goes.
+@spacer 3
 
 @spacer 4
 
-## The GitHub story
+## Who Paperclip is for
 
-@body_lead Paperclip accumulated 13,500 GitHub stars within days of its open-source launch — a remarkable velocity that signals significant developer interest.
+@fit <b>Yes</b> — Founders and operators already running two or more agents who are losing track. Developers comfortable with a terminal and a server. Anyone who wants to own the whole stack rather than rent it.
 
-The founder of Paperclip has not been publicly identified in available press as of March 2026. The project is listed under the "paperclipai" GitHub organisation. This anonymity is unusual for a project of this scale — but not unprecedented in the open-source world.
+@fit <b>Not yet</b> — Anyone who has not run a single agent successfully. Start with OpenClaw or Cowork, get one thing working, then come back.
 
-Active releases are available on GitHub at github.com/paperclipai/paperclip. The community is growing. The codebase is being actively maintained.
-
-@spacer 4
-
-## Paperclip vs OpenClaw vs Polsia
-
-@table 33,47,42,45
-@tcells raw
-@tstyle BACKGROUND 0,0 -1,0 ZINC_800
-@tstyle BACKGROUND 0,0 0,-1 ZINC_800
-@tstyle TEXTCOLOR 0,0 -1,0 ORANGE
-@tstyle TEXTCOLOR 0,0 0,-1 ORANGE
-@tstyle FONTNAME 0,0 -1,0 Helvetica-Bold
-@tstyle FONTNAME 0,0 0,-1 Helvetica-Bold
-@tstyle TEXTCOLOR 1,1 -1,-1 ZINC_300
-@tstyle FONTNAME 1,1 -1,-1 Helvetica
-@tstyle FONTSIZE 0,0 -1,-1 8.5
-@tstyle LEADING 0,0 -1,-1 13
-@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
-@tstyle PADDING 0,0 -1,-1 5
-@tstyle VALIGN 0,0 -1,-1 TOP
-@tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
-|  | Paperclip | OpenClaw | Polsia |
-| What it is | Multi-agent orchestration framework | Personal AI agent | Managed company platform |
-| Runs where | Your servers (self-hosted) | Your machine | Polsia's servers |
-| Cost | Free (open source) | Free (+ LLM costs) | $50/mo + 20% revenue |
-| Number of agents | Many (org chart) | One | Many (managed) |
-| Technical level | High (developer) | Medium (CLI) | Low (no-code) |
-| Best for | Building multi-agent companies | Personal automation | Quick company launch |
-| Open source | Yes | Yes (MIT) | No |
-
-@spacer 4
-
-## Who is Paperclip for?
-
-### Developers building AI-native companies
-
-If you are technical and want to build something real — not a demo, not a prototype — Paperclip gives you the infrastructure to coordinate multiple agents at production scale. You own everything. You pay no revenue share. You have full control.
-
-### Founders who want to move fast
-
-Once ClipMart launches, Paperclip becomes accessible to non-developers — download a company template, configure it, run it. The technical barrier drops significantly.
-
-### Enterprises building custom agent workflows
-
-Paperclip's "any agent, any runtime" philosophy makes it attractive for enterprises that want to build on their existing tools — connecting existing Claude Code deployments, OpenClaw agents, and custom tools into a coordinated system.
-
-### Not for:
-
-Complete beginners who want a no-code solution right now. For that, Polsia is the better starting point.
-
-@spacer 4
-
-## The bigger picture — orchestration is the next battleground
-
-@body_lead As AI agents become more capable, the question shifts from "can an agent do this task?" to "how do you coordinate many agents doing many tasks?"
-
-Paperclip is not alone in this space. CrewAI and LangGraph are the dominant open-source orchestration frameworks in the broader developer community. Google's Agent Development Kit (ADK) is the enterprise entry. Salesforce Agentforce is the CRM-native approach.
-
-What makes Paperclip interesting is its focus on the specific use case of running companies — not just workflows. The org chart metaphor is intuitive, ClipMart has genuine viral potential, and the open-source community is active.
-
-Watch this space. Paperclip launched in March 2026 with 13,500 GitHub stars in days. By the time you read this, the numbers will be higher.
+@fit <b>No</b> — Anyone who wants "AI runs my business" as a subscription with no setup. That is Polsia, with all the trade-offs in that guide.
 
 @spacer 4
 
 ## Glossary
 
-@gl <b>Paperclip</b> — Open-source multi-agent orchestration framework. Build and run companies with teams of AI agents. Self-hosted.
+@gl <b>Paperclip</b> — Open-source, self-hosted software for managing AI agents as an org chart with roles, budgets and approvals. Launched March 2026.
 
-@gl <b>Orchestration</b> — The coordination of multiple AI agents working together — assigning roles, managing communication, directing toward shared goals.
+@gl <b>Orchestration</b> — Coordinating multiple agents so they work together without duplication or chaos. What Paperclip does.
 
-@gl <b>ClipMart</b> — Paperclip's upcoming marketplace for pre-built company templates. Download and run an entire AI company with one click.
+@gl <b>Control plane</b> — The layer that manages and governs agents, as opposed to the agents themselves. Paperclip's own description of its role.
 
-@gl <b>Org chart model</b> — Paperclip's approach: each agent is a node in a company org chart with a defined role, tools, and reporting lines.
+@gl <b>Heartbeat</b> — The scheduled tick on which an agent checks for work and acts. Any agent that can receive one can be hired into Paperclip.
 
-@gl <b>Runtime agnostic</b> — Paperclip works with any AI agent or tool — it does not require a specific LLM or agent platform.
+@gl <b>Adapter</b> — The connector that lets a particular agent type (Claude Code, Codex, OpenClaw…) work inside Paperclip.
 
-@gl <b>Self-hosted</b> — Software you run on your own servers, as opposed to a managed service run by the provider.
+@gl <b>Issue</b> — A unit of work on the board: assigned, threaded, tracked, closed. Paperclip's equivalent of a task or ticket.
 
-@gl <b>CrewAI</b> — A competing open-source multi-agent orchestration framework, widely used in the developer community.
+@gl <b>Execution policy</b> — The rules for what an agent may do without human approval.
 
-@gl <b>LangGraph</b> — The advanced version of LangChain for building stateful, multi-agent workflows. A major competitor to Paperclip.
+@gl <b>Watchdog</b> — An automated check that reviews stalled tasks and wakes or escalates them.
 
-@gl <b>Node.js</b> — The JavaScript runtime that Paperclip's server is built on.
+@gl <b>ClipMart</b> — Paperclip's marketplace of forkable AI-company templates at clipmart.ai. Pick a template, launch it into your own Paperclip.
 
-@gl <b>MCP-compatible</b> — Supports the Model Context Protocol — Anthropic's open standard for connecting agents to tools and data.
+@gl <b>MIT licence</b> — A permissive open-source licence. Free to use, modify and sell, with attribution.
+
+@gl <b>Self-hosted</b> — Software you install and run on your own machine or server, rather than a service someone else runs for you.
 
 @spacer 6
 
@@ -184,6 +177,6 @@ Watch this space. Paperclip launched in March 2026 with 13,500 GitHub stars in d
 
 ## Liked this? Go deeper.
 
-Paperclip is one piece. Here is the full picture.
+Paperclip manages agents. Here are the agents, and the alternatives.
 
 @spacer 4

@@ -15,7 +15,7 @@ backfill from the same category and then from anything remaining.
 | `llm` | foundation | `claude` | `ai-agent` | `agentic-economy` | `hire-agent` | `api` |
 | `polsia` | platforms | `ai-agent` | `paperclip` | `openclaw` | `agentic-economy` | `hire-agent` |
 | `openclaw` | platforms | `paperclip` | `ai-agent` | `polsia` | `agentic-economy` | `hire-agent` |
-| `paperclip` | platforms | `openclaw` | `claude` | `polsia` | `agentic-economy` | `hire-agent` |
+| `paperclip` | platforms | `openclaw` | `polsia` | `agentic-economy` | `hire-agent` | `ai-agent` |
 | `anthropic` | claude | `claude` | `claude-code` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude` | claude | `claude-code` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude-code` | claude | `claude` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
