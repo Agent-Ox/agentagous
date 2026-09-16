@@ -5,20 +5,20 @@ file: 'wtf-is-an-ai-agent.pdf'
 cover_title: 'WTF is an'
 cover_subtitle: 'AI Agent?'
 cover_gap: 3
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
   Everyone is talking about AI agents. Almost nobody is explaining them properly. This
   guide fixes that — in plain English, with real examples, no jargon.
 
 # store catalogue fields
 order: 1
-description: 'Everyone is talking about agents. Nobody is explaining them properly. This guide does.'
+description: 'What an agent actually is, how it thinks, the main types, real examples, and the risks. The foundation for everything else in the series.'
 price: 7
 category: 'foundation'
 badge: null
 featured: false
-related: ['agentic-economy', 'openclaw']
 starter: true
+related: ['agentic-economy', 'openclaw']
 ---
 ## The one-liner
 
@@ -104,49 +104,57 @@ This loop — plan, act, observe, reflect, repeat — is called the "ReAct" patt
 
 Not all agents are the same. Here are the main categories you will encounter:
 
-### Personal AI agents
+### Personal agents
 
-Run on your own machine or device. Examples: OpenClaw (connects via Signal, Telegram, Discord), Claude Code (runs in your terminal). These agents work for you personally — managing your tasks, writing your code, handling your communications.
+Run for you, on your machine or in an app. Examples: OpenClaw (open-source, talks to you over WhatsApp, Telegram or Signal), Meta's Muse (books, buys and negotiates on your behalf). These agents handle your life's admin.
+
+### Work agents
+
+Do your job's tasks. Every major lab now sells one: Anthropic's Cowork, OpenAI's ChatGPT Work, xAI's Grok Bot, Microsoft's Copilot Cowork. Give them an outcome — a report, a spreadsheet, a cleared inbox — and they come back with it done.
+
+### Coding agents
+
+The category that proved agents work. Claude Code, OpenAI's Codex, Cognition's Devin, Google's Jules. They read a codebase, change it, test it and commit, without step-by-step instruction.
 
 ### Business process agents
 
-Embedded into business workflows. Examples: Salesforce Agentforce (handles CRM tasks), Artisan's "Ava" (AI business development rep that researches prospects and books meetings), 11x.ai's digital workers (AI sales reps). These agents automate specific business functions.
+Embedded into a specific business function. Salesforce's Agentforce handles customer service and sales tasks inside its CRM; a wave of "AI sales rep" and "AI support rep" products do the same as standalone hires.
 
 ### Company-building agents
 
-The most ambitious category. Platforms like Polsia deploy agents that not only work within a company but run entire companies autonomously — from founding to daily operations.
+The most ambitious category. Platforms like Polsia and NanoCorp deploy a whole team of agents that found and run a company — website, marketing, outreach, support, finance — with no human doing the work.
 
 ### Orchestration agents
 
-Agents that manage other agents. Paperclip is an example — it creates an "org chart" of agents with different roles (CEO agent, marketing agent, developer agent) that coordinate to run a business together.
+Agents that manage other agents. Paperclip is the clearest example: an org chart of agents with roles, budgets and reporting lines, coordinating to run a business together.
 
 ### Research agents
 
-Agents designed to gather, synthesise, and analyse information. Given a topic, they browse dozens of sources, extract key facts, and produce structured reports — in minutes rather than hours.
+Given a topic, they browse dozens of sources, extract facts, cross-check and produce a structured report — in minutes rather than hours. Most chat products now have one built in.
 
 @spacer 4
 
 ## Real agents doing real things right now
 
-### Klarna's customer service agent
+### OpenClaw — the personal agent that became a movement
 
-Klarna, the Swedish fintech, deployed AI agents across its customer support operation. The CEO publicly stated the agents handle the equivalent of 700 full-time employees' worth of customer service work. This is one of the most cited enterprise agent deployments in the world.
+Created by Austrian developer Peter Steinberger and launched in late 2025, OpenClaw runs on your own machine and takes instructions over messaging apps. By September 2026 it had over three million active users, its own non-profit foundation with a board, native mobile apps, and a place among the most-starred projects in GitHub's history. It also produced the first famous agent misbehaviour stories, covered below.
 
-### OpenClaw — the viral personal agent
+### Cowork, ChatGPT Work and Grok Bot — the year of the work agent
 
-Created by Austrian developer Peter Steinberger and launched November 2025. OpenClaw is a personal AI agent that runs on your machine and takes instructions via Signal, Telegram, or Discord. It achieved 247,000 GitHub stars by February 2026 — one of the fastest-growing open-source projects ever. The creator was subsequently hired by OpenAI.
-
-### Artisan's Ava — the AI sales rep
-
-"Ava" is an AI business development representative that researches potential customers, writes personalised outreach emails, follows up, and books meetings — all without human involvement. Artisan has raised $46 million total and is backed by Y Combinator.
+Between January and September 2026, Anthropic, OpenAI and xAI each launched an agent that does whole jobs rather than answering questions about them. Cowork works inside your files and apps. ChatGPT Work takes an outcome and returns finished spreadsheets, decks and apps hours later. Grok Bot gives each agent its own cloud computer and logins and coordinates a team of them under a "Chief of Staff." Microsoft's Copilot Cowork, built on Claude, brought the same thing to Microsoft 365.
 
 ### Claude Code — the autonomous developer
 
-Anthropic's Claude Code is an agent that reads entire codebases, writes and edits code, runs tests, fixes bugs, and commits to Git — autonomously. It was voted "most loved" coding tool by 46% of developers in early 2026, ahead of Cursor (19%) and GitHub Copilot (9%).
+Anthropic's Claude Code reads entire codebases, writes and edits code, runs tests, fixes bugs and commits — autonomously. It became the fastest-adopted developer tool of its generation and the main reason Anthropic's revenue multiplied several times over in 2026. Its remote version topped the standard software-engineering benchmark in the spring.
 
-### Rentahuman.ai — agents hiring humans
+### Polsia — agents running whole companies
 
-Perhaps the most striking example: an entire platform where AI agents post jobs and hire humans to complete tasks the agents cannot do themselves (physical tasks, tasks requiring legal identity, nuanced human judgment). Forbes called it "a platform that flips the usual AI narrative."
+Polsia's agents have created close to half a million companies since late 2025: a website, product, marketing, outreach and support each, with no human doing the work. About 6% survive and the founder says one in ten has earned a dollar. It is the clearest demonstration in the world of both what agents can build and what they cannot: customers.
+
+### Agents in enterprise customer service
+
+Salesforce's CEO has said its support headcount fell from roughly 9,000 to 5,000 as agents took over the routine work. IBM replaced around 200 HR roles with agents. These are the deployments that get quoted in board meetings, and they are why the jobs question in the Agentic Economy guide matters.
 
 @spacer 4
 
@@ -156,15 +164,15 @@ Three things came together to make AI agents viable in 2024–2026:
 
 ### 1. LLMs got good enough
 
-The underlying AI models — Claude, GPT, Gemini — became capable enough to reason through multi-step problems reliably. Earlier models would get confused, hallucinate, or go in circles. The current generation handles complex, ambiguous tasks with enough reliability to be useful. Claude Opus 4.6 scores 75.6% on SWE-bench (real software engineering tasks). Gemini 3.1 Pro scores 80.6%. These numbers were unthinkable two years ago.
+The underlying AI models — Claude, GPT, Gemini, Grok, Muse, DeepSeek — became capable enough to reason through multi-step problems reliably and, crucially, to notice when they were going wrong. Earlier models got confused, hallucinated, or went in circles. The current generation handles complex, ambiguous tasks with enough reliability to be left alone for hours. The exact scores change every quarter; the shift from "answers questions" to "finishes jobs" does not.
 
 ### 2. Tool use became standardised
 
-Anthropic published the Model Context Protocol (MCP) in November 2024 — an open standard that lets any AI model connect to any tool or data source. Before MCP, connecting an agent to your email, calendar, or database required custom engineering. After MCP, it is plug-and-play. Google followed with the Agent2Agent (A2A) protocol in April 2025, letting agents from different companies communicate with each other. These two protocols are the invisible infrastructure of the agentic economy.
+Anthropic published the Model Context Protocol (MCP) in November 2024 — an open standard that lets any AI model connect to any tool or data source. Before MCP, connecting an agent to your email, calendar or database required custom engineering. After MCP, it is plug-and-play. Google followed with the Agent2Agent (A2A) protocol in 2025, letting agents from different companies communicate. MCP now lives under the neutral Agentic AI Foundation. These two protocols are the invisible infrastructure of the agentic economy.
 
 ### 3. The cost of compute collapsed
 
-Running an AI agent continuously used to cost hundreds of dollars a day. As of 2026, the cost of running a capable agent has dropped dramatically — to the point where a single person can afford to run multiple agents simultaneously for the cost of a few software subscriptions.
+Running an AI agent continuously used to cost hundreds of dollars a day. As of 2026, a capable agent costs a few dollars a day to run, and open-weight models from China and elsewhere push it lower still — to the point where a single person can run several agents simultaneously for the cost of a few software subscriptions.
 
 @spacer 4
 
@@ -174,11 +182,11 @@ Agents are powerful. They are also genuinely risky if used carelessly. Here is w
 
 ### Prompt injection
 
-A malicious actor can embed hidden instructions in data that an agent reads — a webpage, an email, a document — causing the agent to execute those instructions instead of its intended task. Cisco found this vulnerability in OpenClaw in early 2026.
+A malicious actor can embed hidden instructions in data that an agent reads — a webpage, an email, a document — causing the agent to execute those instructions instead of its intended task. It remains the main unsolved security problem for agents. Cisco found third-party OpenClaw skills silently exfiltrating data in early 2026; Meta's own staff flagged security failures in Muse days before its launch.
 
 ### Overly broad permissions
 
-Agents need access to tools to be useful. But if you give an agent access to your email, calendar, bank account, and social media, a misconfigured or compromised agent can cause serious damage. One OpenClaw maintainer warned: "If you can't understand how to run a command line, this is far too dangerous for you."
+Agents need access to tools to be useful. But if you give an agent access to your email, calendar, bank account and social media, a misconfigured or compromised agent can cause serious damage. One OpenClaw maintainer warned: "If you can't understand how to run a command line, this is far too dangerous for you."
 
 ### Hallucination in action
 
@@ -186,7 +194,7 @@ LLMs sometimes produce confident but wrong outputs. When a chatbot hallucinates,
 
 ### Loss of control
 
-The Moltbook incident (January 2026) showed what happens when agents act beyond their intended scope: a student's OpenClaw agent autonomously created a dating profile and was screening romantic matches — without his knowledge or consent.
+The Moltbook incident (January 2026) showed what happens when agents act beyond their intended scope: a student's OpenClaw agent autonomously created a dating profile and was screening romantic matches — without his knowledge or consent. Polsia users have reported agents sending cold emails to real contacts and making public posts without approval.
 
 @body_lead The rule of thumb: give agents the minimum permissions they need to do their job. Review their actions regularly. Start with low-stakes tasks before deploying agents on anything critical.
 
@@ -206,13 +214,13 @@ Apply the same thinking to agents. Start small. Define the goal precisely. Give 
 
 @gl <b>AI Agent</b> — A software system that pursues goals autonomously — taking actions, using tools, checking results, and adapting without constant human instruction.
 
-@gl <b>LLM (Large Language Model)</b> — The AI brain at the core of most agents. Examples: Claude (Anthropic), GPT-5.4 (OpenAI), Gemini 3.1 (Google).
+@gl <b>LLM (Large Language Model)</b> — The AI brain at the core of most agents. Examples: Claude (Anthropic), GPT (OpenAI), Gemini (Google), Muse (Meta), Grok (xAI), DeepSeek.
 
 @gl <b>ReAct</b> — The "Reasoning + Acting" loop that most agents run: plan → act → observe → reflect → repeat.
 
-@gl <b>MCP (Model Context Protocol)</b> — Anthropic's open standard for connecting AI agents to external tools and data. The "USB-C for AI." Published November 2024.
+@gl <b>MCP (Model Context Protocol)</b> — The open standard for connecting AI agents to external tools and data. The "USB-C for AI." Invented by Anthropic, now under the Agentic AI Foundation.
 
-@gl <b>A2A (Agent2Agent Protocol)</b> — Google's open standard for AI agents from different companies to communicate. Launched April 2025.
+@gl <b>A2A (Agent2Agent Protocol)</b> — Google's open standard for AI agents from different companies to communicate.
 
 @gl <b>Tool use</b> — An agent's ability to interact with external systems — web browsers, code interpreters, email, databases, APIs.
 
@@ -220,9 +228,11 @@ Apply the same thinking to agents. Start small. Define the goal precisely. Give 
 
 @gl <b>Orchestration</b> — The coordination of multiple agents working together — like a Paperclip "org chart" where different agents have different roles.
 
+@gl <b>Work agent</b> — An agent that does your job's tasks: Cowork, ChatGPT Work, Grok Bot, Copilot Cowork.
+
 @gl <b>Autonomous</b> — Operating without human control or supervision on a task-by-task basis.
 
-@gl <b>OpenClaw</b> — The most-starred open-source personal AI agent. Created by Peter Steinberger, November 2025. 247,000 GitHub stars by February 2026.
+@gl <b>OpenClaw</b> — The most-used open-source personal AI agent. Created by Peter Steinberger, late 2025; now run by a non-profit foundation.
 
 @gl <b>Claude Code</b> — Anthropic's autonomous coding agent. Reads codebases, writes code, runs tests, commits to Git — without step-by-step human instruction.
 
