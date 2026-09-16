@@ -4,27 +4,38 @@ title: 'WTF is Cowork'
 file: 'wtf-is-cowork.pdf'
 cover_title: 'WTF is'
 cover_subtitle: 'Cowork?'
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
   Claude Code was for developers. Cowork is for everyone else. The Anthropic product that
-  wiped $285 billion off enterprise software stocks — and then powered Microsoft's next
-  big enterprise bet. Here is what it actually is and why it matters.
+  rattled enterprise software stocks, became Microsoft's flagship agent, and now runs in
+  the cloud, on your phone, and in its own browser. What it is and why it matters.
 
 # store catalogue fields
 order: 10
-description: 'Claude Code was for developers. Cowork is for everyone else. What the Anthropic product actually does.'
+description: 'Claude Code was for developers. Cowork is for everyone else. What it does, what it costs, and how it changed the work-agent market.'
 price: 7
 category: 'claude'
 badge: null
 featured: false
-related: ['claude-code', 'claude']
 starter: false
+related: ['claude-code', 'hire-agent']
 ---
 ## The one-liner
 
 @body_lead Cowork is Anthropic's desktop AI agent for non-developers — a tool that lets Claude read, edit, create, and organise files directly on your computer, execute multi-step tasks autonomously, and connect to your existing tools, all without touching a command line.
 
 Anthropic's own framing says it best: "Chat changed how we get answers. Claude Code transformed how developers build software. Now, Cowork brings that same execution power to everyone."
+
+@spacer 4
+
+## By the numbers — September 2026
+
+@stat 12 Jan || 2026: launched as a research preview. Generally available on Mac and Windows since April, web and phone since July
+@stat 90%+ || of Cowork sessions are not software development, per Anthropic's own analysis of 1.2 million sessions
+@stat 26 Aug || 2026: Cowork gets its own built-in browser. Claude in Chrome goes generally available the same week
+@stat $20 || per month — included in Claude Pro and every paid plan above it. Not on the free tier
+@stat 11 || official Anthropic plugins for sales, finance, legal, marketing and more, plus a marketplace of third-party ones
+@stat June || 2026: Microsoft's Copilot Cowork, built on Claude, goes live worldwide in Microsoft 365
 
 @spacer 4
 
@@ -52,7 +63,7 @@ The pattern Anthropic spotted: when they released Claude Code, they expected dev
 
 ## How Cowork actually works
 
-Cowork lives inside the Claude Desktop app — available for Mac and Windows. You access it by clicking the Cowork tab at the top of the app, next to Chat.
+Cowork lives inside the Claude Desktop app for Mac and Windows, and since July 2026 also on claude.ai in a browser and in the Claude phone app. You access it by clicking the Cowork tab, next to Chat. Sessions run against your Claude account, so a task started on the desktop keeps running after you close the laptop, and you can check on it from your phone.
 
 ### Step 1: Grant folder access
 
@@ -101,7 +112,7 @@ This is the question most people ask. The difference is significant:
 
 @spacer 4
 
-## The features — what Cowork can do in March 2026
+## The features — what Cowork can do
 
 ### File operations
 
@@ -109,33 +120,41 @@ Read, edit, create, rename, organise, and delete files in your designated folder
 
 ### Projects
 
-Create a persistent workspace tied to a folder. Your files, instructions, and task history stay in one place across sessions. Instead of starting fresh every time, your project remembers what it has done and what is next. Launched March 20, 2026.
+A persistent workspace tied to a folder. Your files, instructions, and task history stay in one place across sessions. Instead of starting fresh every time, your project remembers what it has done and what is next.
 
 ### Scheduled tasks
 
-Set recurring tasks that run automatically. "Every Monday morning, pull last week's sales data from this folder and generate a summary report." Cowork runs it without you being present. Launched February 25, 2026.
+Recurring tasks that run automatically. "Every Monday morning, pull last week's sales data from this folder and generate a summary report." Since the move to cloud sessions, scheduled tasks fire even with no device online.
 
 ### Connectors
 
-Link Cowork to external services: Gmail, Google Drive, DocuSign, FactSet, Notion, Slack, AWS, n8n, and hundreds more via a connector marketplace. A connector that pulls data from Gmail can now save that data directly to your local folder. Desktop extensions have deeper system access than web connectors.
+Link Cowork to external services: Gmail and Google Workspace, Microsoft 365 (Outlook, OneDrive, SharePoint, Teams), Slack, Jira, Notion, DocuSign, and hundreds more via the connector marketplace. Desktop extensions have deeper system access than web connectors.
 
 ### Skills
 
-Install skills — modular capabilities — that improve Cowork's ability to create specific types of output: documents, presentations, spreadsheets. You can also create a SKILL.md file in your folder with your brand voice or standard processes and Cowork will use it every time.
+Install skills — modular capabilities — that improve Cowork's output for specific formats: documents, presentations, spreadsheets. You can also write a SKILL.md file with your brand voice or standard process and Cowork uses it every time.
 
-### Claude in Chrome pairing
+### The built-in browser
 
-Pair Cowork with Claude in Chrome and it gains browser access. Now it can research the web, pull live data, fill in forms, and complete tasks that require internet access — all as part of the same autonomous workflow.
+Since August 2026 Cowork has its own Chromium browser in a side panel of the desktop app. When a task involves a website, the browser opens, Claude navigates, fills forms and finishes the job — separate from your own browser and logins. If you would rather it work inside your own signed-in Chrome, Claude in Chrome does that and is now available on every paid plan; a safety classifier checks each action before it is taken.
 
-### Plugin marketplace
+### Computer use
 
-A full plugin marketplace launched for Team and Enterprise plans in early 2026. Plugins encode institutional knowledge and workflows across domains: financial analysis, engineering, HR, and more. Admins can deploy them across their organisation.
+Cowork can see your screen and drive any application on your machine, not just the browser. Useful for tools that have no connector: a niche internal system, a desktop app, anything with buttons.
+
+### Plugins
+
+Role-specific bundles of skills, prompts and connectors. Anthropic publishes its own — sales, finance, legal, marketing, and a Claude for Financial Advisors plugin covering onboarding, meeting prep and portfolio reviews — and a marketplace carries third-party ones. Plugins run on whatever plan you already have; nothing extra to buy from Anthropic.
+
+### Dispatch
+
+Control a desktop Cowork session from your phone: approve a step, redirect, or read the result on the move.
 
 @spacer 4
 
-## The market reaction — why stocks fell $285 billion
+## The market reaction — why software stocks fell
 
-@body_lead When Cowork launched in January 2026, enterprise software stocks fell sharply. The iShares Expanded Tech-Software Sector ETF dropped nearly 5% in a single day. Combined, enterprise software companies shed an estimated $285 billion in market value in the days following the launch.
+@body_lead When Cowork launched in January 2026, and again when its plugins landed, enterprise software stocks fell sharply. The iShares Expanded Tech-Software Sector ETF dropped nearly 5% in a single day, and analysts put the combined loss across enterprise software companies in the hundreds of billions of dollars.
 
 The reason: investors looked at what Cowork can do and compared it to what they were paying enterprise software companies to do. File management. Document creation. Data extraction. Report generation. Workflow automation. These are the core functions of dozens of $10–50/user/month SaaS products.
 
@@ -147,13 +166,13 @@ The stocks recovered somewhat when Microsoft announced it was building Copilot C
 
 ## Microsoft Copilot Cowork — the enterprise version
 
-In March 2026, Microsoft launched Copilot Cowork — a cloud-based AI agent powered by Anthropic's Claude that executes multi-step tasks across Microsoft 365.
+Microsoft announced Copilot Cowork in March 2026 and made it generally available worldwide in June: a cloud-based agent, powered by Anthropic's Claude, that executes multi-step tasks across Microsoft 365.
 
-The difference from consumer Cowork: Copilot Cowork runs in the cloud inside Microsoft 365's infrastructure and has access to the full graph of enterprise work data — Outlook emails, Teams conversations, calendar history, SharePoint files, Excel workbooks. Rather than working on a local folder, it works across an entire organisation's data.
+The difference from consumer Cowork: Copilot Cowork runs inside Microsoft 365's own infrastructure with access to the full graph of enterprise work data — Outlook, Teams, calendars, SharePoint, Excel. Rather than working on a local folder, it works across an entire organisation's data.
 
-Price: $30/user/month, or included in the new Microsoft 365 E7 bundle at $99/user/month. Currently in Research Preview, with broader access expected late March 2026.
+It ships as a $30 per user per month add-on, or inside the Microsoft 365 E7 bundle.
 
-@body_lead The significance: despite a $13 billion investment in OpenAI, Microsoft built its newest flagship M365 feature on Anthropic's Claude. This is the clearest signal yet that Claude is the enterprise-preferred model — not because Microsoft doesn't have access to GPT, but because it chose Claude anyway.
+@body_lead The significance: despite a $13 billion investment in OpenAI, Microsoft built its flagship Microsoft 365 agent on Anthropic's Claude — and then took it to general availability. Not because Microsoft lacks access to GPT, but because it chose Claude anyway.
 
 @spacer 4
 
@@ -196,28 +215,28 @@ Connect Cowork to your email via the Gmail connector. Set a recurring task: ever
 @tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
 | Plan | Access | Price |
 | Claude Pro | Full Cowork access | $20/month |
-| Claude Max | Full Cowork access + higher limits | $100–200/month |
+| Claude Max | Full Cowork access + 5x or 20x the limits | $100 or $200/month |
 | Claude Team | Full Cowork access + admin controls | $25–30/user/month |
-| Claude Enterprise | Full Cowork + plugin marketplace + analytics API | Custom pricing |
-| Microsoft 365 E7 | Copilot Cowork (cloud-based, M365 integrated) | $99/user/month |
+| Claude Enterprise | Full Cowork + admin controls, audit logs, smart reports | Custom pricing |
+| Microsoft Copilot Cowork | Cloud-based, Microsoft 365 integrated | $30/user/month add-on, or in the E7 bundle |
 | Free tier | Not available — Cowork is paid only | — |
 
 @spacer 3
 
-To get started: download Claude Desktop from claude.com/download. Subscribe to Claude Pro or higher. Open the app and click the Cowork tab.
+To get started: subscribe to Claude Pro or higher, then open Cowork in the desktop app (claude.com/download), on claude.ai, or in the Claude phone app.
 
 @spacer 4
 
 ## The honest limitations
 
-Cowork is genuinely powerful. It is also still a research preview, and it has real limitations worth knowing:
+Cowork is genuinely powerful. It also has real limitations worth knowing:
 
-- → <b>Folder boundary only.</b> Claude can only access the folder you designate. It cannot reach outside it without explicit permission.
-- → <b>App needs to stay open.</b> Cowork runs locally and needs the Claude Desktop window active. It cannot run completely in the background yet (though scheduled tasks partially address this).
+- → <b>Folder boundary only.</b> Claude can only access the folder you designate. It cannot reach outside it without explicit permission — and that is a feature. In one widely reported case about 15,000 family photos were deleted while Cowork tidied a desktop, and were recovered only through a 30-day cloud restore.
+- → <b>It burns through usage.</b> Agent tasks use far more of your plan's allowance than chat does. Pro is the entry point; heavy daily use tends to need Max.
 - → <b>Hallucination risk remains.</b> Cowork can misread file contents or make incorrect assumptions about what a task requires. Always review outputs before acting on them.
-- → <b>Security considerations.</b> Days after launch, a data exfiltration vulnerability was reported in Cowork. Anthropic patched it. Be thoughtful about which connectors you install and what folders you grant access to.
-- → <b>External drive support is limited.</b> Early users report Cowork works best with local folders, not external drives or network storage. Anthropic has indicated this may be addressed in future updates.
-- → <b>Still maturing.</b> Projects, scheduled tasks, and the plugin marketplace are all recent additions (January–March 2026). Expect further changes and improvements.
+- → <b>Security considerations.</b> Days after launch, a data exfiltration vulnerability was reported and patched. Prompt injection — hidden instructions in a web page or document the agent reads — is the unsolved problem for every agent with browser access. Be thoughtful about connectors and folders.
+- → <b>The desktop browser needs the desktop.</b> From the web or your phone, Claude can drive the built-in browser only while your desktop app is open. Without it, Claude in Chrome is the browser route.
+- → <b>It keeps changing.</b> Cowork has shipped a major capability most months of 2026. Expect the feature list in this guide to be out of date before the next one.
 @spacer 4
 
 ## What Cowork means for the agentic economy
@@ -236,21 +255,19 @@ The HBR research published in early 2026 noted that companies are already making
 
 @gl <b>Cowork</b> — Anthropic's autonomous desktop AI agent. Part of the Claude Desktop app. Reads, edits, and creates files on your computer and executes multi-step tasks without command-line skills.
 
-@gl <b>Claude Desktop</b> — The desktop application from Anthropic. Available for Mac and Windows. Contains Chat, Code, and Cowork modes. Download at claude.com/download.
+@gl <b>Claude Desktop</b> — The desktop application from Anthropic for Mac and Windows. Contains Chat, Code, and Cowork modes, and Cowork's built-in browser. Download at claude.com/download.
 
-@gl <b>Projects (Cowork)</b> — A persistent workspace tied to a folder — keeps files, instructions, and task history in one place across sessions. Launched March 20, 2026.
+@gl <b>Projects (Cowork)</b> — A persistent workspace tied to a folder — keeps files, instructions, and task history in one place across sessions.
 
-@gl <b>Scheduled tasks</b> — Recurring tasks that Cowork runs automatically on a set schedule — daily, weekly, or custom timing. Launched February 25, 2026.
+@gl <b>Scheduled tasks</b> — Recurring tasks that Cowork runs automatically on a set schedule — daily, weekly, or custom timing.
 
 @gl <b>Connectors</b> — Integrations that link Cowork to external services — Gmail, Google Drive, DocuSign, Slack, Notion, and hundreds more.
 
 @gl <b>Skills</b> — Modular capabilities installed into Cowork. Including custom SKILL.md files you create to encode your brand voice or standard processes.
 
-@gl <b>Claude in Chrome</b> — Anthropic's browser agent. When paired with Cowork, gives it web access for tasks requiring live internet data.
+@gl <b>Claude in Chrome</b> — Anthropic's agent inside your own Chrome browser, generally available on all paid plans. The alternative to Cowork's built-in browser when you want it working where you are already signed in.
 
-@gl <b>Copilot Cowork</b> — Microsoft's enterprise version of Cowork — cloud-based, running across Microsoft 365. Powered by Anthropic's Claude. $30/user/month. Launched March 2026.
-
-@gl <b>Research Preview</b> — Anthropic's term for a product that is live and available but still being actively developed and improved.
+@gl <b>Copilot Cowork</b> — Microsoft's enterprise version of Cowork — cloud-based, running across Microsoft 365. Powered by Anthropic's Claude. $30/user/month. Generally available since June 2026.
 
 @gl <b>Claude Code</b> — The developer-facing autonomous coding agent that Cowork is built on. Requires command-line skills. Cowork is the non-technical equivalent.
 

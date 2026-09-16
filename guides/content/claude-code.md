@@ -4,21 +4,22 @@ title: 'WTF is Claude Code'
 file: 'wtf-is-claude-code.pdf'
 cover_title: 'WTF is'
 cover_subtitle: 'Claude Code?'
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
   Not a code editor. Not an autocomplete plugin. An autonomous AI developer that reads
   your entire codebase, writes code, runs tests, fixes bugs, and commits to Git — while
-  you do something else. Voted most-loved coding tool by 46% of developers in 2026.
+  you do something else. Now with a desktop app, a phone app, and a growing crowd of
+  non-developers building real things with it.
 
 # store catalogue fields
 order: 9
-description: 'How Claude Code is changing software development — and what it means if you''re not a developer.'
+description: 'The autonomous developer that changed Anthropic''s trajectory. How it works, how it compares, and how non-developers are using it now.'
 price: 7
 category: 'claude'
 badge: null
 featured: false
-related: ['claude', 'anthropic']
 starter: false
+related: ['claude', 'cowork']
 ---
 ## The one-liner
 
@@ -66,24 +67,20 @@ You give the agent a task: "Add user authentication to this application." It rea
 
 @spacer 4
 
-## The numbers — developer adoption in 2026
+## By the numbers — September 2026
 
-Claude Code went from beta launch in May 2025 to category leader in under a year. Developer surveys in early 2026 found:
+Claude Code went from research preview in early 2025 to the fastest-adopted developer tool of its generation. The figures move monthly; the shape does not.
 
-@table keep 20,140
-@tcells hs,cs|hs,cs|hs,cs
-@tstyle GRID 0,0 -1,-1 0.5 ZINC_600
-@tstyle BACKGROUND 0,0 -1,-1 ZINC_900
-@tstyle PADDING 0,0 -1,-1 10
-@tstyle VALIGN 0,0 -1,-1 MIDDLE
-@tstyle ROWBACKGROUNDS 0,0 -1,-1 [ZINC_900,DARK_BG]
-| 46% | "Most loved" coding tool among developers — Claude Code |
-| 19% | "Most loved" — Cursor (previous category leader) |
-| 9% | "Most loved" — GitHub Copilot (77M+ developer install base) |
+@stat $2.5B || annualised revenue run rate by February 2026 — before the growth that took Anthropic past $65B overall
+@stat 29M || installs inside Visual Studio Code alone by early 2026
+@stat ~4% || of all public GitHub commits worldwide authored by Claude Code, per one early-2026 analysis
+@stat 87.6% || SWE-bench Verified reported for Claude Code Remote in spring 2026, the highest published score at the time
+@stat April || 2026: redesigned desktop app for Mac and Windows — panels, buttons, a chat box, no terminal required
+@stat Aug || 2026: start a Claude Code session on your computer directly from the Claude phone app
 
 @spacer 3
 
-This is a remarkable result. GitHub Copilot has 77 million+ developers using it and the backing of Microsoft. Claude Code overtook it in developer satisfaction in under a year — because it does something fundamentally different.
+The satisfaction surveys that first made the point still hold: developers who try autonomous agents do not go back to autocomplete. GitHub Copilot has the larger install base and Microsoft behind it. Claude Code overtook it in developer preference in under a year because it does something fundamentally different.
 
 @spacer 4
 
@@ -115,22 +112,24 @@ Large enterprises are using Claude Code for large-scale code migrations, test-wr
 @tstyle VALIGN 0,0 -1,-1 TOP
 @tstyle ROWBACKGROUNDS 0,1 -1,-1 [DARK_BG,ZINC_900]
 | Tool | Type | Best for | Limitation |
-| Claude Code | Autonomous agent | Complex, multi-file tasks; long autonomous sessions | Requires CLI comfort; API costs |
-| Cursor | AI-assisted editor | Fast iteration; inline editing; real-time help | Still human-directed; not autonomous |
+| Claude Code | Autonomous agent | Complex, multi-file tasks; long autonomous sessions | Usage limits on Pro; costs scale with the task |
+| Cursor | AI-assisted editor | Fast iteration; inline editing; real-time help | Now owned by SpaceX/xAI; losing OpenAI models in November 2026 |
 | GitHub Copilot | Autocomplete | Quick suggestions while typing; broad ecosystem | Reactive, not autonomous |
-| Codex (OpenAI) | Autonomous agent | GPT-5.4 backbone; 1M context window | Less community adoption than Claude Code |
+| Codex (OpenAI) | Autonomous agent | Lives inside the ChatGPT app; GPT-6 backbone | Smaller ecosystem of plugins and skills |
+| Devin (Cognition) | Autonomous agent | Fully cloud-hosted; now $20/mo | Less control over your own machine |
+| Jules (Google) | Autonomous agent | Free; runs in the cloud on Gemini | Narrower task scope |
 
 @spacer 4
 
 ## Do you need to be a developer to use Claude Code?
 
-@body_lead Mostly yes — at the moment.
+@body_lead Not any more — though it helps to think like one.
 
-Claude Code is a command-line tool. You need to be able to open a terminal, navigate to your project, and run commands. You also need an Anthropic API key and a basic understanding of Git.
+For its first year Claude Code was a command-line tool, and the screenshots looked like a hacker film. In April 2026 Anthropic shipped a redesigned desktop app for Mac and Windows: panels, buttons, a chat box. You type what you want in plain English and watch it work. In August, the Claude phone app gained the ability to start and steer a session on your computer from anywhere. It is included in Claude Pro at $20 a month, so the API key requirement is gone too.
 
-That said, "developer" is a broader category than it used to be. The rise of AI-assisted coding has dramatically lowered the barrier to writing code. People who would not have called themselves developers two years ago are now using Claude Code to build real applications.
+Anthropic's own analysis of over a million Cowork sessions found that more than 90% were not software development. Claude Code's audience has shifted the same way: founders building their first product, operators automating a workflow, marketers building internal tools, and — the pattern this series exists to document — people running AI companies who use Claude Code as the developer agent inside Polsia or Paperclip.
 
-Platforms like Paperclip and Polsia are moving toward making Claude Code accessible without direct command-line interaction — embedding it as an agent in a managed workflow. Within 12-18 months, the average business owner may be able to deploy Claude Code as their "developer agent" without writing a single line of code themselves.
+What still matters is not the terminal but the mindset. Claude Code works best for people who can describe what they want precisely, check what came back, and understand the difference between "it runs" and "it is right." That is a developer's habit, not a developer's skill, and it can be learned in a weekend.
 
 @spacer 4
 
@@ -156,7 +155,7 @@ This does not mean software developers are going away. It means the nature of th
 
 @gl <b>Git</b> — The standard version control system for software projects. Claude Code can stage, commit, and manage Git operations autonomously.
 
-@gl <b>SWE-bench</b> — The standard benchmark for AI coding ability. Measures how well an agent can solve real software engineering tasks. Claude Opus 4.6: 75.6%.
+@gl <b>SWE-bench</b> — The standard benchmark for AI coding ability. Measures how well an agent can solve real software engineering tasks. Scores change every release; Claude Code has led it for most of 2026.
 
 @gl <b>GitHub Copilot</b> — Microsoft/GitHub's AI coding tool. 77M+ developers. Autocomplete-style — helps as you type. Claude Code is a different category: autonomous.
 

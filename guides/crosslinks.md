@@ -18,6 +18,6 @@ backfill from the same category and then from anything remaining.
 | `paperclip` | platforms | `openclaw` | `polsia` | `agentic-economy` | `hire-agent` | `ai-agent` |
 | `anthropic` | claude | `claude` | `claude-code` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude` | claude | `claude-code` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
-| `claude-code` | claude | `claude` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
-| `cowork` | claude | `claude-code` | `claude` | `anthropic` | `agentic-economy` | `hire-agent` |
+| `claude-code` | claude | `claude` | `cowork` | `anthropic` | `agentic-economy` | `hire-agent` |
+| `cowork` | claude | `claude-code` | `hire-agent` | `anthropic` | `agentic-economy` | `claude` |
 | `hire-agent` | practical | `ai-agent` | `openclaw` | `agentic-economy` | `api` | `llm` |
