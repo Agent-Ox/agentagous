@@ -4,7 +4,7 @@ title: 'WTF is an LLM'
 file: 'wtf-is-an-llm.pdf'
 cover_title: 'WTF is an'
 cover_subtitle: 'LLM?'
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
   Large Language Models are the engines powering ChatGPT, Claude, Gemini, and every AI
   agent in the agentic economy. Here is what they actually are — explained simply, without
@@ -17,8 +17,8 @@ price: 7
 category: 'foundation'
 badge: null
 featured: false
-related: ['claude', 'ai-agent']
 starter: true
+related: ['ai-agent', 'claude']
 ---
 ## The one-liner
 
@@ -57,31 +57,44 @@ The story of LLMs is surprisingly recent and moves fast:
 | 2018 | Google releases BERT. OpenAI releases GPT-1. The race begins. |
 | 2020 | OpenAI releases GPT-3 — 175 billion parameters, shockingly capable. Developers begin building on it via API. |
 | 2022 | OpenAI releases ChatGPT (GPT-3.5). 100 million users in 2 months. Anthropic founded; releases Claude. |
-| 2023 | GPT-4 released. Open-source models (LLaMA, Mistral) emerge. AutoGPT goes viral as the first autonomous agent attempt. |
+| 2023 | GPT-4 released. Open-source models (Llama, Mistral) emerge. AutoGPT goes viral as the first autonomous agent attempt. |
 | 2024 | Models capable enough for reliable agentic use. Anthropic publishes MCP. The agentic economy begins. |
-| 2025–26 | Claude Opus 4.6 (75.6% SWE-bench), Gemini 3.1 Pro (80.6%), GPT-5.4. Multi-hour autonomous tasks become reliable. |
+| 2025 | Claude Code launches. Chinese open-weight models (DeepSeek, Qwen, Kimi) match the frontier at a fraction of the cost. Multi-hour autonomous tasks become reliable. |
+| 2026 | Every major lab ships a work agent. Anthropic splits its top model into a public (Fable) and restricted (Mythos) tier. GPT-6, Gemini 3.8, Meta Muse, DeepSeek V4. |
 
 @spacer 4
 
 ## The main LLMs in 2026 — who makes what
 
-There are three dominant LLM providers and a growing ecosystem of open-source alternatives:
+Model names and version numbers change every few months. The labs behind them, and what each is known for, change far more slowly. Read the labs, not the numbers.
 
 ### Claude (Anthropic)
 
-Anthropic's flagship model family. Current version: Claude 4.6, with Opus (most powerful) and Sonnet (faster, more affordable) variants. Claude Opus 4.6 scores 75.6% on SWE-bench — the standard benchmark for software engineering tasks. Claude is the default model for OpenClaw and widely used in agent frameworks. Anthropic's focus on safety and Constitutional AI training makes Claude the preferred choice for agentic deployments where reliability and honesty matter. Context window: up to 1 million tokens (beta). Anthropic valuation: $380 billion.
+The model family behind Claude Code, Cowork, Microsoft's Copilot Cowork and the default in OpenClaw. Tiers: Fable (the flagship, a new tier above Opus introduced in 2026), Opus, Sonnet and Haiku. Anthropic's Constitutional AI training makes Claude the model most agent builders reach for when reliability and honesty over long unsupervised sessions matter. Context window: one million tokens. See the WTF is Claude guide.
 
-### GPT-5.4 (OpenAI)
+### GPT (OpenAI)
 
-OpenAI's latest flagship model as of March 2026. Native computer use capability. 1 million token context window in Codex. Powers ChatGPT, which remains the most widely used consumer AI product in the world. OpenAI also released Codex — an autonomous coding agent built on GPT-5.4. OpenAI valuation: $300 billion+.
+The models behind ChatGPT, still the most widely used consumer AI product in the world, and behind OpenAI's agents: ChatGPT Work, Codex and the Agents API. GPT-6 arrived in September 2026 after the GPT-5.6 family in July. OpenAI's strength is reach: hundreds of millions of people already have the app.
 
-### Gemini 3.1 Pro (Google DeepMind)
+### Gemini (Google DeepMind)
 
-Google's flagship model. Currently holds the highest score on SWE-bench Verified (80.6%). Deeply integrated with Google's ecosystem — Search, Workspace, Android. Google also created the Agent2Agent (A2A) protocol for agent interoperability. Available via Google Cloud (Vertex AI).
+Google's flagship family, currently Gemini 3.8, and the model behind Gemini Agent, Chrome's Auto Browse and Google's coding agent Jules. Deeply integrated with Search, Workspace and Android. Google also created the Agent2Agent (A2A) protocol for agents from different companies to talk to each other.
 
-### Open-source models (LLaMA, Mistral, DeepSeek)
+### Muse (Meta)
 
-A growing ecosystem of models that anyone can run on their own hardware. Meta's LLaMA family is the most widely used. Mistral (French AI lab) produces highly efficient smaller models. DeepSeek (Chinese) produced models that competed with GPT-4 at a fraction of the training cost — a significant moment in early 2025. OpenClaw supports DeepSeek as an alternative to Claude or GPT.
+Meta's 2026 reset: a new model family and a consumer personal agent, both called Muse, delivered through WhatsApp and a standalone app with a free tier. Meta's bet is distribution — three billion people already use its messaging apps.
+
+### Grok (xAI)
+
+Elon Musk's models, now part of SpaceX after it acquired xAI and the coding tool Cursor. The model behind Grok Bot, a team of agents that each get their own cloud computer.
+
+### The Chinese open-weight models
+
+DeepSeek, Alibaba's Qwen, Moonshot's Kimi, Zhipu's GLM and MiniMax. Released as open weights — anyone can download and run them — at a fraction of the price of US frontier models, and close enough in capability that a great many indie agents run on them. DeepSeek's cheap-to-train breakthrough in early 2025 was the moment this became a two-continent race. See the China guide in this series.
+
+### Other open models
+
+Meta's Llama family, once the default open model, has been superseded inside Meta by Muse. Mistral (France) produces efficient smaller models. OpenClaw, Paperclip and most agent frameworks let you plug in any of these by API key.
 
 @spacer 4
 
@@ -138,7 +151,7 @@ LLMs do not process words — they process tokens. A token is roughly 3–4 char
 
 ### Context window
 
-The context window is how much text an LLM can "see" at once — the conversation history, the document you shared, the instructions you gave. Early models had tiny context windows (4,000 tokens = about 3 pages of text). Claude Opus 4.6 has a 1 million token context window — roughly 750,000 words, or the equivalent of several full novels. This is why modern agents can work with entire codebases or long documents at once.
+The context window is how much text an LLM can "see" at once — the conversation history, the document you shared, the instructions you gave. Early models had tiny context windows (4,000 tokens = about 3 pages of text). Claude's current models have a 1 million token context window — roughly 750,000 words, or the equivalent of several full novels. This is why modern agents can work with entire codebases or long documents at once.
 
 @spacer 4
 
@@ -163,13 +176,13 @@ The LLM is the brain of every AI agent. Without it, an agent is just a set of if
 - → Communicate its results in natural language.
 @spacer 3
 
-The rapid improvement of LLMs over the past three years — from GPT-3 in 2020 to Claude 4.6 and Gemini 3.1 in 2026 — is the primary reason the agentic economy is happening now rather than ten years from now. The models crossed a threshold of capability that made autonomous, reliable action possible.
+The rapid improvement of LLMs over the past three years — from GPT-3 in 2020 to Fable, GPT-6 and Gemini 3.8 in 2026 — is the primary reason the agentic economy is happening now rather than ten years from now. The models crossed a threshold of capability that made autonomous, reliable action possible.
 
 @spacer 4
 
 ## Glossary
 
-@gl <b>LLM (Large Language Model)</b> — An AI trained on vast amounts of text to predict and generate language. The brain inside ChatGPT, Claude, and Gemini.
+@gl <b>LLM (Large Language Model)</b> — An AI trained on vast amounts of text to predict and generate language. The brain inside ChatGPT, Claude, Gemini, Muse and Grok.
 
 @gl <b>Transformer</b> — The neural network architecture that underlies all modern LLMs. Introduced by Google in 2017.
 
@@ -177,7 +190,7 @@ The rapid improvement of LLMs over the past three years — from GPT-3 in 2020 t
 
 @gl <b>Token</b> — The unit LLMs use to process text. Roughly 3–4 characters or 0.75 words. You pay for API usage in tokens.
 
-@gl <b>Context window</b> — How much text an LLM can process at once. Claude Opus 4.6: up to 1 million tokens.
+@gl <b>Context window</b> — How much text an LLM can process at once. Current frontier models: up to 1 million tokens.
 
 @gl <b>Hallucination</b> — When an LLM generates confident but factually incorrect text. A key limitation to understand.
 
@@ -189,7 +202,7 @@ The rapid improvement of LLMs over the past three years — from GPT-3 in 2020 t
 
 @gl <b>Inference</b> — Running an LLM to generate a response. The "thinking" part, as opposed to training.
 
-@gl <b>Open-source model</b> — An LLM whose weights are publicly available — anyone can run it. Examples: LLaMA, Mistral, DeepSeek.
+@gl <b>Open-weight model</b> — An LLM whose weights are publicly available — anyone can download and run it. Examples: DeepSeek, Qwen, Kimi, Mistral, Llama.
 
 @spacer 6
 

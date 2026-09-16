@@ -12,7 +12,7 @@ backfill from the same category and then from anything remaining.
 | `agentic-economy` | foundation | `ai-agent` | `polsia` | `api` | `hire-agent` | `llm` |
 | `ai-agent` | foundation | `agentic-economy` | `openclaw` | `api` | `hire-agent` | `llm` |
 | `api` | foundation | `ai-agent` | `llm` | `agentic-economy` | `hire-agent` | `polsia` |
-| `llm` | foundation | `claude` | `ai-agent` | `agentic-economy` | `hire-agent` | `api` |
+| `llm` | foundation | `ai-agent` | `claude` | `agentic-economy` | `hire-agent` | `api` |
 | `polsia` | platforms | `ai-agent` | `paperclip` | `openclaw` | `agentic-economy` | `hire-agent` |
 | `openclaw` | platforms | `paperclip` | `ai-agent` | `polsia` | `agentic-economy` | `hire-agent` |
 | `paperclip` | platforms | `openclaw` | `polsia` | `agentic-economy` | `hire-agent` | `ai-agent` |
