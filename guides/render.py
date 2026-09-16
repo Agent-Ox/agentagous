@@ -192,8 +192,14 @@ def parse_front_matter(text):
 TABLE_DIRECTIVE = re.compile(r'^@table\s*(keep)?\s*([\d.,\s]*)$')
 
 
-def parse_body(body_text, S):
-    """Turn the dialect into a list of flowables."""
+def parse_body(body_text, S, linker=None):
+    """Turn the dialect into a list of flowables.
+
+    `linker` is a callable (text, style_name) -> text applied to body paragraphs
+    so catalogue guide titles become store links.
+    """
+    def L(text, style_name):
+        return linker(text, style_name) if linker else text
     flow = []
     lines = body_text.split('\n')
     i = 0
@@ -203,7 +209,7 @@ def parse_body(body_text, S):
         if para_buf:
             txt = ' '.join(x.strip() for x in para_buf).strip()
             if txt:
-                flow.append(Paragraph(txt, S['body']))
+                flow.append(Paragraph(L(txt, 'body'), S['body']))
             para_buf.clear()
 
     while i < len(lines):
@@ -226,10 +232,10 @@ def parse_body(body_text, S):
             flow.append(Paragraph(stripped[4:].strip(), S['subheading']))
         elif stripped.startswith('> '):
             flush()
-            flow.append(Paragraph(stripped[2:].strip(), S['callout']))
+            flow.append(Paragraph(L(stripped[2:].strip(), 'callout'), S['callout']))
         elif stripped.startswith('- '):
             flush()
-            flow.append(Paragraph(stripped[2:].strip(), S['bullet']))
+            flow.append(Paragraph(L(stripped[2:].strip(), 'bullet'), S['bullet']))
         elif TABLE_DIRECTIVE.match(stripped):
             flush()
             m = TABLE_DIRECTIVE.match(stripped)
@@ -250,7 +256,7 @@ def parse_body(body_text, S):
             continue
         elif stripped.startswith('@'):
             flush()
-            i = _directive(stripped, flow, S, lines, i)
+            i = _directive(stripped, flow, S, lines, i, L)
             continue
         else:
             para_buf.append(stripped)
@@ -343,7 +349,8 @@ def _build_table(spec, cmds, rows, widths, S, keep):
     return KeepTogether([t]) if keep else t
 
 
-def _directive(stripped, flow, S, lines, i):
+def _directive(stripped, flow, S, lines, i, L=None):
+    L = L or (lambda t, n: t)
     parts = stripped[1:].split(' ', 1)
     name = parts[0]
     rest = parts[1].strip() if len(parts) > 1 else ''
@@ -361,7 +368,7 @@ def _directive(stripped, flow, S, lines, i):
         flow.append(Paragraph(num.strip(), S['stat_num']))
         flow.append(Paragraph(lbl.strip(), S['stat_lbl']))
     elif name in S:
-        flow.append(Paragraph(rest, S[name]))
+        flow.append(Paragraph(L(rest, name), S[name]))
     else:
         raise ValueError(f'unknown directive @{name}')
     return i + 1
@@ -439,6 +446,60 @@ def write_crosslink_map(metas, path=None):
     with open(path, 'w') as fh:
         fh.write('\n'.join(lines))
     return path
+
+
+
+# ── cross-guide title links ──────────────────────────────────────────────────
+ORANGE_HEX = '#f97316'
+# The store page has no per-guide anchors today, so every title links to the
+# store index. If cards gain ids later, give a guide `store_anchor: true` in its
+# front-matter and it will link to /store#<slug> instead.
+def store_href(meta):
+    if meta.get('store_anchor'):
+        return f'{href(STORE_URL)}#{meta["slug"]}'
+    return href(STORE_URL)
+
+
+# Styles where a guide title must not become a link: headings, the cover, and
+# the bold term at the head of a glossary entry (handled separately below).
+NO_TITLE_LINK = {'section_heading', 'subheading', 'cover_title', 'cover_sub',
+                 'cover_desc', 'cover_meta'}
+
+_LINK_SPLIT = re.compile(r'(<link\b.*?</link>)', re.S)
+_GL_TERM = re.compile(r'\s*<b>.*?</b>', re.S)
+
+
+def title_pattern(metas, exclude_slug=None):
+    """Regex matching any catalogue guide title, longest first.
+
+    Longest-first ordering matters: "WTF is Claude" is a prefix of "WTF is
+    Claude Code", and the longer title must win.
+    """
+    titles = sorted((m['title'] for s, m in metas.items() if s != exclude_slug),
+                    key=len, reverse=True)
+    if not titles:
+        return None
+    return re.compile('(?:' + '|'.join(re.escape(t) for t in titles) + ')')
+
+
+def link_guide_titles(text, pattern, target, style_name):
+    """Link catalogue guide titles inside one paragraph of body text."""
+    if pattern is None or style_name in NO_TITLE_LINK:
+        return text
+
+    prefix = ''
+    if style_name == 'gl':
+        # leave the glossary term itself unlinked; link only its definition
+        match = _GL_TERM.match(text)
+        if match:
+            prefix, text = text[:match.end()], text[match.end():]
+
+    parts = _LINK_SPLIT.split(text)
+    for i in range(0, len(parts), 2):      # odd indices are existing <link> runs
+        parts[i] = pattern.sub(
+            lambda m: f'<link href="{target}" color="{ORANGE_HEX}">{m.group(0)}</link>',
+            parts[i])
+    return prefix + ''.join(parts)
 
 
 # ── cover and closing ────────────────────────────────────────────────────────
@@ -538,7 +599,13 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None):
         topMargin=22 * mm, bottomMargin=22 * mm,
         title=meta['title'], author='WTF Agents',
     )
-    story = build_cover(meta, S) + parse_body(body, S) + build_closing(meta, S, metas)
+    pattern = title_pattern(metas, exclude_slug=meta['slug'])
+    target = store_href(meta)
+    linker = lambda text, style_name: link_guide_titles(text, pattern, target, style_name)
+
+    story = (build_cover(meta, S)
+             + parse_body(body, S, linker)
+             + build_closing(meta, S, metas))
     doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
     return out_path
 
