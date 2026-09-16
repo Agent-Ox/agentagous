@@ -566,9 +566,6 @@ def cta_body(metas):
             f'Buy them individually at ${single}, or take the Starter Pack for ${starter} '
             f'or the Complete Pack for ${complete} with every guide in the series.')
 CTA_LINK = '<link href="https://wtfagents.com/store" color="#f97316">wtfagents.com/store →</link>'
-FOOTER_1 = 'WTF Agents · wtfagents.com · The autonomous company economy is here. WTF is happening.'
-FOOTER_2 = '© 2026 WTF Agents. All rights reserved.'
-
 
 def build_closing(meta, S, metas):
     flow = []
@@ -597,16 +594,10 @@ def build_closing(meta, S, metas):
         ('TOPPADDING', (0, 0), (-1, -1), 0),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
     ]))
-    # The QR block and the sign-off move as one unit. Left loose, a tail that
-    # does not fit spills onto a fresh page carrying nothing but two 8.5pt
-    # footer lines, which reads as a blank final page.
-    flow.append(KeepTogether([
-        qr_table,
-        Spacer(1, 4 * mm),
-        zinc_rule(),
-        Paragraph(linkify(FOOTER_1), S['footer_s']),
-        Paragraph(FOOTER_2, S['footer_s']),
-    ]))
+    # The QR block closes the guide. The page footer drawn by on_page() already
+    # carries the URL and the copyright line, so nothing is repeated here.
+    # Kept in a KeepTogether so it cannot split onto a page of its own.
+    flow.append(KeepTogether([qr_table]))
     return flow
 
 
