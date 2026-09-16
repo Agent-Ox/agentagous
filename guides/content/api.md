@@ -48,7 +48,7 @@ Here is what actually happens when you use a weather app on your phone:
 
 - → You open your weather app.
 - → The app does not have weather data stored on your phone.
-- → It sends a request to a weather service's API: "Give me the forecast for Mallorca, Spain."
+- → It sends a request to a weather service's API: "Give me the forecast for Chicago."
 - → The weather service's servers process the request.
 - → The API sends back the data: temperature, humidity, forecast for the next 7 days.
 - → Your app displays it in a nice interface.
