@@ -21,4 +21,5 @@ backfill from the same category and then from anything remaining.
 | `claude-code` | claude | `claude` | `cowork` | `anthropic` | `agentic-economy` | `hire-agent` |
 | `cowork` | claude | `claude-code` | `hire-agent` | `anthropic` | `agentic-economy` | `claude` |
 | `hire-agent` | practical | `cowork` | `ai-agent` | `agentic-economy` | `api` | `llm` |
-| `whos-who` | map | `agentic-economy` | `hire-agent` | `ai-agent` | `api` | `llm` |
+| `whos-who` | map | `agentic-economy` | `which-ai` | `hire-agent` | `ai-agent` | `api` |
+| `which-ai` | map | `llm` | `claude` | `whos-who` | `agentic-economy` | `hire-agent` |

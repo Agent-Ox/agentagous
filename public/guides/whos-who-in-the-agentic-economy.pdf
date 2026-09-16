@@ -243,7 +243,7 @@ endobj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 62.69291 616.814 285.7839 632.814 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 62.69291 616.814 232.0049 632.814 ] /Subtype /Link /Type /Annot
 >>
 endobj
 34 0 obj
@@ -257,7 +257,7 @@ endobj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 62.69291 547.814 162.9249 563.814 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 62.69291 547.814 285.7839 563.814 ] /Subtype /Link /Type /Annot
 >>
 endobj
 36 0 obj
@@ -271,28 +271,28 @@ endobj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 62.69291 478.814 136.0409 494.814 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 62.69291 478.814 162.9249 494.814 ] /Subtype /Link /Type /Annot
 >>
 endobj
 38 0 obj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 70.69291 448.064 151.2249 461.064 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 70.69291 433.064 151.2249 446.064 ] /Subtype /Link /Type /Annot
 >>
 endobj
 39 0 obj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 62.69291 424.814 140.3089 440.814 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 62.69291 409.814 136.0409 425.814 ] /Subtype /Link /Type /Annot
 >>
 endobj
 40 0 obj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 70.69291 394.064 151.2249 407.064 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 70.69291 379.064 151.2249 392.064 ] /Subtype /Link /Type /Annot
 >>
 endobj
 41 0 obj
@@ -304,7 +304,7 @@ endobj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 62.69291 270.9754 183.5719 286.9754 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 62.69291 255.9754 183.5719 271.9754 ] /Subtype /Link /Type /Annot
 >>
 endobj
 43 0 obj
@@ -319,27 +319,20 @@ endobj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/store)
->> /Border [ 0 0 0 ] /Rect [ 198.4252 183.9843 287.9052 195.9843 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 198.4252 168.9843 287.9052 180.9843 ] /Subtype /Link /Type /Annot
 >>
 endobj
 45 0 obj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com/companies)
->> /Border [ 0 0 0 ] /Rect [ 198.4252 151.9843 314.0252 163.9843 ] /Subtype /Link /Type /Annot
+>> /Border [ 0 0 0 ] /Rect [ 198.4252 136.9843 314.0252 148.9843 ] /Subtype /Link /Type /Annot
 >>
 endobj
 46 0 obj
 <<
-/A <<
-/S /URI /Type /Action /URI (https://wtfagents.com)
->> /Border [ 0 0 0 ] /Rect [ 173.151 80.74882 227.9505 90.94882 ] /Subtype /Link /Type /Annot
->>
-endobj
-47 0 obj
-<<
 /Annots [ 30 0 R 31 0 R 32 0 R 33 0 R 34 0 R 35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 
-  40 0 R 42 0 R 44 0 R 45 0 R 46 0 R ] /Contents 60 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 52 0 R /Resources <<
+  40 0 R 42 0 R 44 0 R 45 0 R ] /Contents 60 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 52 0 R /Resources <<
 /Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ] /XObject <<
 /FormXob.de41259adad8b44818712a1f94ee6a08 43 0 R
 >>
@@ -349,16 +342,23 @@ endobj
 >> /Type /Page
 >>
 endobj
-48 0 obj
+47 0 obj
 <<
 /A <<
 /S /URI /Type /Action /URI (https://wtfagents.com)
 >> /Border [ 0 0 0 ] /Rect [ 211.7578 20.17717 263.3338 29.07717 ] /Subtype /Link /Type /Annot
 >>
 endobj
+48 0 obj
+<<
+/A <<
+/S /URI /Type /Action /URI (https://wtfagents.com)
+>> /Border [ 0 0 0 ] /Rect [ 173.151 763.3276 227.9505 773.5276 ] /Subtype /Link /Type /Annot
+>>
+endobj
 49 0 obj
 <<
-/Annots [ 48 0 R ] /Contents 61 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 52 0 R /Resources <<
+/Annots [ 47 0 R 48 0 R ] /Contents 61 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 52 0 R /Resources <<
 /Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >> /Rotate 0 
   /Trans <<
@@ -373,13 +373,13 @@ endobj
 endobj
 51 0 obj
 <<
-/Author (WTF Agents) /CreationDate (D:20260916162525+02'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260916162525+02'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+/Author (WTF Agents) /CreationDate (D:20260916163656+02'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260916163656+02'00') /Producer (ReportLab PDF Library - \(opensource\)) 
   /Subject (\(unspecified\)) /Title (Who's Who in the Agentic Economy) /Trapped /False
 >>
 endobj
 52 0 obj
 <<
-/Count 9 /Kids [ 7 0 R 9 0 R 15 0 R 20 0 R 25 0 R 27 0 R 29 0 R 47 0 R 49 0 R ] /Type /Pages
+/Count 9 /Kids [ 7 0 R 9 0 R 15 0 R 20 0 R 25 0 R 27 0 R 29 0 R 46 0 R 49 0 R ] /Type /Pages
 >>
 endobj
 53 0 obj
@@ -433,17 +433,17 @@ Gatm;gN)%,&:O:Sls&!KbOBsXT+j/+dtn^8<lZk=J]O+4(]mY:1onC[JtsrC`l]^3a"sS!ij*oMp?Zc)
 endobj
 60 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 1885
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1826
 >>
 stream
-Gau`T>Ar7S'Roe[3"H2T'e(A67I?pb\"rDQ%IIo')pfD@U2;foj@OAss8*h"Z7WOcl_#:;-]r[=kBu0t:_XQ?d-uOr"F*+]bA.HL_.3aL&-7t6\=/BU*Kc"JQ3fN5"fFJ:H9NgrEg]M9;Q2nh9!ll#e.uYW7jL`m81>)n'C7!$<]Fs*:3.F'n!EY%3mO[')'#5GBuU%fTqT5-N&h-LQTl^p'-DR8V^\C*Ub^K9(f>!>;j]+E]P2"jDTfI3dgF@hSuEF^20RqR?0aY;\2n%*hG(03=d].D9Kp8QYs/:a[6]c^gJa8gm?bU&-_0d7?NG(8DpYFETbPY4Z&D"!;Bf8D&.ELK6.>K@8jIY:0!?-bkLF01lg]tHZT5B#f0"a'($*rKCe]3g^DRZ8p-`;e'ntP#6pZ`$oTp\"(6M9OotJ(#<IG%Yk7EEd;l#8o51bn;W$>1rn_]J!C!^mPq>pT($O]V6,&h[ClRe?5Bq[#m[BOZ<!Y!<)0"8&=%<bt.(tZ?>IY'RZV?te@QhS\`RdJ*j##+FbUGSn^!V<\`1^WMh;n/8sA[U<b+Jkks.9's)rR:eBT890C?$8[HElcP%(2hqJ<c6WoCJ3UA_R*^T@>\NP-=!ZhM:?QWE/+hR/?0icW\@X]2dgCd4)kk4;d31N.J%u.@_8pm]8tjXVJ]gNCO6C(4FNm)22If`=\t4c'p%/KZ>$AnSo?aPB0uH+[=Pc<QOY72.H/s\#WU&.)ZH_e2*>5)Y-^ppD5$#&rOsBK<K08U.:O&4L;7R`]aO&4VRa>.Ukm9'5D6RjXUQ;[[Bm1IBEFi_HN']iMsU[!X_EkdYX#s=g1!_5cY=!j[*"L]AVK;.<$!W"5@U"#[[`pU#RpSpO:Y<Go=BC3$R_Hn7*"a`5'hGk5s;`hCG$1,NK9g$8'3o0`]/mZhkD'"41McuBU5^92nc!`.CEsZ)?QL-ZYEe.VKE`8Ol(NHXcLq[f/_KXYs+WOKoH>P3<=GgANp`POim8_s8(7P#KuJmW67JNNrWRR.IFJO=<(`5&2@HCZ8!/(*Q1kEV$4.)ZU!O^H?AbH.m7N?5u'PlG%X7(dBb'AF7[EY#:K(IaPE4%/(;A"o<g5KQP`,KOEL_6[[\QtE,-')49Ffc$JK0)8drHf1"lQU"NSOHgOm+VWqu,dr-7p3$_A"rNX8MK:RA]aFSJ>pYkjS7M/*bZ=RU6LR,EbuB<WMV+r'*0jGPJA(`Y7@68e)J];OQ;Rq51[gf"SnOUP78P]3(9F%eJGN^`Qu?IMotaDRX->MI,/?W:r;(BQo'J?*]s\7Q=n\?G89QOh0`W[(]dD#M64::nFd7\nUoM/Y'[eD7`!dLT:'U\"Vl$u!mkUiNCDD2gJ/X?(`OoS@'e!fm4_q4*)Va'heTZ.b8/mrTt=:*2\Kal(.ADtNLT(1/1G"9C-Yq=..kBW>t2G`T%d.M^>9;:"YIN,p6^PFjm*RLlS8&tLdHn1UB*K[FJ$?MJ",f*M\'-(QD0.Da3$N;`\Z%UWODp%%S:QK2(C-8UjT>i,m^WD4luFI!5KPt<h1<dg\BAU'u9?3,rWd7E&r3`'H*Y4*3f[a>s)\ncTOpb<A9.$[3>L*&FQ5_sUr[=D^_J(SK**]1huJp2h$]%UOLKFSUigN6-AR;`Q:^2!?fj'Z+4UORhPdm\YZETCB]YsRoa>G4^W[uH7EaL-=;%%\2."gcq:?UA\imVOWE5`V2%.>kDOQ8D?Zp@E(GRith\KG1/4*XpYg+rQEIs2uulIC0%+[\XgkL"+13,']mp-6":1[HmXI7m'7ZFD]/(mXl4p4"gqZ\RIfGIT%#?P`@*lhFN;E]6E$9_nIHSldf-`e[jFd\#]K*p"b@(!jVHUmfN>=;P"lOg*$`srrA6n!7_~>endstream
+Gau`T9lo&I&A@C2llcTkj2(p)J7(#J-aB4adZ.8,PBJ8hR"Rjq'WI7[(&e"^5Z4>>0TjDIM<-H\I.$ELDm;!M!'f!59i_6IB5i;gJMNV;JTAV9p'r]fPQ)sT#R-,H*1f9g@0G+i;Y]K#(5,+CK&W"C'e?3kbb%[%*(_2K+C#'%8-1)W=?fT8WZAaE*qo1l7YQf[n.\dBcqPMGqWiIU3M;o@0p/%&fLe5$)5SSkOTNOYN$91VC^&:)1Y3"51c7is%)YR^,Cg_L_Nh^AO%eKuJ4]Mi]7LDTqA5NIK%Y4S"bpcM*Z^QE,k0!\JB<n+@5qrDiHFc5KA%7jd?^0='I"S1_'4_D\<r>3DW"=kd^a=G`R$[/2Y16Nhq=htTuh-L!j50eNEMa.$nQilAca!?^sFS=^Q4e7&T?'(!LIeaAC.m]mFA0U3iF$R69%)Q'SuO"%uFtJ6tuqo4-DDj?I$n^^u$IpYgR:gQhRB26(q?aaoZA]>ME\]@Bm):JP=\JCga;\@uJ;4iK1;g<5m/>Dtbd5pR_k]kQ.I.]@$cCB[qCffjti,9Zj)7m7sl`d")q;Mrt$'I\JL>:nB:f:q[mD$`S\=]7@:`RS@?!I)pC3)IITXmkBF\[4.2@[d\;sK5FY8X4Oo=RApHs):s\.d%/>C*-@>2)m\;Rm,L:CD04;nAh%j/(1HjN==`=CO0Nm`oI_3,rOd$jb+,[t%A+!lbU+34]S5+AguKosKo8.+J(Ni%O%g3VUjF*:YB%<BA_bo,$5'k`RCTNQAn;A9^AY=9IHP`Q0&?+Vk)ikXQ=hm)/(@Qr<\$QTF%]dSN[rD_V?Age8*keMn9:rf)M]SLh:-)/)3-e8DN`5n-]e=,rD+\ii;AF&n>>!P35)SAh!)\\_5lFJp"sdg_95Pi$WGY)(j3d@a/a\qU"X@8YkkFmi5R*:%o]6=7"3t,qY256Q#2Iu\>u^!T0_jENRCUP/W5"#"tQHabU&?Znu\C/8)V^6:Q;/D0jtbBmVC3qN.h"cI'TV?:<<i*Ndi5rGU/k=rsuVY_X9p9HlV]oRP.i@&,G(V8i,NX*i2t4'MEgj%pR9X%H_\YpGq)XeuNq2#+D]2]rVN"7a9+NOm9sGOZZ;E`Z<WJeHM<['8B^(8(S7K;fVmLK:`Hu+J0_OS$tW=3/iKFUFo$th?&5(7U_J"@r[$q6UZ,%M.m>1/;@<g<15$>YS=#f6B<mogVRsm"Q[G`Ts8r:j?a^r\_g]b2=C7IiaG8n-j#nXnBmsb$kEGF\,2+bop#?R5%p@YMl%4*k#!Pi"214$2dfSiqjpu>o3eZtVBhsg$cd&ke$eg2>`QCY)gUhrLW4GiG*Vl(G80TNK$.VcgH+q=J1D0/QVY1r\;K;-B'1MDHLCpE)%fIq`r3W[8F=)bgMDQmlreE7G`4J*fq(dL`&&38kO?uAVs?,SqZ5@DWcU6/&$J>JO4u1;(I@LWEO>W85tQq?2@TFlo#*K.%c2a-X71?ZhH"4>F1fNe9m'P3K;hX!$qBcqc^FQ+(f<P_PXonRf4W7;gL9#egW0d9(YesciXi8c;c4/=]O?]+IJAEMk>tccr_q[9e8WPuXAb[i43eR@&S7EV@r@7TJV)M8(Cj8rf5fgj_"]<'mWSia`?g`OO^3Nq$!5rP$]aQ5D&9%#aS*UG*)jZ9],!8bU3D)l[!8!2n-$RrnuaIOGab?L>5m(n'D`88@770-3Rm@>H$,#@C+FQ/Dil8a3FVa7@p,M$p<0lLa-!_5.1@j"\qG??b\t3Q\+dmB6YO>?(HY0m=AI5-h70<K:i!ctS)9:3;CR2K:i%so.n\fM^nYHAPQ(Z4kfM6~>endstream
 endobj
 61 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 379
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 510
 >>
 stream
-Garo=9htgF&;KZP(%2`+*'=,e&JO]O6*uIb/d?K#%:EFsr-`3Z<\TXml,Ro&kr`l%=pF`mEWb)4ge8T%:hm3ZLGHbQ;4i`Qod2bj<bL)T[#Nf5Eh>L_kQ?uX8gu-p($`&u*.s.XEaDD#F:+0hk`SY)ahMjXkcA271/=k\.G.C?l0@eF*<B'iJ#71$?_Von29Zb_9JD2fN#Y\Q(`i>C92f^%4'I)h%1<gnn/rn8iNt:FeCk$fQRO80p(b_3b.)dbX?$X7WB?C4bAUd?-#;mNClKf"(K6*dK(P4#B#MLG9apS1S`c=k3$ZkUj?&5?]\D$9#L:+kbVdd>8m,Tp*s#fU?DDpa?M?N9ITNpaeVXR6lb=/;F"RR[)\G,YBE~>endstream
+GasbV8T3?;&;BTL(%:>jaAg'J`rnqRae<DSoTG-kcq@fhNpJUD^[Gj:C`ioh!?sKBhtor6.3Ed670VHnI(s<u6<\sM)5KdXV;eVM;HjkFVU]A2*mL^`]65,F.;p5Y@1".^1`=K;JtdJ/1W\3HJlDq%ARf)oTeHDsY/``.fXclQ[4XGp2I9#SHmf1$U"(7,%ItgfK2]`_hYI5KaEc)QWP\#^\=BaCI6>kc-Q$0So=tkC+ca/NAYm"<%_pFTDS#+O8AC:ig*6aNLH(aB1R6ek$Hd)2>+`aAGV5Qjl6sf3QDc"F4!q#@PKRX-?hRWT\J1i*1m-/eZiW<TBVg!1[&9ER0;6LrDQP/77coq+YMEJKp<_Oc&spFE2HfLJF9'VNoq=R?ef")Rj0%6=]CuCQ]:[]IaGVtIM9Q(eggo]+[[[)ATBf4bU(Qbb\Q7\eF9.ngrrGmOc<!8+bkEsHb,\LuoV^!K\pD6<G)Kt==pp68+*-s#^J;Ad-OdR`qumULaZB~>endstream
 endobj
 xref
 0 62
@@ -494,9 +494,9 @@ xref
 0000009451 00000 n 
 0000009631 00000 n 
 0000009815 00000 n 
-0000009988 00000 n 
-0000010378 00000 n 
-0000010552 00000 n 
+0000010198 00000 n 
+0000010372 00000 n 
+0000010545 00000 n 
 0000010777 00000 n 
 0000010847 00000 n 
 0000011144 00000 n 
@@ -508,11 +508,11 @@ xref
 0000021009 00000 n 
 0000023147 00000 n 
 0000024986 00000 n 
-0000026963 00000 n 
+0000026904 00000 n 
 trailer
 <<
 /ID 
-[<405d1a3502bb15f7a1c9463cc82eabf1><405d1a3502bb15f7a1c9463cc82eabf1>]
+[<99f694f6a26851fc8868c454a8555d00><99f694f6a26851fc8868c454a8555d00>]
 % ReportLab generated PDF document -- digest (opensource)
 
 /Info 51 0 R
@@ -520,5 +520,5 @@ trailer
 /Size 62
 >>
 startxref
-27433
+27505
 %%EOF
