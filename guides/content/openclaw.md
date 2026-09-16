@@ -4,26 +4,38 @@ title: 'WTF is OpenClaw'
 file: 'wtf-is-openclaw.pdf'
 cover_title: 'WTF is'
 cover_subtitle: 'OpenClaw?'
-cover_meta: 'WTF Agents · wtfagents.com · March 2026'
+cover_meta: 'WTF Agents · wtfagents.com · September 2026'
 subtitle: >-
-  One Austrian developer. One open-source project. Three name changes in 60 days. 247,000
-  GitHub stars. A hire by OpenAI. Dating profiles created without consent. China banning
-  it from government offices. This is the wildest story in tech right now.
+  One Austrian developer. One open-source project. Three name changes in 60 days, a hire by
+  OpenAI, dating profiles created without consent, a ban from Chinese government offices —
+  and now millions of users, a foundation, and native apps. The wildest story in tech, and
+  where it stands today.
 
 # store catalogue fields
 order: 5
-description: 'The open source alternative taking on Polsia. Self-hosted, community-driven, and growing fast.'
+description: 'The open-source personal agent with millions of users. The wild origin story, the security warnings, and where it stands now.'
 price: 7
 category: 'platforms'
 badge: null
 featured: false
 relatedTool: 'openclaw'
-related: ['paperclip', 'ai-agent']
 starter: false
+related: ['paperclip', 'ai-agent']
 ---
 ## The one-liner
 
-@body_lead OpenClaw is a free, open-source autonomous AI agent that runs on your computer and takes instructions via messaging apps — Signal, Telegram, Discord, WhatsApp — connecting to Claude, GPT, or DeepSeek to carry out multi-step tasks on your behalf.
+@body_lead OpenClaw is a free, open-source autonomous AI agent that runs on your computer or phone and takes instructions via messaging apps — WhatsApp, Telegram, Signal, Discord — connecting to Claude, GPT, DeepSeek or any model you choose to carry out multi-step tasks on your behalf.
+
+@spacer 4
+
+## By the numbers — September 2026
+
+@stat 3.2M || active users, making it the most-used open-source agent in the world
+@stat 385,000+ || GitHub stars — the sixth most-starred repository in GitHub's history
+@stat 30 Aug || 2026: OpenClaw 2.0 released, with native iPhone, iPad and Android apps
+@stat $0 || cost. MIT licence. You pay only for the model you plug in
+@stat 1 || non-profit foundation now governing the project, with an independent board
+@stat 3 || names in its first 60 days: Clawdbot, Moltbot, OpenClaw
 
 It is not a platform. It is not a service. It is software you install and run yourself. And it became one of the most talked-about pieces of software in the world in under 60 days.
 
@@ -79,13 +91,13 @@ OpenClaw uses a "skills" system — modular capabilities stored as directories t
 
 @spacer 4
 
-## The GitHub explosion
+## The growth
 
-@body_lead OpenClaw's growth on GitHub was unprecedented. By February 2, 2026 — just over two months after launch — it had 247,000 stars and 47,700 forks.
+@body_lead OpenClaw's growth was unprecedented. By February 2026 — just over two months after launch — it had 247,000 GitHub stars. By September it had passed 385,000, the sixth most-starred repository in GitHub's history, and over three million people were running it.
 
-For context: Linux has taken decades to accumulate its GitHub stars. OpenClaw surpassed many major long-standing projects in weeks. One LinkedIn analysis described it as "the fastest-growing GitHub repo in history" — though this specific claim is difficult to verify independently.
+For context: Linux took decades to accumulate its GitHub stars. OpenClaw surpassed most long-standing projects in weeks and kept going. The 2.0 release in August, with native mobile apps and Windows support, turned it from a developer's tool into something ordinary people install.
 
-The timing was perfect. OpenClaw launched just as Moltbook went viral — a social network built for AI agents. The two projects fed each other's growth: OpenClaw agents connecting to Moltbook, humans watching in fascination and horror.
+The timing at launch was perfect. OpenClaw arrived just as Moltbook went viral — a social network built for AI agents. The two projects fed each other's growth: OpenClaw agents connecting to Moltbook, humans watching in fascination and horror.
 
 @spacer 4
 
@@ -141,26 +153,28 @@ The rule of thumb for OpenClaw: give it the minimum permissions it needs. Only i
 @tstyle ROWBACKGROUNDS 1,1 -1,-1 [DARK_BG,ZINC_900]
 |  | OpenClaw | Polsia | Paperclip |
 | Type | Personal AI agent | Managed company platform | Orchestration framework |
-| Runs | On your machine | On Polsia servers | On your servers |
-| Cost | Free (+ LLM costs) | $50/mo + 20% revenue | Free (open source) |
+| Runs | Your machine or phone | Polsia's servers | Your servers |
+| Cost | Free (+ LLM costs) | $20–1,000/mo + fees | Free (open source) |
 | For | Personal automation | Launching AI companies | Multi-agent companies |
 | Technical | Medium (CLI) | Low (no-code) | High (developer) |
 | Open source | Yes (MIT) | No | Yes |
-| LLMs | Claude, GPT, DeepSeek | Not disclosed | Claude Code + others |
+| LLMs | Any — Claude by default | Claude Opus | Claude Code + 7 others |
 
 @spacer 4
 
-## What happens now — the OpenClaw Foundation
+## Where it stands now — the OpenClaw Foundation
 
-With Peter Steinberger at OpenAI, OpenClaw's future lies with the independent open-source foundation he established before leaving. OpenAI is the financial sponsor — an unusual arrangement that gives the world's most powerful AI company influence over the most popular open-source agent project.
+The move to a foundation, announced when Steinberger joined OpenAI, has happened. OpenClaw is now governed by an independent non-profit with a board chaired by Dave Morin, the founder of Path. OpenAI remains a financial sponsor — an arrangement that still gives one of the world's most powerful AI companies influence over the most popular open-source agent, though the board structure now sits between the two.
 
-The community continues to grow. The ClawHub skills ecosystem is expanding. Security is being addressed (slowly). OpenClaw remains the reference implementation for what a personal AI agent can look like — and the benchmark against which all competitors are measured.
+Development has not slowed. OpenClaw 2.0 shipped on 30 August 2026 with native iPhone, iPad and Android apps and a rebuilt skills system. Security improved in specific ways: an approval is now tied to the exact request, command, session and person it was granted for, rather than becoming a standing permission, and protected credentials can reach the services that need them without ever appearing in text the model can read. Prompt injection, as everywhere in the agentic economy, is not solved.
+
+OpenClaw is the reference implementation for what a personal AI agent looks like, and the benchmark every competitor — including Meta's Muse — is measured against. It is also hired into Paperclip org charts as a worker, which makes it one of the few agents that lives in both the personal and the company layer.
 
 @spacer 4
 
 ## Glossary
 
-@gl <b>OpenClaw</b> — Free, open-source autonomous AI agent. Runs locally, connects via messaging apps. Created by Peter Steinberger, November 2025.
+@gl <b>OpenClaw</b> — Free, open-source autonomous AI agent. Runs on your machine or phone, connects via messaging apps. Created by Peter Steinberger, November 2025; governed by the OpenClaw Foundation since 2026.
 
 @gl <b>Clawdbot / Moltbot</b> — Previous names for OpenClaw. Clawdbot was the original name; Moltbot followed after Anthropic trademark complaints.
 
@@ -168,7 +182,7 @@ The community continues to grow. The ClawHub skills ecosystem is expanding. Secu
 
 @gl <b>Acqui-hire</b> — When a company hires a founder or team without technically acquiring their product. OpenAI hired Steinberger; OpenClaw remained open source.
 
-@gl <b>Moltbook</b> — A social network for AI agents. Launched January 2026. Acquired by Meta March 2026.
+@gl <b>Moltbook</b> — A social network for AI agents. Launched January 2026; its founders joined Meta in March 2026.
 
 @gl <b>ClawHub</b> — The community skill registry for OpenClaw — modular capabilities that can be installed to extend the agent.
 
