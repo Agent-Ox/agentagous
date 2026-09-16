@@ -405,6 +405,9 @@ def compute_crosslinks(slug, metas):
     picks = []
 
     def add(candidate):
+        # `candidate in metas` is what makes a forward reference safe: a related
+        # slug for a guide that has not been written yet is skipped here and the
+        # backfill below takes the slot, so the list is always CROSSLINK_COUNT long.
         if (candidate and candidate != slug and candidate in metas
                 and candidate not in picks and len(picks) < CROSSLINK_COUNT):
             picks.append(candidate)

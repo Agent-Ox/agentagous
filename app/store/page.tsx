@@ -59,6 +59,7 @@ export default function StorePage() {
     { id: 'platforms', label: '🏗 Platforms' },
     { id: 'claude', label: '🤖 Claude & Anthropic' },
     { id: 'practical', label: '💼 Practical' },
+    { id: 'map', label: '🗺️ The map' },
   ];
 
   const filtered = activeCategory === 'all' ? GUIDES : GUIDES.filter(g => g.category === activeCategory);

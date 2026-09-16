@@ -17,6 +17,7 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'claude-code', title: 'WTF is Claude Code', description: 'The autonomous developer that changed Anthropic\'s trajectory. How it works, how it compares, and how non-developers are using it now.', price: 7, badge: null, featured: false, category: 'claude', file: 'wtf-is-claude-code.pdf', starter: false },
   { slug: 'cowork', title: 'WTF is Cowork', description: 'Claude Code was for developers. Cowork is for everyone else. What it does, what it costs, and how it changed the work-agent market.', price: 7, badge: null, featured: false, category: 'claude', file: 'wtf-is-cowork.pdf', starter: false },
   { slug: 'hire-agent', title: 'How to Hire an AI Agent for Your Business', description: 'The practical guide. Pick the task, pick the agent, write the brief, start read-only, measure honestly. No code, no prior AI experience.', price: 7, badge: '💼 Practical', featured: false, category: 'practical', file: 'how-to-hire-an-ai-agent.pdf', starter: true },
+  { slug: 'whos-who', title: 'Who\'s Who in the Agentic Economy', description: 'The map. Every lab, agent, platform and piece of infrastructure that matters, one line each, sorted by layer. Read this first, then go deep.', price: 7, badge: '🗺️ The map', featured: true, category: 'map', file: 'whos-who-in-the-agentic-economy.pdf', starter: true },
 ];
 
 import type { Bundle } from './guides';
