@@ -24,5 +24,6 @@ backfill from the same category and then from anything remaining.
 | `whos-who` | map | `agentic-economy` | `which-ai` | `hire-agent` | `ai-agent` | `api` |
 | `which-ai` | map | `llm` | `claude` | `whos-who` | `agentic-economy` | `hire-agent` |
 | `meta-muse` | personal | `openclaw` | `which-ai` | `agentic-economy` | `hire-agent` | `ai-agent` |
-| `grok-bot` | work | `cowork` | `openclaw` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `grok-bot` | work | `cowork` | `openclaw` | `codex` | `agentic-economy` | `hire-agent` |
 | `nanocorp` | platforms | `polsia` | `paperclip` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `codex` | work | `claude-code` | `grok-bot` | `agentic-economy` | `hire-agent` | `ai-agent` |
