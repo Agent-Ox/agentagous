@@ -26,6 +26,7 @@ const PRICE_MAP: Record<string, string> = {
   'codex': process.env.STRIPE_PRICE_CODEX!,
   'chatgpt-work': process.env.STRIPE_PRICE_CHATGPT_WORK!,
   'china-ai': process.env.STRIPE_PRICE_CHINA_AI!,
+  'picks-and-shovels': process.env.STRIPE_PRICE_PICKS_AND_SHOVELS!,
 };
 
 export async function POST(request: Request) {

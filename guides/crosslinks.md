@@ -21,7 +21,7 @@ backfill from the same category and then from anything remaining.
 | `claude-code` | claude | `claude` | `cowork` | `anthropic` | `agentic-economy` | `hire-agent` |
 | `cowork` | claude | `claude-code` | `hire-agent` | `anthropic` | `agentic-economy` | `claude` |
 | `hire-agent` | practical | `cowork` | `ai-agent` | `agentic-economy` | `api` | `llm` |
-| `whos-who` | map | `agentic-economy` | `which-ai` | `china-ai` | `hire-agent` | `ai-agent` |
+| `whos-who` | map | `agentic-economy` | `which-ai` | `china-ai` | `hire-agent` | `picks-and-shovels` |
 | `which-ai` | map | `llm` | `claude` | `whos-who` | `agentic-economy` | `hire-agent` |
 | `meta-muse` | personal | `openclaw` | `which-ai` | `agentic-economy` | `hire-agent` | `ai-agent` |
 | `grok-bot` | work | `cowork` | `openclaw` | `chatgpt-work` | `agentic-economy` | `hire-agent` |
@@ -29,3 +29,4 @@ backfill from the same category and then from anything remaining.
 | `china-ai` | map | `which-ai` | `llm` | `whos-who` | `agentic-economy` | `hire-agent` |
 | `nanocorp` | platforms | `polsia` | `paperclip` | `agentic-economy` | `hire-agent` | `ai-agent` |
 | `codex` | work | `claude-code` | `chatgpt-work` | `grok-bot` | `agentic-economy` | `hire-agent` |
+| `picks-and-shovels` | map | `whos-who` | `china-ai` | `which-ai` | `agentic-economy` | `hire-agent` |

@@ -25,6 +25,7 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'china-ai', title: 'WTF is Happening with China\'s AI', description: 'DeepSeek, Qwen, Kimi, GLM and the open-weight strategy. Who the Chinese labs are, why they give models away, and what it means for anyone running agents.', price: 7, badge: '🇨🇳 Map', featured: false, category: 'map', file: 'wtf-is-happening-with-chinas-ai.pdf', starter: false },
   { slug: 'nanocorp', title: 'WTF is NanoCorp', description: 'The Polsia rival built by AI researchers that publishes its companies\' real revenue. How it works, what it costs, and what the live numbers say.', price: 7, badge: null, featured: false, category: 'platforms', file: 'wtf-is-nanocorp.pdf', starter: false },
   { slug: 'codex', title: 'WTF is Codex', description: 'OpenAI\'s coding agent, now a tab in ChatGPT. What it does, how it compares with Claude Code, what it costs on each plan, and the catches.', price: 7, badge: null, featured: false, category: 'work', file: 'wtf-is-codex.pdf', starter: false },
+  { slug: 'picks-and-shovels', title: 'The Picks and Shovels', description: 'The infrastructure layer: Nvidia, the clouds, Hugging Face, GitHub, Stripe, power. Who gets paid whichever agent wins, and why it matters to you.', price: 7, badge: '⛏️ Map', featured: false, category: 'map', file: 'the-picks-and-shovels.pdf', starter: false },
 ];
 
 import type { Bundle } from './guides';

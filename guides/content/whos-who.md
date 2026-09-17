@@ -168,7 +168,7 @@ Who gets paid regardless of which agent wins.
 
 @spacer 3
 
-Guide: The Picks and Shovels (coming) goes deeper on this layer.
+Guide: The Picks and Shovels goes deeper on this layer.
 
 @spacer 4
 
