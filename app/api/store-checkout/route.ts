@@ -22,6 +22,7 @@ const PRICE_MAP: Record<string, string> = {
   'which-ai': process.env.STRIPE_PRICE_WHICH_AI!,
   'meta-muse': process.env.STRIPE_PRICE_META_MUSE!,
   'grok-bot': process.env.STRIPE_PRICE_GROK_BOT!,
+  'nanocorp': process.env.STRIPE_PRICE_NANOCORP!,
 };
 
 export async function POST(request: Request) {

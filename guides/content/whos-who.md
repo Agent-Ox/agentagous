@@ -108,7 +108,7 @@ Agents that run your life's admin, mostly over messaging apps.
 
 @role <b>OpenClaw</b> — Open-source, self-hosted, millions of users, a non-profit foundation, native mobile apps. The reference personal agent and the one every rival is measured against. Guide: WTF is OpenClaw.
 
-@role <b>Meta Muse</b> — Meta's consumer agent: books, buys, negotiates and fills in forms, free tier, WhatsApp. US only at launch. Guide: WTF is Meta Muse (coming).
+@role <b>Meta Muse</b> — Meta's consumer agent: books, buys, negotiates and fills in forms, free tier, WhatsApp. US only at launch. Guide: WTF is Meta Muse.
 
 @role <b>Hermes Agent (Nous Research)</b> — The credible open-source number two: self-improving memory, hireable into Paperclip out of the box.
 
@@ -122,7 +122,7 @@ Agents that run whole businesses, and the tools that manage teams of agents.
 
 @role <b>Polsia</b> — The biggest and most argued-about: subscribe, describe an idea, a fixed team of agents builds and runs the company. Nearly half a million created; a founder who says one in ten has earned a dollar. Guide: WTF is Polsia.
 
-@role <b>NanoCorp</b> — YC-backed rival that publishes the live revenue of every company on the platform — the most honest number in the space, and a small one. Guide: WTF is NanoCorp (coming).
+@role <b>NanoCorp</b> — YC-backed rival that publishes the live revenue of every company on the platform — the most honest numbers in the space, and small ones: the best has earned $2,570, and only two have passed $1,000. Guide: WTF is NanoCorp.
 
 @role <b>Cofounder.co</b> — Company-in-a-box with departments and a human approval gate in front of anything risky.
 

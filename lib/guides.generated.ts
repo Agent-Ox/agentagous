@@ -21,6 +21,7 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'which-ai', title: 'Which AI Should I Actually Use?', description: 'Claude vs ChatGPT vs Gemini vs Muse vs Grok vs DeepSeek, for a normal person. Which to use for what, what each costs, and the catches.', price: 7, badge: '🧭 Decision guide', featured: true, category: 'map', file: 'which-ai-should-i-actually-use.pdf', starter: true },
   { slug: 'meta-muse', title: 'WTF is Meta Muse', description: 'Meta\'s free personal agent in WhatsApp. What it does, the security design, the pricing, and the trust question nobody puts in the demo.', price: 7, badge: '🆕 New', featured: true, category: 'personal', file: 'wtf-is-meta-muse.pdf', starter: false },
   { slug: 'grok-bot', title: 'WTF is Grok Bot', description: 'Elon Musk\'s work agent: a team of bots with their own cloud computer and your real logins, coordinated by a Chief of Staff. What it does, costs and risks.', price: 7, badge: '🆕 New', featured: false, category: 'work', file: 'wtf-is-grok-bot.pdf', starter: false },
+  { slug: 'nanocorp', title: 'WTF is NanoCorp', description: 'The Polsia rival built by AI researchers that publishes its companies\' real revenue. How it works, what it costs, and what the live numbers say.', price: 7, badge: null, featured: false, category: 'platforms', file: 'wtf-is-nanocorp.pdf', starter: false },
 ];
 
 import type { Bundle } from './guides';

@@ -13,9 +13,9 @@ backfill from the same category and then from anything remaining.
 | `ai-agent` | foundation | `agentic-economy` | `openclaw` | `api` | `hire-agent` | `llm` |
 | `api` | foundation | `ai-agent` | `llm` | `agentic-economy` | `hire-agent` | `polsia` |
 | `llm` | foundation | `ai-agent` | `claude` | `agentic-economy` | `hire-agent` | `api` |
-| `polsia` | platforms | `ai-agent` | `paperclip` | `agentic-economy` | `hire-agent` | `api` |
+| `polsia` | platforms | `ai-agent` | `paperclip` | `nanocorp` | `agentic-economy` | `hire-agent` |
 | `openclaw` | personal | `paperclip` | `ai-agent` | `meta-muse` | `agentic-economy` | `hire-agent` |
-| `paperclip` | platforms | `openclaw` | `polsia` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `paperclip` | platforms | `openclaw` | `polsia` | `nanocorp` | `agentic-economy` | `hire-agent` |
 | `anthropic` | claude | `claude` | `claude-code` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude` | claude | `claude-code` | `anthropic` | `cowork` | `agentic-economy` | `hire-agent` |
 | `claude-code` | claude | `claude` | `cowork` | `anthropic` | `agentic-economy` | `hire-agent` |
@@ -25,3 +25,4 @@ backfill from the same category and then from anything remaining.
 | `which-ai` | map | `llm` | `claude` | `whos-who` | `agentic-economy` | `hire-agent` |
 | `meta-muse` | personal | `openclaw` | `which-ai` | `agentic-economy` | `hire-agent` | `ai-agent` |
 | `grok-bot` | work | `cowork` | `openclaw` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `nanocorp` | platforms | `polsia` | `paperclip` | `agentic-economy` | `hire-agent` | `ai-agent` |

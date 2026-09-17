@@ -142,7 +142,7 @@ Gartner expects more than 40% of agentic AI projects to be cancelled by the end 
 
 ### Most AI-run companies earn nothing
 
-Polsia's founder said on the record in May 2026 that around one in ten companies on the platform had earned at least a dollar. NanoCorp's public feed showed cumulative revenue across every company on the platform in the hundreds of dollars. The agents build. Customers, mostly, do not come.
+Polsia's founder said on the record in May 2026 that around one in ten companies on the platform had earned at least a dollar. NanoCorp's public leaderboard showed its best company on $2,570 across 748 sales, with only two companies past $1,000. The agents build. Customers, mostly, do not come.
 
 ### The agents misbehave
 
