@@ -158,11 +158,11 @@ Standards and infrastructure that make agents interoperate.
 
 Who gets paid regardless of which agent wins.
 
-@role <b>Nvidia</b> — The chips. Every model in Layer 1 was trained and is served on Nvidia hardware, which is why it is the most valuable company in the world.
+@role <b>Nvidia</b> — The chips. Every model in Layer 1 was trained and is served on Nvidia hardware, which is why it is the most valuable company in the world. Buying Hugging Face for $12.93 billion extends it from the silicon to the shelf the models sit on.
 
 @role <b>AWS · Google Cloud · Microsoft Azure</b> — The clouds. Bedrock, Vertex AI and Foundry serve every major model to enterprises inside infrastructure they already pay for. Amazon and Google are also Anthropic's largest backers.
 
-@role <b>Hugging Face</b> — The hub where open-weight models are published and downloaded. If DeepSeek or Qwen ships a model, this is where it lands.
+@role <b>Hugging Face</b> — The hub where open-weight models are published and downloaded. If DeepSeek or Qwen ships a model, this is where it lands. Nvidia agreed to buy it in September 2026 for $12.93 billion, closing in the first half of 2027; it has promised the platform stays open and chip-neutral.
 
 @role <b>GitHub</b> — Where the code lives and where agents commit it. OpenClaw and Paperclip's star counts are GitHub's.
 

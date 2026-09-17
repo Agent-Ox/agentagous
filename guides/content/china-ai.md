@@ -95,7 +95,7 @@ Your prompts are processed in China under Chinese law. US federal agencies and s
 
 ### Beijing is reconsidering
 
-In July 2026 China began weighing export controls on AI models — including open-weight ones. Weights already published cannot be recalled, but the next generation might not be published at all. Alibaba keeping its very best model, Qwen 3.7 Max, API-only while it carries on publishing the rest is the early signal. The advice circulating among developers: download and cache every model you depend on now.
+In July 2026 China began weighing export controls on AI models — including open-weight ones. Weights already published cannot be recalled, but the next generation might not be published at all. Alibaba keeping its very best model, Qwen 3.7 Max, API-only while it carries on publishing the rest is the early signal. The advice circulating among developers: download and cache every model you depend on now. That advice sharpened in September, when Nvidia agreed to buy Hugging Face — the hub nearly every Chinese open model is published to — for $12.93 billion. Nvidia has committed to keeping it open to all comers and all chipmakers, but the place China's weights land now has an American owner, and both governments have shown they will reach for this layer.
 
 ### Washington cuts both ways
 
@@ -139,7 +139,7 @@ For the agentic economy the practical consequence is a two-tier world. The hard,
 
 @gl <b>OpenRouter</b> — A service that routes requests to many models; its traffic share is a rough measure of which models developers actually use.
 
-@gl <b>Hugging Face</b> — The hub where open-weight models are published and downloaded.
+@gl <b>Hugging Face</b> — The hub where open-weight models are published and downloaded. Nvidia agreed to buy it in September 2026 for $12.93 billion, closing in the first half of 2027.
 
 @spacer 6
 

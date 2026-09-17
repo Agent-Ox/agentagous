@@ -34,6 +34,7 @@ Every agent in this series runs on this layer. Every dollar Polsia, OpenClaw or 
 @stat $725B+ || combined 2026 capital spending by Amazon, Alphabet, Microsoft and Meta, up around 77% on 2025 — the largest infrastructure build-out in corporate history
 @stat $5T || Nvidia's market value when it became the first chip company past five trillion dollars, 24 April 2026
 @stat $75B || Nvidia's data-centre revenue in a single quarter (to late April), up over 90% in a year
+@stat $12.93B || what Nvidia agreed on 2 September 2026 to pay for Hugging Face — the largest company it has ever bought outright. Expected to close in the first half of 2027
 @stat 82% || Google Cloud's year-on-year growth in Q2 2026; AWS 37%, its fastest in eighteen quarters
 @stat $514B || Google Cloud's contract backlog; AWS $496B; Oracle $638B — capacity sold years ahead
 @stat 10–50× || more tokens an agent consumes per finished task than a single chatbot answer
@@ -49,6 +50,8 @@ Every frontier model was trained on Nvidia hardware and most are served on it. N
 
 The challengers are not AMD. They are the clouds' own chips — Google's TPUs, Amazon's Trainium, Microsoft's Maia — which already handle a meaningful share of inference inside their own data centres at a lower cost per token. And in China, Huawei's Ascend, which Beijing is steering its labs toward at the price of a slower next generation. Nvidia's risk is not losing the market; it is the market's biggest customers building their own supply.
 
+Its answer is to own more of the stack. In December 2025 it paid around $20 billion for Groq's assets and people, its largest transaction ever, buying the low-latency inference chips that threatened it. On 2 September 2026 it agreed to buy Hugging Face for $12.93 billion — the largest company it has ever bought outright, and a straight line from the silicon to the place the models are published. Nvidia now sells the chips, and owns the shelf the open-weight world puts its models on.
+
 ### The clouds — AWS, Google Cloud, Azure, Oracle
 
 The three hyperscalers plus Oracle rent the chips, the power and the buildings to everyone who does not own them, which is nearly everyone. They also serve the models: Claude runs on AWS Bedrock, Google Vertex AI and Microsoft Foundry; GPT on Azure; Gemini on Google. An enterprise that already pays AWS can add Claude to the bill without a new vendor, which is how most of the Fortune 500 adopted agents.
@@ -61,7 +64,9 @@ Microsoft has reported around $80 billion of Azure orders it cannot fulfil becau
 
 ### The model hub — Hugging Face
 
-When DeepSeek, Alibaba or Meta publish model weights, they land on Hugging Face. It is the GitHub of models: the place open weights are hosted, downloaded, fine-tuned and compared, and the reason a solo builder can run Qwen on a laptop. Over a billion Qwen downloads happened here. Nothing in the open-weight world works without it.
+When DeepSeek, Alibaba or Meta publish model weights, they land on Hugging Face. It is the GitHub of models: the place open weights are hosted, downloaded, fine-tuned and compared, and the reason a solo builder can run Qwen on a laptop. Over a billion Qwen downloads happened here. More than 18 million people use it to share over 3 million models, half a million datasets and a million applications. Nothing in the open-weight world works without it.
+
+Which is why its sale matters. On 2 September 2026 Nvidia agreed to buy it for $12.93 billion, subject to regulatory approval and expected to close in the first half of 2027. Nvidia has committed to keeping the platform open: its own compute will not be required to build or deploy through it, other chipmakers stay supported, and anyone can go on publishing and downloading what they like. Those are commitments, not yet a track record. The neutral ground of the open-model world is being bought by the company that sells the hardware it runs on, and the next few years will show what that is worth.
 
 ### The code host — GitHub
 
