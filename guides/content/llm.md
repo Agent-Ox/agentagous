@@ -90,7 +90,7 @@ Elon Musk's models, now part of SpaceX after it acquired xAI and the coding tool
 
 ### The Chinese open-weight models
 
-DeepSeek, Alibaba's Qwen, Moonshot's Kimi, Zhipu's GLM and MiniMax. Released as open weights — anyone can download and run them — at a fraction of the price of US frontier models, and close enough in capability that a great many indie agents run on them. DeepSeek's cheap-to-train breakthrough in early 2025 was the moment this became a two-continent race. See the China guide in this series.
+DeepSeek, Alibaba's Qwen, Moonshot's Kimi, Zhipu's GLM and MiniMax. Released as open weights — anyone can download and run them — at a fraction of the price of US frontier models, and close enough in capability that a great many indie agents run on them. DeepSeek's cheap-to-train breakthrough in early 2025 was the moment this became a two-continent race. Guide: WTF is Happening with China's AI.
 
 ### Other open models
 

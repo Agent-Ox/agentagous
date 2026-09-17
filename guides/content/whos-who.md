@@ -60,7 +60,7 @@ The brains. Everything above runs on one of these.
 
 @role <b>DeepSeek</b> — The Chinese lab whose cheap-to-train breakthrough in early 2025 made this a two-continent race. DeepSeek V4 is open-weight under the MIT licence and runs under a great many indie agents.
 
-@role <b>Alibaba — Qwen · Moonshot — Kimi · Zhipu — GLM · MiniMax</b> — The rest of China's open-weight frontier. Kimi K3 was the largest open model ever released. Cheap, capable, downloadable. Guide: China's AI (coming).
+@role <b>Alibaba — Qwen · Moonshot — Kimi · Zhipu — GLM · MiniMax</b> — The rest of China's open-weight frontier. Kimi K3 was the largest open model ever released. Cheap, capable, downloadable. Guide: WTF is Happening with China's AI.
 
 @role <b>Mistral</b> — France's lab. Efficient smaller models and Europe's answer to US and Chinese dependence.
 
