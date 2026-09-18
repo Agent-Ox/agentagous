@@ -26,6 +26,7 @@ export const GENERATED_GUIDES: Guide[] = [
   { slug: 'nanocorp', title: 'WTF is NanoCorp', description: 'The Polsia rival built by AI researchers that publishes its companies\' real revenue. How it works, what it costs, and what the live numbers say.', price: 7, badge: null, featured: false, category: 'platforms', file: 'wtf-is-nanocorp.pdf', starter: false },
   { slug: 'codex', title: 'WTF is Codex', description: 'OpenAI\'s coding agent, now a tab in ChatGPT. What it does, how it compares with Claude Code, what it costs on each plan, and the catches.', price: 7, badge: null, featured: false, category: 'work', file: 'wtf-is-codex.pdf', starter: false },
   { slug: 'picks-and-shovels', title: 'The Picks and Shovels', description: 'The infrastructure layer: Nvidia, the clouds, Hugging Face, GitHub, Stripe, power. Who gets paid whichever agent wins, and why it matters to you.', price: 7, badge: '⛏️ Map', featured: false, category: 'map', file: 'the-picks-and-shovels.pdf', starter: false },
+  { slug: 'solo-stack', title: 'The Solo Founder\'s AI Stack', description: 'Beyond agents: the voice, video, image, deck, research and automation tools a one-person business runs on. Seven seats, real prices, what to buy first.', price: 7, badge: null, featured: false, category: 'practical', file: 'the-solo-founders-ai-stack.pdf', starter: false },
 ];
 
 import type { Bundle } from './guides';
