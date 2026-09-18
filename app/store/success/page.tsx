@@ -1,17 +1,40 @@
 import Link from 'next/link';
 import Stripe from 'stripe';
 import { productBySlug } from '../../../lib/guides';
+import { supabase } from '../../../lib/supabase';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-02-25.clover' });
 
 type VerifiedPurchase = { title: string; file: string; description: string };
 
 /**
- * Resolves the download from the Stripe session itself, never from the URL.
- * Returns null unless Stripe confirms this session is paid.
+ * Our own record of the sale, written by the store webhook. This is the
+ * authoritative source: the row is permanent, whereas a Stripe Checkout Session
+ * is not guaranteed to stay retrievable forever, and the link in the delivery
+ * email is meant to keep working indefinitely.
  */
-async function verifyPurchase(sessionId: string | undefined): Promise<VerifiedPurchase | null> {
-  if (!sessionId) return null;
+async function fromPurchasesTable(sessionId: string): Promise<VerifiedPurchase | null> {
+  const { data, error } = await supabase
+    .from('purchases')
+    .select('product_slug')
+    .eq('stripe_session_id', sessionId)
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Purchases lookup failed:', error.message);
+    return null;
+  }
+  return data ? productBySlug(data.product_slug) ?? null : null;
+}
+
+/**
+ * Fallback for the minutes right after checkout, before the webhook has landed.
+ * That gap is real — on the migration test the session completed at 11:51:56
+ * and the row appeared at 11:53:53 — and the buyer is redirected here
+ * immediately, so without this they would see the failure page on a good sale.
+ */
+async function fromStripe(sessionId: string): Promise<VerifiedPurchase | null> {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     if (session.payment_status !== 'paid') return null;
@@ -20,6 +43,17 @@ async function verifyPurchase(sessionId: string | undefined): Promise<VerifiedPu
     console.error('Session verification failed:', e);
     return null;
   }
+}
+
+/**
+ * Resolves the download from the session id, never from anything else in the
+ * URL: the id is the bearer token, and the product comes from whichever source
+ * confirms the sale. Our database first, Stripe only if the row is not there
+ * yet.
+ */
+async function verifyPurchase(sessionId: string | undefined): Promise<VerifiedPurchase | null> {
+  if (!sessionId) return null;
+  return (await fromPurchasesTable(sessionId)) ?? (await fromStripe(sessionId));
 }
 
 export default async function StoreSuccessPage({
