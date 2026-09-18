@@ -18,12 +18,14 @@ BUNDLES = [
         'membership': 'starter',
         # store catalogue
         'title': 'The Agentic Economy Starter Pack',
-        'description': 'The five guides that take you from "WTF is going on" to hiring your first agent.',
+        'description': 'The {n} guides that take you from "WTF is going on" to launching your '
+                       'first AI-run company.',
         # PDF cover
         'cover_title': 'The Agentic Economy',
         'cover_subtitle': 'Starter Pack',
-        'blurb': 'Five guides that take you from "WTF is going on" to hiring your first agent. '
-                 'No jargon. No hype. Just what is actually happening — and what to do about it.',
+        'blurb': '{n} guides that take you from "WTF is going on" to launching your first '
+                 'AI-run company. No jargon. No hype. Just what is actually happening — '
+                 'and what to do about it.',
     },
     {
         'slug': 'complete-pack',
@@ -53,3 +55,24 @@ def includes(bundle, metas):
     if bundle['membership'] == 'starter':
         return [s for s, m in metas.items() if m.get('starter')]
     return list(metas)
+
+
+#: Copy fields where `{n}` stands for the bundle's guide count.
+COUNTED_FIELDS = ('description', 'blurb')
+
+
+def resolve(bundle, metas):
+    """A copy of `bundle` with `{n}` replaced by the real guide count.
+
+    Bundle copy must never hardcode how many guides are in a bundle: membership
+    is derived from the `starter` flag in each guide's front-matter, so a single
+    front-matter change can move the count. Anything that shows the copy to a
+    reader — the store listing and the PDF cover blurb — resolves it here first,
+    against the same catalogue that decides membership.
+    """
+    count = str(len(includes(bundle, metas)))
+    resolved = dict(bundle)
+    for field in COUNTED_FIELDS:
+        if field in resolved:
+            resolved[field] = resolved[field].replace('{n}', count)
+    return resolved

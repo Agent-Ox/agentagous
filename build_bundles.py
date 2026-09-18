@@ -58,7 +58,10 @@ BUNDLES = [
         'blurb': b['blurb'],
         'includes': _BUNDLE_CONFIG.includes(b, _METAS),
     }
-    for b in _BUNDLE_CONFIG.BUNDLES
+    # resolve() fills in the guide count the copy refers to, from the same
+    # catalogue that decides membership, so the cover can never claim a number
+    # the contents page contradicts.
+    for b in map(lambda b: _BUNDLE_CONFIG.resolve(b, _METAS), _BUNDLE_CONFIG.BUNDLES)
 ]
 
 

@@ -75,7 +75,9 @@ def main():
     lines.append('')
     lines.append('/** Bundle copy and prices. Membership is derived in guides.ts. */')
     lines.append("export const GENERATED_BUNDLES: Omit<Bundle, 'includes'>[] = [")
+    metas = {m['slug']: m for m in rows}
     for b in BUNDLE_CONFIG.BUNDLES:
+        b = BUNDLE_CONFIG.resolve(b, metas)
         lines.append('  { ' + ', '.join([
             f"slug: {ts_str(b['slug'])}",
             f"title: {ts_str(b['title'])}",

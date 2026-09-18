@@ -34,6 +34,6 @@ import type { Bundle } from './guides';
 
 /** Bundle copy and prices. Membership is derived in guides.ts. */
 export const GENERATED_BUNDLES: Omit<Bundle, 'includes'>[] = [
-  { slug: 'starter-pack', title: 'The Agentic Economy Starter Pack', description: 'The five guides that take you from "WTF is going on" to hiring your first agent.', price: 29, file: 'agentic-economy-starter-pack.pdf' },
+  { slug: 'starter-pack', title: 'The Agentic Economy Starter Pack', description: 'The 8 guides that take you from "WTF is going on" to launching your first AI-run company.', price: 29, file: 'agentic-economy-starter-pack.pdf' },
   { slug: 'complete-pack', title: 'The Complete WTF Agents Pack', description: 'Everything. The full picture of the agentic economy, the platforms, the AI, and how to use it.', price: 49, file: 'complete-wtf-agents-pack.pdf' },
 ];
