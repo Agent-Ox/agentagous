@@ -640,9 +640,15 @@ def main():
     os.makedirs(args.out, exist_ok=True)
     files = all_content_files()
     if args.slugs:
+        # Match on the slug in the front-matter, not the filename. They are
+        # usually the same, but the filename is free to differ — claude-model.md
+        # holds slug 'claude' — and the front-matter is the source of truth
+        # everywhere else in the pipeline.
         wanted = set(args.slugs)
-        files = [f for f in files if os.path.basename(f)[:-3] in wanted]
-        missing = wanted - {os.path.basename(f)[:-3] for f in files}
+        slug_of = {f: parse_front_matter(open(f, encoding='utf-8').read())[0]['slug']
+                   for f in files}
+        files = [f for f in files if slug_of[f] in wanted]
+        missing = wanted - {slug_of[f] for f in files}
         if missing:
             sys.exit(f'unknown slug(s): {", ".join(sorted(missing))}')
 
