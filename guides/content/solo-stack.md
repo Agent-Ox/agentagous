@@ -15,6 +15,7 @@ subtitle: >-
 order: 22
 description: 'Beyond agents: the voice, video, image, deck, research and automation tools a one-person business runs on. Seven seats, real prices, what to buy first.'
 price: 7
+stripe_price_id: 'price_1UGyCgBaLipfLqFsR6W07wHi'
 category: 'practical'
 badge: null
 featured: false

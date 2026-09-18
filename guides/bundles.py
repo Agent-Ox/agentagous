@@ -13,6 +13,7 @@ lib/guides.generated.ts so the store reads the same prices and titles.
 BUNDLES = [
     {
         'slug': 'starter-pack',
+        'stripe_price_id': 'price_1UGyChBaLipfLqFsjJHzdIrT',
         'file': 'agentic-economy-starter-pack.pdf',
         'price': 29,
         'membership': 'starter',
@@ -29,6 +30,7 @@ BUNDLES = [
     },
     {
         'slug': 'complete-pack',
+        'stripe_price_id': 'price_1UGyCiBaLipfLqFsEP7UOWp2',
         'file': 'complete-wtf-agents-pack.pdf',
         'price': 49,
         'membership': 'all',

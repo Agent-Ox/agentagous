@@ -15,6 +15,7 @@ subtitle: >-
 order: 12
 description: 'The map. Every lab, agent, platform and piece of infrastructure that matters, one line each, sorted by layer. Read this first, then go deep.'
 price: 7
+stripe_price_id: 'price_1UGyCWBaLipfLqFsguDQttTJ'
 category: 'map'
 badge: '🗺️ The map'
 featured: true

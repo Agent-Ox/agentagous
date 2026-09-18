@@ -14,6 +14,7 @@ subtitle: >-
 order: 18
 description: 'The Polsia rival built by AI researchers that publishes its companies'' real revenue. How it works, what it costs, and what the live numbers say.'
 price: 7
+stripe_price_id: 'price_1UGyCcBaLipfLqFsBDesM6a9'
 category: 'platforms'
 badge: null
 featured: false

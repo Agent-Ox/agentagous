@@ -15,6 +15,7 @@ subtitle: >-
 order: 20
 description: 'The infrastructure layer: Nvidia, the clouds, Hugging Face, GitHub, Stripe, power. Who gets paid whichever agent wins, and why it matters to you.'
 price: 7
+stripe_price_id: 'price_1UGyCeBaLipfLqFsmkiCcK7R'
 category: 'map'
 badge: '⛏️ Map'
 featured: false

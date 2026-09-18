@@ -15,6 +15,7 @@ subtitle: >-
 order: 21
 description: 'The practical playbook: validate an idea on Saturday, launch it on Polsia, NanoCorp or Paperclip on Sunday, and know by Friday whether it sells.'
 price: 7
+stripe_price_id: 'price_1UGyCfBaLipfLqFsXrR9gQtQ'
 category: 'practical'
 badge: '🚀 Practical'
 featured: true

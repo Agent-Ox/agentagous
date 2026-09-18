@@ -14,6 +14,7 @@ subtitle: >-
 order: 3
 description: 'Large language models are the engine behind every AI company. Here''s how they actually work.'
 price: 7
+stripe_price_id: 'price_1UGyCNBaLipfLqFsl4pBwqcn'
 category: 'foundation'
 badge: null
 featured: false

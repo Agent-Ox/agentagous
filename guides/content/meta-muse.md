@@ -14,6 +14,7 @@ subtitle: >-
 order: 14
 description: 'Meta''s free personal agent in WhatsApp. What it does, the security design, the pricing, and the trust question nobody puts in the demo.'
 price: 7
+stripe_price_id: 'price_1UGyCYBaLipfLqFshYJ1S4Jw'
 category: 'personal'
 badge: '🆕 New'
 featured: true

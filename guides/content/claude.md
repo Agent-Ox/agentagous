@@ -14,6 +14,7 @@ subtitle: >-
 order: 8
 description: 'Anthropic''s AI model. The family, the new Fable and Mythos tier, what it can do, and why it powers so many agents — including rivals'' products.'
 price: 7
+stripe_price_id: 'price_1UGyCSBaLipfLqFsxPelJGfX'
 category: 'claude'
 badge: null
 featured: false

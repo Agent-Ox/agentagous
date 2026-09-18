@@ -14,6 +14,7 @@ subtitle: >-
 order: 10
 description: 'Claude Code was for developers. Cowork is for everyone else. What it does, what it costs, and how it changed the work-agent market.'
 price: 7
+stripe_price_id: 'price_1UGyCUBaLipfLqFs0nW7xDYT'
 category: 'claude'
 badge: null
 featured: false

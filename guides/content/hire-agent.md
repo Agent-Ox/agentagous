@@ -15,6 +15,7 @@ subtitle: >-
 order: 11
 description: 'The practical guide. Pick the task, pick the agent, write the brief, start read-only, measure honestly. No code, no prior AI experience.'
 price: 7
+stripe_price_id: 'price_1UGyCVBaLipfLqFswpjYKh4L'
 category: 'practical'
 badge: '💼 Practical'
 featured: false

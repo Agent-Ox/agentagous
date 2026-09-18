@@ -14,6 +14,7 @@ subtitle: >-
 order: 6
 description: 'The open-source app for managing a team of AI agents like a company: org chart, budgets, approvals. What it is, what it is not, and who should run it.'
 price: 7
+stripe_price_id: 'price_1UGyCQBaLipfLqFs6YQYfl0w'
 category: 'platforms'
 badge: '🧑‍💼 Agent teams'
 featured: false

@@ -9,6 +9,8 @@ export type Guide = {
   title: string;
   description: string;
   price: number;
+  /** Live Stripe price ID, from the guide's front-matter. */
+  stripePriceId: string;
   badge: string | null;
   featured: boolean;
   category: 'foundation' | 'platforms' | 'claude' | 'practical' | 'map' | 'personal' | 'work';

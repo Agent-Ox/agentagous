@@ -15,6 +15,7 @@ subtitle: >-
 order: 5
 description: 'The open-source personal agent with millions of users. The wild origin story, the security warnings, and where it stands now.'
 price: 7
+stripe_price_id: 'price_1UGyCPBaLipfLqFsine4MnUH'
 category: 'personal'
 badge: null
 featured: false

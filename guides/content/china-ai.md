@@ -15,6 +15,7 @@ subtitle: >-
 order: 17
 description: 'DeepSeek, Qwen, Kimi, GLM and the open-weight strategy. Who the Chinese labs are, why they give models away, and what it means for anyone running agents.'
 price: 7
+stripe_price_id: 'price_1UGyCcBaLipfLqFstcYqKVZu'
 category: 'map'
 badge: '🇨🇳 Map'
 featured: false

@@ -15,6 +15,7 @@ subtitle: >-
 order: 0
 description: 'The big picture. What actually happened in 2026, who the players are, what is real and what is hype. Start here.'
 price: 7
+stripe_price_id: 'price_1UGyCKBaLipfLqFsQRvInJDx'
 category: 'foundation'
 badge: '🌍 Start here'
 featured: true

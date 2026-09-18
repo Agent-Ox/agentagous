@@ -15,6 +15,7 @@ subtitle: >-
 order: 13
 description: 'Claude vs ChatGPT vs Gemini vs Muse vs Grok vs DeepSeek, for a normal person. Which to use for what, what each costs, and the catches.'
 price: 7
+stripe_price_id: 'price_1UGyCXBaLipfLqFsMODi6aKs'
 category: 'map'
 badge: '🧭 Decision guide'
 featured: true

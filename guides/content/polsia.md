@@ -14,6 +14,7 @@ subtitle: >-
 order: 4
 description: 'The one-person startup that raised $30M to let AI run your company. What is real, what it costs, and who it is actually for.'
 price: 7
+stripe_price_id: 'price_1UGyCOBaLipfLqFsvHnjwiZJ'
 category: 'platforms'
 badge: '🔥 Most popular'
 featured: true

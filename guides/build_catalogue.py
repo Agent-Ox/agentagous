@@ -19,7 +19,8 @@ REPO = os.path.dirname(HERE)
 CONTENT_DIR = os.path.join(HERE, 'content')
 OUT = os.path.join(REPO, 'lib', 'guides.generated.ts')
 
-FIELDS = ['slug', 'title', 'description', 'price', 'badge', 'featured', 'category', 'file', 'starter']
+FIELDS = ['slug', 'title', 'description', 'price', 'stripe_price_id', 'badge', 'featured',
+          'category', 'file', 'starter']
 
 
 def ts_str(v):
@@ -60,6 +61,7 @@ def main():
             f"title: {ts_str(m['title'])}",
             f"description: {ts_str(m['description'])}",
             f"price: {int(m['price'])}",
+            f"stripePriceId: {ts_str(m['stripe_price_id'])}",
             f"badge: {ts_str(m['badge']) if m.get('badge') else 'null'}",
             f"featured: {'true' if m.get('featured') else 'false'}",
             f"category: {ts_str(m['category'])}",

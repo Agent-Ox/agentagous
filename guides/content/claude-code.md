@@ -15,6 +15,7 @@ subtitle: >-
 order: 9
 description: 'The autonomous developer that changed Anthropic''s trajectory. How it works, how it compares, and how non-developers are using it now.'
 price: 7
+stripe_price_id: 'price_1UGyCTBaLipfLqFsK5Q9s3ry'
 category: 'claude'
 badge: null
 featured: false

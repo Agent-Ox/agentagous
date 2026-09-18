@@ -14,6 +14,7 @@ subtitle: >-
 order: 16
 description: 'OpenAI''s work agent, inside ChatGPT. Give it an outcome, get finished files back. What it does, what it costs on your plan, and the catches.'
 price: 7
+stripe_price_id: 'price_1UGyCaBaLipfLqFsAcLZ3SMR'
 category: 'work'
 badge: null
 featured: false

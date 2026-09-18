@@ -14,6 +14,7 @@ subtitle: >-
 order: 1
 description: 'What an agent actually is, how it thinks, the main types, real examples, and the risks. The foundation for everything else in the series.'
 price: 7
+stripe_price_id: 'price_1UGyCLBaLipfLqFsqNaxMEfi'
 category: 'foundation'
 badge: null
 featured: false
