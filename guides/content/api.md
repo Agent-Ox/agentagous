@@ -14,7 +14,7 @@ subtitle: >-
 order: 2
 description: 'The thing connecting everything in the agentic economy — explained simply, finally.'
 price: 7
-stripe_price_id: 'price_1UGzTBBaLipfLqFsuDoH0ktV'
+stripe_price_id: 'price_1UGyCMBaLipfLqFsAEy5Ngzj'
 category: 'foundation'
 badge: null
 featured: false
