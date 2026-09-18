@@ -108,7 +108,7 @@ The reading most careful analysts land on: the infrastructure is being built ahe
 
 - → <b>Your costs are set here.</b> Token prices fall when this layer gets cheaper and rise when it is constrained. The 2025 price collapse in older GPUs is why running an agent went from hundreds of dollars a day to a few.
 - → <b>Your outages happen here.</b> When a cloud region or a model provider has a bad day, every agent on it stops. Multi-model, multi-cloud is not paranoia for anything that matters.
-- → <b>Your independence lives here.</b> Open weights on Hugging Face, code on GitHub, your own hardware: the parts of this layer you can own are the parts that cannot be switched off.
+- → <b>Your independence lives here — partly.</b> Open weights you have downloaded, code you have cloned, hardware you own: those cannot be switched off. The hubs they came from — Hugging Face now Nvidia's, GitHub Microsoft's — can change terms. Cache what you depend on.
 - → <b>Your customers arrive here.</b> If you sell into enterprises, being available inside their cloud's marketplace matters more than any feature.
 @spacer 3
 
