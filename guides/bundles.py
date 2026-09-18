@@ -60,6 +60,14 @@ def includes(bundle, metas):
 #: Copy fields where `{n}` stands for the bundle's guide count.
 COUNTED_FIELDS = ('description', 'blurb')
 
+_WORDS = ('zero', 'one', 'two', 'three', 'four', 'five',
+          'six', 'seven', 'eight', 'nine', 'ten')
+
+
+def count_word(n):
+    """Counts up to ten read better spelled out; above that, digits."""
+    return _WORDS[n] if n < len(_WORDS) else str(n)
+
 
 def resolve(bundle, metas):
     """A copy of `bundle` with `{n}` replaced by the real guide count.
@@ -70,9 +78,16 @@ def resolve(bundle, metas):
     reader — the store listing and the PDF cover blurb — resolves it here first,
     against the same catalogue that decides membership.
     """
-    count = str(len(includes(bundle, metas)))
+    count = count_word(len(includes(bundle, metas)))
     resolved = dict(bundle)
     for field in COUNTED_FIELDS:
-        if field in resolved:
-            resolved[field] = resolved[field].replace('{n}', count)
+        value = resolved.get(field)
+        if not value or '{n}' not in value:
+            continue
+        text = value.replace('{n}', count)
+        # A placeholder that opens the copy also opens a sentence, so the
+        # spelled-out count needs a capital the template cannot supply.
+        if value.startswith('{n}'):
+            text = text[0].upper() + text[1:]
+        resolved[field] = text
     return resolved
