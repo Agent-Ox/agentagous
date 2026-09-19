@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 14
 description: 'Meta''s free personal agent in WhatsApp. What it does, the security design, the pricing, and the trust question nobody puts in the demo.'
+hook: 'Meta''s agent lives in WhatsApp *and pays with its own card.*'
+best_for: 'Best for: life admin'
+capability: 'Trust questions answered'
 price: 7
 stripe_price_id: 'price_1UGyCYBaLipfLqFshYJ1S4Jw'
 category: 'personal'

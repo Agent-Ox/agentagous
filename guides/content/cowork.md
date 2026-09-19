@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 10
 description: 'Claude Code was for developers. Cowork is for everyone else. What it does, what it costs, and how it changed the work-agent market.'
+hook: 'Claude Code was for developers. *Cowork is for everyone else.*'
+best_for: 'Best for: delegating real work'
+capability: 'On your $20 plan'
 price: 7
 stripe_price_id: 'price_1UGyCUBaLipfLqFs0nW7xDYT'
 category: 'claude'

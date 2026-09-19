@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 22
 description: 'Beyond agents: the voice, video, image, deck, research and automation tools a one-person business runs on. Seven seats, real prices, what to buy first.'
+hook: 'Seven seats a one-person business *fills with software.*'
+best_for: 'Best for: solo operators'
+capability: 'Real prices'
 price: 7
 stripe_price_id: 'price_1UGyCgBaLipfLqFsR6W07wHi'
 category: 'practical'

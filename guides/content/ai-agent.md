@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 1
 description: 'What an agent actually is, how it thinks, the main types, real examples, and the risks. The foundation for everything else in the series.'
+hook: 'Not a chatbot. *A colleague that works while you sleep.*'
+best_for: 'Best for: total beginners'
+capability: 'How agents think'
 price: 7
 stripe_price_id: 'price_1UGyCLBaLipfLqFsqNaxMEfi'
 category: 'foundation'

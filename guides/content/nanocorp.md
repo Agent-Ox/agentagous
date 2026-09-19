@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 18
 description: 'The Polsia rival built by AI researchers that publishes its companies'' real revenue. How it works, what it costs, and what the live numbers say.'
+hook: 'The only platform that *publishes what its companies earn.*'
+best_for: 'Best for: fast experiments'
+capability: 'Polsia alternative'
 price: 7
 stripe_price_id: 'price_1UGyCcBaLipfLqFsBDesM6a9'
 category: 'platforms'

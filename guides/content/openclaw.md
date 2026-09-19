@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 5
 description: 'The open-source personal agent with millions of users. The wild origin story, the security warnings, and where it stands now.'
+hook: 'From one developer''s side project to *three million users.*'
+best_for: 'Best for: your own agent'
+capability: 'The full story'
 price: 7
 stripe_price_id: 'price_1UGyCPBaLipfLqFsine4MnUH'
 category: 'personal'

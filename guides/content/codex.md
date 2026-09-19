@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 19
 description: 'OpenAI''s coding agent, now a tab in ChatGPT. What it does, how it compares with Claude Code, what it costs on each plan, and the catches.'
+hook: 'OpenAI''s coding agent, *one tab away in ChatGPT.*'
+best_for: 'Best for: parallel tasks'
+capability: 'vs Claude Code'
 price: 7
 stripe_price_id: 'price_1UGyCdBaLipfLqFsSTBFQgV0'
 category: 'work'

@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 6
 description: 'The open-source app for managing a team of AI agents like a company: org chart, budgets, approvals. What it is, what it is not, and who should run it.'
+hook: 'An org chart for AI agents *you own and run yourself.*'
+best_for: 'Best for: running 2+ agents'
+capability: 'Open-source'
 price: 7
 stripe_price_id: 'price_1UGyCQBaLipfLqFs6YQYfl0w'
 category: 'platforms'

@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 4
 description: 'The one-person startup that raised $30M to let AI run your company. What is real, what it costs, and who it is actually for.'
+hook: 'Half a million AI-run companies. *One in ten earned a dollar.*'
+best_for: 'Best for: before you subscribe'
+capability: 'Real fees, real numbers'
 price: 7
 stripe_price_id: 'price_1UGyCOBaLipfLqFsvHnjwiZJ'
 category: 'platforms'

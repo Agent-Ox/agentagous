@@ -8,6 +8,12 @@ export type Guide = {
   slug: string;
   title: string;
   description: string;
+  /** Card headline. The phrase between asterisks renders in the accent. */
+  hook: string;
+  /** Left pill on the card, e.g. "Best for: total beginners". */
+  bestFor: string;
+  /** Right pill on the card, e.g. "Open weights explained". */
+  capability: string;
   price: number;
   /** Live Stripe price ID, from the guide's front-matter. */
   stripePriceId: string;

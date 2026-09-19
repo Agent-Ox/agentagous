@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 9
 description: 'The autonomous developer that changed Anthropic''s trajectory. How it works, how it compares, and how non-developers are using it now.'
+hook: 'The autonomous developer, *now for non-developers too.*'
+best_for: 'Best for: building without code'
+capability: 'vs Codex, Devin, Cursor'
 price: 7
 stripe_price_id: 'price_1UGyCTBaLipfLqFsK5Q9s3ry'
 category: 'claude'

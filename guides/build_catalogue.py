@@ -19,8 +19,13 @@ REPO = os.path.dirname(HERE)
 CONTENT_DIR = os.path.join(HERE, 'content')
 OUT = os.path.join(REPO, 'lib', 'guides.generated.ts')
 
-FIELDS = ['slug', 'title', 'description', 'price', 'stripe_price_id', 'badge', 'featured',
-          'category', 'file', 'starter']
+FIELDS = ['slug', 'title', 'description', 'hook', 'best_for', 'capability', 'price',
+          'stripe_price_id', 'badge', 'featured', 'category', 'file', 'starter']
+
+# Card copy limits. The hook is two lines on a card and the pills sit side by
+# side; past these the card reflows and the design stops matching DESIGN.md.
+HOOK_MAX = 90
+PILL_MAX = 32
 
 
 def ts_str(v):
@@ -42,6 +47,17 @@ def main():
         if len(meta.get('description', '')) > DESCRIPTION_MAX:
             sys.exit(f"{fn}: description is {len(meta['description'])} characters, "
                      f"max {DESCRIPTION_MAX}")
+        # The asterisks are markup for the red phrase, not copy, so they do not
+        # count towards the hook's length.
+        hook_len = len(meta['hook'].replace('*', ''))
+        if hook_len > HOOK_MAX:
+            sys.exit(f"{fn}: hook is {hook_len} characters, max {HOOK_MAX}")
+        if meta['hook'].count('*') != 2:
+            sys.exit(f"{fn}: hook has {meta['hook'].count('*')} asterisks, "
+                     f"needs exactly 2 around the red phrase")
+        for field in ('best_for', 'capability'):
+            if len(meta[field]) > PILL_MAX:
+                sys.exit(f"{fn}: {field} is {len(meta[field])} characters, max {PILL_MAX}")
         rows.append(meta)
 
     rows.sort(key=lambda m: m.get('order', 999))
@@ -60,6 +76,9 @@ def main():
             f"slug: {ts_str(m['slug'])}",
             f"title: {ts_str(m['title'])}",
             f"description: {ts_str(m['description'])}",
+            f"hook: {ts_str(m['hook'])}",
+            f"bestFor: {ts_str(m['best_for'])}",
+            f"capability: {ts_str(m['capability'])}",
             f"price: {int(m['price'])}",
             f"stripePriceId: {ts_str(m['stripe_price_id'])}",
             f"badge: {ts_str(m['badge']) if m.get('badge') else 'null'}",

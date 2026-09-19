@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 16
 description: 'OpenAI''s work agent, inside ChatGPT. Give it an outcome, get finished files back. What it does, what it costs on your plan, and the catches.'
+hook: 'Give it an outcome. *Get the finished deck back.*'
+best_for: 'Best for: ChatGPT users'
+capability: 'vs Cowork'
 price: 7
 stripe_price_id: 'price_1UGyCaBaLipfLqFsAcLZ3SMR'
 category: 'work'

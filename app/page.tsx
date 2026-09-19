@@ -42,6 +42,46 @@ function splitLastWord(title: string): [string, string] {
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
+/**
+ * Card headline. Exactly one *starred* phrase renders in the accent — the same
+ * one-red-phrase rule the hero and the PDFs follow (DESIGN.md §4). The build
+ * rejects a hook that does not carry exactly two asterisks, so the split here
+ * is always three parts.
+ */
+function Hook({ text }: { text: string }) {
+  const [before, red, after] = text.split('*');
+  return (
+    <>
+      {before}
+      <span style={{ color: C.accentBright, fontWeight: 700 }}>{red}</span>
+      {after}
+    </>
+  );
+}
+
+/** Outline pill — DESIGN.md §2. Transparent fill, accent hairline, no glow. */
+function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      style={{
+        display: 'inline-block',
+        border: `1px solid ${C.strokeSoft}`,
+        borderRadius: 999,
+        padding: '6px 12px',
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: '.01em',
+        color: C.muted,
+        // Nowrap keeps a pill on one line; the row wraps instead, so the long
+        // pairs stack cleanly rather than breaking mid-phrase.
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
 /** Red rule + spaced caps, with the slash in accent — DESIGN.md §3. */
 function Counter({ label, n, total }: { label: string; n?: number; total?: number }) {
   return (
@@ -324,14 +364,18 @@ export default function Home() {
                       <p
                         style={{
                           fontSize: 17,
-                          lineHeight: 1.6,
+                          lineHeight: 1.55,
                           color: C.body,
-                          margin: '0 0 28px',
+                          margin: '0 0 20px',
                           flex: 1,
                         }}
                       >
-                        {g.description}
+                        <Hook text={g.hook} />
                       </p>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 22 }}>
+                        <Pill>{g.bestFor}</Pill>
+                        <Pill>{g.capability}</Pill>
+                      </div>
                       <div>
                         <Button href={`/guides/${g.slug}`}>Read the guide</Button>
                       </div>

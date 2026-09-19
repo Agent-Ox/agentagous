@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 21
 description: 'The practical playbook: validate an idea on Saturday, launch it on Polsia, NanoCorp or Paperclip on Sunday, and know by Friday whether it sells.'
+hook: 'Validate on Saturday. *Launch on Sunday.*'
+best_for: 'Best for: first-time founders'
+capability: 'Two-day plan'
 price: 7
 stripe_price_id: 'price_1UGyCfBaLipfLqFsXrR9gQtQ'
 category: 'practical'

@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 3
 description: 'Large language models are the engine behind every AI company. Here''s how they actually work.'
+hook: 'The brain inside every agent, *without a single equation.*'
+best_for: 'Best for: curious non-techies'
+capability: 'Who makes what'
 price: 7
 stripe_price_id: 'price_1UGyCNBaLipfLqFsl4pBwqcn'
 category: 'foundation'

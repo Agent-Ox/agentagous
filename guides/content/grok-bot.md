@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 15
 description: 'Elon Musk''s work agent: a team of bots with their own cloud computer and your real logins, coordinated by a Chief of Staff. What it does, costs and risks.'
+hook: 'A team of named bots *with your real logins.*'
+best_for: 'Best for: delegating a function'
+capability: 'Risks laid out'
 price: 7
 stripe_price_id: 'price_1UGyCZBaLipfLqFsj6hkAD68'
 category: 'work'

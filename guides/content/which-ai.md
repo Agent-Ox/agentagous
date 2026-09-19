@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 13
 description: 'Claude vs ChatGPT vs Gemini vs Muse vs Grok vs DeepSeek, for a normal person. Which to use for what, what each costs, and the catches.'
+hook: 'Six model families, one leaderboard. *Here is which to actually use.*'
+best_for: 'Best for: picking a plan'
+capability: 'Prices and catches'
 price: 7
 stripe_price_id: 'price_1UGyCXBaLipfLqFsMODi6aKs'
 category: 'map'

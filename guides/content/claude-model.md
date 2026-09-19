@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 8
 description: 'Anthropic''s AI model. The family, the new Fable and Mythos tier, what it can do, and why it powers so many agents — including rivals'' products.'
+hook: 'The model *most of the agentic economy chose.*'
+best_for: 'Best for: choosing a tier'
+capability: 'Why agents run on it'
 price: 7
 stripe_price_id: 'price_1UGyCSBaLipfLqFsxPelJGfX'
 category: 'claude'

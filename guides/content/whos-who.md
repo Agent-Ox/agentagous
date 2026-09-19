@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 12
 description: 'The map. Every lab, agent, platform and piece of infrastructure that matters, one line each, sorted by layer. Read this first, then go deep.'
+hook: 'Forty-five names, seven layers, *one line each.*'
+best_for: 'Best for: the whole picture'
+capability: 'Read this first'
 price: 7
 stripe_price_id: 'price_1UGyCWBaLipfLqFsguDQttTJ'
 category: 'map'

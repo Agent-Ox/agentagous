@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 11
 description: 'The practical guide. Pick the task, pick the agent, write the brief, start read-only, measure honestly. No code, no prior AI experience.'
+hook: 'Pick the task, write the brief, *start read-only.*'
+best_for: 'Best for: small businesses'
+capability: 'Step by step'
 price: 7
 stripe_price_id: 'price_1UGyCVBaLipfLqFswpjYKh4L'
 category: 'practical'

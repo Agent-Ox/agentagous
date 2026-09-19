@@ -13,6 +13,9 @@ subtitle: >-
 # store catalogue fields
 order: 7
 description: 'The company behind Claude. Founding story, the safety mission, the trillion-dollar valuation, and why its model powers so much of the agentic economy.'
+hook: 'Founded on safety. *Now worth nearly a trillion dollars.*'
+best_for: 'Best for: understanding the lab'
+capability: 'Fable and Mythos'
 price: 7
 stripe_price_id: 'price_1UGyCRBaLipfLqFsb0WEbc0t'
 category: 'claude'

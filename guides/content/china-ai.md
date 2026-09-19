@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 17
 description: 'DeepSeek, Qwen, Kimi, GLM and the open-weight strategy. Who the Chinese labs are, why they give models away, and what it means for anyone running agents.'
+hook: 'The best models you can download *are Chinese.*'
+best_for: 'Best for: builders on a budget'
+capability: 'Open weights explained'
 price: 7
 stripe_price_id: 'price_1UGyCcBaLipfLqFstcYqKVZu'
 category: 'map'

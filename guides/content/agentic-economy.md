@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 0
 description: 'The big picture. What actually happened in 2026, who the players are, what is real and what is hype. Start here.'
+hook: 'AI stopped answering questions. *It started doing jobs.*'
+best_for: 'Best for: first read'
+capability: 'The 2026 story'
 price: 7
 stripe_price_id: 'price_1UGyCKBaLipfLqFsQRvInJDx'
 category: 'foundation'

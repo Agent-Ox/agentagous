@@ -14,6 +14,9 @@ subtitle: >-
 # store catalogue fields
 order: 20
 description: 'The infrastructure layer: Nvidia, the clouds, Hugging Face, GitHub, Stripe, power. Who gets paid whichever agent wins, and why it matters to you.'
+hook: 'Whoever wins the agent race, *these companies get paid.*'
+best_for: 'Best for: investors and builders'
+capability: 'The bubble question'
 price: 7
 stripe_price_id: 'price_1UGyCeBaLipfLqFsmkiCcK7R'
 category: 'map'
