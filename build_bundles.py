@@ -159,6 +159,15 @@ def main():
                 writer.add_page(page)
             writer.add_outline_item(title, start)
 
+        # Every guide PDF carries its own Montserrat subset, so a merged bundle
+        # arrives with one copy per guide — 54 embedded font programs in the
+        # complete pack, of which only 18 are actually distinct. Deduplicating
+        # identical objects collapses those, and the shared page resources with
+        # them. Subsets that genuinely differ (a guide using a glyph no other
+        # guide uses) are left alone, which is why this does not get to one
+        # copy per weight.
+        writer.compress_identical_objects(remove_identicals=True, remove_orphans=True)
+
         out = os.path.join(GUIDES_DIR, bundle['file'])
         with open(out, 'wb') as fh:
             writer.write(fh)
