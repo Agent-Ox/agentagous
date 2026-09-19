@@ -22,7 +22,9 @@ export default function Nav() {
   // component rather than in layout.tsx because the root layout is a server
   // component and cannot read the pathname; the layout stays declarative and
   // the nav decides whether it applies.
-  const hidden = pathname === '/' || pathname.startsWith('/guides/');
+  // Every page that ships its own header in the DESIGN.md style.
+  const OWN_HEADER = ['/', '/companies', '/tools'];
+  const hidden = OWN_HEADER.includes(pathname) || pathname.startsWith('/guides/');
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
   useEffect(() => { if (hidden) setMenuOpen(false); }, [hidden]);

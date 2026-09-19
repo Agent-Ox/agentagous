@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '../../../../lib/supabase';
+import { companyBySlug } from '../../../../lib/companies';
 import { logOutboundClick } from '../../../../lib/outbound';
 
 export async function GET(
@@ -8,8 +9,16 @@ export async function GET(
 ) {
   const { id } = await params;
 
+  // /companies is a curated list now, so the segment is usually a slug from
+  // lib/companies.ts. Numeric ids still resolve through Supabase for any link
+  // that predates the change.
   if (!/^\d+$/.test(id)) {
-    return NextResponse.redirect(new URL('/companies', req.url), 302);
+    const company = companyBySlug(id);
+    if (!company?.url) {
+      return NextResponse.redirect(new URL('/companies', req.url), 302);
+    }
+    await logOutboundClick(req, `company/${id}`);
+    return NextResponse.redirect(company.url, 302);
   }
 
   const { data } = await supabase
