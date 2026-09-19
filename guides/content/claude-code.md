@@ -120,7 +120,7 @@ Large enterprises are using Claude Code for large-scale code migrations, test-wr
 | Cursor | AI-assisted editor | Fast iteration; inline editing; real-time help | Now owned by SpaceX/xAI; losing OpenAI models in November 2026 |
 | GitHub Copilot | Autocomplete | Quick suggestions while typing; broad ecosystem | Reactive, not autonomous |
 | Codex (OpenAI) | Autonomous agent | Lives inside the ChatGPT app; GPT-6 backbone | Smaller ecosystem of plugins and skills |
-| Devin (Cognition) | Autonomous agent | Fully cloud-hosted; now $20/mo | Less control over your own machine |
+| Devin (Cognition) | Autonomous agent | Fully cloud-hosted; $20/mo, $200 Max | Less control over your own machine |
 | Jules (Google) | Autonomous agent | Free; runs in the cloud on Gemini | Narrower task scope |
 
 @spacer 4

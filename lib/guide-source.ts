@@ -42,7 +42,8 @@ const COMPANIES: [string, string][] = [
   ['OpenClaw', 'openclaw'], ['Manus', 'manus'], ['Stripe', 'stripe'],
   ['GitHub', 'github'], ['Cursor', 'cursor'], ['Perplexity', 'perplexity'],
   ['ElevenLabs', 'elevenlabs'], ['HeyGen', 'heygen'], ['Gamma', 'gamma'],
-  ['Runway', 'runway'],
+  ['Runway', 'runway'], ['Devin', 'devin'], ['Cognition', 'cognition'],
+  ['Windsurf', 'windsurf'],
 ];
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
