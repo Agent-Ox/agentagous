@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 /**
- * Polsia's active-company count, from the dashboard the guides cite.
+ * Polsia's company count, from the platform's own live dashboard.
  *
  * This is the only live figure on the page. Everything else is the guides'
  * own copy, and a number that silently went stale would be worse than no
@@ -23,10 +23,11 @@ export const revalidate = 3600;
  */
 async function polsiaActive(): Promise<string | null> {
   try {
-    const res = await fetch('https://polsia.imrat.com/api/data', { next: { revalidate: 3600 } });
+    const res = await fetch('https://polsia.com/api/public/live/dashboard',
+                            { next: { revalidate: 3600 } });
     if (!res.ok) return null;
     const data = await res.json();
-    const raw = data?.stats?.companies ?? data?.companies;
+    const raw = data?.companies;
     const n = parseInt(String(raw), 10);
     if (!Number.isFinite(n) || n <= 0) return null;
     return `${n.toLocaleString()} companies created, live now`;

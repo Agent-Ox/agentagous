@@ -1,40 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '../../../../lib/supabase';
 import { companyBySlug } from '../../../../lib/companies';
 import { logOutboundClick } from '../../../../lib/outbound';
 
+/**
+ * Logged outbound redirect for a company tile on /companies.
+ *
+ * The segment is a slug from lib/companies.ts. It used to be a numeric id from
+ * the Supabase `companies` table, which the scraped directory populated; that
+ * directory is gone, so the lookup is gone with it. The table itself is left
+ * alone, but nothing in the app reads it any more.
+ */
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  const company = companyBySlug(id);
 
-  // /companies is a curated list now, so the segment is usually a slug from
-  // lib/companies.ts. Numeric ids still resolve through Supabase for any link
-  // that predates the change.
-  if (!/^\d+$/.test(id)) {
-    const company = companyBySlug(id);
-    if (!company?.url) {
-      return NextResponse.redirect(new URL('/companies', req.url), 302);
-    }
-    await logOutboundClick(req, `company/${id}`);
-    return NextResponse.redirect(company.url, 302);
-  }
-
-  const { data } = await supabase
-    .from('companies')
-    .select('url')
-    .eq('id', Number(id))
-    .maybeSingle();
-
-  if (!data?.url) {
+  if (!company?.url) {
     return NextResponse.redirect(new URL('/companies', req.url), 302);
   }
 
-  // Stored urls are bare hosts ("acme.polsia.app"), matching how they were
-  // rendered before this route existed.
-  const target = /^https?:\/\//.test(data.url) ? data.url : `https://${data.url}`;
-
   await logOutboundClick(req, `company/${id}`);
-  return NextResponse.redirect(target, 302);
+  return NextResponse.redirect(company.url, 302);
 }

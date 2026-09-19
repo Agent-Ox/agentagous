@@ -4,9 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-// Guides · Companies · Tools on every page. /jobs, /ideas and /submit still
-// exist and are still linked from their own pages and the footer, but they are
-// no longer top-level navigation.
+// Guides · Companies · Tools. These are the only pages the site has now.
 const navLinks = [
   { href: '/#guides', label: 'Guides', icon: '📘' },
   { href: '/companies', label: 'Companies', icon: '🏢' },
@@ -23,7 +21,7 @@ export default function Nav() {
   // component and cannot read the pathname; the layout stays declarative and
   // the nav decides whether it applies.
   // Every page that ships its own header in the DESIGN.md style.
-  const OWN_HEADER = ['/', '/companies', '/tools'];
+  const OWN_HEADER = ['/', '/companies', '/tools', '/store/success'];
   const hidden = OWN_HEADER.includes(pathname) || pathname.startsWith('/guides/');
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
@@ -104,13 +102,6 @@ export default function Nav() {
                 </Link>
               ))}
             </nav>
-            <div className="p-4 border-t border-zinc-800">
-              <Link href="/submit"
-                className="block w-full bg-orange-500 hover:bg-orange-400 text-white font-medium px-4 py-3 rounded-xl text-sm transition-all text-center">
-                + Submit your AI company
-              </Link>
-              <p className="text-xs text-zinc-600 text-center mt-3">Free to list. Always.</p>
-            </div>
           </div>
         </div>
       )}

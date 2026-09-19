@@ -14,9 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/`, lastModified: now, changeFrequency: 'daily', priority: 1 },
     { url: `${SITE_URL}/companies`, lastModified: now, changeFrequency: 'daily', priority: 0.7 },
     { url: `${SITE_URL}/tools`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 },
-    { url: `${SITE_URL}/jobs`, lastModified: now, changeFrequency: 'weekly', priority: 0.5 },
-    { url: `${SITE_URL}/ideas`, lastModified: now, changeFrequency: 'weekly', priority: 0.5 },
-    { url: `${SITE_URL}/submit`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
   ];
 
   for (const g of GUIDES) {

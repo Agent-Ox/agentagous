@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { productBySlug } from '../../../lib/guides';
+import { deliveryEmail } from '../../../lib/delivery-email';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-02-25.clover' });
 const supabase = createClient(
@@ -27,18 +28,15 @@ async function sendDeliveryEmail(email: string, slug: string, sessionId: string)
     return;
   }
 
-  const downloadUrl = `${SITE_URL}/store/success?session_id=${sessionId}`;
-  const text = `Thanks for buying ${product.title}.
-
-Download it here:
-${downloadUrl}
-
-That link stays valid, so save this email if you want to grab the PDF again later.
-
-Any problems, just reply to this email and I'll sort it out.
-
-— Ox
-WTF Agents · wtfagents.com`;
+  // The link points at the success page, which re-verifies against our own
+  // purchases row, so it keeps working long after the Stripe session has gone.
+  const { html, text } = deliveryEmail({
+    title: product.title,
+    slug,
+    description: product.description,
+    downloadUrl: `${SITE_URL}/store/success?session_id=${sessionId}`,
+    upsellUrl: `${SITE_URL}/api/upsell/${sessionId}`,
+  });
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -50,6 +48,7 @@ WTF Agents · wtfagents.com`;
       from: FROM_EMAIL,
       to: [email],
       subject: `Your guide: ${product.title}`,
+      html,
       text,
     }),
   });
@@ -58,6 +57,7 @@ WTF Agents · wtfagents.com`;
     console.error('Resend delivery failed:', res.status, await res.text());
   }
 }
+
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
