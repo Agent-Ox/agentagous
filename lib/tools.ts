@@ -103,7 +103,7 @@ export const TOOLS: Tool[] = [
     url: 'https://gamma.app' },
 
   // ── Research ───────────────────────────────────────────────────────
-  { slug: 'perplexity', name: 'Perplexity', category: 'Research', guide_slug: 'solo-stack',
+  { slug: 'perplexity', name: 'Perplexity', category: 'Research', guide_slug: 'perplexity',
     one_line: 'Sourced, current answers with citations. The specialist for the research seat.',
     url: 'https://www.perplexity.ai' },
 
