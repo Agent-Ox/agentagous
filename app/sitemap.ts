@@ -1,7 +1,7 @@
 import { execFileSync } from 'child_process';
 import type { MetadataRoute } from 'next';
 
-import { GUIDES } from '../lib/guides';
+import { GUIDES, BUNDLES } from '../lib/guides';
 import { SITE_URL } from '../lib/design';
 import { guideDates } from '../lib/guide-source';
 
@@ -51,6 +51,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
   ];
+
+  for (const b of BUNDLES) {
+    pages.push({
+      url: `${SITE_URL}/bundles/${b.slug}`,
+      lastModified: lastCommit(['guides/bundles.py', 'lib/guides.generated.ts'], now),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    });
+  }
 
   for (const g of GUIDES) {
     pages.push({

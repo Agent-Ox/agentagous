@@ -13,8 +13,9 @@ export const dynamic = 'force-static';
  * an oversight. Google-Extended governs training rather than indexing, so it
  * is listed with the rest even though the answer is identical.
  *
- * /go/ is the outbound redirect layer: every URL under it is a 302 to another
- * origin, so there is nothing there to index.
+ * /go/ is the outbound redirect layer and /buy/ starts a Stripe checkout:
+ * every URL under either is a 302 to somewhere else, so there is nothing to
+ * index, and a crawler walking /buy/ would open abandoned sessions.
  */
 const AI_CRAWLERS = [
   'GPTBot',
@@ -32,7 +33,8 @@ const AI_CRAWLERS = [
   'meta-externalagent',
 ];
 
-const block = (agent: string) => `User-agent: ${agent}\nAllow: /\nDisallow: /go/`;
+const block = (agent: string) =>
+  `User-agent: ${agent}\nAllow: /\nDisallow: /go/\nDisallow: /buy/`;
 
 export function GET() {
   const body = [

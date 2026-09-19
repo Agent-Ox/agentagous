@@ -15,8 +15,14 @@ successful render.
 
 ## Review gate — `~/Desktop/wtf-review/`
 
-After **every** guide render, copy the rendered PDF(s) to `~/Desktop/wtf-review/`
-(create the folder if missing, overwrite files of the same name).
+After **every** guide render, mirror **all** of `public/guides/*.pdf` into
+`~/Desktop/wtf-review/` — the whole set, not only the ones that changed, so the
+folder is always a complete and current copy of what is for sale:
+
+```
+rsync -a --delete --include='*/' --include='*.pdf' --exclude='*' \
+  public/guides/ ~/Desktop/wtf-review/
+```
 
 **Do not push guide changes until Thomas has confirmed he has reviewed them.**
 Committing is fine; pushing is gated on his say-so.
@@ -33,6 +39,6 @@ regenerates a PDF: content edits, `render.py` or style changes, bundle rebuilds,
    resolves against the renderer's style registry.
 3. Copy over `guides/content/<slug>.md`.
 4. `python3 regenerate_all_guides.py` — render, catalogue, bundles, layout check.
-5. On success (0 layout errors): copy PDFs to `~/Desktop/wtf-review/` and delete
-   the inbox file.
+5. On success (0 layout errors): mirror the full PDF set to
+   `~/Desktop/wtf-review/` and delete the inbox file.
 6. Commit, then stop and wait for review confirmation before pushing.

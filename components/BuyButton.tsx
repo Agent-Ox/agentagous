@@ -1,14 +1,12 @@
-'use client';
-
-import { useState } from 'react';
-
 /**
- * Starts a Checkout Session for one slug — a guide or a bundle — and sends the
- * buyer straight to Stripe.
+ * A buy button is a link to /buy/<slug>, which creates the Checkout Session
+ * server-side and redirects to Stripe.
  *
- * No email field: Stripe Checkout collects the address on its own page, and the
- * webhook reads it back from customer_details. One click from button to
- * payment.
+ * It used to be a client component that POSTed to an API route and then set
+ * window.location. A link does the same job with no JavaScript on the page,
+ * works on a middle-click or "open in new tab", and cannot end up disabled by
+ * a hydration failure. Every page that only had a buy button is now fully
+ * static with no client bundle of its own.
  */
 export default function BuyButton({
   slug,
@@ -19,36 +17,9 @@ export default function BuyButton({
   className?: string;
   children: React.ReactNode;
 }) {
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState('');
-
-  async function go() {
-    setBusy(true);
-    setError('');
-    try {
-      const res = await fetch('/api/store-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
-      });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else {
-        setError(data.error || 'Could not start checkout.');
-        setBusy(false);
-      }
-    } catch {
-      setError('Could not start checkout.');
-      setBusy(false);
-    }
-  }
-
   return (
-    <>
-      <button type="button" className={className} onClick={go} disabled={busy}>
-        {busy ? 'Opening checkout…' : children}
-      </button>
-      {error && <span className="g-buyerr">{error}</span>}
-    </>
+    <a href={`/buy/${slug}`} className={className} rel="nofollow">
+      {children}
+    </a>
   );
 }

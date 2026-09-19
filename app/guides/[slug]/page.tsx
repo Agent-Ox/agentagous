@@ -6,9 +6,10 @@ import { Montserrat } from 'next/font/google';
 import { GUIDES, GUIDE_COUNT, guideBySlug, bundleBySlug } from '../../../lib/guides';
 import { guideBodyHtml, crosslinksFor, guideIndex, faqsFor, guideDates } from '../../../lib/guide-source';
 import { graph, guideArticle, guideProduct, breadcrumbs, faqPage } from '../../../lib/jsonld';
-import { C, GLOW, CARD_SHADOW, SITE_URL, splitLastWord, pad2 } from '../../../lib/design';
+import { C, GLOW, SITE_URL, splitLastWord, pad2 } from '../../../lib/design';
 import BuyButton from '../../../components/BuyButton';
 import StickyReveal from './StickyReveal';
+import MenuButton from '../../../components/MenuButton';
 import { guideCss } from './guide-css';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
@@ -96,11 +97,14 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         {/* ── Header ─────────────────────────────────────────────── */}
         <header className="g-header">
           <Link href="/" className="g-wordmark">WTF AGENTS</Link>
-          <nav className="g-nav">
-            <Link href="/#guides">GUIDES</Link><span>·</span>
-            <Link href="/companies">COMPANIES</Link><span>·</span>
-            <Link href="/tools">TOOLS</Link>
-          </nav>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <nav className="g-nav">
+              <Link href="/#guides">GUIDES</Link><span>·</span>
+              <Link href="/companies">COMPANIES</Link><span>·</span>
+              <Link href="/tools">TOOLS</Link>
+            </nav>
+            <MenuButton />
+          </div>
         </header>
 
         <div className="g-columns">

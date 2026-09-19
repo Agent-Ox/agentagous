@@ -138,7 +138,7 @@ export default async function StoreSuccessPage({
           <Counter label="One step up" />
           <h2>{offer.headline}</h2>
           <p>{offer.body}</p>
-          <a href={`/api/upsell/${sessionId}`} className="s-btn s-btn-primary">
+          <a href={`/buy/complete-pack?credit=${sessionId}`} className="s-btn s-btn-primary" rel="nofollow">
             Upgrade for ${offer.price}
           </a>
           <p className="s-small">Your credit is applied at checkout. One payment, no subscription.</p>

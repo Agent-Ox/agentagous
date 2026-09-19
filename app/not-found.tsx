@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 
 import { C, GLOW } from '../lib/design';
 import { GUIDE_COUNT } from '../lib/guides';
+import MenuButton from '../components/MenuButton';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
 
@@ -25,11 +26,14 @@ export default function NotFound() {
           >
             WTF AGENTS
           </Link>
-          <nav style={{ display: 'flex', gap: 18, fontSize: 13, letterSpacing: '.12em', color: C.muted }}>
-            <Link href="/#guides" style={{ color: 'inherit', textDecoration: 'none' }}>GUIDES</Link>
-            <Link href="/companies" style={{ color: 'inherit', textDecoration: 'none' }}>COMPANIES</Link>
-            <Link href="/tools" style={{ color: 'inherit', textDecoration: 'none' }}>TOOLS</Link>
-          </nav>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <nav style={{ display: 'flex', gap: 18, fontSize: 13, letterSpacing: '.12em', color: C.muted }}>
+              <Link href="/#guides" style={{ color: 'inherit', textDecoration: 'none' }}>GUIDES</Link>
+              <Link href="/companies" style={{ color: 'inherit', textDecoration: 'none' }}>COMPANIES</Link>
+              <Link href="/tools" style={{ color: 'inherit', textDecoration: 'none' }}>TOOLS</Link>
+            </nav>
+            <MenuButton />
+          </div>
         </header>
 
         <main style={{ maxWidth: 680, marginTop: 120 }}>

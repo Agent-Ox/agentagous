@@ -35,7 +35,7 @@ async function sendDeliveryEmail(email: string, slug: string, sessionId: string)
     slug,
     description: product.description,
     downloadUrl: `${SITE_URL}/store/success?session_id=${sessionId}`,
-    upsellUrl: `${SITE_URL}/api/upsell/${sessionId}`,
+    upsellUrl: `${SITE_URL}/buy/complete-pack?credit=${sessionId}`,
   });
 
   const res = await fetch('https://api.resend.com/emails', {

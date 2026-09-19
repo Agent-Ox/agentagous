@@ -301,8 +301,13 @@ def build_closing(meta, S, metas, crosslinks, prices, qr=None, qr_caption=''):
     inner_w = W - 40 * mm
     single, starter, complete = prices
 
+    def _bundle_pill(label, price, slug):
+        url = f'https://wtfagents.com/bundles/{slug}'
+        return _pill(f'<link href="{url}" color="#F7F7F7">{label}  ${price}</link>', S)
+
     pills = Table(
-        [[_pill(f'Starter Pack  ${starter}', S), _pill(f'Complete Pack  ${complete}', S)]],
+        [[_bundle_pill('Starter Pack', starter, 'starter-pack'),
+          _bundle_pill('Complete Pack', complete, 'complete-pack')]],
         colWidths=[(inner_w - 24) / 2] * 2)
     pills.setStyle(TableStyle([
         ('LEFTPADDING', (0, 0), (-1, -1), 0), ('RIGHTPADDING', (0, 0), (0, 0), 12),

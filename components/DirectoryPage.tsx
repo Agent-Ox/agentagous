@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 
 import { C, GLOW, CARD_SHADOW, pad2 } from '../lib/design';
 import { directoryCss } from './directory-css';
+import MenuButton from './MenuButton';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
 
@@ -59,11 +60,14 @@ export default function DirectoryPage({
       <div className="d-wrap" style={{ background: GLOW }}>
         <header className="d-header">
           <Link href="/" className="d-wordmark">WTF AGENTS</Link>
-          <nav className="d-nav">
-            <Link href="/#guides">GUIDES</Link><span>·</span>
-            <Link href="/companies">COMPANIES</Link><span>·</span>
-            <Link href="/tools">TOOLS</Link>
-          </nav>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <nav className="d-nav">
+              <Link href="/#guides">GUIDES</Link><span>·</span>
+              <Link href="/companies">COMPANIES</Link><span>·</span>
+              <Link href="/tools">TOOLS</Link>
+            </nav>
+            <MenuButton />
+          </div>
         </header>
 
         <main>
