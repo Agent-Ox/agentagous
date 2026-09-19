@@ -217,9 +217,12 @@ export function renderGuideBody(body: string, rules: LinkRule[] = []): string {
       const m = rest.match(/^<b>([\s\S]*?)<\/b>\s*(?:—|-)?\s*([\s\S]*)$/);
       const term = m ? m[1] : rest;
       const def = m ? m[2] : '';
+      // The glossary term itself never links — it is the definition of the
+      // thing, so a link out of it points back at where the reader already is.
+      // The definition after it links normally.
       glossary.push(
         '<div class="g-gl">' +
-        `<dt>${inline(term, ctx.rules, ctx.used)}</dt>` +
+        `<dt>${inline(term, [], ctx.used)}</dt>` +
         `<dd>${inline(def, ctx.rules, ctx.used)}</dd>` +
         '</div>');
       continue;

@@ -525,12 +525,18 @@ _GL_TERM = re.compile(r'\s*<b>.*?</b>', re.S)
 
 
 class TitleIndex:
-    """The title regex plus the title -> slug map, so each match can resolve to
-    its own guide page. re.Pattern does not accept attributes."""
+    """Guide titles, plus the shorter terms a guide claims via `link_terms`.
 
-    def __init__(self, rx, slug_of):
+    A title links on every mention. A term — "MCP", say — links only on its
+    first mention in a guide, because a bare acronym can appear a dozen times
+    and linking each one turns the prose into a rash.
+    """
+
+    def __init__(self, rx, slug_of, term_rx=None, term_slug=None):
         self.rx = rx
         self.slug_of = slug_of
+        self.term_rx = term_rx
+        self.term_slug = term_slug or {}
 
     def sub(self, repl, text):
         return self.rx.sub(repl, text)
@@ -546,16 +552,25 @@ def title_pattern(metas, exclude_slug=None):
                    key=lambda p: len(p[0]), reverse=True)
     if not pairs:
         return None
+
+    terms = sorted(((t, s) for s, m in metas.items() if s != exclude_slug
+                    for t in (m.get('link_terms') or [])),
+                   key=lambda p: len(p[0]), reverse=True)
+    term_rx = re.compile(r'\b(?:' + '|'.join(re.escape(t) for t, _ in terms) + r')\b') if terms else None
+
     return TitleIndex(
         re.compile('(?:' + '|'.join(re.escape(t) for t, _ in pairs) + ')'),
-        {t: s for t, s in pairs})
+        {t: s for t, s in pairs},
+        term_rx,
+        {t: s for t, s in terms})
 
 
-def link_guide_titles(text, pattern, target, style_name):
-    """Link catalogue guide titles inside one paragraph of body text.
+def link_guide_titles(text, pattern, target, style_name, used=None):
+    """Link catalogue guide titles, and claimed terms, inside one paragraph.
 
     Each title resolves to its own guide page; `target` is only the fallback
-    for a title the pattern knows but the map does not.
+    for a title the pattern knows but the map does not. `used` carries the
+    terms already linked earlier in this guide, so a term links once.
     """
     if pattern is None or style_name in NO_TITLE_LINK:
         return text
@@ -574,10 +589,26 @@ def link_guide_titles(text, pattern, target, style_name):
         dest = guide_url(slug) if slug else target
         return f'<link href="{dest}" color="{LINK_COLOR[0]}">{m.group(0)}</link>'
 
+    def term_repl(m):
+        term = m.group(0)
+        if used is None or term in used:
+            return term
+        used.add(term)
+        return (f'<link href="{guide_url(pattern.term_slug[term])}" '
+                f'color="{LINK_COLOR[0]}">{term}</link>')
+
     parts = _LINK_SPLIT.split(text)
     for i in range(0, len(parts), 2):      # odd indices are existing <link> runs
         parts[i] = pattern.sub(repl, parts[i])
-    return prefix + ''.join(parts)
+    text = ''.join(parts)
+
+    if pattern.term_rx is not None:
+        parts = _LINK_SPLIT.split(text)
+        for i in range(0, len(parts), 2):
+            parts[i] = pattern.term_rx.sub(term_repl, parts[i])
+        text = ''.join(parts)
+
+    return prefix + text
 
 
 # ── cover and closing ────────────────────────────────────────────────────────
@@ -674,7 +705,9 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='pilot'):
     )
     pattern = title_pattern(metas, exclude_slug=meta['slug'])
     target = store_href(meta)
-    linker = lambda text, style_name: link_guide_titles(text, pattern, target, style_name)
+    linked_terms = set()   # a claimed term links once per guide
+    linker = lambda text, style_name: link_guide_titles(
+        text, pattern, target, style_name, linked_terms)
 
     if style == 'pilot':
         # The shipping design. Hooks are installed for this render only and

@@ -28,6 +28,8 @@ export type Guide = {
   starter: boolean;
   /** Optional affiliate slug from lib/affiliates.ts, surfaced as "Start with X →". */
   relatedTool?: string;
+  /** Short terms that link here on first mention in another guide, e.g. "MCP". */
+  linkTerms?: string[];
 };
 
 /**

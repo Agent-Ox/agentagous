@@ -69,6 +69,19 @@ export function linkRulesFor(slug: string): LinkRule[] {
     });
   }
 
+  // Terms a guide claims, e.g. "MCP". Once per page, like company names: a
+  // bare acronym can appear a dozen times and linking each is a rash.
+  const terms = others.flatMap(g => (g.linkTerms ?? []).map(t => [t, g.slug] as const))
+    .sort((a, b) => b[0].length - a[0].length);
+  if (terms.length) {
+    const termSlug = new Map(terms);
+    rules.push({
+      pattern: new RegExp(`\\b(?:${terms.map(([t]) => escapeRe(t)).join('|')})\\b`, 'g'),
+      href: m => `/guides/${termSlug.get(m)}`,
+      once: true,
+    });
+  }
+
   const names = COMPANIES.map(([n]) => escapeRe(n)).sort((a, b) => b.length - a.length).join('|');
   const slugOf = new Map(COMPANIES.map(([n, s]) => [n, s]));
   rules.push({

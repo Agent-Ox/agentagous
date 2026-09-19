@@ -90,6 +90,9 @@ def main():
         ]
         if m.get('relatedTool'):
             parts.append(f"relatedTool: {ts_str(m['relatedTool'])}")
+        if m.get('link_terms'):
+            terms = ', '.join(ts_str(t) for t in m['link_terms'])
+            parts.append(f"linkTerms: [{terms}]")
         lines.append('  { ' + ', '.join(parts) + ' },')
     lines.append('];')
     lines.append('')

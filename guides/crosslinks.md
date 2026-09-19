@@ -11,8 +11,9 @@ backfill from the same category and then from anything remaining.
 |---|---|---|---|---|---|---|
 | `agentic-economy` | foundation | `ai-agent` | `polsia` | `api` | `hire-agent` | `llm` |
 | `ai-agent` | foundation | `agentic-economy` | `openclaw` | `api` | `hire-agent` | `llm` |
-| `api` | foundation | `ai-agent` | `llm` | `agentic-economy` | `hire-agent` | `polsia` |
+| `api` | foundation | `ai-agent` | `llm` | `agentic-economy` | `hire-agent` | `mcp` |
 | `llm` | foundation | `ai-agent` | `claude` | `agentic-economy` | `hire-agent` | `api` |
+| `mcp` | foundation | `api` | `ai-agent` | `agentic-economy` | `hire-agent` | `llm` |
 | `polsia` | platforms | `ai-agent` | `paperclip` | `nanocorp` | `agentic-economy` | `hire-agent` |
 | `openclaw` | personal | `paperclip` | `ai-agent` | `meta-muse` | `agentic-economy` | `hire-agent` |
 | `paperclip` | platforms | `openclaw` | `polsia` | `nanocorp` | `agentic-economy` | `hire-agent` |
