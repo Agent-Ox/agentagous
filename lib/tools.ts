@@ -70,8 +70,8 @@ export const TOOLS: Tool[] = [
     url: 'https://elevenlabs.io' },
 
   // ── Video ──────────────────────────────────────────────────────────
-  { slug: 'higgsfield', name: 'Higgsfield', category: 'Video', guide_slug: 'solo-stack',
-    one_line: 'The all-in-one: fifteen-plus models, lip-sync and voice on one credit balance.',
+  { slug: 'higgsfield', name: 'Higgsfield', category: 'Video', guide_slug: 'higgsfield',
+    one_line: 'Fifty models behind one chat agent, and since September an open pay-per-use API.',
     url: 'https://higgsfield.ai' },
   { slug: 'runway', name: 'Runway', category: 'Video', guide_slug: 'solo-stack',
     one_line: 'The VFX seat — the most control, for anyone whose video is the product.',

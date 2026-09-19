@@ -32,6 +32,7 @@ const CATEGORIES: { id: string; label: string }[] = [
   { id: 'personal', label: 'Personal Agents' },
   { id: 'platforms', label: 'Platforms' },
   { id: 'practical', label: 'Practical' },
+  { id: 'creative', label: 'Creative tools' },
 ];
 
 /** Splits a title so the last word can be set in accent — DESIGN.md §4. */

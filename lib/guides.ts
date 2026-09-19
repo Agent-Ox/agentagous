@@ -21,7 +21,8 @@ export type Guide = {
   stripePriceId: string;
   badge: string | null;
   featured: boolean;
-  category: 'foundation' | 'platforms' | 'claude' | 'practical' | 'map' | 'personal' | 'work';
+  category: 'foundation' | 'platforms' | 'claude' | 'practical' | 'map' | 'personal'
+    | 'work' | 'creative';
   file: string;
   /** Included in the starter bundle. Set per guide in its front-matter. */
   starter: boolean;

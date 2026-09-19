@@ -152,6 +152,10 @@ export const COMPANIES: Company[] = [
     one_line: 'The Chinese general-purpose agent Meta agreed to buy before Beijing blocked it.',
     url: 'https://manus.im' },
 
+  { slug: 'higgsfield', name: 'Higgsfield', layer: 'Personal agents', guide_slug: 'higgsfield',
+    one_line: 'Fifty video and image models behind one chat agent. $5.4bn, and an open API.',
+    url: 'https://higgsfield.ai' },
+
   // ── Company platforms ──────────────────────────────────────────────
   { slug: 'polsia', name: 'Polsia', layer: 'Company platforms', guide_slug: 'polsia',
     one_line: 'Describe an idea and a fixed team of agents builds and runs the company.',
