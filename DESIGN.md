@@ -1,9 +1,10 @@
 # WTF Agents — design system
 
-Measured from the six carousel reference screenshots in the inbox
-(`Screenshot 2026-09-19 at 11.40.43` … `11.41.50`, 960×1200 each). Every value
-below was sampled from the pixels rather than estimated by eye; the measurement
-is quoted next to each so it can be re-checked.
+Measured from the six carousel reference screenshots kept alongside this file
+in `design/reference/` (`Screenshot 2026-09-19 at 11.40.43` … `11.41.50`,
+960×1200 each). Every value below was sampled from the pixels rather than
+estimated by eye; the measurement is quoted next to each so it can be
+re-checked against the originals.
 
 Status: **shipping**. Applied to the homepage, all 23 guide PDFs and both
 bundle PDFs. `render.py --style classic` still renders the previous orange
