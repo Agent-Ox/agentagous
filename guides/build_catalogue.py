@@ -19,8 +19,8 @@ REPO = os.path.dirname(HERE)
 CONTENT_DIR = os.path.join(HERE, 'content')
 OUT = os.path.join(REPO, 'lib', 'guides.generated.ts')
 
-FIELDS = ['slug', 'title', 'description', 'hook', 'best_for', 'capability', 'price',
-          'stripe_price_id', 'badge', 'featured', 'category', 'file', 'starter']
+FIELDS = ['slug', 'title', 'subtitle', 'description', 'hook', 'best_for', 'capability',
+          'price', 'stripe_price_id', 'badge', 'featured', 'category', 'file', 'starter']
 
 # Card copy limits. The hook is two lines on a card and the pills sit side by
 # side; past these the card reflows and the design stops matching DESIGN.md.
@@ -75,6 +75,7 @@ def main():
         parts = [
             f"slug: {ts_str(m['slug'])}",
             f"title: {ts_str(m['title'])}",
+            f"subtitle: {ts_str(' '.join(m['subtitle'].split()))}",
             f"description: {ts_str(m['description'])}",
             f"hook: {ts_str(m['hook'])}",
             f"bestFor: {ts_str(m['best_for'])}",

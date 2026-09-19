@@ -7,6 +7,8 @@ import { GENERATED_GUIDES, GENERATED_BUNDLES } from './guides.generated';
 export type Guide = {
   slug: string;
   title: string;
+  /** The cover standfirst, reused as the guide page's hero body. */
+  subtitle: string;
   description: string;
   /** Card headline. The phrase between asterisks renders in the accent. */
   hook: string;

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "../components/Nav";
+import { SITE_URL } from "../lib/design";
 
 export const metadata: Metadata = {
+  // Without this, Next resolves og:image against localhost at build time.
+  metadataBase: new URL(SITE_URL),
   title: "WTF Agents — The Agentic Economy, Mapped Live",
   description: "Every company being built and run by AI agents — tracked, categorised, and indexed in real time.",
   alternates: {
