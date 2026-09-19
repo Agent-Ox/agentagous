@@ -33,4 +33,5 @@ backfill from the same category and then from anything remaining.
 | `picks-and-shovels` | map | `whos-who` | `china-ai` | `which-ai` | `agentic-economy` | `hire-agent` |
 | `launch-weekend` | practical | `polsia` | `hire-agent` | `solo-stack` | `agentic-economy` | `ai-agent` |
 | `solo-stack` | practical | `hire-agent` | `launch-weekend` | `agentic-economy` | `ai-agent` | `api` |
-| `higgsfield` | creative | `solo-stack` | `meta-muse` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `higgsfield` | creative | `solo-stack` | `meta-muse` | `elevenlabs` | `agentic-economy` | `hire-agent` |
+| `elevenlabs` | creative | `higgsfield` | `solo-stack` | `agentic-economy` | `hire-agent` | `ai-agent` |

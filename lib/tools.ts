@@ -65,7 +65,7 @@ export const TOOLS: Tool[] = [
     url: 'https://openclaw.ai' },
 
   // ── Voice ──────────────────────────────────────────────────────────
-  { slug: 'elevenlabs', name: 'ElevenLabs', category: 'Voice', guide_slug: 'solo-stack',
+  { slug: 'elevenlabs', name: 'ElevenLabs', category: 'Voice', guide_slug: 'elevenlabs',
     one_line: 'The standard for synthetic speech. Starter is $6; Creator at $22 is the real tier.',
     url: 'https://elevenlabs.io' },
 
