@@ -17,7 +17,7 @@ hook: 'The plumbing that connects *everything in the agentic economy.*'
 best_for: 'Best for: business owners'
 capability: 'MCP explained'
 price: 7
-stripe_price_id: 'price_1UGzTBBaLipfLqFsuDoH0ktV'
+stripe_price_id: 'price_1UGyCMBaLipfLqFsAEy5Ngzj'
 category: 'foundation'
 badge: null
 featured: false
