@@ -11,7 +11,8 @@ import { successCss } from './success-css';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
 
-type Verified = { slug: string; title: string; file: string; description: string };
+type Verified = { slug: string; title: string; file: string; description: string;
+                  /** What they actually paid, in cents. */ paidCents?: number };
 
 /**
  * Our own record of the sale, written by the store webhook. Authoritative: the
@@ -21,7 +22,7 @@ type Verified = { slug: string; title: string; file: string; description: string
 async function fromPurchasesTable(sessionId: string): Promise<Verified | null> {
   const { data, error } = await supabase
     .from('purchases')
-    .select('product_slug')
+    .select('product_slug, amount')
     .eq('stripe_session_id', sessionId)
     .limit(1)
     .maybeSingle();
@@ -31,7 +32,7 @@ async function fromPurchasesTable(sessionId: string): Promise<Verified | null> {
   }
   if (!data) return null;
   const p = productBySlug(data.product_slug);
-  return p ? { slug: data.product_slug, ...p } : null;
+  return p ? { slug: data.product_slug, ...p, paidCents: data.amount ?? undefined } : null;
 }
 
 /**
@@ -46,7 +47,7 @@ async function fromStripe(sessionId: string): Promise<Verified | null> {
     if (session.payment_status !== 'paid') return null;
     const slug = session.metadata?.product ?? '';
     const p = productBySlug(slug);
-    return p ? { slug, ...p } : null;
+    return p ? { slug, ...p, paidCents: session.amount_total ?? undefined } : null;
   } catch (e) {
     console.error('Session verification failed:', e);
     return null;
@@ -111,7 +112,7 @@ export default async function StoreSuccessPage({
     );
   }
 
-  const offer = upsellFor(purchase.slug);
+  const offer = upsellFor(purchase.slug, purchase.paidCents);
   const [head, last] = splitLastWord(purchase.title);
   // The Complete Pack buyer has nothing left to upsell, so they get the five
   // Go-deeper cards instead — a place to start reading 23 guides.

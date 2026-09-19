@@ -11,33 +11,20 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/companies` },
 };
 
-/** Rebuilt hourly, which is what makes the one live number on this page live. */
-export const revalidate = 3600;
-
 /**
- * Polsia's company count, from the platform's own live dashboard.
+ * The one figure on the page, and it is static and dated rather than live.
  *
- * This is the only live figure on the page. Everything else is the guides'
- * own copy, and a number that silently went stale would be worse than no
- * number at all — so a failed or unparseable fetch renders nothing.
+ * It was a fetch against Polsia's public dashboard, but that endpoint is down
+ * — polsia.com/api/public/live/dashboard answers "Cannot GET" and the mirror
+ * reports a 404 upstream. Rather than leave a number that is silently absent,
+ * the page states the figure the Polsia guide states, with the date attached
+ * so a reader can see how old it is. Update it when the guide's numbers box
+ * is updated; both come from Polsia's own dashboard.
  */
-async function polsiaActive(): Promise<string | null> {
-  try {
-    const res = await fetch('https://polsia.com/api/public/live/dashboard',
-                            { next: { revalidate: 3600 } });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const raw = data?.companies;
-    const n = parseInt(String(raw), 10);
-    if (!Number.isFinite(n) || n <= 0) return null;
-    return `${n.toLocaleString()} companies created, live now`;
-  } catch {
-    return null;
-  }
-}
+const POLSIA_NOTE = '29,132 active of 484,592 created \u00b7 Sept 2026';
 
-export default async function CompaniesPage() {
-  const note = await polsiaActive();
+export default function CompaniesPage() {
+  const note = POLSIA_NOTE;
 
   const groups = companiesByLayer().map(g => ({
     label: g.layer,

@@ -20,20 +20,21 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-02
  * idempotent: clicking the link from the page and again from the email reuses
  * one coupon rather than minting a new one each time.
  */
-async function purchasedSlug(sessionId: string): Promise<string | null> {
+async function purchased(sessionId: string): Promise<{ slug: string; paidCents?: number } | null> {
   const { data } = await supabase
     .from('purchases')
-    .select('product_slug')
+    .select('product_slug, amount')
     .eq('stripe_session_id', sessionId)
     .limit(1)
     .maybeSingle();
-  if (data?.product_slug) return data.product_slug;
+  if (data?.product_slug) return { slug: data.product_slug, paidCents: data.amount ?? undefined };
 
   // Same fallback as the success page: the webhook may not have landed yet.
   try {
     const s = await stripe.checkout.sessions.retrieve(sessionId);
     if (s.payment_status !== 'paid') return null;
-    return s.metadata?.product ?? null;
+    const slug = s.metadata?.product;
+    return slug ? { slug, paidCents: s.amount_total ?? undefined } : null;
   } catch {
     return null;
   }
@@ -48,8 +49,8 @@ export async function GET(
 
   if (!session.startsWith('cs_')) return NextResponse.redirect(home, 302);
 
-  const slug = await purchasedSlug(session);
-  const offer = slug ? upsellFor(slug) : null;
+  const bought = await purchased(session);
+  const offer = bought ? upsellFor(bought.slug, bought.paidCents) : null;
   const complete = bundleBySlug(COMPLETE_SLUG);
   if (!offer || !complete) return NextResponse.redirect(home, 302);
 
