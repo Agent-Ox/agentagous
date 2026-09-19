@@ -233,7 +233,7 @@ export const COMPANIES: Company[] = [
   { slug: 'vercel', name: 'Vercel', layer: 'Plumbing',
     one_line: 'Where agents are deployed. Eve is its framework for durable agents.',
     url: 'https://vercel.com' },
-  { slug: 'zapier', name: 'Zapier', layer: 'Plumbing', guide_slug: 'solo-stack',
+  { slug: 'zapier', name: 'Zapier', layer: 'Plumbing', guide_slug: 'zapier',
     one_line: 'The easiest automation layer: connect apps, run workflows, now with agent steps.',
     url: 'https://zapier.com' },
   { slug: 'n8n', name: 'n8n', layer: 'Plumbing', guide_slug: 'n8n',

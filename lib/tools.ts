@@ -108,7 +108,7 @@ export const TOOLS: Tool[] = [
     url: 'https://www.perplexity.ai' },
 
   // ── Automation ─────────────────────────────────────────────────────
-  { slug: 'zapier', name: 'Zapier', category: 'Automation', guide_slug: 'solo-stack',
+  { slug: 'zapier', name: 'Zapier', category: 'Automation', guide_slug: 'zapier',
     one_line: 'The easiest: when a form is submitted, classify it, route it, notify you.',
     url: 'https://zapier.com' },
   { slug: 'n8n', name: 'n8n', category: 'Automation', guide_slug: 'n8n',

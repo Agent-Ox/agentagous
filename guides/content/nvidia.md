@@ -34,7 +34,7 @@ In 2026 it is doing three things at once: shipping a new chip generation a year,
 
 ## By the numbers — September 2026
 
-@stat $5.37T || market value on 18 September 2026, the most valuable company in the world — up from $4.64T at the end of 2025
+@stat $5.37T || market value on 18 September 2026 — first past five trillion on 29 October 2025, the first company ever to, then back below it by year end and above again from 24 April
 @stat $96.2B || revenue in the quarter to 26 July, up 106% in a year; data centre $89.0B, up 117%; guidance of $108B for the next, with no China compute revenue assumed
 @stat 62% || net profit margin. Most companies would take that as a gross margin
 @stat $1T+ || cumulative revenue Nvidia expects from its Blackwell and Rubin chips through 2027, per Jensen Huang at GTC

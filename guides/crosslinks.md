@@ -44,4 +44,5 @@ backfill from the same category and then from anything remaining.
 | `manus` | personal | `china-ai` | `openclaw` | `meta-muse` | `agentic-economy` | `hire-agent` |
 | `perplexity` | work | `which-ai` | `solo-stack` | `grok-bot` | `agentic-economy` | `hire-agent` |
 | `agentforce` | work | `whos-who` | `hire-agent` | `grok-bot` | `agentic-economy` | `chatgpt-work` |
+| `zapier` | work | `n8n` | `hire-agent` | `grok-bot` | `agentic-economy` | `chatgpt-work` |
 | `nvidia` | map | `picks-and-shovels` | `china-ai` | `whos-who` | `agentic-economy` | `hire-agent` |
