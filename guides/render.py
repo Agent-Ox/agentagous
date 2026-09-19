@@ -625,7 +625,7 @@ def build_closing(meta, S, metas):
 
 
 # ── entry point ──────────────────────────────────────────────────────────────
-def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='classic'):
+def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='pilot'):
     meta, body = parse_front_matter(open(md_path).read())
     validate_description(meta)
     metas = metas if metas is not None else load_all_meta()
@@ -642,9 +642,9 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='classic'):
     linker = lambda text, style_name: link_guide_titles(text, pattern, target, style_name)
 
     if style == 'pilot':
-        # Opt-in design pilot. Hooks are installed for this render only and
-        # cleared afterwards, so a batch run cannot leak the style into the
-        # guides that follow it.
+        # The shipping design. Hooks are installed for this render only and
+        # cleared afterwards, so switching styles mid-batch cannot leak one
+        # into the other.
         import style_pilot
         style_pilot.install(sys.modules[__name__])
         try:
@@ -657,7 +657,8 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='classic'):
                      # before its "Go deeper" heading, so the closing flows onto
                      # that page rather than leaving a near-empty one behind.
                      + style_pilot.build_closing(
-                         meta, S, metas, compute_crosslinks(meta['slug'], metas), _prices(metas)))
+                         meta, S, metas, compute_crosslinks(meta['slug'], metas), _prices(metas),
+                         qr=make_qr(QR_URL), qr_caption=qr_text(metas)))
             doc.build(story, onFirstPage=style_pilot.on_cover,
                       onLaterPages=style_pilot.on_page)
         finally:
@@ -681,9 +682,9 @@ def main():
     ap = argparse.ArgumentParser(description='Render WTF Agents guide PDFs.')
     ap.add_argument('slugs', nargs='*', help='slugs to render (default: all)')
     ap.add_argument('--out', default=DEFAULT_OUT, help='output directory')
-    ap.add_argument('--style', default='classic', choices=['classic', 'pilot'],
-                    help='pilot applies the red/Montserrat design (DESIGN.md); '
-                         'classic is the shipping orange style')
+    ap.add_argument('--style', default='pilot', choices=['classic', 'pilot'],
+                    help='pilot is the shipping design (DESIGN.md); classic is '
+                         'the previous orange style, kept for comparison')
     args = ap.parse_args()
 
     os.makedirs(args.out, exist_ok=True)

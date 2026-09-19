@@ -192,11 +192,7 @@ export default function Home() {
       className={montserrat.className}
       style={{ background: C.canvas, color: C.text, minHeight: '100vh' }}
     >
-      {/* The site-wide Nav lives in layout.tsx, which this pilot must not touch.
-          Hiding it here keeps the change inside page.tsx and leaves every other
-          route exactly as it was. */}
       <style>{`
-        body > header { display: none !important; }
         body { background: ${C.canvas}; }
         .wtf-wrap { --pad-x: 8%; }
         .wtf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }

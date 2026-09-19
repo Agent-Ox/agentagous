@@ -22,13 +22,21 @@ import bundles as _BUNDLE_CONFIG  # noqa: E402
 from linkify import link_footer, linkify  # noqa: E402
 GUIDES_DIR = os.path.join(BASE, 'public', 'guides')
 
-# Same palette as generate_guide_*.py
-ORANGE = HexColor('#f97316')
-DARK_BG = HexColor('#09090b')
-ZINC_400 = HexColor('#a1a1aa')
-ZINC_300 = HexColor('#d4d4d8')
-ZINC_600 = HexColor('#52525b')
-WHITE = HexColor('#ffffff')
+# Palette from DESIGN.md — the bundle cover has to move with the guides it
+# wraps, or a red guide sits behind an orange cover.
+sys.path.insert(0, os.path.join(BASE, 'guides'))
+import style_pilot  # noqa: E402
+
+# Register before any ParagraphStyle is constructed: reportlab resolves the
+# family/bold mapping while parsing, not while drawing.
+style_pilot.register_fonts()
+
+ORANGE = style_pilot.ACCENT            # name kept; the value is the accent
+DARK_BG = style_pilot.CANVAS
+ZINC_400 = style_pilot.MUTED
+ZINC_300 = style_pilot.BODY
+ZINC_600 = style_pilot.DIM
+WHITE = style_pilot.TEXT
 W, H = A4
 
 # Guide order, titles, filenames and bundle membership all come from the
@@ -69,11 +77,16 @@ def on_page(canvas, doc):
     canvas.saveState()
     canvas.setFillColor(DARK_BG)
     canvas.rect(0, 0, W, H, fill=1, stroke=0)
-    canvas.setFillColor(ORANGE)
-    canvas.rect(0, H - 3, W, 3, fill=1, stroke=0)
+    # One corner glow, as on every guide page. No top bar: DESIGN.md §6.2.
+    from reportlab.lib.colors import Color
+    for i in range(26, 0, -1):
+        t = i / 26.0
+        canvas.setFillColor(Color(184 / 255, 38 / 255, 27 / 255, alpha=0.055 * (1 - t) ** 1.6))
+        canvas.circle(W, H, 95 * mm * t, fill=1, stroke=0)
     canvas.setFillColor(ZINC_600)
     canvas.setStrokeColor(ZINC_600)
-    link_footer(canvas, 'wtfagents.com  ·  © 2026 WTF Agents', W / 2, 8 * mm)
+    link_footer(canvas, 'wtfagents.com  ·  © 2026 WTF Agents', W / 2, 8 * mm,
+                font=style_pilot.REG)
     canvas.restoreState()
 
 
@@ -87,17 +100,17 @@ def build_cover(bundle):
         title=f"{bundle['title']} {bundle['subtitle']}", author='WTF Agents',
     )
     cover_title = ParagraphStyle('cover_title', fontSize=38, leading=46, textColor=WHITE,
-                                 fontName='Helvetica-Bold', alignment=TA_LEFT, spaceAfter=6)
+                                 fontName=style_pilot.BOLD, alignment=TA_LEFT, spaceAfter=6)
     cover_sub = ParagraphStyle('cover_sub', fontSize=16, leading=24, textColor=ORANGE,
-                               fontName='Helvetica-Bold', alignment=TA_LEFT, spaceAfter=6)
+                               fontName=style_pilot.BOLD, alignment=TA_LEFT, spaceAfter=6)
     cover_desc = ParagraphStyle('cover_desc', fontSize=13, leading=21, textColor=ZINC_300,
-                                fontName='Helvetica', spaceAfter=6)
+                                fontName=style_pilot.REG, spaceAfter=6)
     cover_meta = ParagraphStyle('cover_meta', fontSize=10, leading=15, textColor=ZINC_400,
-                                fontName='Helvetica', alignment=TA_LEFT)
-    small = ParagraphStyle('small', fontSize=9, leading=14, textColor=ZINC_600, fontName='Helvetica')
+                                fontName=style_pilot.REG, alignment=TA_LEFT)
+    small = ParagraphStyle('small', fontSize=9, leading=14, textColor=ZINC_600, fontName=style_pilot.REG)
     contents_h = ParagraphStyle('contents_h', fontSize=13, leading=19, textColor=WHITE,
-                                fontName='Helvetica-Bold', spaceBefore=8, spaceAfter=6)
-    item = ParagraphStyle('item', fontSize=11, leading=18, textColor=ZINC_300, fontName='Helvetica')
+                                fontName=style_pilot.BOLD, spaceBefore=8, spaceAfter=6)
+    item = ParagraphStyle('item', fontSize=11, leading=18, textColor=ZINC_300, fontName=style_pilot.REG)
 
     def rule(color=ORANGE, w=2):
         return HRFlowable(width='100%', thickness=w, color=color, spaceBefore=2, spaceAfter=2)

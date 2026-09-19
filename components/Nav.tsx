@@ -18,12 +18,21 @@ export default function Nav() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // The homepage ships its own header (DESIGN.md), so the shared nav stands
+  // down there. This lives in the component rather than in layout.tsx because
+  // the root layout is a server component and cannot read the pathname; the
+  // layout stays declarative and the nav decides whether it applies.
+  const hidden = pathname === '/';
+
   useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => { if (hidden) setMenuOpen(false); }, [hidden]);
   useEffect(() => {
     if (menuOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
+
+  if (hidden) return null;
 
   return (
     <>

@@ -20,6 +20,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (HRFlowable, KeepTogether, PageBreak, Paragraph,
                                 Spacer, Table, TableStyle)
 
+from linkify import href, link_footer, linkify
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 FONT_DIR = os.path.join(HERE, 'fonts')
 
@@ -38,6 +40,10 @@ HAIRLINE = Color(228 / 255, 72 / 255, 76 / 255, alpha=0.35)
 
 W, H = A4
 REG, BOLD = 'Montserrat', 'Montserrat-Bold'
+
+# Same destinations as the standard closing page, recoloured to the accent.
+STORE_URL = 'wtfagents.com/store'
+CTA_LINK = f'<link href="https://{STORE_URL}" color="#E4484C">{STORE_URL} →</link>'
 
 
 def register_fonts():
@@ -69,8 +75,10 @@ def on_page(canvas, doc):
         canvas.circle(cx, cy, r, fill=1, stroke=0)
 
     canvas.setFillColor(DIM)
-    canvas.setFont(REG, 8)
-    canvas.drawCentredString(W / 2, 11 * mm, f'wtfagents.com  ·  Page {doc.page}  ·  © 2026 WTF Agents')
+    # link_footer, not drawCentredString: the footer URL is clickable in every
+    # other guide and must stay so here.
+    link_footer(canvas, f'wtfagents.com  ·  Page {doc.page}  ·  © 2026 WTF Agents',
+                W / 2, 11 * mm, font=REG, size=8)
     canvas.restoreState()
 
 
@@ -84,8 +92,7 @@ def on_cover(canvas, doc):
         canvas.setFillColor(Color(184 / 255, 38 / 255, 27 / 255, alpha=0.055 * (1 - t) ** 1.6))
         canvas.circle(W, H, 95 * mm * t, fill=1, stroke=0)
     canvas.setFillColor(DIM)
-    canvas.setFont(REG, 8)
-    canvas.drawCentredString(W / 2, 11 * mm, '© 2026 WTF Agents')
+    link_footer(canvas, 'wtfagents.com  ·  © 2026 WTF Agents', W / 2, 11 * mm, font=REG, size=8)
     canvas.restoreState()
 
 
@@ -133,8 +140,8 @@ def styles(cover_title_size=34):
         'cs2': P('cs2', fontSize=7.5, leading=11, textColor=BODY),
         'ng_title': P('ng_title', fontSize=10.5, leading=15, textColor=TEXT, fontName=BOLD,
                       spaceAfter=2),
-        'ng_desc': P('ng_desc', fontSize=9, leading=14, textColor=BODY, spaceAfter=2),
-        'ng_link': P('ng_link', fontSize=8.5, leading=12, textColor=ACCENT, spaceAfter=4),
+        'ng_desc': P('ng_desc', fontSize=9, leading=13, textColor=BODY, spaceAfter=1),
+        'ng_link': P('ng_link', fontSize=8.5, leading=11, textColor=ACCENT, spaceAfter=2),
         'cta_h': P('cta_h', fontSize=15, leading=21, textColor=TEXT, fontName=BOLD, spaceAfter=6),
         'cta_link': P('cta_link', fontSize=11, leading=16, textColor=ACCENT, fontName=BOLD,
                       spaceAfter=6),
@@ -272,16 +279,23 @@ def build_cover(meta, S, metas, index=None, total=None):
         Paragraph(meta['cover_subtitle'], S['cover_sub']),
         Spacer(1, 8 * mm),
         card([Paragraph(meta['subtitle'].strip(), S['cover_desc'])], pad=11, radius=10),
-        Spacer(1, 38 * mm),
-        Paragraph('wtfagents.com', S['cover_meta']),
+        Spacer(1, 34 * mm),
+        # Both cover footer lines, linkified exactly as the standard cover does.
+        Paragraph(linkify(meta.get('cover_meta', 'WTF Agents · wtfagents.com')), S['cover_meta']),
+        Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com/store'), S['small']),
         PageBreak(),
     ]
     return flow
 
 
 # ── closing ──────────────────────────────────────────────────────────────────
-def build_closing(meta, S, metas, crosslinks, prices):
-    """CTA card with the two bundle pills, then five mini cards."""
+def build_closing(meta, S, metas, crosslinks, prices, qr=None, qr_caption=''):
+    """CTA card with the two bundle pills, the QR block, then five mini cards.
+
+    Everything the standard closing page carries is carried here: the linked
+    Go-deeper titles and their URL lines, the CTA link, and the QR code with its
+    caption. Only the styling differs.
+    """
     register_fonts()
     inner_w = W - 40 * mm
     single, starter, complete = prices
@@ -301,18 +315,47 @@ def build_closing(meta, S, metas, crosslinks, prices):
         Spacer(1, 4 * mm),
         pills,
         Spacer(1, 4 * mm),
-        Paragraph('<link href="https://wtfagents.com/store" color="#E4484C">'
-                  'wtfagents.com/store →</link>', S['cta_link']),
+        Paragraph(CTA_LINK, S['cta_link']),
     ], pad=12, radius=10)
 
-    flow = [counter_row('Go deeper', width=inner_w), Spacer(1, 6 * mm), cta, Spacer(1, 9 * mm)]
-    for slug in crosslinks:
-        t = metas[slug]
-        flow.append(card([
-            Paragraph(t['title'], S['ng_title']),
-            Paragraph(t['description'], S['ng_desc']),
-        ], pad=8, radius=8))
+    flow = [counter_row('Go deeper', width=inner_w), Spacer(1, 4 * mm), cta, Spacer(1, 3.5 * mm)]
+
+    # The QR sits directly under the CTA, not at the very end. Trailing it after
+    # the Go-deeper list left it stranded alone on a final page at 2.6% ink,
+    # which the layout checker rightly calls sparse; here any spill onto a
+    # second page is Go-deeper cards, which carry real ink.
+    if qr is not None:
+        # The standard QR is 34mm. At 24mm it still scans comfortably for a
+        # short URL and buys back the height that was pushing the last
+        # Go-deeper card onto a page of its own. The budget is tight because
+        # each guide's own closing intro wraps to one or two lines, and the
+        # two-line ones (codex, grok-bot, china-ai, nanocorp) start ~17pt lower.
+        qr.drawWidth = qr.drawHeight = 21 * mm
+        qr_table = Table([[qr, Paragraph(qr_caption, S['qr_text'])]],
+                         colWidths=[25 * mm, inner_w - 25 * mm - 24])
+        qr_table.setStyle(TableStyle([
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (0, 0), 10),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+        flow.append(KeepTogether([card([qr_table], pad=6, radius=10)]))
         flow.append(Spacer(1, 4 * mm))
+
+    for i, slug in enumerate(crosslinks):
+        t = metas[slug]
+        if i:
+            # Between cards only. A trailing spacer at the foot of a full page
+            # spills a blank page of its own.
+            flow.append(Spacer(1, 2 * mm))
+        flow.append(card([
+            # Title and URL line are links, as on the standard closing page.
+            Paragraph(f'<link href="{href(STORE_URL)}"><b>{t["title"]}</b></link>', S['ng_title']),
+            Paragraph(t['description'], S['ng_desc']),
+            Paragraph(f'<link href="{href(STORE_URL)}" color="#E4484C">{STORE_URL}</link>',
+                      S['ng_link']),
+        ], pad=4, radius=8))
     return flow
 
 

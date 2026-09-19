@@ -133,6 +133,13 @@ def check(path):
                 continue
             if r.x0 <= 1 and r.x1 >= W - 1:
                 continue
+            # Page furniture bleeding off a corner — the DESIGN.md glow is drawn
+            # as filled discs centred on a page corner, so every one of them
+            # crosses an edge. Only unstroked fills qualify: a table that ran off
+            # the page would still carry stroked borders and is still caught.
+            bleeds = r.x0 < 0 or r.y0 < 0 or r.x1 > W or r.y1 > H
+            if bleeds and drawing.get('type') == 'f':
+                continue
             if r.x1 > x1_lim + TOL or r.x0 < x0_lim - TOL:
                 problems.append((pno, 'TABLE RULE OVERFLOW',
                                  f'rect x0={r.x0:.1f} x1={r.x1:.1f} '

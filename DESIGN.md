@@ -5,8 +5,9 @@ Measured from the six carousel reference screenshots in the inbox
 below was sampled from the pixels rather than estimated by eye; the measurement
 is quoted next to each so it can be re-checked.
 
-Status: **pilot**. Applied to the homepage and to the *WTF is Claude* PDF only.
-The other 24 guides keep the orange system until this is approved.
+Status: **shipping**. Applied to the homepage, all 23 guide PDFs and both
+bundle PDFs. `render.py --style classic` still renders the previous orange
+system, for comparison.
 
 ---
 
@@ -145,3 +146,24 @@ at desktop, 64px at mobile.
    Nothing else. Body copy is never red.
 5. **Text on red is `--ink-on-accent`**, never white — the reference badge is
    dark-on-red and that contrast inversion is load-bearing.
+
+---
+
+## 7. The closing page
+
+Every guide ends with the same block, and it has to fit on one page — a
+stranded QR or a single orphaned card trips `layoutcheck.py`'s sparse-final-page
+rule. Order and budget:
+
+1. `Go deeper` counter
+2. CTA card — heading, body, the two bundle pills, the store link
+3. QR card — 21mm code plus its caption, which carries the `/companies` link
+4. Five Go-deeper cards, each a linked title, a description and a linked URL
+
+The QR sits **above** the Go-deeper list rather than at the end. Trailing it
+left it alone on a final page at 2.6% ink. The budget is tight: a guide's own
+closing intro wraps to one or two lines, and the two-line ones start ~17pt
+lower, so the block is sized against that worst case with ~30pt to spare.
+
+Spacers go **between** cards, never after the last one — a trailing spacer at
+the foot of a full page spills a blank page of its own.
