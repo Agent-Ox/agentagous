@@ -53,6 +53,19 @@ RED = HexColor('#ef4444')
 
 W, H = A4
 
+# ── optional style hooks ─────────────────────────────────────────────────────
+# A style module (see style_pilot.py) may install builders here to change how
+# particular flowables are constructed. While every entry is None the renderer
+# behaves exactly as it always has — which is what keeps the 24 guides that are
+# not part of the design pilot byte-for-byte identical.
+HOOKS = {'stat': None, 'heading': None, 'table': None, 'glossary': None}
+
+
+def reset_hooks():
+    for k in HOOKS:
+        HOOKS[k] = None
+
+
 # ── style registry ───────────────────────────────────────────────────────────
 # Lifted verbatim from the generate_guide_N.py scripts, which declared these
 # identically in all twelve files.
@@ -239,10 +252,13 @@ def parse_body(body_text, S, linker=None):
 
         if stripped.startswith('## '):
             flush()
-            flow.append(Paragraph(stripped[3:].strip(), S['section_heading']))
-            heading_rule = rule()
-            heading_rule.keepWithNext = 1
-            flow.append(heading_rule)
+            if HOOKS['heading']:
+                flow.extend(HOOKS['heading'](stripped[3:].strip(), S))
+            else:
+                flow.append(Paragraph(stripped[3:].strip(), S['section_heading']))
+                heading_rule = rule()
+                heading_rule.keepWithNext = 1
+                flow.append(heading_rule)
         elif stripped.startswith('### '):
             flush()
             flow.append(Paragraph(stripped[4:].strip(), S['subheading']))
@@ -259,6 +275,8 @@ def parse_body(body_text, S, linker=None):
             widths = [float(x) * mm for x in m.group(2).replace(' ', '').split(',') if x]
             spec, cmds, rows, i = _collect_table(lines, i + 1)
             table = _build_table(spec, cmds, rows, widths, S, keep)
+            if HOOKS['table']:
+                table = HOOKS['table'](table, S)
             # keepWithNext does not reliably chain from a heading into a
             # KeepTogether, so when a table follows a heading directly, bind the
             # heading and its rule into the same block and move them together.
@@ -381,8 +399,13 @@ def _directive(stripped, flow, S, lines, i, L=None):
         flow.append(PageBreak())
     elif name == 'stat':
         num, _, lbl = rest.partition('||')
-        flow.append(Paragraph(num.strip(), S['stat_num']))
-        flow.append(Paragraph(lbl.strip(), S['stat_lbl']))
+        if HOOKS['stat']:
+            flow.append(HOOKS['stat'](num.strip(), lbl.strip(), S))
+        else:
+            flow.append(Paragraph(num.strip(), S['stat_num']))
+            flow.append(Paragraph(lbl.strip(), S['stat_lbl']))
+    elif name == 'gl' and HOOKS['glossary']:
+        flow.append(HOOKS['glossary'](L(rest, 'gl'), S))
     elif name in S:
         flow.append(Paragraph(L(rest, name), S[name]))
     else:
@@ -602,11 +625,10 @@ def build_closing(meta, S, metas):
 
 
 # ── entry point ──────────────────────────────────────────────────────────────
-def render(md_path, out_dir=DEFAULT_OUT, metas=None):
+def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='classic'):
     meta, body = parse_front_matter(open(md_path).read())
     validate_description(meta)
     metas = metas if metas is not None else load_all_meta()
-    S = _styles(meta.get('cover_title_size', 38))
 
     out_path = os.path.join(out_dir, meta['file'])
     doc = SimpleDocTemplate(
@@ -619,6 +641,30 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None):
     target = store_href(meta)
     linker = lambda text, style_name: link_guide_titles(text, pattern, target, style_name)
 
+    if style == 'pilot':
+        # Opt-in design pilot. Hooks are installed for this render only and
+        # cleared afterwards, so a batch run cannot leak the style into the
+        # guides that follow it.
+        import style_pilot
+        style_pilot.install(sys.modules[__name__])
+        try:
+            S = style_pilot.styles(meta.get('cover_title_size', 34))
+            order = sorted(metas, key=lambda s: metas[s].get('order', 999))
+            index = order.index(meta['slug']) + 1
+            story = (style_pilot.build_cover(meta, S, metas, index, len(order))
+                     + parse_body(body, S, linker)
+                     # No extra break: the content already ends with @pagebreak
+                     # before its "Go deeper" heading, so the closing flows onto
+                     # that page rather than leaving a near-empty one behind.
+                     + style_pilot.build_closing(
+                         meta, S, metas, compute_crosslinks(meta['slug'], metas), _prices(metas)))
+            doc.build(story, onFirstPage=style_pilot.on_cover,
+                      onLaterPages=style_pilot.on_page)
+        finally:
+            reset_hooks()
+        return out_path
+
+    S = _styles(meta.get('cover_title_size', 38))
     story = (build_cover(meta, S)
              + parse_body(body, S, linker)
              + build_closing(meta, S, metas))
@@ -635,6 +681,9 @@ def main():
     ap = argparse.ArgumentParser(description='Render WTF Agents guide PDFs.')
     ap.add_argument('slugs', nargs='*', help='slugs to render (default: all)')
     ap.add_argument('--out', default=DEFAULT_OUT, help='output directory')
+    ap.add_argument('--style', default='classic', choices=['classic', 'pilot'],
+                    help='pilot applies the red/Montserrat design (DESIGN.md); '
+                         'classic is the shipping orange style')
     args = ap.parse_args()
 
     os.makedirs(args.out, exist_ok=True)
@@ -654,7 +703,7 @@ def main():
 
     metas = load_all_meta()
     for f in files:
-        path = render(f, args.out, metas)
+        path = render(f, args.out, metas, style=args.style)
         print(f'✓ {os.path.basename(path)}')
 
     mappath = write_crosslink_map(metas)
