@@ -115,7 +115,7 @@ export default async function StoreSuccessPage({
   const offer = upsellFor(purchase.slug, purchase.paidCents);
   const [head, last] = splitLastWord(purchase.title);
   // The Complete Pack buyer has nothing left to upsell, so they get the five
-  // Go-deeper cards instead — a place to start reading 23 guides.
+  // Go-deeper cards instead — a place to start reading the set.
   const deeper = purchase.slug === COMPLETE_SLUG ? crosslinksFor(GUIDES[0].slug) : [];
 
   return shell(

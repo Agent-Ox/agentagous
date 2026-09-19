@@ -1,5 +1,5 @@
 /**
- * Every company, product and standard named across the 23 guides.
+ * Every company, product and standard named across the guides.
  *
  * Built from whos-who.md — which is the map the guides themselves use — then
  * swept against the other 22. Each `one_line` is taken or adapted from the
