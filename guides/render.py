@@ -593,7 +593,7 @@ def build_cover(meta, S):
              Spacer(1, 32 * mm),
              zinc_rule(),
              Paragraph(linkify(meta.get('cover_meta', 'WTF Agents · wtfagents.com')), S['cover_meta']),
-             Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com/store'), S['small']),
+             Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com'), S['small']),
              PageBreak()]
     return flow
 
@@ -693,7 +693,9 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='pilot'):
                      # that page rather than leaving a near-empty one behind.
                      + style_pilot.build_closing(
                          meta, S, metas, compute_crosslinks(meta['slug'], metas), _prices(metas),
-                         qr=make_qr(QR_URL, fill='#E4484C', back='#0A0506'),
+                         # Accent ink on a light tile: standard dark-on-light orientation, so it
+                         # decodes without a scanner having to invert it.
+                         qr=make_qr(QR_URL, fill='#E4484C', back='#F7F7F7'),
                          qr_caption=qr_text(metas)))
             doc.build(story, onFirstPage=style_pilot.on_cover,
                       onLaterPages=style_pilot.on_page)

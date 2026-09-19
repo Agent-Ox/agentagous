@@ -134,7 +134,7 @@ def build_cover(bundle):
         Spacer(1, 12 * mm),
         HRFlowable(width='100%', thickness=1, color=HexColor('#27272a'), spaceBefore=2, spaceAfter=2),
         Paragraph(linkify('WTF Agents · wtfagents.com'), cover_meta),
-        Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com/store'), small),
+        Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com'), small),
     ]
     doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
     buf.seek(0)

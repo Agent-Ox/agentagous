@@ -41,7 +41,7 @@ export async function POST(request: Request) {
         quantity: 1,
       }],
       success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/store/success?session_id={CHECKOUT_SESSION_ID}&guide=${slug}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/store`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
       metadata: { product: slug },
     };
 

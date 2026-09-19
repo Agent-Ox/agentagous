@@ -6,7 +6,7 @@ import { Montserrat } from 'next/font/google';
 import { GUIDES, GUIDE_COUNT, guideBySlug, bundleBySlug } from '../../../lib/guides';
 import { guideBodyHtml, crosslinksFor, guideIndex } from '../../../lib/guide-source';
 import { C, GLOW, CARD_SHADOW, SITE_URL, splitLastWord, pad2 } from '../../../lib/design';
-import BuyButton from './BuyButton';
+import BuyButton from '../../../components/BuyButton';
 import StickyReveal from './StickyReveal';
 import { guideCss } from './guide-css';
 
@@ -79,7 +79,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <header className="g-header">
           <Link href="/" className="g-wordmark">WTF AGENTS</Link>
           <nav className="g-nav">
-            <Link href="/store">GUIDES</Link><span>·</span>
+            <Link href="/#guides">GUIDES</Link><span>·</span>
             <Link href="/companies">COMPANIES</Link><span>·</span>
             <Link href="/tools">TOOLS</Link>
           </nav>
@@ -163,7 +163,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <footer className="g-footer">
           <span className="g-wordmark">WTF AGENTS</span>
           <nav className="g-nav">
-            <Link href="/store">GUIDES</Link>
+            <Link href="/#guides">GUIDES</Link>
             <Link href="/companies">COMPANIES</Link>
             <Link href="/tools">TOOLS</Link>
           </nav>

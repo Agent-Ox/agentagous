@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
 import { GUIDES, BUNDLES, GUIDE_COUNT, bundleBySlug } from '../lib/guides';
+import BuyButton from '../components/BuyButton';
 
 // Two weights, as measured off the reference — see DESIGN.md §4.
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
@@ -199,6 +200,12 @@ export default function Home() {
         .wtf-bundles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
         .wtf-hero-h { font-size: 64px; }
         .wtf-sect { margin-top: 96px; }
+        .wtf-btn {
+          display: inline-block; border: 1px solid ${C.strokeSoft}; border-radius: 999px;
+          padding: 13px 26px; font: 700 15px/1 inherit; letter-spacing: .02em;
+          color: ${C.text}; background: transparent; cursor: pointer;
+        }
+        .g-buyerr { color: ${C.accentBright}; font-size: 13px; display: block; margin-top: 8px; }
         @media (max-width: 900px) {
           .wtf-grid, .wtf-bundles { grid-template-columns: 1fr; }
           .wtf-hero-h { font-size: 38px; }
@@ -245,7 +252,7 @@ export default function Home() {
           </Link>
           <nav className="wtf-nav-links" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             {[
-              ['Guides', '/store'],
+              ['Guides', '/#guides'],
               ['Companies', '/companies'],
               ['Tools', '/tools'],
             ].map(([label, href], i) => (
@@ -321,7 +328,7 @@ export default function Home() {
                   >
                     {b.description}
                   </p>
-                  <Button href="/store">Buy the {last.toLowerCase()}</Button>
+                  <BuyButton slug={b.slug} className="wtf-btn">Buy the {last.toLowerCase()}</BuyButton>
                 </Card>
               );
             })}
@@ -329,6 +336,7 @@ export default function Home() {
         </section>
 
         {/* ── Guides by category ─────────────────────────────────── */}
+        <div id="guides" />
         {CATEGORIES.map(cat => {
           const list = GUIDES.filter(g => g.category === cat.id);
           if (!list.length) return null;
@@ -401,7 +409,7 @@ export default function Home() {
           </span>
           <nav style={{ display: 'flex', gap: 22 }}>
             {[
-              ['Guides', '/store'],
+              ['Guides', '/#guides'],
               ['Companies', '/companies'],
               ['Tools', '/tools'],
             ].map(([label, href]) => (

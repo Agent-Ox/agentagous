@@ -283,7 +283,7 @@ def build_cover(meta, S, metas, index=None, total=None):
         Spacer(1, 34 * mm),
         # Both cover footer lines, linkified exactly as the standard cover does.
         Paragraph(linkify(meta.get('cover_meta', 'WTF Agents · wtfagents.com')), S['cover_meta']),
-        Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com/store'), S['small']),
+        Paragraph(linkify('Part of the WTF Agents Guide Series · wtfagents.com'), S['small']),
         PageBreak(),
     ]
     return flow

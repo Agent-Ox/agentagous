@@ -4,14 +4,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
+// Guides · Companies · Tools on every page. /jobs, /ideas and /submit still
+// exist and are still linked from their own pages and the footer, but they are
+// no longer top-level navigation.
 const navLinks = [
-  { href: '/', label: 'Home', icon: '🏠' },
+  { href: '/#guides', label: 'Guides', icon: '📘' },
   { href: '/companies', label: 'Companies', icon: '🏢' },
-  { href: '/jobs', label: 'Jobs', icon: '💼' },
-  { href: '/ideas', label: 'Ideas', icon: '💡' },
-  { href: '/store', label: 'Store', icon: '🛒', badge: 'Guides $7' },
   { href: '/tools', label: 'Tools', icon: '🧰' },
-  { href: '/submit', label: 'Submit', icon: '🚀' },
 ];
 
 export default function Nav() {
@@ -53,9 +52,6 @@ export default function Nav() {
                   : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
               )}>
               {link.label}
-              {link.badge && pathname !== link.href && (
-                <span className="text-xs bg-orange-500/20 text-orange-400 px-1.5 py-0.5 rounded-full">{link.badge}</span>
-              )}
             </Link>
           ))}
         </nav>
@@ -102,7 +98,6 @@ export default function Nav() {
                   )}>
                   <span className="text-base">{link.icon}</span>
                   <span className="flex-1">{link.label}</span>
-                  {link.badge && <span className="text-xs bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">{link.badge}</span>}
                   {pathname === link.href && <span className="text-orange-400">→</span>}
                 </Link>
               ))}
