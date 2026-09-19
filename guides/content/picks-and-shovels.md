@@ -37,7 +37,7 @@ Every agent in this series runs on this layer. Every dollar Polsia, OpenClaw or 
 
 @stat $725B+ || combined 2026 capital spending by Amazon, Alphabet, Microsoft and Meta, up around 77% on 2025 — the largest infrastructure build-out in corporate history
 @stat $5T || Nvidia's market value when it became the first chip company past five trillion dollars, 24 April 2026
-@stat $75B || Nvidia's data-centre revenue in a single quarter (to late April), up over 90% in a year
+@stat $89B || Nvidia's data-centre revenue in a single quarter (to late July), up 117% in a year
 @stat $12.93B || what Nvidia agreed on 2 September 2026 to pay for Hugging Face — the largest company it has ever bought outright. Expected to close in the first half of 2027
 @stat 82% || Google Cloud's year-on-year growth in Q2 2026; AWS 37%, its fastest in eighteen quarters
 @stat $514B || Google Cloud's contract backlog; AWS $496B; Oracle $638B — capacity sold years ahead

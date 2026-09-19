@@ -241,7 +241,7 @@ export const COMPANIES: Company[] = [
     url: 'https://n8n.io' },
 
   // ── Picks & shovels ────────────────────────────────────────────────
-  { slug: 'nvidia', name: 'Nvidia', layer: 'Picks & shovels', guide_slug: 'picks-and-shovels',
+  { slug: 'nvidia', name: 'Nvidia', layer: 'Picks & shovels', guide_slug: 'nvidia',
     one_line: 'The chips. Every frontier model was trained and is served on its hardware.',
     url: 'https://www.nvidia.com' },
   { slug: 'aws', name: 'AWS', layer: 'Picks & shovels', guide_slug: 'picks-and-shovels',
