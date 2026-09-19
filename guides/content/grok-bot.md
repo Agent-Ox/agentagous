@@ -37,7 +37,7 @@ The pitch line is "AI teammates you can give real work to." The distinctive move
 @stat 11 Aug || 2026: early beta launch, macOS, Windows and iPhone. No Linux client, no Android yet
 @stat 1 || cloud computer per account, shared by all your bots — files, browser sessions and logins pooled
 @stat $20–300 || per month: bundled with Cursor plans from Pro upward and with SuperGrok Heavy at the top. No standalone price, no free tier
-@stat $60B || what SpaceX paid for Cursor in June, after absorbing xAI in February. Grok Bot is the first joint product
+@stat $60B || what SpaceX paid for Cursor — agreed in June, closed in August — after absorbing xAI in February. Grok Bot is the first joint product
 @stat 10–20 || bots one SpaceXAI engineer runs under a single Chief of Staff, automating what she says is 90% of her routine
 @stat 0 || model picker. Tasks are routed to models automatically; you cannot choose or pin one
 
@@ -120,7 +120,7 @@ The comparison people keep making: "like OpenClaw, but easy, reliable and less s
 - → <b>One computer, no walls.</b> Because all bots share one machine, a bot tricked by a malicious page has the same access as every other bot. Do not give a low-trust bot high-trust logins.
 - → <b>You do not pick the model.</b> Tasks route automatically, billing follows whichever model served the request, and SpaceXAI has said it does not plan to add a picker. Early testers found the router uneven.
 - → <b>Bundled pricing hides the bill.</b> No standalone plan, no free tier, and usage on top of the allowance. The cheap $20 entry is a Cursor plan, which makes sense if you code and less if you do not.
-- → <b>It is a beta from a company mid-merger.</b> SpaceX absorbed xAI in February and Cursor in June; Cursor loses OpenAI's models in November. Expect the product and the pricing to move.
+- → <b>It is a beta from a company mid-merger.</b> SpaceX absorbed xAI in February and closed on Cursor in August; Cursor loses OpenAI's models in November. Expect the product and the pricing to move.
 @spacer 3
 
 @spacer 4
@@ -147,7 +147,7 @@ Whether it is the best work agent is a question for a year from now. Whether it 
 
 @gl <b>Grok Bot</b> — SpaceXAI's work agent: named, persistent bots that sign into your apps and work on a shared cloud computer. Beta since August 2026.
 
-@gl <b>SpaceXAI</b> — The entity that emerged from SpaceX absorbing xAI in February 2026 and Cursor in June. Builder of Grok and Grok Bot.
+@gl <b>SpaceXAI</b> — The entity that emerged from SpaceX absorbing xAI in February 2026 and Cursor in August, on a deal agreed in June. Builder of Grok and Grok Bot.
 
 @gl <b>Chief of Staff bot</b> — A bot placed above other bots to delegate, coordinate and report. Grok Bot's orchestration layer.
 

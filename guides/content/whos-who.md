@@ -37,7 +37,7 @@ This guide gives each name one line: what it is, why it matters. Where a full WT
 
 @stat $965B || Anthropic's valuation after May's $65B round — the most valuable private company in the world, IPO filed
 @stat $852B || OpenAI's valuation after its $122B round in March
-@stat $60B || what SpaceX paid for Cursor in June, after buying xAI in February
+@stat $60B || what SpaceX paid for Cursor — agreed in June, closed in August — after buying xAI in February
 @stat $30M || Polsia's May raise at $250M; NanoCorp is YC-backed; Paperclip has no disclosed funding
 @stat 3.2M || active OpenClaw users; Hermes Agent is the credible number two
 @stat 490,000 || companies created on Polsia; about 6% still active
@@ -100,7 +100,7 @@ The category that proved agents work, and the one that made Anthropic.
 
 @role <b>Jules (Google)</b> — Google's free cloud coding agent on Gemini.
 
-@role <b>Cursor</b> — The AI-first code editor, bought by SpaceX for $60 billion in June and now the delivery vehicle for Grok Bot. Losing OpenAI's models in November.
+@role <b>Cursor</b> — The AI-first code editor, bought by SpaceX for $60 billion — agreed in June, closed in August — and now the delivery vehicle for Grok Bot. Losing OpenAI's models in November.
 
 @role <b>GitHub Copilot (Microsoft)</b> — The largest install base in coding AI, evolving from autocomplete into an agent inside GitHub itself.
 

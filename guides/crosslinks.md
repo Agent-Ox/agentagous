@@ -37,3 +37,4 @@ backfill from the same category and then from anything remaining.
 | `elevenlabs` | creative | `higgsfield` | `solo-stack` | `heygen` | `agentic-economy` | `hire-agent` |
 | `heygen` | creative | `higgsfield` | `elevenlabs` | `runway` | `agentic-economy` | `hire-agent` |
 | `runway` | creative | `higgsfield` | `heygen` | `elevenlabs` | `agentic-economy` | `hire-agent` |
+| `cursor` | work | `claude-code` | `grok-bot` | `chatgpt-work` | `agentic-economy` | `hire-agent` |
