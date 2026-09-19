@@ -6,8 +6,8 @@ import { SITE_URL } from "../lib/design";
 export const metadata: Metadata = {
   // Without this, Next resolves og:image against localhost at build time.
   metadataBase: new URL(SITE_URL),
-  title: "WTF Agents — The Agentic Economy, Mapped Live",
-  description: "Every company being built and run by AI agents — tracked, categorised, and indexed in real time.",
+  title: "WTF Agents — All the AI. 0% BS.",
+  description: "Plain-English guides to the agentic economy. Read every guide free, or take the PDF for $7.",
   alternates: {
     canonical: 'https://www.wtfagents.com',
   },
