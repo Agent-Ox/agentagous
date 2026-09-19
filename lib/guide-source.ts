@@ -44,6 +44,7 @@ const COMPANIES: [string, string][] = [
   ['ElevenLabs', 'elevenlabs'], ['HeyGen', 'heygen'], ['Gamma', 'gamma'],
   ['Runway', 'runway'], ['Devin', 'devin'], ['Cognition', 'cognition'],
   ['Windsurf', 'windsurf'], ['Zapier', 'zapier'],
+  ['Hermes Agent', 'hermes-agent'], ['Nous Research', 'nous-research'],
 ];
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

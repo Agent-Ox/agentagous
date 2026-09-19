@@ -63,6 +63,9 @@ export const TOOLS: Tool[] = [
   { slug: 'openclaw', name: 'OpenClaw', category: 'Company platforms', guide_slug: 'openclaw',
     one_line: 'The open-source personal agent you run on your own machine.',
     url: 'https://openclaw.ai' },
+  { slug: 'hermes-agent', name: 'Hermes Agent', category: 'Company platforms', guide_slug: 'hermes',
+    one_line: 'Self-hosted, and it writes its own skills. Free; Nous Portal from $20 a month.',
+    url: 'https://nousresearch.com' },
 
   // ── Voice ──────────────────────────────────────────────────────────
   { slug: 'elevenlabs', name: 'ElevenLabs', category: 'Voice', guide_slug: 'elevenlabs',

@@ -24,7 +24,7 @@ backfill from the same category and then from anything remaining.
 | `hire-agent` | practical | `cowork` | `ai-agent` | `launch-weekend` | `agentic-economy` | `solo-stack` |
 | `whos-who` | map | `agentic-economy` | `which-ai` | `china-ai` | `hire-agent` | `picks-and-shovels` |
 | `which-ai` | map | `llm` | `claude` | `whos-who` | `agentic-economy` | `hire-agent` |
-| `meta-muse` | personal | `openclaw` | `which-ai` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `meta-muse` | personal | `openclaw` | `which-ai` | `hermes` | `agentic-economy` | `hire-agent` |
 | `grok-bot` | work | `cowork` | `openclaw` | `chatgpt-work` | `agentic-economy` | `hire-agent` |
 | `chatgpt-work` | work | `cowork` | `grok-bot` | `codex` | `agentic-economy` | `hire-agent` |
 | `china-ai` | map | `which-ai` | `llm` | `whos-who` | `agentic-economy` | `hire-agent` |
@@ -40,3 +40,4 @@ backfill from the same category and then from anything remaining.
 | `cursor` | work | `claude-code` | `grok-bot` | `chatgpt-work` | `agentic-economy` | `hire-agent` |
 | `devin` | work | `claude-code` | `codex` | `grok-bot` | `agentic-economy` | `hire-agent` |
 | `n8n` | work | `hire-agent` | `mcp` | `grok-bot` | `agentic-economy` | `chatgpt-work` |
+| `hermes` | personal | `openclaw` | `meta-muse` | `agentic-economy` | `hire-agent` | `ai-agent` |
