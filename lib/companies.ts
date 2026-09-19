@@ -151,8 +151,11 @@ export const COMPANIES: Company[] = [
   { slug: 'nous-research', name: 'Nous Research', layer: 'Personal agents', guide_slug: 'hermes',
     one_line: 'The open-model lab behind Hermes Agent and the Nous Portal subscription.',
     url: 'https://nousresearch.com' },
-  { slug: 'manus', name: 'Manus', layer: 'Personal agents',
-    one_line: 'The Chinese general-purpose agent Meta agreed to buy before Beijing blocked it.',
+  { slug: 'manus', name: 'Manus', layer: 'Personal agents', guide_slug: 'manus',
+    one_line: 'The general-purpose agent Meta bought, Beijing blocked, and independence returned to.',
+    url: 'https://manus.im' },
+  { slug: 'butterfly-effect', name: 'Butterfly Effect', layer: 'Personal agents', guide_slug: 'manus',
+    one_line: 'Manus’s parent, founded 2022. Also makes the Monica browser assistant.',
     url: 'https://manus.im' },
 
   { slug: 'higgsfield', name: 'Higgsfield', layer: 'Personal agents', guide_slug: 'higgsfield',
