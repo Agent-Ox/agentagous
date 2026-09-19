@@ -7,10 +7,10 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { execFileSync } from 'child_process';
 
 import { GUIDES, Guide, guideBySlug } from './guides';
 import { renderGuideBody, LinkRule } from './guide-dialect';
+import { GUIDE_DATES } from './guide-dates.generated';
 
 const CONTENT_DIR = path.join(process.cwd(), 'guides', 'content');
 const CROSSLINKS = path.join(process.cwd(), 'guides', 'crosslinks.md');
@@ -155,24 +155,16 @@ export function faqsFor(slug: string): { question: string; answer: string }[] {
 }
 
 /**
- * First and last commit dates for a guide's markdown, for datePublished,
- * dateModified and the sitemap's lastmod. Falls back to now when git is not
- * available (a fresh checkout with no history, or a shallow CI clone).
+ * First and last change dates for a guide, for datePublished and dateModified.
+ *
+ * Read from the generated file rather than from git: the Vercel deploy is a
+ * shallow clone, so a git lookup here returns nothing for most guides and
+ * silently falls back to the build time. guides/build_dates.py resolves them
+ * where the history is.
  */
 export function guideDates(slug: string): { published: string; modified: string } {
-  const file = contentPathFor(slug);
-  const iso = (args: string) => {
-    try {
-      const out = execFileSync('git', ['log', ...args.split(' '), '--format=%cI', '--', file], {
-        cwd: process.cwd(),
-        encoding: 'utf8',
-      }).trim();
-      return out.split('\n').filter(Boolean)[0];
-    } catch {
-      return undefined;
-    }
-  };
-  const modified = iso('-1') ?? new Date().toISOString();
-  const published = iso('--reverse') ?? modified;
-  return { published, modified };
+  const row = GUIDE_DATES.find(d => d.slug === slug);
+  if (row) return { published: row.published, modified: row.modified };
+  const now = new Date().toISOString();
+  return { published: now, modified: now };
 }

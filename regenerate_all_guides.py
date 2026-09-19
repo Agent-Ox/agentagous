@@ -13,7 +13,8 @@ import sys
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
-for step in (['guides/render.py'], ['guides/build_catalogue.py'], ['build_bundles.py'],
+for step in (['guides/render.py'], ['guides/build_catalogue.py'],
+    ['guides/build_dates.py'], ['build_bundles.py'],
              ['guides/layoutcheck.py']):
     result = subprocess.run([sys.executable] + step, cwd=BASE)
     if result.returncode != 0:
