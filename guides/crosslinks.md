@@ -39,3 +39,4 @@ backfill from the same category and then from anything remaining.
 | `runway` | creative | `higgsfield` | `heygen` | `elevenlabs` | `agentic-economy` | `hire-agent` |
 | `cursor` | work | `claude-code` | `grok-bot` | `chatgpt-work` | `agentic-economy` | `hire-agent` |
 | `devin` | work | `claude-code` | `codex` | `grok-bot` | `agentic-economy` | `hire-agent` |
+| `n8n` | work | `hire-agent` | `mcp` | `grok-bot` | `agentic-economy` | `chatgpt-work` |

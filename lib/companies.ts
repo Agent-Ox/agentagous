@@ -227,8 +227,8 @@ export const COMPANIES: Company[] = [
   { slug: 'zapier', name: 'Zapier', layer: 'Plumbing', guide_slug: 'solo-stack',
     one_line: 'The easiest automation layer: connect apps, run workflows, now with agent steps.',
     url: 'https://zapier.com' },
-  { slug: 'n8n', name: 'n8n', layer: 'Plumbing', guide_slug: 'solo-stack',
-    one_line: 'The same as Zapier, open-source and self-hosted, for anyone who wants to own it.',
+  { slug: 'n8n', name: 'n8n', layer: 'Plumbing', guide_slug: 'n8n',
+    one_line: 'Open-source automation billed per workflow run. $5.2B, with SAP on the cap table.',
     url: 'https://n8n.io' },
 
   // ── Picks & shovels ────────────────────────────────────────────────
