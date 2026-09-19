@@ -156,6 +156,10 @@ export const COMPANIES: Company[] = [
     one_line: 'Fifty video and image models behind one chat agent. $5.4bn, and an open API.',
     url: 'https://higgsfield.ai' },
 
+  { slug: 'runway', name: 'Runway', layer: 'Personal agents', guide_slug: 'runway',
+    one_line: 'Trains its own video models and sells control. Now betting on world models.',
+    url: 'https://runway.com' },
+
   { slug: 'heygen', name: 'HeyGen', layer: 'Personal agents', guide_slug: 'heygen',
     one_line: 'Digital presenters from two minutes of webcam footage, dubbed into 175+ languages.',
     url: 'https://www.heygen.com' },

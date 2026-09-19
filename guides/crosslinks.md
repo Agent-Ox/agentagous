@@ -35,4 +35,5 @@ backfill from the same category and then from anything remaining.
 | `solo-stack` | practical | `hire-agent` | `launch-weekend` | `agentic-economy` | `ai-agent` | `api` |
 | `higgsfield` | creative | `solo-stack` | `meta-muse` | `elevenlabs` | `agentic-economy` | `hire-agent` |
 | `elevenlabs` | creative | `higgsfield` | `solo-stack` | `heygen` | `agentic-economy` | `hire-agent` |
-| `heygen` | creative | `higgsfield` | `elevenlabs` | `agentic-economy` | `hire-agent` | `ai-agent` |
+| `heygen` | creative | `higgsfield` | `elevenlabs` | `runway` | `agentic-economy` | `hire-agent` |
+| `runway` | creative | `higgsfield` | `heygen` | `elevenlabs` | `agentic-economy` | `hire-agent` |
