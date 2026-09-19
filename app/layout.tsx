@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Nav from "../components/Nav";
 import { SITE_URL } from "../lib/design";
+import { graph, organization, website } from "../lib/jsonld";
 
 export const metadata: Metadata = {
   // Without this, Next resolves og:image against localhost at build time.
@@ -10,6 +10,20 @@ export const metadata: Metadata = {
   description: "Plain-English guides to the agentic economy. Read every guide free, or take the PDF for $7.",
   alternates: {
     canonical: 'https://www.wtfagents.com',
+  },
+  openGraph: {
+    title: "WTF Agents — All the AI. 0% BS.",
+    description:
+      "Plain-English guides to the agentic economy. Read every guide free, or take the PDF for $7.",
+    url: SITE_URL,
+    siteName: "WTF Agents",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WTF Agents — All the AI. 0% BS.",
+    description:
+      "Plain-English guides to the agentic economy. Read every guide free, or take the PDF for $7.",
   },
   // Near-black rounded tile, accent-red W, Montserrat Bold — DESIGN.md §1.
   icons: {
@@ -48,7 +62,10 @@ export default function RootLayout({
         ` }} />
       </head>
       <body className="bg-zinc-950 text-white">
-        <Nav />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: graph([organization(), website()]) }}
+        />
         {children}
       </body>
     </html>

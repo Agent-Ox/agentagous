@@ -41,16 +41,20 @@ export default function DirectoryPage({
   titleTail,
   standfirst,
   groups,
+  jsonLd,
 }: {
   counter: React.ReactNode;
   title: string;
   titleTail: string;
   standfirst: string;
   groups: { label: string; items: Tile[] }[];
+  /** Serialised schema.org graph for this directory. */
+  jsonLd?: string;
 }) {
   return (
     <div className={montserrat.className} style={{ background: C.canvas, color: C.text, minHeight: '100vh' }}>
       <style dangerouslySetInnerHTML={{ __html: directoryCss }} />
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />}
 
       <div className="d-wrap" style={{ background: GLOW }}>
         <header className="d-header">
@@ -62,6 +66,7 @@ export default function DirectoryPage({
           </nav>
         </header>
 
+        <main>
         <section className="d-card d-hero" style={{ boxShadow: CARD_SHADOW }}>
           {counter}
           <h1>{title} <span className="red">{titleTail}</span></h1>
@@ -99,6 +104,8 @@ export default function DirectoryPage({
             </div>
           </section>
         ))}
+
+        </main>
 
         <footer className="d-footer">
           <span className="d-wordmark">WTF AGENTS</span>

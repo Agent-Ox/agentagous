@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { Montserrat } from 'next/font/google';
 
 import { GUIDES, GUIDE_COUNT, guideBySlug, bundleBySlug } from '../../../lib/guides';
-import { guideBodyHtml, crosslinksFor, guideIndex } from '../../../lib/guide-source';
+import { guideBodyHtml, crosslinksFor, guideIndex, faqsFor, guideDates } from '../../../lib/guide-source';
+import { graph, guideArticle, guideProduct, breadcrumbs, faqPage } from '../../../lib/jsonld';
 import { C, GLOW, CARD_SHADOW, SITE_URL, splitLastWord, pad2 } from '../../../lib/design';
 import BuyButton from '../../../components/BuyButton';
 import StickyReveal from './StickyReveal';
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'WTF Agents',
       type: 'article',
     },
+    other: { 'article:section': guide.category },
     twitter: { card: 'summary_large_image', title: guide.title, description: guide.description },
   };
 }
@@ -70,9 +72,25 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const complete = bundleBySlug('complete-pack')!;
   const [head, last] = splitLastWord(guide.title);
 
+  // The page is an Article and a Product at the same URL. FAQPage only when
+  // the guide actually asks a question — see faqsFor.
+  const { published, modified } = guideDates(slug);
+  const faqs = faqsFor(slug);
+  const ld = graph([
+    guideArticle(guide, index, published, modified),
+    guideProduct(guide),
+    breadcrumbs([
+      { name: 'WTF Agents', url: `${SITE_URL}/` },
+      { name: 'Guides', url: `${SITE_URL}/#guides` },
+      { name: guide.title, url: `${SITE_URL}/guides/${guide.slug}` },
+    ]),
+    ...(faqs.length ? [faqPage(faqs)] : []),
+  ]);
+
   return (
     <div className={montserrat.className} style={{ background: C.canvas, color: C.text, minHeight: '100vh' }}>
       <style dangerouslySetInnerHTML={{ __html: guideCss }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />
 
       <div className="g-wrap" style={{ background: GLOW }}>
         {/* ── Header ─────────────────────────────────────────────── */}

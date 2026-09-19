@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
 import { GUIDES, BUNDLES, GUIDE_COUNT, bundleBySlug } from '../lib/guides';
 import BuyButton from '../components/BuyButton';
+import { graph, collectionPage, guideList, bundleProducts, offerSummary, breadcrumbs } from '../lib/jsonld';
+import { SITE_URL } from '../lib/design';
 
 // Two weights, as measured off the reference — see DESIGN.md §4.
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
@@ -189,6 +191,20 @@ export default function Home() {
   const bundles = [starter, complete].filter(Boolean) as typeof BUNDLES;
   const indexOf = new Map(GUIDES.map((g, i) => [g.slug, i + 1]));
 
+  // The homepage is the guide index and the shop front: an ItemList of every
+  // guide, plus the two bundles as offers.
+  const ld = graph([
+    collectionPage(
+      `${SITE_URL}/`,
+      'WTF Agents — All the AI. 0% BS.',
+      'Plain-English guides to the agentic economy. Read every guide free, or take the PDF for $7.',
+    ),
+    guideList(GUIDES),
+    ...bundleProducts(),
+    offerSummary(),
+    breadcrumbs([{ name: 'WTF Agents', url: `${SITE_URL}/` }]),
+  ]);
+
   return (
     <div
       className={montserrat.className}
@@ -217,6 +233,8 @@ export default function Home() {
           .wtf-nav-links { gap: 10px !important; }
         }
       `}</style>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />
 
       {/* One glow, top-left corner, behind nothing but empty canvas. */}
       <div
@@ -276,6 +294,7 @@ export default function Home() {
           </nav>
         </header>
 
+        <main>
         {/* ── Hero ───────────────────────────────────────────────── */}
         <Card style={{ padding: 40 }}>
           <Counter label={`${GUIDE_COUNT} Guides`} />
@@ -391,6 +410,8 @@ export default function Home() {
             </section>
           );
         })}
+
+        </main>
 
         {/* ── Footer ─────────────────────────────────────────────── */}
         <footer

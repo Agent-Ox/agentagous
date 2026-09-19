@@ -3,12 +3,22 @@ import type { Metadata } from 'next';
 import DirectoryPage, { Tile } from '../../components/DirectoryPage';
 import { COMPANIES, LAYERS, companiesByLayer } from '../../lib/companies';
 import { SITE_URL } from '../../lib/design';
+import { graph, collectionPage, directoryList, breadcrumbs } from '../../lib/jsonld';
 
 export const metadata: Metadata = {
   title: 'The players — WTF Agents',
   description:
     'Every company, product and standard named across the WTF Agents guides, sorted into the eight layers of the agentic economy.',
   alternates: { canonical: `${SITE_URL}/companies` },
+  openGraph: {
+    title: 'The players — WTF Agents',
+    description:
+      'Every company, product and standard named across the WTF Agents guides, sorted into the eight layers of the agentic economy.',
+    url: `${SITE_URL}/companies`,
+    siteName: 'WTF Agents',
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'The players — WTF Agents' },
 };
 
 /**
@@ -36,13 +46,27 @@ export default function CompaniesPage() {
         one_line: c.one_line,
         href: internal ? `/guides/${c.guide_slug}` : `/go/company/${c.slug}`,
         pill: internal ? 'Guide' : 'Visit',
+        external: !internal,
         note: c.slug === 'polsia' && note ? note : undefined,
       };
     }),
   }));
 
+  const url = `${SITE_URL}/companies`;
+  const description =
+    'Every company, product and standard named across the WTF Agents guides, sorted into the eight layers of the agentic economy.';
+  const ld = graph([
+    collectionPage(url, 'The players', description),
+    directoryList('The players', description, COMPANIES, url),
+    breadcrumbs([
+      { name: 'WTF Agents', url: `${SITE_URL}/` },
+      { name: 'The players', url },
+    ]),
+  ]);
+
   return (
     <DirectoryPage
+      jsonLd={ld}
       counter={
         <div className="d-counter">
           <span className="d-rule" />

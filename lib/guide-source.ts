@@ -7,6 +7,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { execFileSync } from 'child_process';
 
 import { GUIDES, Guide, guideBySlug } from './guides';
 import { renderGuideBody, LinkRule } from './guide-dialect';
@@ -118,4 +119,60 @@ export function crosslinksFor(slug: string): Guide[] {
 /** Catalogue position, matching the counter on the PDF cover. */
 export function guideIndex(slug: string): number {
   return GUIDES.findIndex(g => g.slug === slug) + 1;
+}
+
+/**
+ * Question-and-answer pairs, for FAQPage markup.
+ *
+ * Only headings that are literally questions count. Six guides have them
+ * ("Do you need to be a developer?"); the rest use a "Yes / Not yet / No"
+ * shape that reads like a Q&A to a person but is not one, and marking that up
+ * as FAQPage would be describing content that is not on the page.
+ */
+export function faqsFor(slug: string): { question: string; answer: string }[] {
+  const raw = fs.readFileSync(contentPathFor(slug), 'utf8').replace(FRONT_MATTER, '');
+  const out: { question: string; answer: string }[] = [];
+
+  for (const section of raw.split(/^## /m).slice(1)) {
+    const nl = section.indexOf('\n');
+    const heading = section.slice(0, nl).trim();
+    if (!heading.endsWith('?')) continue;
+
+    const answer = section
+      .slice(nl)
+      .split('\n')
+      .map(l => l.trim())
+      // Directive lines carry their own structure; the prose is what answers.
+      .filter(l => l && !l.startsWith('@') && !l.startsWith('|') && !l.startsWith('###'))
+      .join(' ')
+      .replace(/<[^>]+>/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (answer) out.push({ question: heading, answer: answer.slice(0, 1200) });
+  }
+  return out;
+}
+
+/**
+ * First and last commit dates for a guide's markdown, for datePublished,
+ * dateModified and the sitemap's lastmod. Falls back to now when git is not
+ * available (a fresh checkout with no history, or a shallow CI clone).
+ */
+export function guideDates(slug: string): { published: string; modified: string } {
+  const file = contentPathFor(slug);
+  const iso = (args: string) => {
+    try {
+      const out = execFileSync('git', ['log', ...args.split(' '), '--format=%cI', '--', file], {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+      }).trim();
+      return out.split('\n').filter(Boolean)[0];
+    } catch {
+      return undefined;
+    }
+  };
+  const modified = iso('-1') ?? new Date().toISOString();
+  const published = iso('--reverse') ?? modified;
+  return { published, modified };
 }

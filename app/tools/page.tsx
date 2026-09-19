@@ -3,12 +3,22 @@ import type { Metadata } from 'next';
 import DirectoryPage, { Tile } from '../../components/DirectoryPage';
 import { TOOLS, TOOL_CATEGORIES, toolsByCategory } from '../../lib/tools';
 import { SITE_URL } from '../../lib/design';
+import { graph, collectionPage, directoryList, breadcrumbs } from '../../lib/jsonld';
 
 export const metadata: Metadata = {
   title: 'The stack — WTF Agents',
   description:
     'The tools the WTF Agents guides tell you to actually buy: the AI plan first, then voice, video, design, decks, research and automation.',
   alternates: { canonical: `${SITE_URL}/tools` },
+  openGraph: {
+    title: 'The stack — WTF Agents',
+    description:
+      'The tools the WTF Agents guides tell you to actually buy: the AI plan first, then voice, video, design, decks, research and automation.',
+    url: `${SITE_URL}/tools`,
+    siteName: 'WTF Agents',
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'The stack — WTF Agents' },
 };
 
 export default function ToolsPage() {
@@ -26,8 +36,21 @@ export default function ToolsPage() {
     })),
   }));
 
+  const url = `${SITE_URL}/tools`;
+  const description =
+    'The tools the WTF Agents guides tell you to actually buy: the AI plan first, then voice, video, design, decks, research and automation.';
+  const ld = graph([
+    collectionPage(url, 'The stack', description),
+    directoryList('The stack', description, TOOLS, url),
+    breadcrumbs([
+      { name: 'WTF Agents', url: `${SITE_URL}/` },
+      { name: 'The stack', url },
+    ]),
+  ]);
+
   return (
     <DirectoryPage
+      jsonLd={ld}
       counter={
         <div className="d-counter">
           <span className="d-rule" />
