@@ -221,8 +221,6 @@ Validate first. Then decide whether Polsia is the right layer to execute on what
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Polsia is one piece of the agentic economy. Here is the rest of the picture.
 
 @spacer 4

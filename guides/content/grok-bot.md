@@ -12,7 +12,7 @@ subtitle: >-
 
 # store catalogue fields
 order: 15
-description: 'Elon Musk''s work agent: a team of bots with their own cloud computer and your real logins, coordinated by a Chief of Staff. What it does, costs and risks.'
+description: 'Elon Musk''s work agent: a team of bots sharing one cloud computer and your real logins, coordinated by a Chief of Staff. What it does, costs and risks.'
 hook: 'A team of named bots *with your real logins.*'
 best_for: 'Best for: delegating a function'
 capability: 'Risks laid out'
@@ -164,8 +164,6 @@ Whether it is the best work agent is a question for a year from now. Whether it 
 @spacer 6
 
 @pagebreak
-
-## Liked this? Go deeper.
 
 Grok Bot is one of four work agents that shipped this year. Here are the others, and the model behind it.
 

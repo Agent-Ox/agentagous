@@ -195,8 +195,6 @@ Second, routers exist. Services that sit in front of several models and send eac
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 You have picked a model. Here is what to do with it.
 
 @spacer 4

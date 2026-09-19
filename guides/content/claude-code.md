@@ -175,8 +175,6 @@ This does not mean software developers are going away. It means the nature of th
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Claude Code is the agent. Here is the ecosystem around it.
 
 @spacer 4

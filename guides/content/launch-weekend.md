@@ -171,8 +171,6 @@ Give it seven days and one rule: the company earns money or a clear "no" from re
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 This is the how-to. Here are the platforms and the thinking behind them.
 
 @spacer 4

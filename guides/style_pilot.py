@@ -43,7 +43,7 @@ REG, BOLD = 'Montserrat', 'Montserrat-Bold'
 
 # Same destinations as the standard closing page, recoloured to the accent.
 STORE_URL = 'wtfagents.com/store'
-CTA_LINK = f'<link href="https://{STORE_URL}" color="#E4484C">{STORE_URL} →</link>'
+CTA_LINK = '<link href="https://wtfagents.com" color="#E4484C">wtfagents.com →</link>'
 
 
 def register_fonts():
@@ -255,6 +255,7 @@ def glossary_card(text, S):
 
 
 def install(render):
+    render.LINK_COLOR[0] = '#E4484C'
     render.HOOKS['stat'] = stat_card
     render.HOOKS['heading'] = heading_block
     render.HOOKS['table'] = table_card
@@ -349,12 +350,12 @@ def build_closing(meta, S, metas, crosslinks, prices, qr=None, qr_caption=''):
             # Between cards only. A trailing spacer at the foot of a full page
             # spills a blank page of its own.
             flow.append(Spacer(1, 2 * mm))
+        url = f'wtfagents.com/guides/{slug}'
         flow.append(card([
-            # Title and URL line are links, as on the standard closing page.
-            Paragraph(f'<link href="{href(STORE_URL)}"><b>{t["title"]}</b></link>', S['ng_title']),
+            # Title and URL both point at that guide's own page.
+            Paragraph(f'<link href="https://{url}"><b>{t["title"]}</b></link>', S['ng_title']),
             Paragraph(t['description'], S['ng_desc']),
-            Paragraph(f'<link href="{href(STORE_URL)}" color="#E4484C">{STORE_URL}</link>',
-                      S['ng_link']),
+            Paragraph(f'<link href="https://{url}" color="#E4484C">{url}</link>', S['ng_link']),
         ], pad=4, radius=8))
     return flow
 

@@ -153,8 +153,6 @@ The agents in this series run the business: they research, code, email, sell, su
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 The stack makes the things. The agents run the company. Here is the rest.
 
 @spacer 4

@@ -146,8 +146,6 @@ The reading most careful analysts land on: the infrastructure is being built ahe
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 This is the layer everything else runs on. Here is what runs on it.
 
 @spacer 4

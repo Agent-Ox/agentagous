@@ -189,8 +189,6 @@ It also puts Meta, which spent 2025 losing the model race, back in it with the m
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Muse is the newest personal agent. Here are the others, and the model question behind it.
 
 @spacer 4

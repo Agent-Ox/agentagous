@@ -60,10 +60,15 @@ W, H = A4
 # not part of the design pilot byte-for-byte identical.
 HOOKS = {'stat': None, 'heading': None, 'table': None, 'glossary': None}
 
+# Colour for in-text guide-title links. The pilot style overrides it with the
+# accent; classic leaves it orange.
+LINK_COLOR = ['#f97316']
+
 
 def reset_hooks():
     for k in HOOKS:
         HOOKS[k] = None
+    LINK_COLOR[0] = '#f97316'
 
 
 # ── style registry ───────────────────────────────────────────────────────────
@@ -166,12 +171,12 @@ def zinc_rule():
     return HRFlowable(width='100%', thickness=0.5, color=ZINC_600, spaceAfter=6, spaceBefore=6)
 
 
-def make_qr(url):
+def make_qr(url, fill='#f97316', back='#09090b'):
     qr = qrcode.QRCode(version=2, error_correction=qrcode.constants.ERROR_CORRECT_H,
                        box_size=6, border=2)
     qr.add_data(url)
     qr.make(fit=True)
-    img = qr.make_image(fill_color='#f97316', back_color='#09090b')
+    img = qr.make_image(fill_color=fill, back_color=back)
     buf = io.BytesIO()
     img.save(buf, format='PNG')
     buf.seek(0)
@@ -419,6 +424,14 @@ HUB_SLUG = 'agentic-economy'
 PRACTICAL_SLUG = 'hire-agent'
 CROSSLINK_COUNT = 5
 STORE_URL = 'wtfagents.com/store'
+# Each guide now has a page of its own, so a guide title links to that page
+# rather than to a store anchor. The homepage is the store.
+SITE_URL = 'wtfagents.com'
+GUIDE_URL = 'https://wtfagents.com/guides/{slug}'
+
+
+def guide_url(slug):
+    return GUIDE_URL.format(slug=slug)
 
 
 def load_all_meta():
@@ -511,21 +524,39 @@ _LINK_SPLIT = re.compile(r'(<link\b.*?</link>)', re.S)
 _GL_TERM = re.compile(r'\s*<b>.*?</b>', re.S)
 
 
+class TitleIndex:
+    """The title regex plus the title -> slug map, so each match can resolve to
+    its own guide page. re.Pattern does not accept attributes."""
+
+    def __init__(self, rx, slug_of):
+        self.rx = rx
+        self.slug_of = slug_of
+
+    def sub(self, repl, text):
+        return self.rx.sub(repl, text)
+
+
 def title_pattern(metas, exclude_slug=None):
     """Regex matching any catalogue guide title, longest first.
 
     Longest-first ordering matters: "WTF is Claude" is a prefix of "WTF is
     Claude Code", and the longer title must win.
     """
-    titles = sorted((m['title'] for s, m in metas.items() if s != exclude_slug),
-                    key=len, reverse=True)
-    if not titles:
+    pairs = sorted(((m['title'], s) for s, m in metas.items() if s != exclude_slug),
+                   key=lambda p: len(p[0]), reverse=True)
+    if not pairs:
         return None
-    return re.compile('(?:' + '|'.join(re.escape(t) for t in titles) + ')')
+    return TitleIndex(
+        re.compile('(?:' + '|'.join(re.escape(t) for t, _ in pairs) + ')'),
+        {t: s for t, s in pairs})
 
 
 def link_guide_titles(text, pattern, target, style_name):
-    """Link catalogue guide titles inside one paragraph of body text."""
+    """Link catalogue guide titles inside one paragraph of body text.
+
+    Each title resolves to its own guide page; `target` is only the fallback
+    for a title the pattern knows but the map does not.
+    """
     if pattern is None or style_name in NO_TITLE_LINK:
         return text
 
@@ -536,11 +567,16 @@ def link_guide_titles(text, pattern, target, style_name):
         if match:
             prefix, text = text[:match.end()], text[match.end():]
 
+    slug_of = pattern.slug_of
+
+    def repl(m):
+        slug = slug_of.get(m.group(0))
+        dest = guide_url(slug) if slug else target
+        return f'<link href="{dest}" color="{LINK_COLOR[0]}">{m.group(0)}</link>'
+
     parts = _LINK_SPLIT.split(text)
     for i in range(0, len(parts), 2):      # odd indices are existing <link> runs
-        parts[i] = pattern.sub(
-            lambda m: f'<link href="{target}" color="{ORANGE_HEX}">{m.group(0)}</link>',
-            parts[i])
+        parts[i] = pattern.sub(repl, parts[i])
     return prefix + ''.join(parts)
 
 
@@ -562,7 +598,7 @@ def build_cover(meta, S):
     return flow
 
 
-QR_URL = 'https://wtfagents.com/store'
+QR_URL = 'https://wtfagents.com'
 CTA_HEAD = 'Want the rest of the series?'
 
 
@@ -577,10 +613,9 @@ def _prices(metas):
 def qr_text(metas):
     single, starter, complete = _prices(metas)
     return linkify(
-        '<b>Scan to browse all guides</b>\n\nEvery WTF Agents guide at wtfagents.com/store\n\n'
+        '<b>Scan to browse all guides · wtfagents.com</b>\n\n'
         f'${single} each · Starter Pack ${starter} · Complete Pack ${complete} — '
-        'every guide in the series\n\n'
-        'Also free: the live AI company directory at wtfagents.com/companies')
+        'every guide in the series')
 
 
 def cta_body(metas):
@@ -588,7 +623,7 @@ def cta_body(metas):
     return ('Every WTF Agents guide is written the same way — plain English, no hype, no jargon. '
             f'Buy them individually at ${single}, or take the Starter Pack for ${starter} '
             f'or the Complete Pack for ${complete} with every guide in the series.')
-CTA_LINK = '<link href="https://wtfagents.com/store" color="#f97316">wtfagents.com/store →</link>'
+CTA_LINK = '<link href="https://wtfagents.com" color="#f97316">wtfagents.com →</link>'
 
 def build_closing(meta, S, metas):
     flow = []
@@ -658,7 +693,8 @@ def render(md_path, out_dir=DEFAULT_OUT, metas=None, style='pilot'):
                      # that page rather than leaving a near-empty one behind.
                      + style_pilot.build_closing(
                          meta, S, metas, compute_crosslinks(meta['slug'], metas), _prices(metas),
-                         qr=make_qr(QR_URL), qr_caption=qr_text(metas)))
+                         qr=make_qr(QR_URL, fill='#E4484C', back='#0A0506'),
+                         qr_caption=qr_text(metas)))
             doc.build(story, onFirstPage=style_pilot.on_cover,
                       onLaterPages=style_pilot.on_page)
         finally:

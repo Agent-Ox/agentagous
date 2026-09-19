@@ -149,8 +149,6 @@ For the agentic economy the practical consequence is a two-tier world. The hard,
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 China's models run under more of the agentic economy than most people realise. Here is the rest of the map.
 
 @spacer 4

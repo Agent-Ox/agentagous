@@ -228,8 +228,6 @@ When a new name appears in your feed, ask which layer it belongs to. The answer 
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 This is the map. Every name on it with a guide has one waiting.
 
 @spacer 4

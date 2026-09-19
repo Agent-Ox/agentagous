@@ -166,8 +166,6 @@ That is why the July launch was the moment the "agent that does your job" catego
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 ChatGPT Work is one of four work agents that shipped in 2026. Here are the others.
 
 @spacer 4

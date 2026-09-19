@@ -164,8 +164,6 @@ Codex is the coding agent with the widest possible front door. Claude Code prove
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Codex is one of two coding agents on a $20 plan. Here is the other, and what sits around them.
 
 @spacer 4

@@ -216,8 +216,6 @@ The agentic economy runs on APIs. You do not need to be a plumber to live in a h
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Now you know what APIs are — here is where to go next in the WTF Agents series.
 
 @spacer 4

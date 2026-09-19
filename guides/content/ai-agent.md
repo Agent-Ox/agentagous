@@ -244,8 +244,6 @@ Apply the same thinking to agents. Start small. Define the goal precisely. Give 
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 This guide explained what agents are. The WTF Agents series goes deep on the specific platforms and tools that are building the agentic economy right now.
 
 @spacer 4

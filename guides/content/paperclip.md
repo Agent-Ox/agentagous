@@ -179,8 +179,6 @@ Two things worth knowing. Forking a company is not the same as having customers,
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Paperclip manages agents. Here are the agents, and the alternatives.
 
 @spacer 4

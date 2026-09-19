@@ -184,8 +184,6 @@ You can use the agentic economy without ever thinking about Anthropic. But you w
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Anthropic is the company. Here are the model, the agents and the ecosystem around it.
 
 @spacer 4

@@ -174,8 +174,6 @@ Constitutional AI gives the model written principles and trains it to judge its 
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Claude is the model. Here is everything built on it.
 
 @spacer 4

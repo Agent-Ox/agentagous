@@ -255,8 +255,6 @@ The businesses that deploy agents most successfully are the ones that are clear-
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 You now know how to hire an agent. Here is the full context behind the tools you are using.
 
 @spacer 4

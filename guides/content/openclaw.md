@@ -202,8 +202,6 @@ OpenClaw is the reference implementation for what a personal AI agent looks like
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 OpenClaw is one part of the story. Here is the rest.
 
 @spacer 4

@@ -160,8 +160,6 @@ NanoCorp's live revenue page is the most useful single artefact in the autonomou
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 NanoCorp is one of three ways to have agents run a company. Here are the others, and how to manage the agents yourself.
 
 @spacer 4

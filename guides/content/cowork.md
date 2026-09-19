@@ -281,8 +281,6 @@ The HBR research published in early 2026 noted that companies are already making
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Cowork is built on Claude and sits alongside Claude Code. Here is the full picture.
 
 @spacer 4

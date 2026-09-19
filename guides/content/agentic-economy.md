@@ -216,8 +216,6 @@ You are in the right place. The rest of the WTF Agents series goes deep on each 
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 This guide gave you the big picture. The rest of the series goes deep on every platform, tool and concept mentioned here.
 
 @spacer 4

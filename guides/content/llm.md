@@ -212,8 +212,6 @@ The rapid improvement of LLMs over the past three years — from GPT-3 in 2020 t
 
 @pagebreak
 
-## Liked this? Go deeper.
-
 Now you know what LLMs are. Here is the rest of the WTF Agents series.
 
 @spacer 4
