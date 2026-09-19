@@ -3,12 +3,12 @@
 import { useState } from 'react';
 
 /**
- * Starts a real Checkout Session for one slug — a guide or a bundle.
+ * Starts a Checkout Session for one slug — a guide or a bundle — and sends the
+ * buyer straight to Stripe.
  *
- * /api/store-checkout requires an email, because the webhook uses it to record
- * the purchase and send the download link. So the button opens an inline email
- * field on first click rather than pretending it can jump straight to Stripe.
- * Same contract as the /store modal; only the presentation differs.
+ * No email field: Stripe Checkout collects the address on its own page, and the
+ * webhook reads it back from customer_details. One click from button to
+ * payment.
  */
 export default function BuyButton({
   slug,
@@ -19,57 +19,36 @@ export default function BuyButton({
   className?: string;
   children: React.ReactNode;
 }) {
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
   async function go() {
-    if (!email || !email.includes('@')) {
-      setError('Enter a valid email — your download link goes there.');
-      return;
-    }
     setBusy(true);
     setError('');
     try {
       const res = await fetch('/api/store-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, slug }),
+        body: JSON.stringify({ slug }),
       });
       const data = await res.json();
       if (data.url) window.location.href = data.url;
-      else setError(data.error || 'Could not start checkout.');
+      else {
+        setError(data.error || 'Could not start checkout.');
+        setBusy(false);
+      }
     } catch {
       setError('Could not start checkout.');
-    } finally {
       setBusy(false);
     }
   }
 
-  if (!open) {
-    return (
-      <button type="button" className={className} onClick={() => setOpen(true)}>
-        {children}
-      </button>
-    );
-  }
-
   return (
-    <span className="g-buyform">
-      <input
-        type="email"
-        autoFocus
-        placeholder="your@email.com"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        onKeyDown={e => e.key === 'Enter' && go()}
-        aria-label="Your email for the download link"
-      />
+    <>
       <button type="button" className={className} onClick={go} disabled={busy}>
-        {busy ? 'Starting…' : 'Continue'}
+        {busy ? 'Opening checkout…' : children}
       </button>
       {error && <span className="g-buyerr">{error}</span>}
-    </span>
+    </>
   );
 }

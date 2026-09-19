@@ -21,11 +21,7 @@ function priceForSlug(slug: string): string | undefined {
 
 export async function POST(request: Request) {
   try {
-    const { email, slug } = await request.json();
-
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
-    }
+    const { slug } = await request.json();
 
     const price = slug ? priceForSlug(slug) : undefined;
     if (!price) {
@@ -36,14 +32,17 @@ export async function POST(request: Request) {
       mode: 'payment',
       // Do not add payment_method_types — Managed Payments rejects the request
       // outright and chooses the methods itself via dynamic payment methods.
-      customer_email: email,
+      //
+      // No customer_email either: Stripe Checkout collects it on its own page,
+      // which is one less field between the buy button and the payment. The
+      // webhook reads it back from customer_details.
       line_items: [{
         price,
         quantity: 1,
       }],
       success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/store/success?session_id={CHECKOUT_SESSION_ID}&guide=${slug}`,
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/store`,
-      metadata: { product: slug, email },
+      metadata: { product: slug },
     };
 
     // Stripe is the merchant of record: it collects and remits VAT, GST and

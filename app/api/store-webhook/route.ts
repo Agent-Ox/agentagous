@@ -74,7 +74,13 @@ export async function POST(req: NextRequest) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
     if (session.mode === 'payment') {
-      const email = session.customer_email || session.metadata?.email || '';
+      // Stripe collects the address on its own page now, so customer_details
+      // is the source. customer_email and the old metadata copy are kept as
+      // fallbacks so sessions created before this change still deliver.
+      const email = session.customer_details?.email
+        || session.customer_email
+        || session.metadata?.email
+        || '';
       const slug = session.metadata?.product || '';
       const amount = session.amount_total || 0;
 

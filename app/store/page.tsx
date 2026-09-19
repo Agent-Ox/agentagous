@@ -8,7 +8,6 @@ type ModalState = { slug: string; title: string; price: number } | null;
 
 export default function StorePage() {
   const [modal, setModal] = useState<ModalState>(null);
-  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
@@ -27,17 +26,13 @@ export default function StorePage() {
 
   const handleBuy = async () => {
     setError('');
-    if (!email || !email.includes('@')) {
-      setError('Please enter a valid email address.');
-      return;
-    }
     if (!modal) return;
     setLoading(true);
     try {
       const res = await fetch('/api/store-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, slug: modal.slug }),
+        body: JSON.stringify({ slug: modal.slug }),
       });
       const data = await res.json();
       if (data.url) {
@@ -156,15 +151,6 @@ export default function StorePage() {
               <button onClick={closeModal} className="text-zinc-500 hover:text-white text-xl ml-4 shrink-0">✕</button>
             </div>
 
-            <div className="mb-4">
-              <label className="text-xs text-zinc-500 mb-1.5 block">Your email — we'll send your download link here</label>
-              <input type="email" placeholder="your@email.com" value={email}
-                onChange={e => { setEmail(e.target.value); setError(''); }}
-                onKeyDown={e => e.key === 'Enter' && handleBuy()}
-                autoFocus
-                className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white w-full focus:outline-none focus:border-orange-500 placeholder:text-zinc-600" />
-            </div>
-
             {error && <p className="text-red-400 text-xs mb-3">{error}</p>}
 
             <button onClick={handleBuy} disabled={loading}
@@ -172,7 +158,7 @@ export default function StorePage() {
               {loading ? '...' : `Pay $${modal.price} with Stripe →`}
             </button>
 
-            <p className="text-xs text-zinc-600 text-center">Secure payment via Stripe. PDF delivered instantly after payment.</p>
+            <p className="text-xs text-zinc-600 text-center">Secure payment via Stripe. Enter your email at checkout and the PDF arrives straight after payment.</p>
           </div>
         </div>
       )}
