@@ -43,3 +43,4 @@ backfill from the same category and then from anything remaining.
 | `hermes` | personal | `openclaw` | `meta-muse` | `manus` | `agentic-economy` | `hire-agent` |
 | `manus` | personal | `china-ai` | `openclaw` | `meta-muse` | `agentic-economy` | `hire-agent` |
 | `perplexity` | work | `which-ai` | `solo-stack` | `grok-bot` | `agentic-economy` | `hire-agent` |
+| `agentforce` | work | `whos-who` | `hire-agent` | `grok-bot` | `agentic-economy` | `chatgpt-work` |

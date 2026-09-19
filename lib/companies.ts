@@ -192,9 +192,12 @@ export const COMPANIES: Company[] = [
     url: 'https://paperclip.dev' },
 
   // ── Enterprise ─────────────────────────────────────────────────────
-  { slug: 'salesforce-agentforce', name: 'Salesforce Agentforce', layer: 'Enterprise',
-    one_line: 'The enterprise incumbent’s agent platform, priced per conversation.',
+  { slug: 'salesforce-agentforce', name: 'Salesforce Agentforce', layer: 'Enterprise', guide_slug: 'agentforce',
+    one_line: 'The enterprise incumbent’s agent platform. $1.2B of revenue, billed four ways.',
     url: 'https://www.salesforce.com/agentforce' },
+  { slug: 'sierra', name: 'Sierra', layer: 'Enterprise', guide_slug: 'agentforce',
+    one_line: 'Bret Taylor’s agent company. Priced per resolved case from day one.',
+    url: 'https://sierra.ai' },
   { slug: 'servicenow', name: 'ServiceNow AI Control Tower', layer: 'Enterprise',
     one_line: 'Governed agents for IT and HR workflows; AI contract value past a billion dollars.',
     url: 'https://www.servicenow.com' },
