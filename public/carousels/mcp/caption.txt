@@ -1,0 +1,10 @@
+USB-C for AI. Every agent in this series uses it.
+
+MCP, the Model Context Protocol, is an open standard that lets any AI model connect to any tool, file, database or service through one common plug. Before it, every connection between an agent and a system was custom-built. After it, a tool built once works with every agent.
+
+#AIagents #AgenticEconomy #AIexplained
+https://wtfagents.com/guides/mcp
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/mcp
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

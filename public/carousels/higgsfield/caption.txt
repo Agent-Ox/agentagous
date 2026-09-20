@@ -1,0 +1,10 @@
+Fifty models, one chat agent, and now the code is open.
+
+Higgsfield is an AI video and image platform that puts fifty-plus generation models behind one interface and one credit balance, and increasingly behind one chat agent: describe the ad, the clip or the app you want, and Higgsfield chooses the models, runs them and hands back the result.
+
+#AIagents #AgenticEconomy #AIvideo
+https://wtfagents.com/guides/higgsfield
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/higgsfield
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

@@ -1,0 +1,10 @@
+A team of named bots with your real logins.
+
+Grok Bot is a set of always-on AI teammates. You give each one a name, a role and access to your tools; it signs in with your real logins, works on a cloud computer that keeps running after you close your laptop, and comes back with finished work — or with a question when it needs your sign-off.
+
+#AIagents #AgenticEconomy #FutureOfWork
+https://wtfagents.com/guides/grok-bot
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/grok-bot
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

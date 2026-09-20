@@ -1,0 +1,10 @@
+An org chart for AI agents you own and run yourself.
+
+Paperclip is open-source software that lets you run AI agents the way a company runs employees: an org chart with roles and reporting lines, a budget for each agent, tasks that flow down and results that flow up, and a human at the top who approves what matters.
+
+#AIagents #AgenticEconomy #AIstartups
+https://wtfagents.com/guides/paperclip
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/paperclip
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

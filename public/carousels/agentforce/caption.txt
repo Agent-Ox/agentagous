@@ -1,0 +1,10 @@
+Agents for big companies. Billed four different ways.
+
+Agentforce is Salesforce's platform for building and running AI agents inside its own products: a support agent that resolves tickets, a sales agent that qualifies leads, a field-service agent that schedules technicians, all with access to the customer data Salesforce already holds.
+
+#AIagents #AgenticEconomy #FutureOfWork
+https://wtfagents.com/guides/agentforce
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/agentforce
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

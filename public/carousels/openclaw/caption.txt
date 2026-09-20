@@ -1,0 +1,10 @@
+From one developer's side project to three million users.
+
+OpenClaw is a free, open-source autonomous AI agent that runs on your computer or phone and takes instructions via messaging apps — WhatsApp, Telegram, Signal, Discord — connecting to Claude, GPT, DeepSeek or any model you choose to carry out multi-step tasks on your behalf.
+
+#AIagents #AgenticEconomy #AIassistant
+https://wtfagents.com/guides/openclaw
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/openclaw
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

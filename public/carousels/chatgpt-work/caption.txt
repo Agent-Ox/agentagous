@@ -1,0 +1,10 @@
+Give it an outcome. Get the finished deck back.
+
+ChatGPT Work is a mode inside ChatGPT that takes an outcome rather than a prompt: it gathers what it needs from your connected apps and files, breaks the job into steps, works on its own for minutes or hours, and hands back a finished spreadsheet, slide deck, document or working web app.
+
+#AIagents #AgenticEconomy #FutureOfWork
+https://wtfagents.com/guides/chatgpt-work
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/chatgpt-work
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

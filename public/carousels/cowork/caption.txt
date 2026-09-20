@@ -1,0 +1,10 @@
+Claude Code was for developers. Cowork is for everyone else.
+
+Cowork is Anthropic's desktop AI agent for non-developers — a tool that lets Claude read, edit, create, and organise files directly on your computer, execute multi-step tasks autonomously, and connect to your existing tools, all without touching a command line.
+
+#AIagents #AgenticEconomy #Claude
+https://wtfagents.com/guides/cowork
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/cowork
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

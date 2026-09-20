@@ -1,0 +1,10 @@
+Zapier's rival, open-source, on a $5 server.
+
+Below about a thousand multi-step runs a month, the difference is small and Zapier's ease wins. Above it, n8n wins by a wide margin. Count your steps and your runs before choosing.
+
+#AIagents #AgenticEconomy #FutureOfWork
+https://wtfagents.com/guides/n8n
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/n8n
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

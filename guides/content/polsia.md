@@ -19,6 +19,8 @@ capability: 'Real fees, real numbers'
 price: 7
 stripe_price_id: 'price_1UGyCOBaLipfLqFsvHnjwiZJ'
 category: 'platforms'
+# Slide 2 of the carousel: 484,592 created / 29,132 active / 10% ever earned.
+carousel_stats: [3, 4, 6]
 badge: '🔥 Most popular'
 featured: true
 relatedTool: 'polsia'

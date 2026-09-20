@@ -1,0 +1,10 @@
+The autonomous developer, now for non-developers too.
+
+Claude Code is Anthropic's autonomous coding agent — a command-line tool that takes a task, reads your codebase, figures out what needs to change, makes the changes, runs tests, and iterates until the task is done.
+
+#AIagents #AgenticEconomy #Claude
+https://wtfagents.com/guides/claude-code
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/claude-code
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

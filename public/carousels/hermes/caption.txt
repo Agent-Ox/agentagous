@@ -1,0 +1,10 @@
+The agent that writes its own skills.
+
+The practical effect is the one nobody else offers: an agent that is measurably better in month three than in week one, without you retraining anything.
+
+#AIagents #AgenticEconomy #AIassistant
+https://wtfagents.com/guides/hermes
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/hermes
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

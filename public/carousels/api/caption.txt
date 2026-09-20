@@ -1,0 +1,10 @@
+The plumbing that connects everything in the agentic economy.
+
+An API (Application Programming Interface) is a set of rules that lets two pieces of software talk to each other.
+
+#AIagents #AgenticEconomy #AIexplained
+https://wtfagents.com/guides/api
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/api
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack

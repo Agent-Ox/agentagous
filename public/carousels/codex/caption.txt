@@ -1,0 +1,10 @@
+OpenAI's coding agent, one tab away in ChatGPT.
+
+Codex is OpenAI's autonomous coding agent. You describe a change, a bug or a feature; it reads the codebase, writes the code, runs the tests, fixes what breaks and hands you a pull request to review — in a cloud sandbox, often several tasks at once, while you do something else.
+
+#AIagents #AgenticEconomy #FutureOfWork
+https://wtfagents.com/guides/codex
+
+--- first comment ---
+Full guide, free, no email wall: https://wtfagents.com/guides/codex
+All 37 guides in one PDF: https://wtfagents.com/bundles/complete-pack
